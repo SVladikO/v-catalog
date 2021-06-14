@@ -36,7 +36,7 @@ function Header() {
             <div className="container">
                 <Link className="logo" to={ROUTE_PATH.HOME}>{resolveString("$HEADER.LOGO.TEXT")}</Link>
                 <Menu links={menu_links}/>
-                <Dropdown unicode={"2400"} items={getLanguages()} func={(value) => { setSiteLanguage(value); document.location.reload();}} />
+                <Dropdown unicode={"2400"} items={getLanguages()} func={setSiteLanguage} />
             </div>
         </div>
     )

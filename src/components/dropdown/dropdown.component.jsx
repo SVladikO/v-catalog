@@ -36,9 +36,6 @@ class Dropdown extends React.Component {
                             this.props.items.map((item) =>
                                 <div key={item.key} className="item" onClick={
                                     () => {
-                                        console.log(2)
-                                        console.log(this.props.func)
-                                        console.log(item.key)
                                         this.selectItem(item.key);
                                         this.props.func && this.props.func(item.key);
                                     }

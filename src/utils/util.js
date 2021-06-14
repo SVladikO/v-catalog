@@ -2,6 +2,7 @@ import translations from "../common.dictionary";
 
 export function setSiteLanguage(language) {
     localStorage.setItem("language", language);
+    document.location.reload();
 }
 
 export function currentLanguage() {
