@@ -1,3 +1,4 @@
+import React from "react";
 import {resolveString} from "../../utils/util";
 import './introduction.style.scss';
 
