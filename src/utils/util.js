@@ -1,7 +1,13 @@
 import translations from "../common.dictionary";
 
+export function setSiteLanguage(language) {
+    localStorage.setItem("language", language);
+    document.location.reload();
+}
+
 export function currentLanguage() {
-    return 'en';
+    const language = localStorage.getItem("language");
+    return language || 'en';
 };
 
 export function resolveString(key) {
