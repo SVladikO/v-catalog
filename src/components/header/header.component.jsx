@@ -4,7 +4,9 @@ import Menu from "../menu/menu.component";
 
 import {Link} from 'react-router-dom';
 
-import {resolveString} from "../../utils/util";
+import {getLanguages} from "../../common.dictionary";
+import {resolveString, setSiteLanguage} from "../../utils/util";
+import Dropdown from "../dropdown/dropdown.component";
 
 export const ROUTE_PATH = {
     HOME: '/',
@@ -34,7 +36,7 @@ function Header() {
             <div className="container">
                 <Link className="logo" to={ROUTE_PATH.HOME}>{resolveString("$HEADER.LOGO.TEXT")}</Link>
                 <Menu links={menu_links}/>
-                <div>v l</div>
+                <Dropdown unicode={"2400"} items={getLanguages()} func={(value) => { setSiteLanguage(value); document.location.reload();}} />
             </div>
         </div>
     )

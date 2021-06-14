@@ -1,28 +1,52 @@
 const translations = {
     "HEADER.LOGO.TEXT": {
         "en": "V-Market",
+        "ru": "V-Market",
         "ua": "V-Market"
     },
     "HEADER.MENU_ITEM.GAME": {
         "en": "Games",
-        "ua": "Igru"
+        "ru": "Игры",
+        "ua": "Ігри"
     },
     "HEADER.MENU_ITEM.NPM": {
         "en": "NPM",
-        "ua": "NPM"
+        "ru": "Пакеты",
+        "ua": "Пакети"
     },
     "HEADER.MENU_ITEM.CV": {
         "en": "CV",
-        "ua": "Resume"
+        "ru": "Резюме",
+        "ua": "Резюме"
     },
     "INTRO.TITLE.BRAND_NAME": {
         "en": "V-Market",
+        "ru": "V-Market",
         "ua": "V-Market"
     },
     "INTRO.SUB_TITLE.PURPOSE": {
-        "en": "One place for all pet projects",
-        "ua": "One place for all pet projects"
+        "en": "The catalog of all pet projects",
+        "ru": "Каталог собственных проектов",
+        "ua": "Каталог власних проектів"
     },
 };
+
+
+export function getLanguages() {
+    return [
+        {
+            key: "en",
+            value: "English"
+        },
+        {
+            key: "ua",
+            value: "Українська"
+        },
+        {
+            key: "ru",
+            value: "Русский"
+        },
+    ];
+}
 
 export default translations;
