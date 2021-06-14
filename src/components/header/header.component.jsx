@@ -1,7 +1,7 @@
-import React from "react";
-
+import "./header.styles.scss"
 import Menu from "../menu/menu.component";
-import './header.styles.scss'
+
+import {resolveString} from "../../utils/util";
 
 const menu_links = [
     {
@@ -22,7 +22,7 @@ function Header() {
     return (
         <div className="header">
             <div className="container">
-                <div className="logo">V-Market</div>
+                <div className="logo">{resolveString("$HEADER.LOGO.TEXT")}</div>
                 <Menu links={menu_links}/>
                 <div>v l</div>
             </div>

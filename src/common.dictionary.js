@@ -1,4 +1,8 @@
 const translations = {
+    "HEADER.LOGO.TEXT": {
+        "en": "V-Market",
+        "ua": "V-Market"
+    },
     "HEADER.MENU_ITEM.GAME": {
         "en": "Games",
         "ua": "Igru"
