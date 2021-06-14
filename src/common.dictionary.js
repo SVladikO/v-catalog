@@ -17,11 +17,11 @@ const translations = {
     },
     "INTRO.TITLE.BRAND_NAME": {
         "en": "V-Market",
-        "ua": "Resume"
+        "ua": "V-Market"
     },
     "INTRO.SUB_TITLE.PURPOSE": {
         "en": "One place for all pet projects",
-        "ua": "Resume"
+        "ua": "One place for all pet projects"
     },
 };
 
