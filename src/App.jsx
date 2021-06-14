@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './App.style.scss';
 
@@ -8,7 +8,6 @@ import CVPage from "./pages/cv/cv.component";
 import GamePage from "./pages/games/game.component";
 import HomePage from "./pages/home/home.component";
 import PackagePage from "./pages/packages/package.component";
-import {Switch} from "react-router";
 
 function App() {
     return (
