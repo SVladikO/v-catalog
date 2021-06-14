@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/v-market/static/css/main.4c273afb.chunk.css",
+    "main.js": "/v-market/static/js/main.d3bdb169.chunk.js",
+    "main.js.map": "/v-market/static/js/main.d3bdb169.chunk.js.map",
+    "runtime-main.js": "/v-market/static/js/runtime-main.41edb391.js",
+    "runtime-main.js.map": "/v-market/static/js/runtime-main.41edb391.js.map",
+    "static/js/2.014379dc.chunk.js": "/v-market/static/js/2.014379dc.chunk.js",
+    "static/js/2.014379dc.chunk.js.map": "/v-market/static/js/2.014379dc.chunk.js.map",
+    "static/js/3.a1f9716e.chunk.js": "/v-market/static/js/3.a1f9716e.chunk.js",
+    "static/js/3.a1f9716e.chunk.js.map": "/v-market/static/js/3.a1f9716e.chunk.js.map",
+    "index.html": "/v-market/index.html",
+    "static/css/main.4c273afb.chunk.css.map": "/v-market/static/css/main.4c273afb.chunk.css.map",
+    "static/js/2.014379dc.chunk.js.LICENSE.txt": "/v-market/static/js/2.014379dc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.41edb391.js",
+    "static/js/2.014379dc.chunk.js",
+    "static/css/main.4c273afb.chunk.css",
+    "static/js/main.d3bdb169.chunk.js"
+  ]
+}
