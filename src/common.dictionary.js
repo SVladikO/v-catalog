@@ -15,7 +15,14 @@ const translations = {
         "en": "CV",
         "ua": "Resume"
     },
-
+    "INTRO.TITLE.BRAND_NAME": {
+        "en": "V-Market",
+        "ua": "V-Market"
+    },
+    "INTRO.SUB_TITLE.PURPOSE": {
+        "en": "One place for all pet projects",
+        "ua": "One place for all pet projects"
+    },
 };
 
 export default translations;
