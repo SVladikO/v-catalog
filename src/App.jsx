@@ -8,25 +8,19 @@ import CVPage from "./pages/cv/cv.component";
 import GamePage from "./pages/games/game.component";
 import HomePage from "./pages/home/home.component";
 import PackagePage from "./pages/packages/package.component";
+import {Switch} from "react-router";
 
 function App() {
     return (
         <Router>
             <div className="app">
                 <Header/>
-                <Route exact path={ROUTE_PATH.HOME}>
-                    <HomePage/>
-                </Route>
-                <Route path={ROUTE_PATH.GAMES}>
-                    <GamePage/>
-                </Route>
-                <Route path={ROUTE_PATH.PACKAGES}>
-                    <PackagePage/>
-                </Route>
-                <Route path={ROUTE_PATH.CV}>
-                    <CVPage/>
-                </Route>
-
+                <Switch>
+                    <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
+                    <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
+                    <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
+                    <Route path={ROUTE_PATH.CV}><CVPage/></Route>
+                </Switch>
             </div>
         </Router>
     );
