@@ -1,0 +1,24 @@
+
+.header {
+  background-color: #20232a;
+  height: 46px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1260px;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.logo {
+  color: darkturquoise;
+  font-size: 18px;
+  font-weight: bold;
+}
+ 
