@@ -1,7 +1,9 @@
 import React from "react";
+import {resolveString} from '../../utils/util'
+
 import './menu.style.scss'
 
-import {resolveString} from '../../utils/util'
+import {Link} from 'react-router-dom';
 
 function Menu({links}) {
     return (
@@ -9,9 +11,9 @@ function Menu({links}) {
             {
                 links.map(
                     (link, index) =>
-                        <div key={index} className="link">
+                        <Link to={link.path} key={index} className="link">
                             {resolveString(link.title)}
-                        </div>
+                        </Link>
                 )
             }
         </div>
