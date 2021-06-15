@@ -9,10 +9,10 @@ import {resolveString, setSiteLanguage} from "../../utils/util";
 import Dropdown from "../dropdown/dropdown.component";
 
 export const ROUTE_PATH = {
-    HOME: '/',
-    GAMES: "/games",
-    PACKAGES: "/packages",
-    CV: "/cv"
+    HOME: '/v-market',
+    GAMES: "/v-market/games",
+    PACKAGES: "/v-market/packages",
+    CV: "/v-market/cv"
 }
 
 const menu_links = [
