@@ -33,7 +33,6 @@ class Dropdown extends React.Component {
                                 <div key={item.key} className="item" onClick={
                                     () => {
                                         this.switchView();
-                                        this.forceUpdate();
                                         this.props.action && this.props.action(item.key);
                                     }
                                 }>

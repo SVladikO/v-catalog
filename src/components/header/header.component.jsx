@@ -45,10 +45,6 @@ function Header({setSiteLanguage}) {
         </div>
     )
 }
-//
-// const mapStateToProps = createStructuredSelector({
-//     currentLanguage: selectCurrentLanguage
-// })
 
 const mapDispatchToProps = dispatch => ({
     setSiteLanguage: language => dispatch(setSiteLanguage(language))
