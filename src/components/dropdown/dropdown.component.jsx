@@ -16,10 +16,6 @@ class Dropdown extends React.Component {
         this.setState({hide: !this.state.hide})
     }
 
-    selectItem(value) {
-        this.setState({selectedKey: value});
-        this.switchView();
-    }
 
     render() {
         return (
@@ -36,8 +32,8 @@ class Dropdown extends React.Component {
                             this.props.items.map((item) =>
                                 <div key={item.key} className="item" onClick={
                                     () => {
-                                        this.selectItem(item.key);
-                                        this.props.func && this.props.func(item.key);
+                                        this.switchView();
+                                        this.props.action && this.props.action(item.key);
                                     }
                                 }>
                                     {item.value}

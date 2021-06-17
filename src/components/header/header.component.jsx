@@ -4,8 +4,12 @@ import Menu from "../menu/menu.component";
 
 import {Link} from 'react-router-dom';
 
+import {connect} from 'react-redux';
+// import {createStructuredSelector} from "reselect";
+import {setSiteLanguage} from '../../redux/config/config.actions'
+
 import {getLanguages} from "../../common.dictionary";
-import {resolveString, setSiteLanguage} from "../../utils/util";
+import {resolveString} from "../../utils/util";
 import Dropdown from "../dropdown/dropdown.component";
 
 export const ROUTE_PATH = {
@@ -30,16 +34,20 @@ const menu_links = [
     },
 ];
 
-function Header() {
+function Header({setSiteLanguage}) {
     return (
         <div className="header">
             <div className="container">
                 <Link className="logo" to={ROUTE_PATH.HOME}>{resolveString("$HEADER.LOGO.TEXT")}</Link>
                 <Menu links={menu_links}/>
-                <Dropdown unicode={"2400"} items={getLanguages()} func={setSiteLanguage} />
+                <Dropdown unicode={"2400"} items={getLanguages()} action={setSiteLanguage} />
             </div>
         </div>
     )
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => ({
+    setSiteLanguage: language => dispatch(setSiteLanguage(language))
+})
+
+export default connect(null, mapDispatchToProps)(Header);
