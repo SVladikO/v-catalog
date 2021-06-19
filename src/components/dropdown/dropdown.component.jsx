@@ -1,8 +1,6 @@
 import React from "react";
-
 import './dropdown.styles.scss';
 
-// supported data format [{ key: "", value: ""}]
 class Dropdown extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +13,6 @@ class Dropdown extends React.Component {
     switchView() {
         this.setState({hide: !this.state.hide})
     }
-
 
     render() {
         return (

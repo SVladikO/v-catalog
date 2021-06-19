@@ -1,5 +1,6 @@
 import React from "react";
-import {resolveString} from '../../utils/util'
+
+import Text from "../text/text.component";
 
 import './menu.style.scss'
 
@@ -12,7 +13,7 @@ function Menu({links}) {
                 links.map(
                     (link, index) =>
                         <Link to={link.path} key={index} className="link">
-                            {resolveString(link.title)}
+                            <Text translationKey={link.title} />
                         </Link>
                 )
             }
