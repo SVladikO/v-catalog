@@ -5,12 +5,13 @@ import Menu from "../menu/menu.component";
 import {Link} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-// import {createStructuredSelector} from "reselect";
+import {createStructuredSelector} from "reselect";
 import {setSiteLanguage} from '../../redux/config/config.actions'
 
 import {getLanguages} from "../../common.dictionary";
 import {resolveString} from "../../utils/util";
 import Dropdown from "../dropdown/dropdown.component";
+import {selectCurrentLanguage} from "../../redux/config/config.selector";
 
 export const ROUTE_PATH = {
     HOME: '/v-market',
@@ -34,20 +35,26 @@ const menu_links = [
     },
 ];
 
-function Header({setSiteLanguage}) {
+function Header({currentLanguage, setSiteLanguage}) {
+    let filteredLanguages = getLanguages().filter(item => item.key != currentLanguage);
+
     return (
         <div className="header">
             <div className="container">
                 <Link className="logo" to={ROUTE_PATH.HOME}>{resolveString("$HEADER.LOGO.TEXT")}</Link>
                 <Menu links={menu_links}/>
-                <Dropdown unicode={"2400"} items={getLanguages()} action={setSiteLanguage} />
+                <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage} />
             </div>
         </div>
     )
 }
 
+const mapStateToProps = createStructuredSelector({
+    currentLanguage: selectCurrentLanguage,
+})
+
 const mapDispatchToProps = dispatch => ({
     setSiteLanguage: language => dispatch(setSiteLanguage(language))
 })
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
