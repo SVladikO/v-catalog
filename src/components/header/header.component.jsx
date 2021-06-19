@@ -38,7 +38,6 @@ const menu_links = [
 function Header({currentLanguage, setSiteLanguage}) {
     let filteredLanguages = getLanguages().filter(item => item.key != currentLanguage);
 
-
     return (
         <div className="header">
             <div className="container">
