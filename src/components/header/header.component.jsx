@@ -1,16 +1,17 @@
 import React from "react";
+
 import "./header.styles.scss"
-import Menu from "../menu/menu.component";
-
-import {Link} from 'react-router-dom';
-
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
-import {setSiteLanguage} from '../../redux/config/config.actions'
 
-import {getLanguages} from "../../common.dictionary";
+import Menu from "../menu/menu.component";
+import Text from '../text/text.component';
 import Dropdown from "../dropdown/dropdown.component";
+
+import {setSiteLanguage} from '../../redux/config/config.actions'
 import {selectCurrentLanguage} from "../../redux/config/config.selector";
+import {getLanguages} from "../../common.dictionary";
 
 import "./header.styles.scss"
 
