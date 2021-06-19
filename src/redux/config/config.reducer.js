@@ -1,7 +1,9 @@
 import {ConfigActionTypes} from './config.types';
 
 const INITIAL_STATE = {
-    currentLanguage: 'en',
+    config: {
+        currentLanguage: 'en',
+    }
 }
 
 const configReducer = (state = INITIAL_STATE, action) => {
