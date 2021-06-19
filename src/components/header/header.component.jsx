@@ -1,17 +1,19 @@
 import React from "react";
+
 import "./header.styles.scss"
-import Menu from "../menu/menu.component";
-
-import {Link} from 'react-router-dom';
-
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
-import {setSiteLanguage} from '../../redux/config/config.actions'
 
-import {getLanguages} from "../../common.dictionary";
-import {resolveString} from "../../utils/util";
+import Menu from "../menu/menu.component";
+import Text from '../text/text.component';
 import Dropdown from "../dropdown/dropdown.component";
+
+import {setSiteLanguage} from '../../redux/config/config.actions'
 import {selectCurrentLanguage} from "../../redux/config/config.selector";
+import {getLanguages} from "../../common.dictionary";
+
+import "./header.styles.scss"
 
 export const ROUTE_PATH = {
     HOME: '/v-market',
@@ -41,7 +43,7 @@ function Header({currentLanguage, setSiteLanguage}) {
     return (
         <div className="header">
             <div className="container">
-                <Link className="logo" to={ROUTE_PATH.HOME}>{resolveString("$HEADER.LOGO.TEXT")}</Link>
+                <Link className="logo" to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
                 <Menu links={menu_links}/>
                 <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage} />
             </div>
