@@ -1,8 +1,12 @@
 import React from "react";
+import ProjectItems from "../../components/project-items/project-items.component";
 
 function GamePage() {
     return (
-        <div>GamePage</div>
+        <div>
+            <div>GamePage</div>
+            <ProjectItems />
+        </div>
     )
 }
 
