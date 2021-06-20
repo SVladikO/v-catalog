@@ -17,13 +17,13 @@ function App() {
                 <Header/>
                 <Switch>
                     <div className="content">
-                    <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
-                    <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
-                    <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
-                    <Route path={ROUTE_PATH.CV}><CVPage/></Route>
+                        <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
+                        <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
+                        <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
+                        <Route path={ROUTE_PATH.CV}><CVPage/></Route>
                     </div>
                 </Switch>
-                <Footer />
+                <Footer/>
             </div>
         </Router>
     );
