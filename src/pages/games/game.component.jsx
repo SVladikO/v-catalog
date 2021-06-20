@@ -6,6 +6,10 @@ function GamePage() {
         <div>
             <div>GamePage</div>
             <ProjectItems />
+            <ProjectItems />
+            <ProjectItems />
+            <ProjectItems />
+            <ProjectItems />
         </div>
     )
 }

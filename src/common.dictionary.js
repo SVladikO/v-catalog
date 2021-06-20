@@ -34,6 +34,26 @@ const translations = {
         "ru": "Профиль автора в:",
         "ua": "Профіль автора в:"
     },
+    "FOOTER.MENU_ITEM.HOME": {
+        "en": "HOME",
+        "ru": "Главная",
+        "ua": "Головна"
+    },
+    "FOOTER.MENU_ITEM.GAME": {
+        "en": "Games",
+        "ru": "Игры",
+        "ua": "Ігри"
+    },
+    "FOOTER.MENU_ITEM.NPM": {
+        "en": "NPM",
+        "ru": "Пакеты",
+        "ua": "Пакети"
+    },
+    "FOOTER.MENU_ITEM.CV": {
+        "en": "CV",
+        "ru": "Резюме",
+        "ua": "Резюме"
+    },
 };
 
 
