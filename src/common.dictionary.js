@@ -29,6 +29,11 @@ const translations = {
         "ru": "Каталог собственных проектов",
         "ua": "Каталог власних проектів"
     },
+    "FOOTER.PROFILE.TITLE": {
+        "en": "Author's profile in",
+        "ru": "Профиль автора в:",
+        "ua": "Профіль автора в:"
+    },
 };
 
 
