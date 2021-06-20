@@ -11,14 +11,12 @@
   }
 
   .profile_container {
-    //border: solid 1px red;
     display: flex;
     justify-content: center;
   }
 
   .profile_title {
     width: auto;
-    //border: solid 2px greenyellow;
     color: #ffffff;
     font-size: 16px;
     margin: 10px;
@@ -28,7 +26,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    //border: solid 1px rosybrown;
 
     a {
       margin: 0 5px;
