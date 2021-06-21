@@ -29,6 +29,38 @@ const translations = {
         "ru": "Каталог собственных проектов",
         "ua": "Каталог власних проектів"
     },
+    "INTRODUCTION.EXPERIENCE.TITLE": {
+        "en": "Experience",
+        "ru": "",
+        "ua": "Досвід"
+    },
+    "INTRODUCTION.EXPERIENCE.DETAILS": {
+        "en": "More than 5 years in IT industry. Take a part in 10 project with different arhitecture and complexity.",
+        "ru": "",
+        "ua": "Більше 5-ти років в IT індустрії. Взяв участь в розробці 10ти проектів різної складності і архітектури."
+    },
+    "INTRODUCTION.TECHNOLOGY.TITLE": {
+        "en": "Used technologies",
+        "ru": "",
+        "ua": "Використані технології"
+    },
+    "INTRODUCTION.TECHNOLOGY.DETAILS": {
+        "en": "Java, Angular, React, Redux, Node.js, MySQL, HTML/CSS",
+        "ru": "",
+        "ua": "Java, Angular, React, Redux, Node.js, MySQL, HTML/CSS"
+    },
+    "INTRODUCTION.POSITION.TITLE": {
+        "en": "Position",
+        "ru": "",
+        "ua": "Позиція"
+    },
+    "INTRODUCTION.POSITION.DETAILS": {
+        "en": "Backend developer (Java, 2 years) Frontend developer (3 years)",
+        "ru": "",
+        "ua": "Бекенд (Java, 2 роки) Фронтенд розробник (3 роки)"
+    },
+
+
     "FOOTER.PROFILE.TITLE": {
         "en": "Author's profile in",
         "ru": "Профиль автора в:",

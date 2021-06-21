@@ -1,18 +1,54 @@
-.intro-container {
+.introduction_container {
   background-color: #282c34;
   padding: 60px 0 70px;
+
+  .introduction_title {
+    font-size: 45px;
+    color: darkturquoise;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .introduction_sub_title {
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    margin-top: 15px;
+  }
 }
 
-.intro-title {
-  font-size: 45px;
-  color: darkturquoise;
-  text-align: center;
-  font-weight: bold;
+
+.experience_container {
+  padding: 30px 10px;
+  width: 820px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .experience_column {
+    width: 260px;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+
+  .experience_column_title {
+    color: #6d6d6d;
+    margin: 10px 0 6px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .experience_column_details {
+    color: #000000;
+    //font-family: 'Montserrat', sans-serif;
+  }
 }
 
-.intro-sub-title {
-  font-size: 24px;
-  color: #fff;
-  text-align: center;
-  margin-top: 15px;
+@media only screen and (max-width: 820px) {
+  .experience_container {
+    width: 100%;
+    margin: 0;
+
+  }
 }
