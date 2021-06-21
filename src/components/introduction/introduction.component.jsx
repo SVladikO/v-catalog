@@ -40,12 +40,12 @@ function Introduction() {
                     )
                 }
             </div>
-            <div className="introduction_company_container">
+            <div className="introduction_companies_container">
                 {/*company where I worked*/}
-                <div className="introduction_company_title">
+                <div className="introduction_companies_title">
                     <Text translationKey="$INTRODUCTION.COMPANY.TITLE" />
                 </div>
-                <div className="company_icons_container">
+                <div className="company_icons">
                     <img src={iconPlaytech} alt="Playtech"/>
                     <img src={iconAstound} alt="Astound commerce"/>
                     <img src={iconItera} alt="Itera"/>
