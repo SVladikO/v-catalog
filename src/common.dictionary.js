@@ -35,7 +35,7 @@ const translations = {
         "ua": "Досвід"
     },
     "INTRODUCTION.EXPERIENCE.DETAILS": {
-        "en": "More than 5 years in IT industry. Take a part in 10 project with different arhitecture and complexity.",
+        "en": "More than 5 years in IT industry. Took a part in 10 project with different architecture and complexity",
         "ru": "",
         "ua": "Більше 5-ти років в IT індустрії. Взяв участь в розробці 10ти проектів різної складності і архітектури."
     },
