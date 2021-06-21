@@ -16,8 +16,6 @@ import {ROUTE_PATH, HEADER_MENU_LINKS} from "../../common/route";
 
 import "./header.styles.scss"
 
-
-
 function Header({currentLanguage, setSiteLanguage}) {
     let filteredLanguages = getLanguages().filter(item => item.key != currentLanguage);
 
@@ -25,7 +23,7 @@ function Header({currentLanguage, setSiteLanguage}) {
         <div className="header">
             <div className="container">
                 <Link className="logo" to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
-                    <Menu links={HEADER_MENU_LINKS}/>
+                <Menu links={HEADER_MENU_LINKS}/>
                 <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
 
             </div>
