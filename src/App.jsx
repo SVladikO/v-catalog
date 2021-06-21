@@ -19,7 +19,7 @@ function App() {
             <div className="app">
                 <Header/>
                 <Switch>
-                    <div className="content">
+                    <div className="app_content">
                         <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
                         <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
                         <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
