@@ -5,19 +5,19 @@ const translations = {
         "ua": "V-Market"
     },
     "HEADER.MENU_ITEM.GAME": {
-        "en": "GAMES",
-        "ru": "ИГРЫ",
-        "ua": "ІГРИ"
+        "en": "Games",
+        "ru": "Игры",
+        "ua": "Ігри"
     },
     "HEADER.MENU_ITEM.NPM": {
-        "en": "NP",
-        "ru": "NP",
-        "ua": "NP"
+        "en": "NPM",
+        "ru": "Пакеты",
+        "ua": "Пакети"
     },
     "HEADER.MENU_ITEM.CV": {
         "en": "CV",
-        "ru": "РЕЗЮМЕ",
-        "ua": "РЕЗЮМЕ"
+        "ru": "Резюме",
+        "ua": "Резюме"
     },
     "INTRO.TITLE.BRAND_NAME": {
         "en": "V-Market",
