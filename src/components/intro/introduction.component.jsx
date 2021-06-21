@@ -16,8 +16,7 @@ let experienceDetails = [
         title: "$INTRODUCTION.POSITION.TITLE",
         details: "$INTRODUCTION.POSITION.DETAILS",
     },
-]
-
+];
 
 function Introduction() {
     return (
