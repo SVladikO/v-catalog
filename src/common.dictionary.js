@@ -59,8 +59,11 @@ const translations = {
         "ru": "",
         "ua": "Бекенд (Java, 2 роки) Фронтенд розробник (3 роки)"
     },
-
-
+    "INTRODUCTION.COMPANY.TITLE": {
+        "en": "Worked with companies:",
+        "ru": "",
+        "ua": "Працював з компаніями:"
+    },
     "FOOTER.PROFILE.TITLE": {
         "en": "Author's profile in",
         "ru": "Профиль автора в:",
