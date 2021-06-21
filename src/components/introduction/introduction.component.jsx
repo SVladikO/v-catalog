@@ -40,7 +40,7 @@ function Introduction() {
                     )
                 }
             </div>
-            <div className="introduction_companies_container">
+            <div className="introduction_companies">
                 {/*company where I worked*/}
                 <div className="introduction_companies_title">
                     <Text translationKey="$INTRODUCTION.COMPANY.TITLE" />

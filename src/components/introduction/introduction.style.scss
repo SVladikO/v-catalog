@@ -54,7 +54,7 @@
   }
 }
 
-.introduction_companies_container {
+.introduction_companies {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +80,7 @@
     width: auto;
   }
 
-  .introduction_companies_container {
+  .introduction_companies {
     .introduction_companies_title {
       margin: 10px 0;
     }
