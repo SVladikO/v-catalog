@@ -19,6 +19,10 @@ a {
 .app {
   font-family: 'Montserrat';
 
+  .app_content {
+    padding: 50px 10px 120px;
+  }
+
   .bottom_bar_mobile {
     display: none;
     position: fixed;
