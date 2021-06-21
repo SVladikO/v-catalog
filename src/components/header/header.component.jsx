@@ -25,9 +25,7 @@ function Header({currentLanguage, setSiteLanguage}) {
         <div className="header">
             <div className="container">
                 <Link className="logo" to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
-                <div className="header_menu">
                     <Menu links={HEADER_MENU_LINKS}/>
-                </div>
                 <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
 
             </div>

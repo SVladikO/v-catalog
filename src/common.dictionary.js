@@ -5,19 +5,19 @@ const translations = {
         "ua": "V-Market"
     },
     "HEADER.MENU_ITEM.GAME": {
-        "en": "Games",
-        "ru": "Игры",
-        "ua": "Ігри"
+        "en": "GAMES",
+        "ru": "ИГРЫ",
+        "ua": "ІГРИ"
     },
     "HEADER.MENU_ITEM.NPM": {
-        "en": "NPM",
-        "ru": "Пакеты",
-        "ua": "Пакети"
+        "en": "NP",
+        "ru": "NP",
+        "ua": "NP"
     },
     "HEADER.MENU_ITEM.CV": {
         "en": "CV",
-        "ru": "Резюме",
-        "ua": "Резюме"
+        "ru": "РЕЗЮМЕ",
+        "ua": "РЕЗЮМЕ"
     },
     "INTRO.TITLE.BRAND_NAME": {
         "en": "V-Market",
@@ -36,23 +36,23 @@ const translations = {
     },
     "FOOTER.MENU_ITEM.HOME": {
         "en": "HOME",
-        "ru": "Главная",
-        "ua": "Головна"
+        "ru": "ГЛАВНАЯ",
+        "ua": "ГОЛОВНА"
     },
     "FOOTER.MENU_ITEM.GAME": {
-        "en": "Games",
-        "ru": "Игры",
-        "ua": "Ігри"
+        "en": "GAMES",
+        "ru": "ИГРЫ",
+        "ua": "ІГРИ"
     },
     "FOOTER.MENU_ITEM.NPM": {
-        "en": "NPM",
-        "ru": "Пакеты",
-        "ua": "Пакети"
+        "en": "NP",
+        "ru": "NP",
+        "ua": "NP"
     },
     "FOOTER.MENU_ITEM.CV": {
         "en": "CV",
-        "ru": "Резюме",
-        "ua": "Резюме"
+        "ru": "РЕЗЮМЕ",
+        "ua": "РЕЗЮМЕ"
     },
 };
 
