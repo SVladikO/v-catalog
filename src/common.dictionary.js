@@ -99,10 +99,10 @@ export function getLanguages() {
             key: "ua",
             value: "Українська"
         },
-        {
-            key: "ru",
-            value: "Русский"
-        },
+        // {
+        //     key: "ru",
+        //     value: "Русский"
+        // },
     ];
 }
 
