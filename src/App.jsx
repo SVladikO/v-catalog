@@ -3,12 +3,15 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './App.style.scss';
 
-import Header, {ROUTE_PATH} from './components/header/header.component';
+import Header from './components/header/header.component';
 import CVPage from "./pages/cv/cv.component";
 import GamePage from "./pages/games/game.component";
 import HomePage from "./pages/home/home.component";
 import PackagePage from "./pages/packages/package.component";
 import Footer from "./components/footer/footer.component";
+import Menu from "./components/menu/menu.component";
+
+import {FOOTER_MENU_LINKS, ROUTE_PATH} from "./common/route";
 
 function App() {
     return (
@@ -23,6 +26,9 @@ function App() {
                         <Route path={ROUTE_PATH.CV}><CVPage/></Route>
                     </div>
                 </Switch>
+                <div className="bottom_bar_mobile">
+                    <Menu links={FOOTER_MENU_LINKS}/>
+                </div>
                 <Footer/>
             </div>
         </Router>
