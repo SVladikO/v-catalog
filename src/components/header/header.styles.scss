@@ -5,20 +5,28 @@
   color: #fff;
   display: flex;
   justify-content: center;
+
+  .container {
+    max-width: 1260px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .logo {
+    color: darkturquoise;
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
 
-.container {
-  max-width: 1260px;
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+@media only screen and (max-width: 600px) {
+  .header {
+    .menu {
+      display: none;
+    }
+  }
 }
-
-.logo {
-  color: darkturquoise;
-  font-size: 18px;
-  font-weight: bold;
-}
- 
