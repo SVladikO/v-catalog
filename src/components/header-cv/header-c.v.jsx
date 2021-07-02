@@ -1,7 +1,7 @@
 import {PositionSubTitle, PositionTitle} from "./header-cv.styles";
 import React from "react";
 
-function HeaderCvComponent() {
+function HeaderCV() {
     return (
         <React.Fragment>
             <PositionTitle>Middle Front End developer</PositionTitle>
@@ -10,4 +10,4 @@ function HeaderCvComponent() {
     )
 }
 
-export default HeaderCvComponent;
+export default HeaderCV;
