@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect x="10" y="10" width="20%" height="40%" stroke="blue" />
+<!--    <circle x="10" y="10" radius="20%" stroke="blue" />-->
+<!--    <polygon />-->
+<!--    <path d="m 0 0 l 10 0 l 40 100 l 30 100 "/>-->
+<!--    <path d="m 100 100 l 100 100 l 40 100 l 30 100 "/>-->
+</svg>
