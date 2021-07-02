@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const WorkplaceTitle = styled.div`
-    padding: 12px 0 12px 0;
-    font-family: Roboto;
-`;
 export const PositionTitle = styled.div`
     text-align: center;
     font-size: 24px;

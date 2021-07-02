@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContactDetails = styled.div`
+export const ContentContainer = styled.div`
     padding: 30px 15px;
     background: rgb(247 247 247);
 `;

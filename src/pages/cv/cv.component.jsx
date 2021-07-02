@@ -4,17 +4,17 @@ import {
     ContentContainer
 } from "./cv.component.style";
 import WorkplaceList from "../../components/workplace-list/workplace-list.component";
-import ContactDetailsComponent from "../../components/contact-details/contact-details.component";
-import HeaderCV from "../../components/header-cv/header-c.v";
+import ContactDetails from "../../components/contact-details/contact.details";
+import HeaderCvComponent from "../../components/header-cv/header-cv.component";
 
 function CVPage() {
     return (
         <ContentContainer>
             <div>
-                <HeaderCV/>
+                <HeaderCvComponent/>
                 <WorkplaceList/>
             </div>
-            <ContactDetailsComponent/>
+            <ContactDetails/>
         </ContentContainer>
     )
 }
