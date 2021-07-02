@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const WorkplaceContainer = styled.div`
+export const MainContainer = styled.div`
     width: 600px;
     position: relative;
     font-family: 'Roboto';
@@ -14,7 +14,6 @@ export const WorkplaceContainer = styled.div`
         width: auto;
     }
 `;
-
 export const CompanyLogo = styled.img`
     height: 36px;
     position: absolute;
@@ -42,7 +41,6 @@ export const SubTitle = styled.div`
     margin: 6px 0 2px;
     color: #b3b3b3;
 `;
-
 export const Skills = styled.div`
     margin: 5px 0;
 `;

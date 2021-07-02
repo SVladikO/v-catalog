@@ -1,5 +1,5 @@
 import {
-    WorkplaceContainer,
+    MainContainer,
     Position,
     CompanyName,
     TimeInterval,
@@ -14,10 +14,10 @@ function Workplace(props) {
     const {position, company, logo, fromDate, toDate, duration, city, country, responsibility, skills} = props;
 
     return (
-        <WorkplaceContainer>
+        <MainContainer>
             <CompanyLogo src={logo} alt="company logo"/>
             <Position>{position}</Position>
-            <CompanyName>{company} * Full-time</CompanyName>
+            <CompanyName>{company} - Full-time</CompanyName>
             <TimeInterval>
                 <span>{`${fromDate} - ${toDate} `}</span>
                 <span>= {duration}</span>
@@ -26,14 +26,9 @@ function Workplace(props) {
                 <span>{city}</span>
                 <span>{`, ${country}`}</span>
             </Location>
-            <Responsibility>
-                <SubTitle>Responsibilities:</SubTitle>
-                {responsibility}</Responsibility>
-            <Skills>
-                <SubTitle>Skills:</SubTitle>
-                {skills}
-            </Skills>
-        </WorkplaceContainer>
+            <Responsibility><SubTitle>Responsibilities:</SubTitle>{responsibility}</Responsibility>
+            <Skills><SubTitle>Skills:</SubTitle>{skills}</Skills>
+        </MainContainer>
     )
 }
 

@@ -12,7 +12,7 @@ export default [
         skills: "JS, React, Node.js, HTML, CSS",
     },
     {
-        position: "Frontend developer",
+        position: "Front End Developer",
         company: "Astound Commerce",
         logo: 'https://media-exp3.licdn.com/dms/image/C4D0BAQGmdlVsd9YECw/company-logo_100_100/0/1519884416952?e=1633564800&v=beta&t=mjBnwLHmWJLawamtNV27MC736z4P8SLPB56oY87ITAc',
         fromDate: "Sep 2018",
@@ -24,7 +24,7 @@ export default [
         skills: "JS, GitLab, Node.js, NPM, Jira",
     },
     {
-        position: "Full-stack Developer",
+        position: "Full Stack Developer",
         company: "Itera",
         logo: 'https://media-exp3.licdn.com/dms/image/C4E0BAQGhJSJxp8Zgxg/company-logo_100_100/0/1614844308837?e=1633564800&v=beta&t=uFD-CSUncr7iJoV5ShZZvmCsKd3n1qcg8wb-NEYRT-w',
         fromDate: "Sep 2017",
@@ -36,7 +36,7 @@ export default [
         skills: "JS, Java 8, Angular.js, Node.js, Spring, Camel, REST, JSON, SoapUI, JUnit, HTML, CSS, bakckbase, BackbaseAndroid Studio, IntelliJ IDEA"
     },
     {
-        position: "Full-stack Developer",
+        position: "Full Stack Developer",
         company: "Kyiv Smart City",
         logo: 'https://media-exp3.licdn.com/dms/image/C510BAQFaBqS15ziE2w/company-logo_100_100/0/1519872146772?e=1633564800&v=beta&t=adAGVu5I5YTU3KnHK51oM32ZL5-ZhVdfuxzrvip8e54',
         fromDate: "Jun 2016",
@@ -48,7 +48,7 @@ export default [
         skills: "JS, Java, Node.js, Angular JS 1.5, Git, Jira, React, Redux, JQuery, JSON, HTML, CSS, Bootstrap",
     },
     {
-        position: "Java developer",
+        position: "Java Developer",
         company: "Big Fish Game",
         logo: 'https://media-exp3.licdn.com/dms/image/C4D0BAQH79I__w0N_-A/company-logo_100_100/0/1625117051757?e=1633564800&v=beta&t=AGRElhdiCHDslBx25qrE1Yt9A3Fn4FGdiA1DOjA1s3E',
         fromDate: "May 2015",

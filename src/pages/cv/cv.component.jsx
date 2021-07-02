@@ -19,8 +19,8 @@ function CVPage() {
     return (
         <ContentContainer>
             <div>
-                <PositionTitle>Front-end developer</PositionTitle>
-                <PositionSubTitle>Back-end 2 years on Java, Front-end 3 years on React, etc.</PositionSubTitle>
+                <PositionTitle>Middle Front End developer</PositionTitle>
+                <PositionSubTitle>Back End 2 years on Java, Front End 3+ years on React, etc.</PositionSubTitle>
                 <WorkplaceTitle>Experience:</WorkplaceTitle>
                 {
                     companies.map(item =>
