@@ -26,8 +26,14 @@ function WorkplaceItem(props) {
                 <span>{city}</span>
                 <span>{`, ${country}`}</span>
             </Location>
-            <Responsibility><SubTitle>Responsibilities:</SubTitle>{responsibility}</Responsibility>
-            <Skills><SubTitle>Skills:</SubTitle>{skills}</Skills>
+            <Responsibility>
+                <SubTitle>Responsibilities:</SubTitle>
+                {responsibility}
+            </Responsibility>
+            <Skills>
+                <SubTitle>Skills:</SubTitle>
+                {skills}
+            </Skills>
         </MainContainer>
     )
 }

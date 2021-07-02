@@ -2,12 +2,12 @@ import React from "react";
 
 import companies from "./data";
 import WorkplaceItem from "../workplace-item/workplace-item.component";
-import {WorkplaceTitle} from "./workplace-list.styles";
+import {Title} from "./workplace-list.styles";
 
 function WorkplaceList() {
     return (
         <React.Fragment>
-            <WorkplaceTitle>Experience:</WorkplaceTitle>
+            <Title>Experience:</Title>
             {
                 companies.map(item =>
                     <WorkplaceItem key={item.company} {...item} />
