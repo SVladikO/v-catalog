@@ -9,6 +9,10 @@ export const WorkplaceContainer = styled.div`
     margin: 0 0 20px;
     border-bottom: solid 1px #d2d2d2;
     box-sizing: border-box;
+    
+    @media (max-width: 800px) {
+        width: auto;
+    }
 `;
 
 export const CompanyLogo = styled.img`

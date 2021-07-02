@@ -15,7 +15,7 @@ function Workplace(props) {
 
     return (
         <WorkplaceContainer>
-            <CompanyLogo src={logo} alt=""/>
+            <CompanyLogo src={logo} alt="company logo"/>
             <Position>{position}</Position>
             <CompanyName>{company} * Full-time</CompanyName>
             <TimeInterval>

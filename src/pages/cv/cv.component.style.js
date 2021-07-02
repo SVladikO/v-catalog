@@ -6,6 +6,12 @@ export const ContentContainer = styled.div`
     justify-content: center;
     width: 600px;
     margin: auto;
+    
+    @media (max-width: 800px) {
+        width: auto;
+        padding: 0 6px 0 10px;
+        flex-direction: column;
+    }
 `;
 export const WorkplaceTitle = styled.div`
     padding: 12px 0 12px 0;
