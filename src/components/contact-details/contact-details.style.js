@@ -15,10 +15,13 @@ export const Name = styled.div`
     margin: 0 0;
 `;
 export const Location = styled(detailsChild)`
-    color: #b3b3b3;
+    color: darkturquoise;
+;
 `;
 export const ContactTitle = styled.div`
     margin: 12px 0;
+    color: #000;
+    font-family: Roboto;
 `;
 export const Phone = styled(detailsChild)``;
 export const Email = styled(detailsChild)``;
