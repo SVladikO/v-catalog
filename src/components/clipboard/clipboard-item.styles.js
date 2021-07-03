@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ContentContainer = styled.div`
     display: flex;
-    height: 26px;
+    height: 32px;
     margin: 2px 0;
 `;
 export const Input = styled.input`
@@ -44,6 +44,8 @@ export const Button = styled.button`
     background: #21262d;
     position: relative;
     cursor: pointer;
+    display: flex;
+    align-items: center;
     
     &:hover {
         div {
