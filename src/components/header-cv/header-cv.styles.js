@@ -9,7 +9,7 @@ export const PositionTitle = styled.div`
 export const PositionSubTitle = styled.div`
     text-align: center;
     font-family: Roboto;
-    color: #b3b3b3;
+    color: #656464;
     margin: 6px 0 40px;
     font-size: 14px;
 `;

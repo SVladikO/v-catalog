@@ -28,10 +28,10 @@ export const Position = styled.div`
 `;
 export const CompanyName = styled.div``;
 export const TimeInterval = styled.div`
-    color: #b3b3b3;
+    color: #656464;
 `;
 export const Location = styled.div`
-    color: #b3b3b3;
+    color: #656464;
 `;
 export const Responsibility = styled.div`
     margin: 5px 0;
@@ -39,7 +39,7 @@ export const Responsibility = styled.div`
 export const SubTitle = styled.div`
     font-weight: 600;
     margin: 6px 0 2px;
-    color: #b3b3b3;
+    color: darkturquoise;
 `;
 export const Skills = styled.div`
     margin: 5px 0;
