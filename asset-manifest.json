@@ -1,27 +1,29 @@
 {
   "files": {
     "main.css": "/v-market/static/css/main.8d0e1194.chunk.css",
-    "main.js": "/v-market/static/js/main.18db52a1.chunk.js",
-    "main.js.map": "/v-market/static/js/main.18db52a1.chunk.js.map",
-    "runtime-main.js": "/v-market/static/js/runtime-main.ad6bd675.js",
-    "runtime-main.js.map": "/v-market/static/js/runtime-main.ad6bd675.js.map",
-    "static/js/2.ba654106.chunk.js": "/v-market/static/js/2.ba654106.chunk.js",
-    "static/js/2.ba654106.chunk.js.map": "/v-market/static/js/2.ba654106.chunk.js.map",
-    "static/js/3.a22688b9.chunk.js": "/v-market/static/js/3.a22688b9.chunk.js",
-    "static/js/3.a22688b9.chunk.js.map": "/v-market/static/js/3.a22688b9.chunk.js.map",
+    "main.js": "/v-market/static/js/main.04f6aa60.chunk.js",
+    "main.js.map": "/v-market/static/js/main.04f6aa60.chunk.js.map",
+    "runtime-main.js": "/v-market/static/js/runtime-main.0bb690e0.js",
+    "runtime-main.js.map": "/v-market/static/js/runtime-main.0bb690e0.js.map",
+    "static/js/2.391b80ae.chunk.js": "/v-market/static/js/2.391b80ae.chunk.js",
+    "static/js/2.391b80ae.chunk.js.map": "/v-market/static/js/2.391b80ae.chunk.js.map",
+    "static/js/3.1a091a3b.chunk.js": "/v-market/static/js/3.1a091a3b.chunk.js",
+    "static/js/3.1a091a3b.chunk.js.map": "/v-market/static/js/3.1a091a3b.chunk.js.map",
     "index.html": "/v-market/index.html",
     "static/css/main.8d0e1194.chunk.css.map": "/v-market/static/css/main.8d0e1194.chunk.css.map",
-    "static/js/2.ba654106.chunk.js.LICENSE.txt": "/v-market/static/js/2.ba654106.chunk.js.LICENSE.txt",
+    "static/js/2.391b80ae.chunk.js.LICENSE.txt": "/v-market/static/js/2.391b80ae.chunk.js.LICENSE.txt",
     "static/media/astound.67f621ce.png": "/v-market/static/media/astound.67f621ce.png",
     "static/media/big-fish-game.f273abe0.png": "/v-market/static/media/big-fish-game.f273abe0.png",
+    "static/media/copy.37fbbe27.svg": "/v-market/static/media/copy.37fbbe27.svg",
     "static/media/github.358c303b.svg": "/v-market/static/media/github.358c303b.svg",
     "static/media/itera.942958fe.png": "/v-market/static/media/itera.942958fe.png",
-    "static/media/linkedin.75faed4b.svg": "/v-market/static/media/linkedin.75faed4b.svg"
+    "static/media/linkedin.75faed4b.svg": "/v-market/static/media/linkedin.75faed4b.svg",
+    "static/media/success.09c3af6e.svg": "/v-market/static/media/success.09c3af6e.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ad6bd675.js",
-    "static/js/2.ba654106.chunk.js",
+    "static/js/runtime-main.0bb690e0.js",
+    "static/js/2.391b80ae.chunk.js",
     "static/css/main.8d0e1194.chunk.css",
-    "static/js/main.18db52a1.chunk.js"
+    "static/js/main.04f6aa60.chunk.js"
   ]
 }
