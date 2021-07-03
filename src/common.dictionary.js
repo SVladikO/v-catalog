@@ -71,6 +71,10 @@ const translations = {
         "en": "CV",
         "ua": "РЕЗЮМЕ"
     },
+    "CLIPBOARD.TOOLTIP.CLICKED.TITLE": {
+        "en": "Copied!",
+        "ua": "Скопійовано!"
+    },
 };
 
 
