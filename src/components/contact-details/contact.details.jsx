@@ -1,4 +1,4 @@
-import {ContentContainer, Clipboards, ContactTitle, Email, Location, Name, Phone, Skype} from "./contact-details.style";
+import {ContentContainer, Clipboards, ContactTitle, Location, Name} from "./contact-details.style";
 import React from "react";
 import ClipboardItem from "../clipboard/clipboard-item.component";
 
@@ -11,6 +11,7 @@ function ContactDetails() {
             <Clipboards>
                 <ClipboardItem value={"+380970668830"}/>
                 <ClipboardItem value={"vlad.serhiychuk@gmail.com"}/>
+                Skype:
                 <ClipboardItem value={"vlad.serhiychuk"}/>
             </Clipboards>
         </ContentContainer>
