@@ -77,7 +77,6 @@ const translations = {
     },
 };
 
-
 export function getLanguages() {
     return [
         {
