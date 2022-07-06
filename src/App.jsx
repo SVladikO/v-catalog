@@ -14,25 +14,25 @@ import Menu from "./components/menu/menu.component";
 import {FOOTER_MENU_LINKS, ROUTE_PATH} from "./common/route";
 
 function App() {
-    return (
-        <Router>
-            <div className="app">
-                <Header/>
-                <Switch>
-                    <div className="app_content">
-                        <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
-                        <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
-                        <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
-                        <Route path={ROUTE_PATH.CV}><CVPage/></Route>
-                    </div>
-                </Switch>
-                <div className="bottom_bar_mobile">
-                    <Menu links={FOOTER_MENU_LINKS}/>
-                </div>
-                <Footer/>
-            </div>
-        </Router>
-    );
+  return (
+    <Router>
+      <div className="app">
+        <Header/>
+        <Switch>
+          <div className="app_content">
+            <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
+            <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
+            <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
+            <Route path={ROUTE_PATH.CV}><CVPage/></Route>
+          </div>
+        </Switch>
+        <div className="bottom_bar_mobile">
+          <Menu links={FOOTER_MENU_LINKS}/>
+        </div>
+        <Footer/>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

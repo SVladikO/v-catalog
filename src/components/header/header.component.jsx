@@ -17,26 +17,26 @@ import {ROUTE_PATH, HEADER_MENU_LINKS} from "../../common/route";
 import "./header.styles.scss"
 
 function Header({currentLanguage, setSiteLanguage}) {
-    let filteredLanguages = getLanguages().filter(item => item.key != currentLanguage);
+  let filteredLanguages = getLanguages().filter(item => item.key != currentLanguage);
 
-    return (
-        <div className="header">
-            <div className="container">
-                <Link className="logo" to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
-                <Menu links={HEADER_MENU_LINKS}/>
-                <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
+  return (
+    <div className="header">
+      <div className="container">
+        <Link className="logo" to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
+        <Menu links={HEADER_MENU_LINKS}/>
+        <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
 
-            </div>
-        </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 const mapStateToProps = createStructuredSelector({
-    currentLanguage: selectCurrentLanguage,
+  currentLanguage: selectCurrentLanguage,
 })
 
 const mapDispatchToProps = dispatch => ({
-    setSiteLanguage: language => dispatch(setSiteLanguage(language))
+  setSiteLanguage: language => dispatch(setSiteLanguage(language))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

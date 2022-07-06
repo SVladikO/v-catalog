@@ -49,7 +49,7 @@ export const Button = styled.button`
     
     &:hover {
         div {
-            display: ${ props => !props.isClipboardClicked ? 'none': 'flex'};
+            display: ${props => !props.isClipboardClicked ? 'none' : 'flex'};
         }
     }
 `;
