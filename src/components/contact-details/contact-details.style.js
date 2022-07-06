@@ -13,6 +13,10 @@ const detailsChild = styled.div`
     font-size: 14px;
     font-family: Roboto, sans-serif;
 `;
+export const Avatar = styled.img`
+    border-radius: 50%;
+    height: 140px;
+`;
 export const Name = styled.div`
     font-size: 24px;
     font-family: Roboto;

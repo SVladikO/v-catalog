@@ -8,7 +8,7 @@ const translations = {
     "ua": "Ігри"
   },
   "HEADER.MENU_ITEM.NPM": {
-    "en": "NP",
+    "en": "NPM",
     "ua": "Пакети"
   },
   "HEADER.MENU_ITEM.CV": {

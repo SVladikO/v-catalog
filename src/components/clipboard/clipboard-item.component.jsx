@@ -37,8 +37,9 @@ function ClipboardItem({value}) {
               <TooltipContainer>
                 <Tooltip>
                   {
-                    !isClipboardClicked ? "" :
-                      <Text translationKey={"$CLIPBOARD.TOOLTIP.CLICKED.TITLE"}/>
+                    !isClipboardClicked
+                      ? ""
+                      : <Text translationKey={"$CLIPBOARD.TOOLTIP.CLICKED.TITLE"}/>
                   }
                 </Tooltip>
                 <Triangle/>
