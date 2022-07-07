@@ -20,7 +20,7 @@ function WorkplaceItem(props) {
       <CompanyName>{company} - Full-time</CompanyName>
       <TimeInterval>
         <span>{`${fromDate} - ${toDate} `}</span>
-        <span>= {duration}</span>
+        <span>({duration})</span>
       </TimeInterval>
       <Location>
         <span>{city}</span>

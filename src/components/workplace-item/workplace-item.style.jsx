@@ -15,10 +15,10 @@ export const MainContainer = styled.div`
     }
 `;
 export const CompanyLogo = styled.img`
-    height: 36px;
+    height: 40px;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 20px;
 `;
 export const Position = styled.div`
     font-weight: 600;

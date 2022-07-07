@@ -1,3 +1,8 @@
+export const YEARS_IN_IT = new Date().getFullYear() - 2015;
+export const YEARS_AS_BE_DEVELOPER = 2;
+export const YEARS_AS_FE_DEVELOPER_WITHOUT_REACT = 2;
+export const YEARS_AS_REACT_DEVELOPER = YEARS_IN_IT-YEARS_AS_BE_DEVELOPER-YEARS_AS_FE_DEVELOPER_WITHOUT_REACT;
+
 const translations = {
   "HEADER.LOGO.TEXT": {
     "en": "V-Market",
@@ -28,24 +33,24 @@ const translations = {
     "ua": "Досвід"
   },
   "INTRODUCTION.EXPERIENCE.DETAILS": {
-    "en": "More than 5 years in IT industry. Took a part in 10 project with different architecture and complexity",
-    "ua": "Більше 5-ти років в IT індустрії. Взяв участь в розробці 10ти проектів різної складності і архітектури."
+    "en": `${YEARS_IN_IT}+ years in IT industry. Took a part in 10 project with different architecture and complexity`,
+    "ua": `${YEARS_IN_IT}+ років в IT індустрії. Взяв участь в розробці 10ти проектів різної складності і архітектури.`
   },
   "INTRODUCTION.TECHNOLOGY.TITLE": {
     "en": "Used technologies",
     "ua": "Використані технології"
   },
   "INTRODUCTION.TECHNOLOGY.DETAILS": {
-    "en": "JS, Java, Angular, React, Redux, Node.js, MySQL, HTML/CSS",
-    "ua": "JS, Java, Angular, React, Redux, Node.js, MySQL, HTML/CSS"
+    "en": "JS, React, Java, Redux, HTML/CSS, Angular, Node.js, MySQL",
+    "ua": "JS, React, Java, Redux, HTML/CSS,  Angular, Node.js, MySQL,"
   },
   "INTRODUCTION.POSITION.TITLE": {
     "en": "Position",
     "ua": "Позиція"
   },
   "INTRODUCTION.POSITION.DETAILS": {
-    "en": "Backend developer (Java, 2 years) Frontend developer (3 years)",
-    "ua": "Бекенд (Java, 2 роки) Фронтенд розробник (3 роки)"
+    "en": `Backend developer Java (${YEARS_AS_BE_DEVELOPER} years) Frontend developer ${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ years (where React ${YEARS_AS_REACT_DEVELOPER}+)`,
+    "ua": `Бекенд (Java ${YEARS_AS_BE_DEVELOPER} роки) Фронтенд розробник (${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ роки) (React ${YEARS_AS_REACT_DEVELOPER}+)`
   },
   "INTRODUCTION.COMPANY.TITLE": {
     "en": "Worked with companies:",
