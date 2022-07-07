@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import THEME from "../../theme";
 
 export const MainContainer = styled.div`
     width: 600px;
@@ -39,7 +40,7 @@ export const Responsibility = styled.div`
 export const SubTitle = styled.div`
     font-weight: 600;
     margin: 6px 0 2px;
-    color: darkturquoise;
+    color: ${THEME.COLOR.PRIMARY};
 `;
 export const Skills = styled.div`
     margin: 5px 0;

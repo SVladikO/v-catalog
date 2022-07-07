@@ -7,7 +7,7 @@ import Header from './components/header/header.component';
 import CVPage from "./pages/cv/cv.component";
 import GamePage from "./pages/games/game.component";
 import HomePage from "./pages/home/home.component";
-import PackagePage from "./pages/packages/package.component";
+import PackagePage from "./pages/packages/Package.page";
 import Footer from "./components/footer/footer.component";
 import Menu from "./components/menu/menu.component";
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import THEME from "../../theme";
 
 export const ContentContainer = styled.div`
     display: flex;
@@ -21,7 +22,7 @@ export const TooltipContainer = styled.div`
     width: 100px;
 `;
 export const Tooltip = styled.div`
-    background: darkturquoise;
+    background: ${THEME.COLOR.PRIMARY};
     border-radius: 2px;
     height: 20px;
     display: flex;
@@ -35,7 +36,7 @@ export const Triangle = styled.div`
     height: 0; 
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid darkturquoise;
+    border-top: 8px solid ${THEME.COLOR.PRIMARY};
 `;
 export const Button = styled.button`
     border-radius: 0 6px 6px 0;

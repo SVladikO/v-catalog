@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import THEME from '../../theme';
 
 export const ContentContainer = styled.div`
     padding: 30px 15px;
@@ -23,7 +24,7 @@ export const Name = styled.div`
     margin: 0 0;
 `;
 export const Location = styled(detailsChild)`
-    color: darkturquoise;
+    color: ${THEME.COLOR.PRIMARY};
 ;
 `;
 export const ContactTitle = styled.div`
