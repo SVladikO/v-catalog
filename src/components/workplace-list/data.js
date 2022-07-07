@@ -2,7 +2,7 @@ export default [
   {
     position: "Software Engineer",
     company: "Playtech",
-    logo: 'https://media-exp3.licdn.com/dms/image/C4E0BAQHqvkMeKgi1Ng/company-logo_100_100/0/1519856461325?e=1633564800&v=beta&t=VJwl6G5av6iRf_fLf4a0dGFkSINqJsLFvcfzwXeXfAU',
+    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/playtech.png?raw=true',
     fromDate: "Aug 2019",
     toDate: "Apr 2021",
     duration: "1 yr 9 mos",
@@ -14,7 +14,7 @@ export default [
   {
     position: "Front End Developer",
     company: "Astound Commerce",
-    logo: 'https://media-exp3.licdn.com/dms/image/C4D0BAQGmdlVsd9YECw/company-logo_100_100/0/1519884416952?e=1633564800&v=beta&t=mjBnwLHmWJLawamtNV27MC736z4P8SLPB56oY87ITAc',
+    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/astound.png?raw=true',
     fromDate: "Sep 2018",
     toDate: "Jun 2019",
     duration: "10 mos",
@@ -26,7 +26,7 @@ export default [
   {
     position: "Full Stack Developer",
     company: "Itera",
-    logo: 'https://media-exp3.licdn.com/dms/image/C4E0BAQGhJSJxp8Zgxg/company-logo_100_100/0/1614844308837?e=1633564800&v=beta&t=uFD-CSUncr7iJoV5ShZZvmCsKd3n1qcg8wb-NEYRT-w',
+    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/itera.png?raw=true',
     fromDate: "Sep 2017",
     toDate: "Jun 2018",
     duration: "10 mos",
@@ -38,7 +38,7 @@ export default [
   {
     position: "Full Stack Developer",
     company: "Kyiv Smart City",
-    logo: 'https://media-exp3.licdn.com/dms/image/C510BAQFaBqS15ziE2w/company-logo_100_100/0/1519872146772?e=1633564800&v=beta&t=adAGVu5I5YTU3KnHK51oM32ZL5-ZhVdfuxzrvip8e54',
+    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/kyiv-smart-city.png?raw=true',
     fromDate: "Jun 2016",
     toDate: "Jyl 2017",
     duration: "1 yr 1 mos",
@@ -50,7 +50,7 @@ export default [
   {
     position: "Java Developer",
     company: "Big Fish Game",
-    logo: 'https://media-exp3.licdn.com/dms/image/C4D0BAQH79I__w0N_-A/company-logo_100_100/0/1625117051757?e=1633564800&v=beta&t=AGRElhdiCHDslBx25qrE1Yt9A3Fn4FGdiA1DOjA1s3E',
+    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/big-fish-game.png?raw=true',
     fromDate: "May 2015",
     toDate: "Jun 2016",
     duration: "1 yr 2 mos",
