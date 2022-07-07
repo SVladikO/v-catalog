@@ -2,7 +2,8 @@ export const ROUTE_PATH = {
   HOME: '/v-market',
   GAMES: "/v-market/games",
   PACKAGES: "/v-market/packages",
-  CV: "/v-market/cv"
+  CV: "/v-market/cv",
+  TIME_TABLE_F: "/timetable-f/"
 }
 
 export const HEADER_MENU_LINKS = [

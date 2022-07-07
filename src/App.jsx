@@ -7,6 +7,7 @@ import Header from './components/header/header.component';
 import CVPage from "./pages/cv/cv.component";
 import GamePage from "./pages/games/game.component";
 import HomePage from "./pages/home/home.component";
+import TimetableFPage from "./pages/timetabeF/TimetableF.page";
 import PackagePage from "./pages/packages/Package.page";
 import Footer from "./components/footer/footer.component";
 import Menu from "./components/menu/menu.component";
@@ -24,6 +25,7 @@ function App() {
             <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
             <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
             <Route path={ROUTE_PATH.CV}><CVPage/></Route>
+            <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
           </div>
         </Switch>
         <div className="bottom_bar_mobile">
