@@ -17,7 +17,7 @@ import {ROUTE_PATH, HEADER_MENU_LINKS} from "../../common/route";
 import "./header.styles.scss"
 
 function Header({currentLanguage, setSiteLanguage}) {
-  let filteredLanguages = getLanguages().filter(item => item.key != currentLanguage);
+  let filteredLanguages = getLanguages().filter(item => item.key !== currentLanguage);
 
   return (
     <div className="header">
