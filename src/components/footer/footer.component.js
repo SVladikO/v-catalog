@@ -36,7 +36,7 @@ function getProfilePart() {
       <div className="profile_links">
         {
           profileLinks.map(link =>
-            <a href={link.href} target="_blank">
+            <a href={link.href} target="_blank" rel="noreferrer">
               {link.imageComponent}
             </a>
           )
