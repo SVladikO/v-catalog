@@ -2,12 +2,11 @@ import {useState, useEffect} from 'react';
 import Timetable from 'timetable-f';
 import styled from 'styled-components';
 
-// import Code from './components/Code/Code.component'
+import Code from 'react-code-tag/index.js';
 
 const Wrapper = styled.div`
   padding: 10px;
 `;
-
 
 function TimetableF() {
   const [text, setText] = useState('Your text!');
@@ -44,9 +43,9 @@ function TimetableF() {
   timetable.show('${text}');
   `;
 
-
   return (
     <Wrapper>
+      {/*npm i timetable-f*/}
       <div id='timetable'></div>
       <div>
         <input type="text" value={text} onChange={e => setText(e.target.value)}/>
@@ -69,7 +68,7 @@ function TimetableF() {
       </div>
       <br/>
       <div>Result code is here: </div>
-      {/*<Code code={code}/>*/}
+      <Code code={code}/>
     </Wrapper>
   );
 }
