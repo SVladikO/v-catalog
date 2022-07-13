@@ -12,7 +12,7 @@ export const HEADER_MENU_LINKS = [
     path: ROUTE_PATH.GAMES
   },
   {
-    title: "$HEADER.MENU_ITEM.NPM",
+    title: "$HEADER.MENU_ITEM.NP",
     path: ROUTE_PATH.PACKAGES
   },
   {
@@ -31,7 +31,7 @@ export const FOOTER_MENU_LINKS = [
     path: ROUTE_PATH.GAMES
   },
   {
-    title: "$FOOTER.MENU_ITEM.NPM",
+    title: "$FOOTER.MENU_ITEM.NP",
     path: ROUTE_PATH.PACKAGES
   },
   {

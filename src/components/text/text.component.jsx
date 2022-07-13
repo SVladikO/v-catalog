@@ -8,9 +8,7 @@ import {resolveTranslation} from "../../utils/util";
 function Text({translationKey, currentLanguage}) {
   return (
     <React.Fragment>
-      {
-        resolveTranslation(translationKey, currentLanguage)
-      }
+      {resolveTranslation(translationKey, currentLanguage)}
     </React.Fragment>
   )
 }

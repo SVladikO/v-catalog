@@ -12,8 +12,8 @@ const translations = {
     "en": "Games",
     "ua": "Ігри"
   },
-  "HEADER.MENU_ITEM.NPM": {
-    "en": "NPM",
+  "HEADER.MENU_ITEM.NP": {
+    "en": "NP",
     "ua": "Пакети"
   },
   "HEADER.MENU_ITEM.CV": {
@@ -68,9 +68,9 @@ const translations = {
     "en": "GAMES",
     "ua": "ІГРИ"
   },
-  "FOOTER.MENU_ITEM.NPM": {
+  "FOOTER.MENU_ITEM.NP": {
     "en": "NP",
-    "ua": "NP"
+    "ua": "ПАКЕТИ"
   },
   "FOOTER.MENU_ITEM.CV": {
     "en": "CV",
