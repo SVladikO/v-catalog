@@ -3,7 +3,8 @@ export const ROUTE_PATH = {
   GAMES: "/v-market/games",
   PACKAGES: "/v-market/packages",
   CV: "/v-market/cv",
-  TIME_TABLE_F: "/timetable-f/"
+  TIME_TABLE_F: "/timetable-f/",
+  SALARY_CALC: "/salary-calc/"
 }
 
 export const HEADER_MENU_LINKS = [
