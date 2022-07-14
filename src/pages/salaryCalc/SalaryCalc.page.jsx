@@ -1,20 +1,14 @@
 import React, {useState} from "react";
 
-import {ReactComponent as GithubIcon} from "../../image/footer/github.svg";
-import {ReactComponent as NPMIcon} from "../../image/footer/npm.svg";
-import {Wrapper, InputStyle, Row, Table, RowDescription} from './SalaryCalc.style';
+import {Wrapper, InputStyle, Title, Table, RowDescription, BottomMenu} from './SalaryCalc.style';
 
-function Input({changeHandler, value, name}) {
-  function convertToNumber(str) {
-    const num = +str.split('\'').join('');
-
-    return num;
-  }
+function Input({changeHandler, value, name, isShow}) {
+  const convertToNumber = str => +str.split('\'').join('');
 
   function addSeparator(num) {
-    const str = new String(num);
+    const str = new String(num.toFixed(0));
 
-    if (str.length <=3) {
+    if (str.length <= 3) {
       return str;
     }
 
@@ -23,7 +17,7 @@ function Input({changeHandler, value, name}) {
 
     while (index > 0) {
       arr.splice(index, 0, '\'')
-      index= index - 3;
+      index = index - 3;
     }
 
     const result = arr.join('');
@@ -32,7 +26,9 @@ function Input({changeHandler, value, name}) {
 
   }
 
-  addSeparator(1234);
+  if (!isShow) {
+    return <div></div>;
+  }
 
   return (
     <InputStyle
@@ -47,60 +43,103 @@ function CurrencyTimeCalculator() {
   const [monthIncome, setMonthIncome] = useState(5000);
   const [workDayPerMonth, setWorkDayPerMonth] = useState(21);
   const [workHoursPerDay, setWorkHoursPerDay] = useState(8);
-  const [years, setYears] = useState(3);
+  const [years, setYears] = useState(1);
+  const [showUSD, setShowUSD] = useState(true);
+  const [showUAH, setShowUAH] = useState(true);
 
-  function convertHourIncomeToMonth(value) {
-    setMonthIncome(value * workDayPerMonth * workHoursPerDay)
-  }
-
-  function convertDayIncomeToMonth(value) {
-    setMonthIncome(value * workDayPerMonth)
-  }
-  function convertYearIncomeToMonth(value) {
-    setMonthIncome(value / 12 )
-  }
-  function convertYearsIncomeToMonth(value) {
-    setMonthIncome(monthIncome / years / 12)
-  }
-
-
+  const convertHourIncomeToMonth = value => setMonthIncome(value * workDayPerMonth * workHoursPerDay);
+  const convertDayIncomeToMonth = value => setMonthIncome(value * workDayPerMonth);
+  const convertYearsIncomeToMonth = value => setMonthIncome(value / years / 12);
 
   return (
-<>
-    <Table>
+    <>
 
-      <RowDescription></RowDescription>
-      <span>$</span>
-      <span>UAH</span>
+      <Table>
 
-      <RowDescription>Currency exchange:</RowDescription>
-      <span></span>
-      <Input type='number' value={courseUAH} onChange={e => setCourseUAH(e.target.value)}/>
+        <RowDescription>Currency</RowDescription>
+        {showUSD ? <span>$ 1</span> : <span></span>}
+        {showUAH
+          ? <span> ? <InputStyle width={30} type='number' value={courseUAH} onChange={e => setCourseUAH(e.target.value)}/></span>
+          : <span></span>
+        }
 
-      <RowDescription>Per hour:</RowDescription>
-      <Input name='usd_income_per_hour'  onChange={e => convertHourIncomeToMonth(e.target.value)} value={monthIncome/workDayPerMonth/workHoursPerDay} />
-      <Input name='uah_income_per_hour'  onChange={e => convertHourIncomeToMonth(e.target.value/courseUAH)} value={monthIncome/workDayPerMonth/workHoursPerDay*courseUAH} />
+        <RowDescription>1 hour:</RowDescription>
+        <Input
+          isShow={showUSD}
+          name='usd_income_per_hour'
+          changeHandler={value => convertHourIncomeToMonth(value)}
+          value={monthIncome / workDayPerMonth / workHoursPerDay}
+        />
+        <Input
+          isShow={showUAH}
+          name='uah_income_per_hour'
+          value={monthIncome / workDayPerMonth / workHoursPerDay * courseUAH}
+          changeHandler={value => convertHourIncomeToMonth(value / courseUAH)}
+        />
 
-      <RowDescription>Per day:</RowDescription>
-      <Input name='usd_income_per_day' onChange={e => convertDayIncomeToMonth(e.target.value)}  value={monthIncome/workDayPerMonth} />
-      <Input name='uah_income_per_day' onChange={e => convertDayIncomeToMonth(e.target.value/courseUAH)}  value={monthIncome/workDayPerMonth*courseUAH} />
+        <RowDescription>1 day:</RowDescription>
+        <Input
+          isShow={showUSD}
+          name='usd_income_per_day'
+          changeHandler={value => convertDayIncomeToMonth(value)}
+          value={monthIncome / workDayPerMonth}
+        />
+        <Input
+          isShow={showUAH}
+          name='uah_income_per_day'
+          changeHandler={value => convertDayIncomeToMonth(value / courseUAH)}
+          value={monthIncome / workDayPerMonth * courseUAH}
+        />
 
-      <RowDescription>Per month:</RowDescription>
-      <Input name='usd_income_per_month' onChange={e => setMonthIncome(e.target.value)}           value={monthIncome} />
-      <Input name='uah_income_per_month' onChange={e => setMonthIncome(e.target.value/courseUAH)}           value={monthIncome*courseUAH} />
+        <RowDescription>1 month:</RowDescription>
+        <Input
+          isShow={showUSD}
+          name='usd_income_per_month'
+          changeHandler={value => setMonthIncome(value)}
+          value={monthIncome}
+        />
+        <Input
+          isShow={showUAH}
+          name='uah_income_per_month'
+          changeHandler={value => setMonthIncome(value / courseUAH)}
+          value={monthIncome * courseUAH}
+        />
 
-      <RowDescription>By year:</RowDescription>
-      <Input name='usd_income_per_year'  onChange={e => convertYearIncomeToMonth(e.target.value)} value={monthIncome*12} />
-      <Input name='uah_income_per_year'  onChange={e => convertYearIncomeToMonth(e.target.value/courseUAH)} value={monthIncome*12*courseUAH} />
+        <RowDescription>
+          <InputStyle type="number" value={years} width={30} onChange={e => setYears(e.target.value)}/> year:
+        </RowDescription>
+        <Input
+          isShow={showUSD}
+          name='usd_income_by_years'
+          changeHandler={value => convertYearsIncomeToMonth(value)}
+          value={monthIncome * 12 * years}
+        />
+        <Input
+          isShow={showUAH}
+          name='uah_income_by_years'
+          changeHandler={value => convertYearsIncomeToMonth(value / courseUAH)}
+          value={monthIncome * 12 * years * courseUAH}
+        />
+      </Table>
+      <BottomMenu>
+        <InputStyle
+          type="number" value={workDayPerMonth} width={30} onChange={e => setWorkDayPerMonth(e.target.value)}/> work
+        days
 
-      <RowDescription>By <Input type="number" value={years} width={30}  onChange={e => setYears(e.target.value)}/> year:</RowDescription>
-      <Input name='usd_income_by_years'  onChange={e => convertYearsIncomeToMonth(e.target.value)} value={monthIncome*12*years} />
-      <Input name='uah_income_by_years'  onChange={e => convertYearsIncomeToMonth(e.target.value/courseUAH)} value={monthIncome*12*years*courseUAH} />
-    </Table>
+        <RowDescription>
+          <pre>
+          Show:
+            {" "}
+            <InputStyle width='auto' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/> USD
+            {"   "}
+            <InputStyle width='auto' type='checkbox' checked={showUAH} onChange={e => setShowUAH(e.target.checked)}/> UAH
+          </pre>
 
-  By <Input type="number" value={workDayPerMonth} width={30} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days
+        </RowDescription>
+      </BottomMenu>
 
-</>
+
+    </>
     // <Wrapper>
     //   <Row>Income in $</Row>
     //   <Row>By <Input type="number" value={workDayPerMonth} width={30} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days</Row>
@@ -119,12 +158,12 @@ function CurrencyTimeCalculator() {
 
 function SalaryCalcPage() {
   return (
-    <>
+    <Wrapper>
+      <Title>Salary Calculator</Title>
       <CurrencyTimeCalculator/>
       {/*<CurrencyTimeCalculator/>*/}
-    </>
+    </Wrapper>
   )
 }
-;
 
 export default SalaryCalcPage;

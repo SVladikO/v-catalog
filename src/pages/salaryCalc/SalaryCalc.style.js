@@ -6,6 +6,14 @@ export const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
+export const Title = styled.div`
+  margin: 10px 0 40px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
@@ -14,19 +22,22 @@ export const Row = styled.div`
 `;
 
 export const InputStyle = styled.input`
-  width: ${p => p.width || 60}px;
+  width: ${p => p.width || 70}px;
   border: ${THEME.COLOR.PRIMARY} solid 1px;
   margin: 1px;
 `;
 
 export const RowDescription = styled.div`
-  
-
+`;
+export const BottomMenu = styled.div`
+  max-width: 320px;
+  margin: 40px auto 0;
 `;
 export const Table = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr 40%;
-  max-width: 480px;
+  grid-template-columns: 2fr 1fr 25%;
+  max-width: 320px;
+  margin: 0 auto;
 `;
 
 export const Wrapper2 = styled.div`

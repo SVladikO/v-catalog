@@ -8,6 +8,8 @@ import iconItera from "../../image/company-logo/itera.png";
 import iconPlaytech from "../../image/company-logo/playtech.png";
 import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 
+import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
+
 const experienceDetails = [
   {
     title: "$INTRODUCTION.EXPERIENCE.TITLE",
@@ -46,6 +48,7 @@ function Introduction() {
           <Text translationKey="$INTRODUCTION.COMPANY.TITLE"/>
         </div>
         <div className="company_icons">
+          <OnePlusOneLogo/>
           <img src={iconPlaytech} alt="Playtech"/>
           <img src={iconAstound} alt="Astound commerce"/>
           <img src={iconItera} alt="Itera"/>
