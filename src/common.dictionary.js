@@ -8,7 +8,7 @@ const translations = {
     "en": "V-Catalog",
     "ua": "V-Catalog"
   },
-  "HEADER.MENU_ITEM.GAME": {
+  "HEADER.MENU_ITEM.WEBSITES_CATALOG": {
     "en": "Web",
     "ua": "Web"
   },

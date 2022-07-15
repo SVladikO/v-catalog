@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import THEME from "../../theme";
 
-export const Wrapper = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 10px;
-  box-sizing: border-box;
-`;
+
 
 export const Package = styled.div`
   padding: 10px;

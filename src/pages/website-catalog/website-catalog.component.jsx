@@ -1,10 +1,12 @@
 import React from "react";
 
+import {Wrapper, PageTitle} from '../../components/common.style.js';
+
 function WebsiteCatalog() {
   return (
-    <div>
-      <div>WebsiteCatalog</div>
-    </div>
+    <Wrapper>
+      <PageTitle>WebsiteCatalog</PageTitle>
+    </Wrapper>
   )
 }
 

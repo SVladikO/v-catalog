@@ -2,8 +2,9 @@ import React from "react";
 
 import {ReactComponent as GithubIcon} from "../../image/footer/github.svg";
 import {ReactComponent as NPMIcon} from "../../image/footer/npm.svg";
-import {Wrapper, Package, PackageTitle, TryOnline, Links} from './Package.style';
 
+import {PackageTitle, Package, TryOnline, Links} from './Package.style';
+import {Wrapper, PageTitle} from '../../components/common.style.js';
 function PackagePage() {
 
   const packages = [
@@ -13,18 +14,13 @@ function PackagePage() {
       npm_link: 'https://www.npmjs.com/package/timetable-f',
       git_link: 'https://github.com/SVladikO/timetable-f',
       try_online_link: '/timetable-f'
-    },
-    {
-      name: 'timetable-f',
-      description: 'Package to create timetablels',
-      npm_link: 'https://www.npmjs.com/package/timetable-f',
-      git_link: 'https://github.com/SVladikO/timetable-f',
-      try_online_link: '/timetable-f'
     }
   ]
 
   return (
     <Wrapper>
+       <PageTitle>Node Packages</PageTitle>
+
       {packages.map(p =>
         <Package key={p.name}>
             <PackageTitle>{p.name}</PackageTitle>

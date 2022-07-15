@@ -9,7 +9,7 @@ export const ROUTE_PATH = {
 
 export const HEADER_MENU_LINKS = [
   {
-    title: "$HEADER.MENU_ITEM.GAME",
+    title: "$HEADER.MENU_ITEM.WEBSITES_CATALOG",
     path: ROUTE_PATH.WEBSITES_CATALOG
   },
   {
