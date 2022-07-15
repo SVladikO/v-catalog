@@ -9,8 +9,8 @@ const translations = {
     "ua": "V-Catalog"
   },
   "HEADER.MENU_ITEM.GAME": {
-    "en": "Games",
-    "ua": "Ігри"
+    "en": "Web",
+    "ua": "Web"
   },
   "HEADER.MENU_ITEM.NP": {
     "en": "NP",
@@ -65,8 +65,8 @@ const translations = {
     "ua": "ГОЛОВНА"
   },
   "FOOTER.MENU_ITEM.GAME": {
-    "en": "GAMES",
-    "ua": "ІГРИ"
+    "en": "WEB",
+    "ua": "WEB"
   },
   "FOOTER.MENU_ITEM.NP": {
     "en": "NP",

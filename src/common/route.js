@@ -1,6 +1,6 @@
 export const ROUTE_PATH = {
   HOME: '/',
-  GAMES: "/games",
+  WEBSITES_CATALOG: "/websites-catalog",
   PACKAGES: "/packages",
   CV: "/cv",
   TIME_TABLE_F: "/timetable-f",
@@ -10,7 +10,7 @@ export const ROUTE_PATH = {
 export const HEADER_MENU_LINKS = [
   {
     title: "$HEADER.MENU_ITEM.GAME",
-    path: ROUTE_PATH.GAMES
+    path: ROUTE_PATH.WEBSITES_CATALOG
   },
   {
     title: "$HEADER.MENU_ITEM.NP",
@@ -29,7 +29,7 @@ export const FOOTER_MENU_LINKS = [
   },
   {
     title: "$FOOTER.MENU_ITEM.GAME",
-    path: ROUTE_PATH.GAMES
+    path: ROUTE_PATH.WEBSITES_CATALOG
   },
   {
     title: "$FOOTER.MENU_ITEM.NP",

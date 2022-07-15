@@ -5,7 +5,7 @@ import './App.style.scss';
 
 import Header from './components/header/header.component';
 import CVPage from "./pages/cv/cv.component";
-import GamePage from "./pages/games/game.component";
+import WebsiteCatalogPage from "./pages/website-catalog/website-catalog.component";
 import HomePage from "./pages/home/home.component";
 import TimetableFPage from "./pages/timetabeF/TimetableF.page";
 import SalaryCalcPage from "./pages/salaryCalc/SalaryCalc.page";
@@ -23,7 +23,7 @@ function App() {
         <Switch>
           <div className="app_content">
             <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
-            <Route path={ROUTE_PATH.GAMES}><GamePage/></Route>
+            <Route path={ROUTE_PATH.GAMES}><WebsiteCatalogPage/></Route>
             <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
             <Route path={ROUTE_PATH.CV}><CVPage/></Route>
             <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
