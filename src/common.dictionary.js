@@ -5,8 +5,8 @@ export const YEARS_AS_REACT_DEVELOPER = YEARS_IN_IT-YEARS_AS_BE_DEVELOPER-YEARS_
 
 const translations = {
   "HEADER.LOGO.TEXT": {
-    "en": "V-Market",
-    "ua": "V-Market"
+    "en": "V-Catalog",
+    "ua": "V-Catalog"
   },
   "HEADER.MENU_ITEM.GAME": {
     "en": "Games",
@@ -21,8 +21,8 @@ const translations = {
     "ua": "Резюме"
   },
   "INTRO.TITLE.BRAND_NAME": {
-    "en": "V-Market",
-    "ua": "V-Market"
+    "en": "V-Catalog",
+    "ua": "V-Catalog"
   },
   "INTRO.SUB_TITLE.PURPOSE": {
     "en": "The catalog of all pet projects",

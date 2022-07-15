@@ -1,4 +1,4 @@
-# [V-Market](https://svladiko.github.io/v-market)
+# [V-Catalog](https://svladiko.github.io/V-Catalog)
 Entry point for review all projects:
 * Games
 * Node Packages
