@@ -1,10 +1,22 @@
 export default [
   {
+    position: "Senior Frontend Developer",
+    company: "1+1 media",
+    fromTo: "Jul 2021 - Apr 2022",
+    duration: "10 mos",
+    city: "Kiev Region",
+    country: "Ukraine",
+    responsibility: `A project is 4 years old. I was only one Front End developer other
+                     were fullstack (java-react). My main responsibilities were feature
+                     development, refactoring, bug fix. 65% of all tasks I've created on
+                     my own. That was mostly ui, logical, code structure issues. The
+                     company encouraged it.`,
+    skills: "React, MobX",
+  },
+  {
     position: "Software Engineer",
     company: "Playtech",
-    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/playtech.png?raw=true',
-    fromDate: "Aug 2019",
-    toDate: "Apr 2021",
+    fromTo: "Aug 2019 - Apr 2021",
     duration: "1 yr 9 mos",
     city: "Kiev Region",
     country: "Ukraine",
@@ -14,9 +26,7 @@ export default [
   {
     position: "Front End Developer",
     company: "Astound Commerce",
-    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/astound.png?raw=true',
-    fromDate: "Sep 2018",
-    toDate: "Jun 2019",
+    fromTo: "Sep 2018 - Jun 2019",
     duration: "10 mos",
     city: "Kiev Region",
     country: "Ukraine",
@@ -26,9 +36,7 @@ export default [
   {
     position: "Full Stack Developer",
     company: "Itera",
-    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/itera.png?raw=true',
-    fromDate: "Sep 2017",
-    toDate: "Jun 2018",
+    fromTo: "Sep 2017 - Jun 2018",
     duration: "10 mos",
     city: "Kiev Region",
     country: "Ukraine",
@@ -38,9 +46,7 @@ export default [
   {
     position: "Full Stack Developer",
     company: "Kyiv Smart City",
-    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/kyiv-smart-city.png?raw=true',
-    fromDate: "Jun 2016",
-    toDate: "Jyl 2017",
+    fromTo: "Jun 2016 - Jyl 2017",
     duration: "1 yr 1 mos",
     city: "Kiev Region",
     country: "Ukraine",
@@ -50,9 +56,7 @@ export default [
   {
     position: "Java Developer",
     company: "Big Fish Game",
-    logo: 'https://github.com/SVladikO/v-market/blob/master/src/image/company-logo/big-fish-game.png?raw=true',
-    fromDate: "May 2015",
-    toDate: "Jun 2016",
+    fromTo: "May 2015 - Jun 2016",
     duration: "1 yr 2 mos",
     city: "Kiev Region",
     country: "Ukraine",

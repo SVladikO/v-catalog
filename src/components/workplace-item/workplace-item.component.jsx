@@ -7,33 +7,29 @@ import {
   Location,
   Skills,
   SubTitle,
-  CompanyLogo,
 } from './workplace-item.style';
 
 function WorkplaceItem(props) {
-  const {position, company, logo, fromDate, toDate, duration, city, country, responsibility, skills} = props;
+  const {position, company, fromTo, duration, city, country, responsibility, skills} = props;
 
   return (
     <MainContainer>
-      <CompanyLogo src={logo} alt="company logo"/>
+      <CompanyName>{company}</CompanyName>
       <Position>{position}</Position>
-      <CompanyName>{company} - Full-time</CompanyName>
       <TimeInterval>
-        <span>{`${fromDate} - ${toDate} `}</span>
+        <span>{`${fromTo} `}</span>
         <span>({duration})</span>
+        <span> - Full-time</span>
       </TimeInterval>
-      <Location>
-        <span>{city}</span>
-        <span>{`, ${country}`}</span>
-      </Location>
+{/*       <Location> */}
+{/*         <span>{city}</span> */}
+{/*         <span>{`, ${country}`}</span> */}
+{/*       </Location> */}
+      <Skills>({skills})</Skills>
       <Responsibility>
         <SubTitle>Responsibilities:</SubTitle>
         {responsibility}
       </Responsibility>
-      <Skills>
-        <SubTitle>Skills:</SubTitle>
-        {skills}
-      </Skills>
     </MainContainer>
   )
 }

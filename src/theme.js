@@ -7,9 +7,11 @@ const THEME = {
     INVERT_3: '#16181d',
   },
   FONT: {
-    LARGE: 20,
-    MEDIUM: 18,
-    SMALL: 16,
+    SIZE: {
+      LARGE: 28,
+      MEDIUM: 24,
+      SMALL: 20,
+    }
   }
 };
 

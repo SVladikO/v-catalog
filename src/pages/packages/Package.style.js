@@ -16,7 +16,7 @@ export const Package = styled.div`
 `;
 
 export const PackageTitle = styled.div`
-  font-size: ${THEME.FONT.LARGE}px;
+  font-size: ${THEME.FONT.SIZE.LARGE}px;
   font-weight: 900;
 `;
 

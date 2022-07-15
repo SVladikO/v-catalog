@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
     width: 600px;
     position: relative;
     font-family: 'Roboto';
-    font-size: 14px;
+    font-size: ${THEME.FONT.SIZE.MEDIUM}px;
     padding: 0 0 10px 46px;
     margin: 0 0 20px;
     border-bottom: solid 1px #d2d2d2;
@@ -15,15 +15,8 @@ export const MainContainer = styled.div`
         width: auto;
     }
 `;
-export const CompanyLogo = styled.img`
-    height: 40px;
-    position: absolute;
-    top: 0;
-    right: 20px;
-`;
+
 export const Position = styled.div`
-    font-weight: 600;
-    font-size: 16px;
     color: #000;
     margin: 0 0 4px 0;
 `;
@@ -36,11 +29,11 @@ export const Location = styled.div`
 `;
 export const Responsibility = styled.div`
     margin: 5px 0;
+//     font-size: ${THEME.FONT.SIZE.SMALL}px;
 `;
 export const SubTitle = styled.div`
-    font-weight: 600;
     margin: 6px 0 2px;
-    color: ${THEME.COLOR.PRIMARY};
+    color: ${THEME.COLOR.INVERT_2};
 `;
 export const Skills = styled.div`
     margin: 5px 0;
