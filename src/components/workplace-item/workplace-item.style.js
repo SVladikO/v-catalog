@@ -6,9 +6,8 @@ export const MainContainer = styled.div`
     position: relative;
     font-family: 'Roboto';
     font-size: ${THEME.FONT.SIZE.MEDIUM}px;
-    padding: 0 0 10px 46px;
+    padding: 20px 28px 10px 0;
     margin: 0 0 20px;
-    border-bottom: solid 1px #d2d2d2;
     box-sizing: border-box;
     
     @media (max-width: 800px) {
@@ -20,12 +19,13 @@ export const Position = styled.div`
     color: #000;
     margin: 0 0 4px 0;
 `;
-export const CompanyName = styled.div``;
+export const CompanyName = styled.div`
+    margin: 5px 0 5px 0;
+    color: ${THEME.COLOR.INVERT_3}
+`;
 export const TimeInterval = styled.div`
     color: #656464;
-`;
-export const Location = styled.div`
-    color: #656464;
+
 `;
 export const Responsibility = styled.div`
     margin: 5px 0;
