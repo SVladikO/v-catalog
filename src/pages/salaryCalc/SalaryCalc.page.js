@@ -100,7 +100,7 @@ function CurrencyTimeCalculator() {
           value={monthIncome / workDayPerMonth / workHoursPerDay * courseUAH}
           changeHandler={value => convertHourIncomeToMonth(value / courseUAH)}
         />
-        <RowDescription>1 hour:</RowDescription>
+        <RowDescription>1h</RowDescription>
 
         <Input
           isShow={showUSD}
@@ -114,7 +114,7 @@ function CurrencyTimeCalculator() {
           changeHandler={value => convertDayIncomeToMonth(value / courseUAH)}
           value={monthIncome / workDayPerMonth * courseUAH}
         />
-        <RowDescription>1 day:</RowDescription>
+        <RowDescription>1d</RowDescription>
 
         <Input
           isShow={showUSD}
@@ -128,7 +128,7 @@ function CurrencyTimeCalculator() {
           changeHandler={value => setMonthIncome(value / courseUAH)}
           value={monthIncome * courseUAH}
         />
-        <RowDescription>1 month:</RowDescription>
+        <RowDescription>1mos</RowDescription>
 
         <Input
           isShow={showUSD}
@@ -143,7 +143,7 @@ function CurrencyTimeCalculator() {
           value={monthIncome * 12 * years * courseUAH}
         />
         <RowDescription>
-          <InputStyle type="number" value={years} width={30} onChange={e => setYears(e.target.value)}/> year
+          <InputStyle type="number" value={years} width={30} onChange={e => setYears(e.target.value)}/> y
         </RowDescription>
       </Table>
       <BottomMenu>
