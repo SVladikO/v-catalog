@@ -21,7 +21,7 @@ function Header({currentLanguage, setSiteLanguage}) {
   return (
     <Wrapper>
       <Content>
-        <Link className="logo" to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
+        <Link to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
         <Menu links={HEADER_MENU_LINKS}/>
         <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
 
