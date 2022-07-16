@@ -11,7 +11,7 @@ export const ContentContainer = styled.div`
 
     @media (max-width: 800px) {
         width: auto;
-        padding: 0 6px 0 10px;
+        padding: 0 6px 0;
         flex-direction: column;
     }
 `;
