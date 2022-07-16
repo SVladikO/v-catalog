@@ -1,6 +1,4 @@
-import Text from "../text/text.component";
-
-import './introduction.style.scss';
+import Text from "../../components/text/text.component";
 
 import iconAstound from "../../image/company-logo/astound.png";
 import iconBigFishGame from "../../image/company-logo/big-fish-game.png";
@@ -9,6 +7,11 @@ import iconPlaytech from "../../image/company-logo/playtech.png";
 import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
+
+import {Wrapper, Container, IntroductionTitle, IntroductionSubTitle,
+ Experience, ExperienceColumn, ColumnTitle,  ColumnDetails,
+ Companies, CompaniesLogoTitle, LogoWrapper
+ } from './home.style.js';
 
 const experienceDetails = [
   {
@@ -25,40 +28,41 @@ const experienceDetails = [
   },
 ];
 
-function Introduction() {
+function HomePage() {
   return (
-    <div className="introduction">
-      <div className="introduction_container">
-        <div className="introduction_title"><Text translationKey="$INTRO.TITLE.BRAND_NAME"/></div>
-        <div className="introduction_sub_title"><Text translationKey="$INTRO.SUB_TITLE.PURPOSE"/></div>
-      </div>
-      <div className="experience_container">
+    <Wrapper>
+      <Container>
+        <IntroductionTitle><Text translationKey="$INTRO.TITLE.BRAND_NAME"/></IntroductionTitle>
+        <IntroductionSubTitle><Text translationKey="$INTRO.SUB_TITLE.PURPOSE"/></IntroductionSubTitle>
+      </Container>
+      <Experience>
         {
           experienceDetails.map(item =>
-            <div className="experience_column" key={item.title}>
-              <div className="experience_column_title"><Text translationKey={item.title}/></div>
-              <div className="experience_column_details"><Text translationKey={item.details}/></div>
-            </div>
+            <ExperienceColumn key={item.title}>
+              <ColumnTitle>
+                <Text translationKey={item.title}/>
+              </ColumnTitle>
+              <ColumnDetails><Text translationKey={item.details}/></ColumnDetails>
+            </ExperienceColumn>
           )
         }
-      </div>
-      <div className="introduction_companies">
-        {/*company where I worked*/}
-        <div className="introduction_companies_title">
-          <Text translationKey="$INTRODUCTION.COMPANY.TITLE"/>
-        </div>
-        <div className="company_icons">
+      </Experience>
+      <Companies>
+        <CompaniesLogoTitle>
+          <Text translationKey="$INTRODUCTION.TITLE"/>
+        </CompaniesLogoTitle>
+        <LogoWrapper>
           <OnePlusOneLogo/>
           <img src={iconPlaytech} alt="Playtech"/>
           <img src={iconAstound} alt="Astound commerce"/>
           <img src={iconItera} alt="Itera"/>
           <img src={iconKyivSmartCity} alt="Kyiv Smart City"/>
           <img src={iconBigFishGame} alt="Big fish game"/>
-        </div>
-      </div>
-    </div>
+        </LogoWrapper>
+      </Companies>
+    </Wrapper>
 
   );
 }
 
-export default Introduction;
+export default HomePage;

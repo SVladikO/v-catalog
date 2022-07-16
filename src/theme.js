@@ -17,6 +17,11 @@ const THEME = {
         PRIMARY: 'Montserrat',
         SECONDARY: 'Roboto',
     }
+  },
+  MEDIA: {
+    DESKTOP: '',
+    TABLET: '820px',
+    MOBILE: ''
   }
 };
 

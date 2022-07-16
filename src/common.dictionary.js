@@ -33,7 +33,7 @@ const translations = {
     "ua": "Досвід"
   },
   "INTRODUCTION.EXPERIENCE.DETAILS": {
-    "en": `${YEARS_IN_IT}+ years in IT industry. Took a part in 10 project with different architecture and complexity`,
+    "en": `${YEARS_IN_IT}+ years in IT industry. Took a part in 10 project with different architecture and complexity.`,
     "ua": `${YEARS_IN_IT}+ років в IT індустрії. Взяв участь в розробці 10ти проектів різної складності і архітектури.`
   },
   "INTRODUCTION.TECHNOLOGY.TITLE": {
@@ -41,18 +41,18 @@ const translations = {
     "ua": "Використані технології"
   },
   "INTRODUCTION.TECHNOLOGY.DETAILS": {
-    "en": "JS, React, Java, Redux, HTML/CSS, Angular, Node.js, MySQL",
-    "ua": "JS, React, Java, Redux, HTML/CSS,  Angular, Node.js, MySQL,"
+    "en": "JS, React, Redux, HTML/CSS, Java, Angular, Node.js, MySQL",
+    "ua": "JS, React, Redux, HTML/CSS, Java,  Angular, Node.js, MySQL,"
   },
   "INTRODUCTION.POSITION.TITLE": {
     "en": "Position",
     "ua": "Позиція"
   },
   "INTRODUCTION.POSITION.DETAILS": {
-    "en": `Backend developer Java (${YEARS_AS_BE_DEVELOPER} years) Frontend developer ${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ years (where React ${YEARS_AS_REACT_DEVELOPER}+)`,
-    "ua": `Бекенд (Java ${YEARS_AS_BE_DEVELOPER} роки) Фронтенд розробник (${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ роки) (React ${YEARS_AS_REACT_DEVELOPER}+)`
+    "en": `Backend Java (${YEARS_AS_BE_DEVELOPER} years) Frontend ${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ years (where React ${YEARS_AS_REACT_DEVELOPER}+)`,
+    "ua": `Бекенд Java (${YEARS_AS_BE_DEVELOPER} роки) Фронтенд (${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ роки) (React ${YEARS_AS_REACT_DEVELOPER}+)`
   },
-  "INTRODUCTION.COMPANY.TITLE": {
+  "INTRODUCTION.TITLE": {
     "en": "Worked with companies:",
     "ua": "Працював з компаніями:"
   },
