@@ -42,11 +42,10 @@ export const BottomMenu = styled.div`
 export const CustomCurrencyWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-
 `;
 export const Table = styled.div`
       display: grid;
-      grid-template-columns: 30% 30% 40%;
+      grid-template-columns: 1fr 1fr 34%;
       height: 170px;
       max-width: 369px;
       margin: 0px auto;
