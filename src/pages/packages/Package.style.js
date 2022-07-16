@@ -15,6 +15,10 @@ export const PackageTitle = styled.div`
   font-weight: 900;
 `;
 
+export const PackageDescription = styled.div`
+  font-size: ${THEME.FONT.SIZE.SMALL}px;
+`;
+
 export const TryOnline = styled.a`
   // font-size: ${THEME.FONT.LARGE}px;
   // font-weight: 900;

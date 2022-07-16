@@ -24,7 +24,6 @@ export const Content = styled.div`
     &>a:first-child {
         color: ${THEME.COLOR.PRIMARY};
         font-size: ${THEME.FONT.SIZE.MEDIUM}px;
-        font-weight: bold;
     }
     &>div:nth-child(2) {
         @media only screen and (max-width: 600px) {

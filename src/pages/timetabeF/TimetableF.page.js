@@ -2,8 +2,6 @@ import React from 'react';
 
 import {useState, useEffect} from 'react';
 import Timetable from 'timetable-f';
-import styled from 'styled-components';
-
 
 import Code from 'react-code-tag/index.js';
 

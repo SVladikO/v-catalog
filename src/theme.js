@@ -12,6 +12,10 @@ const THEME = {
       LARGE: 28,
       MEDIUM: 24,
       SMALL: 20,
+    },
+    FAMILY: {
+        PRIMARY: 'Montserrat',
+        SECONDARY: 'Roboto',
     }
   }
 };

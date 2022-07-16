@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   align-items: stretch;
 
   & a {
+      font-size: ${THEME.FONT.SIZE.SMALL}px;
       height: 100%;
       color: ${THEME.COLOR.SECONDARY};
       padding: 0 10px;

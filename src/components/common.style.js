@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
 export const PageTitle = styled.div`
     font-size: ${THEME.FONT.SIZE.LARGE}px;
     font-weight: 900;
-//    text-align: center;
     margin: 20px 0 40px;
+`;
+
+export const ItemTitle = styled.div`
+    font-size: ${THEME.FONT.SIZE.MEDIUM}px;
+//    margin: 20px 0 40px;
 `;

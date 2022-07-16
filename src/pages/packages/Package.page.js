@@ -3,7 +3,7 @@ import React from "react";
 import {ReactComponent as GithubIcon} from "../../image/footer/github.svg";
 import {ReactComponent as NPMIcon} from "../../image/footer/npm.svg";
 
-import {PackageTitle, Package, TryOnline, Links} from './Package.style';
+import {PackageTitle, PackageDescription, Package, TryOnline, Links} from './Package.style';
 import {Wrapper, PageTitle} from '../../components/common.style.js';
 function PackagePage() {
 
@@ -24,7 +24,7 @@ function PackagePage() {
       {packages.map(p =>
         <Package key={p.name}>
             <PackageTitle>{p.name}</PackageTitle>
-            <div>{p.description}</div>
+            <PackageDescription>{p.description}</PackageDescription>
             <Links>
               <a href={p.npm_link} target='_blank'><NPMIcon height={20}/></a><br/>
               <a href={p.git_link} target='_blank'><GithubIcon height={20}/></a>
