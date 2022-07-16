@@ -37,7 +37,7 @@ export const RowDescription = styled.div`
 `;
 export const BottomMenu = styled.div`
   max-width: 320px;
-  margin: 40px auto 0;
+  margin: 60px auto 0;
 `;
 export const CustomCurrencyWrapper = styled.div`
     display: flex;
@@ -45,11 +45,11 @@ export const CustomCurrencyWrapper = styled.div`
 
 `;
 export const Table = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 35%;
-  height: 146px;
-  max-width: 364px;
-  margin: 0 auto;
+      display: grid;
+      grid-template-columns: 30% 30% 40%;
+      height: 170px;
+      max-width: 369px;
+      margin: 0px auto;
 `;
 
 export const Wrapper2 = styled.div`
