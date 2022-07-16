@@ -14,27 +14,30 @@ export const Title = styled.div`
   font-size: ${THEME.FONT.SIZE.LARGE}px;
 `;
 
-
-export const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border: solid 1px red;
-  width: 180px;
-`;
-
 export const InputStyle = styled.input`
   width: ${p => p.width || 120}px;
-  border: ${THEME.COLOR.PRIMARY} solid 1px;
   margin: 1px;
-    font-size: ${THEME.FONT.SIZE.SMALL}px;
-
+  font-size: ${THEME.FONT.SIZE.SMALL}px;
+  &:hover {
+      background: ${THEME.COLOR.PRIMARY};
+  }
 `;
 
 export const RowDescription = styled.div`
+    padding: 0 0 0 6px;
+
+    &::before {
+        content: 'in '};
+    }
 `;
 export const BottomMenu = styled.div`
   max-width: 320px;
   margin: 40px auto 0;
+`;
+export const CustomCurrencyWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+
 `;
 export const Table = styled.div`
   display: grid;
