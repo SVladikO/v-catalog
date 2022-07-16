@@ -14,8 +14,13 @@ export const Title = styled.div`
   font-size: ${THEME.FONT.SIZE.LARGE}px;
 `;
 
+export const ContentToCenter = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const InputStyle = styled.input`
-  width: ${p => p.width || 120}px;
+  width: ${p => p.width || 100}px;
   margin: 1px;
   font-size: ${THEME.FONT.SIZE.SMALL}px;
   &:hover {
@@ -42,6 +47,7 @@ export const CustomCurrencyWrapper = styled.div`
 export const Table = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 35%;
+  height: 146px;
   max-width: 364px;
   margin: 0 auto;
 `;

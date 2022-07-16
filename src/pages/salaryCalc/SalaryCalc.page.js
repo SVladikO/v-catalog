@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import {Wrapper, InputStyle, Title, CustomCurrencyWrapper, Table, RowDescription, BottomMenu} from './SalaryCalc.style';
+import {Wrapper, InputStyle, Title, CustomCurrencyWrapper, ContentToCenter, Table, RowDescription, BottomMenu} from './SalaryCalc.style';
 
 function Input({changeHandler, value, name, isShow}) {
   const convertToNumber = str => +str.split('\'').join('');
@@ -46,25 +46,46 @@ function CurrencyTimeCalculator() {
   const [years, setYears] = useState(1);
   const [customCurrencyName, setCustomCurrencyName] = useState('UAH');
   const [showUSD, setShowUSD] = useState(true);
-  const [showUAH, setShowUAH] = useState(true);
+  const [showCustomCurrency, setShowCustomCurrency] = useState(true);
 
   const convertHourIncomeToMonth = value => setMonthIncome(value * workDayPerMonth * workHoursPerDay);
   const convertDayIncomeToMonth = value => setMonthIncome(value * workDayPerMonth);
   const convertYearsIncomeToMonth = value => setMonthIncome(value / years / 12);
 
+  const renderCurrencyCourse = () => {
+    return (
+        <div>
+           {showCustomCurrency
+                ? <>
+                    <InputStyle width={30} value={courseUAH} onChange={e => setCourseUAH(e.target.value)} type='number'/>
+                    <InputStyle width={58} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
+                   </>
+                : <span></span>
+           }
+           {showUSD && showCustomCurrency
+             ? <span> = 1 $</span>
+             : <span></span>
+           }
+        </div>
+    )
+  }
+
+  const renderShowHideMenu = () => {
+    return (
+           <pre>
+              <InputStyle width='auto' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/> ${"   "}
+              <InputStyle width='auto' type='checkbox' checked={showCustomCurrency} onChange={e => setShowCustomCurrency(e.target.checked)}/> {customCurrencyName}
+           </pre>
+    )
+  }
+
   return (
     <>
 
       <Table>
-        {showUSD ? <span>1 $     =</span> : <span></span>}
-        {showUAH
-          ? <CustomCurrencyWrapper>
-                <InputStyle width={30} value={courseUAH} onChange={e => setCourseUAH(e.target.value)} type='number'/>
-                <InputStyle width={58} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
-            </CustomCurrencyWrapper>
-          : <span></span>
-        }
-        <span />
+        <ContentToCenter>{showUSD ? '$' : ''}</ContentToCenter>
+        <ContentToCenter>{showCustomCurrency ? customCurrencyName : ''}</ContentToCenter>
+        <span></span>
 
 
         <Input
@@ -74,7 +95,7 @@ function CurrencyTimeCalculator() {
           value={monthIncome / workDayPerMonth / workHoursPerDay}
         />
         <Input
-          isShow={showUAH}
+          isShow={showCustomCurrency}
           name='uah_income_per_hour'
           value={monthIncome / workDayPerMonth / workHoursPerDay * courseUAH}
           changeHandler={value => convertHourIncomeToMonth(value / courseUAH)}
@@ -88,7 +109,7 @@ function CurrencyTimeCalculator() {
           value={monthIncome / workDayPerMonth}
         />
         <Input
-          isShow={showUAH}
+          isShow={showCustomCurrency}
           name='uah_income_per_day'
           changeHandler={value => convertDayIncomeToMonth(value / courseUAH)}
           value={monthIncome / workDayPerMonth * courseUAH}
@@ -102,7 +123,7 @@ function CurrencyTimeCalculator() {
           value={monthIncome}
         />
         <Input
-          isShow={showUAH}
+          isShow={showCustomCurrency}
           name='uah_income_per_month'
           changeHandler={value => setMonthIncome(value / courseUAH)}
           value={monthIncome * courseUAH}
@@ -116,7 +137,7 @@ function CurrencyTimeCalculator() {
           value={monthIncome * 12 * years}
         />
         <Input
-          isShow={showUAH}
+          isShow={showCustomCurrency}
           name='uah_income_by_years'
           changeHandler={value => convertYearsIncomeToMonth(value / courseUAH)}
           value={monthIncome * 12 * years * courseUAH}
@@ -126,21 +147,10 @@ function CurrencyTimeCalculator() {
         </RowDescription>
       </Table>
       <BottomMenu>
-        <InputStyle
-          type="number" value={workDayPerMonth} width={30} onChange={e => setWorkDayPerMonth(e.target.value)}/> work
-        days
-
-          <pre>
-          Show:
-            {" "}
-            <InputStyle width='auto' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/> USD
-            {"   "}
-            <InputStyle width='auto' type='checkbox' checked={showUAH} onChange={e => setShowUAH(e.target.checked)}/> {customCurrencyName}
-          </pre>
-
+         {renderShowHideMenu()}
+          <InputStyle type="number" value={workDayPerMonth} width={30} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days
+         {renderCurrencyCourse()}
       </BottomMenu>
-
-
     </>
   )
 }
