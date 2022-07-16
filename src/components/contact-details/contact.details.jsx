@@ -11,7 +11,6 @@ function ContactDetails() {
       <Location>Ukraine</Location>
       <ContactTitle>Contacts:</ContactTitle>
       <Clipboards>
-        <ClipboardItem value={"+380970668830"}/>
         <ClipboardItem value={"vlad.serhiychuk@gmail.com"}/>
       </Clipboards>
     </ContentContainer>

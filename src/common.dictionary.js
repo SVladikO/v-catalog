@@ -25,7 +25,7 @@ const translations = {
     "ua": "V-Catalog"
   },
   "INTRO.SUB_TITLE.PURPOSE": {
-    "en": "The catalog of all pet projects",
+    "en": "Pet projects of Vlad Serhiychuk",
     "ua": "Каталог власних проектів"
   },
   "INTRODUCTION.EXPERIENCE.TITLE": {

@@ -3,7 +3,7 @@ import THEME from '../../theme';
 
 export const ContentContainer = styled.div`
     padding: 30px 15px;
-    background: rgb(247 247 247);
+    background-color: ${THEME.COLOR.LIGHT_1};
     
     display: flex;
     flex-direction: column;
@@ -15,8 +15,12 @@ const detailsChild = styled.div`
     font-family: Roboto, sans-serif;
 `;
 export const Avatar = styled.img`
-    border-radius: 50%;
-    height: 140px;
+//    border-radius: 50%;
+//    height: 140px;
+border-radius: 50%;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
 `;
 export const Name = styled.div`
     font-size: 24px;

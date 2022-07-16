@@ -8,7 +8,7 @@ import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
 
-import {Wrapper, Container, IntroductionTitle, IntroductionSubTitle,
+import {Wrapper, Container, Avatar, IntroductionTitle, IntroductionSubTitle,
  Experience, ExperienceColumn, ColumnTitle,  ColumnDetails,
  Companies, CompaniesLogoTitle, LogoWrapper
  } from './home.style.js';
@@ -32,6 +32,7 @@ function HomePage() {
   return (
     <Wrapper>
       <Container>
+        <Avatar src="https://avatars.githubusercontent.com/u/10807650?v=4" alt=""/>
         <IntroductionTitle><Text translationKey="$INTRO.TITLE.BRAND_NAME"/></IntroductionTitle>
         <IntroductionSubTitle><Text translationKey="$INTRO.SUB_TITLE.PURPOSE"/></IntroductionSubTitle>
       </Container>

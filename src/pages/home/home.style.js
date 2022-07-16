@@ -11,18 +11,25 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
     min-width: 100vw;
-    background-color: #282c34;
-    padding: 60px 0 70px;
+    background-color: ${THEME.COLOR.INVERT_1};
+    padding: 20px 0 70px;
+`;
+export const Avatar = styled.img`
+    border-radius: 50%;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
 `;
 export const IntroductionTitle = styled.div`
     font-size: 45px;
     color: ${THEME.COLOR.PRIMARY};
     text-align: center;
+    margin: 10px 0 0 0;
 `;
 
 export const IntroductionSubTitle = styled.div`
     font-size: 24px;
-    color: ${THEME.COLOR.PRIMARY};
+    color: ${THEME.COLOR.SECONDARY};
     text-align: center;
     margin-top: 15px;
 `;
@@ -45,14 +52,15 @@ export const ExperienceColumn = styled.div`
     font-family: 'Roboto', sans-serif;
 `;
 export const ColumnTitle = styled.div`
-    color: ${THEME.COLOR.INVERT_3};
+    color: ${THEME.COLOR.INVERT_2};
     margin:  0 0 10px;
     font-size: 20px;
     font-weight: 500;
     font-size: ${THEME.FONT.SIZE.MEDIUM}px;
+    font-weight: 600;
 `;
 export const ColumnDetails = styled.div`
-    color: ${THEME.COLOR.INVERT_3};
+    color: ${THEME.COLOR.INVERT_1};
     font-size: ${THEME.FONT.SIZE.SMALL}px;
 `;
 
@@ -62,7 +70,7 @@ export const Companies = styled.div`
      align-items: center;
 `;
 export const CompaniesLogoTitle = styled.div`
-    margin: 30px 0 10px;
+    margin: 30px 0 24px;
     font-size: ${THEME.FONT.SIZE.MEDIUM}px;
 
     @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {
