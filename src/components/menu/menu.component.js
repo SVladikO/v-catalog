@@ -2,29 +2,30 @@ import React from "react";
 
 import Text from "../text/text.component";
 
-import './menu.style.scss'
+import {Wrapper, LinkWrapper } from './Menu.style.js'
 
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 function Menu({links}) {
   const itemWidth = 100 / links.length - 1 + '%';
-
+const location = useLocation();
   return (
-    <div className="menu">
+    <Wrapper>
       {
         links.map(
           (link) =>
+          <LinkWrapper isSelected={location.pathname === link.path} style={{width: itemWidth}}>
             <Link
               key={link.title}
-              className="link"
-              style={{width: itemWidth}}
+
               to={link.path}
             >
               <Text translationKey={link.title}/>
             </Link>
+            </LinkWrapper>
         )
       }
-    </div>
+    </Wrapper>
   );
 }
 

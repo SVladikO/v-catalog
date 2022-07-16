@@ -1,33 +1,32 @@
 import React from "react";
 
-import "./header.styles.scss"
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
+
+import {Wrapper, Content} from './Header.style.js';
 
 import Menu from "../menu/menu.component";
 import Text from '../text/text.component';
 import Dropdown from "../dropdown/dropdown.component";
 
+import {getLanguages} from "../../common.dictionary";
 import {setSiteLanguage} from '../../redux/config/config.actions'
 import {selectCurrentLanguage} from "../../redux/config/config.selector";
-import {getLanguages} from "../../common.dictionary";
 import {ROUTE_PATH, HEADER_MENU_LINKS} from "../../common/route";
-
-import "./header.styles.scss"
 
 function Header({currentLanguage, setSiteLanguage}) {
   let filteredLanguages = getLanguages().filter(item => item.key !== currentLanguage);
 
   return (
-    <div className="header">
-      <div className="container">
+    <Wrapper>
+      <Content>
         <Link className="logo" to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
         <Menu links={HEADER_MENU_LINKS}/>
         <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
 
-      </div>
-    </div>
+      </Content>
+    </Wrapper>
   )
 }
 

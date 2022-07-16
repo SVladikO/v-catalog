@@ -22,31 +22,5 @@ a {
   .app_content {
     padding: 46px 0 120px;
   }
-
-  .bottom_bar_mobile {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    z-index: 1;
-    width: 100%;
-    height: 40px;
-    border-top: solid 0.1px #2f323a;
-
-    .menu {
-      justify-content: space-around;
-      height: 60px;
-    }
-
-    .link {
-      font-family: Roboto;
-    }
-  }
 }
 
-@media only screen and (max-width: 600px) {
-  .app {
-    .bottom_bar_mobile {
-      display: block;
-    }
-  }
-}

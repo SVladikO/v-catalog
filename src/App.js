@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './App.style.scss';
+import {BottomMenuMobile} from './App.style.js';
 
 import Header from './components/header/header.component';
 import CVPage from "./pages/cv/cv.component";
@@ -30,9 +31,9 @@ function App() {
             <Route path={ROUTE_PATH.SALARY_CALC}><SalaryCalcPage/></Route>
           </div>
         </Switch>
-        <div className="bottom_bar_mobile">
+        <BottomMenuMobile>
           <Menu links={FOOTER_MENU_LINKS}/>
-        </div>
+        </BottomMenuMobile>
         <Footer/>
       </div>
     </Router>
