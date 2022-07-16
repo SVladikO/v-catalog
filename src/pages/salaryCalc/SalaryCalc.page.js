@@ -147,9 +147,9 @@ function CurrencyTimeCalculator() {
         </RowDescription>
       </Table>
       <BottomMenu>
-         {renderShowHideMenu()}
           <InputStyle type="number" value={workDayPerMonth} width={30} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days
          {renderCurrencyCourse()}
+         {renderShowHideMenu()}
       </BottomMenu>
     </>
   )
