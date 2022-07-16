@@ -132,7 +132,7 @@ function CurrencyTimeCalculator() {
             {" "}
             <InputStyle width='auto' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/> USD
             {"   "}
-            <InputStyle width='auto' type='checkbox' checked={showUAH} onChange={e => setShowUAH(e.target.checked)}/> UAH
+            <InputStyle width='auto' type='checkbox' checked={showUAH} onChange={e => setShowUAH(e.target.checked)}/> OTHER CURRENCY
           </pre>
 
         </RowDescription>

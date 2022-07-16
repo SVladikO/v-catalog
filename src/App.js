@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './App.style.scss';
-import {BottomMenuMobile} from './App.style.js';
+import {AppContent, BottomMenuMobile} from './App.style.js';
 
 import Header from './components/header/header.component';
 import CVPage from "./pages/cv/cv.component";
@@ -22,14 +22,14 @@ function App() {
       <div className="app">
         <Header/>
         <Switch>
-          <div className="app_content">
+          <AppContent>
             <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
             <Route path={ROUTE_PATH.WEBSITES_CATALOG}><WebsiteCatalogPage/></Route>
             <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
             <Route path={ROUTE_PATH.CV}><CVPage/></Route>
             <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
             <Route path={ROUTE_PATH.SALARY_CALC}><SalaryCalcPage/></Route>
-          </div>
+          </AppContent>
         </Switch>
         <BottomMenuMobile>
           <Menu links={FOOTER_MENU_LINKS}/>

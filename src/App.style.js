@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import THEME from "./theme";
 
+export const AppContent = styled.div`
+    padding: 46px 0 120px;
+    font-size: ${THEME.FONT.SIZE.SMALL}px;
+`;
+
 export const BottomMenuMobile = styled.div`
     display: none;
     position: fixed;

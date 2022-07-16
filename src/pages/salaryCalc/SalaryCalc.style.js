@@ -2,15 +2,16 @@ import styled from 'styled-components';
 import THEME from "../../theme";
 
 export const Wrapper = styled.div`
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+
 `;
 
 export const Title = styled.div`
-  margin: 10px 0 40px;
+  margin: 20px 0 40px;
   text-align: center;
-  font-size: 24px;
   font-weight: bold;
+  font-size: ${THEME.FONT.SIZE.LARGE}px;
 `;
 
 
@@ -22,9 +23,11 @@ export const Row = styled.div`
 `;
 
 export const InputStyle = styled.input`
-  width: ${p => p.width || 70}px;
+  width: ${p => p.width || 120}px;
   border: ${THEME.COLOR.PRIMARY} solid 1px;
   margin: 1px;
+    font-size: ${THEME.FONT.SIZE.SMALL}px;
+
 `;
 
 export const RowDescription = styled.div`
@@ -35,8 +38,8 @@ export const BottomMenu = styled.div`
 `;
 export const Table = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr 25%;
-  max-width: 320px;
+  grid-template-columns: 1fr 1fr 35%;
+  max-width: 364px;
   margin: 0 auto;
 `;
 
