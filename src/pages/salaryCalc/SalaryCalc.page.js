@@ -57,8 +57,8 @@ function CurrencyTimeCalculator() {
         <div>
            {showCustomCurrency
                 ? <>
-                    <InputStyle width={30} value={courseUAH} onChange={e => setCourseUAH(e.target.value)} type='number'/>
-                    <InputStyle width={58} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
+                    <InputStyle width={60} value={courseUAH} onChange={e => setCourseUAH(e.target.value)} type='number'/>
+                    <InputStyle width={60} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
                    </>
                 : <span></span>
            }
@@ -143,11 +143,13 @@ function CurrencyTimeCalculator() {
           value={monthIncome * 12 * years * courseUAH}
         />
         <RowDescription>
-          <InputStyle type="number" value={years} width={30} onChange={e => setYears(e.target.value)}/> y
+          <InputStyle type="number" value={years} width={40} onChange={e => setYears(e.target.value)}/> y
         </RowDescription>
       </Table>
       <BottomMenu>
-          <InputStyle type="number" value={workDayPerMonth} width={30} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days
+          <InputStyle type="number" value={workDayPerMonth} width={60} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days per month
+          <br />
+          <br />
          {renderCurrencyCourse()}
          {renderShowHideMenu()}
       </BottomMenu>
