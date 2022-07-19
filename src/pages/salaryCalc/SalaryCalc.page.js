@@ -1,9 +1,7 @@
 import React, {useState} from "react";
 
-import {Wrapper, InputStyle, Title, CustomCurrencyWrapper, ContentToCenter, Table, RowDescription, BottomMenu} from './SalaryCalc.style';
+import {Wrapper, InputStyle, Title, ContentToCenter, Table, RowDescription, BottomMenu} from './SalaryCalc.style';
 
-function Input({changeHandler, value, name, isShow}) {
-  const convertToNumber = str => +str.split('\'').join('');
 
   function addSeparator(num) {
     const str = new String(num.toFixed(0));
@@ -25,6 +23,10 @@ function Input({changeHandler, value, name, isShow}) {
     return result;
 
   }
+
+function Input({changeHandler, value, name, isShow}) {
+  const convertToNumber = str => +str.split('\'').join('');
+
 
   if (!isShow) {
     return <div></div>;
@@ -51,6 +53,31 @@ function CurrencyTimeCalculator() {
   const convertHourIncomeToMonth = value => setMonthIncome(value * workDayPerMonth * workHoursPerDay);
   const convertDayIncomeToMonth = value => setMonthIncome(value * workDayPerMonth);
   const convertYearsIncomeToMonth = value => setMonthIncome(value / years / 12);
+
+  const renderOvertimePrice = () => {
+    if (workHoursPerDay <= 8) {
+      return;
+    }
+
+    const incomePerHour = monthIncome / workDayPerMonth / workHoursPerDay;
+    const amountExtraHoursPerMonth = (workHoursPerDay-8)*workDayPerMonth;
+    const overtimePriceUSD = incomePerHour * amountExtraHoursPerMonth;
+    const overtimePriceCustomCurrency = overtimePriceUSD * courseUAH;
+
+    return <pre>{addSeparator(overtimePriceUSD)}$ or {addSeparator(overtimePriceCustomCurrency)} {customCurrencyName} = OVERTIME PRICE</pre>
+  }
+
+  const renderIncreasedSalary = () => {
+      if (workHoursPerDay >= 8) {
+        return;
+      }
+
+      const incomePerHourUSD = monthIncome / workDayPerMonth / workHoursPerDay;
+      const incomePerMonthUSD = incomePerHourUSD * 8 * workDayPerMonth;
+      const incomePerMonthCustomCurrency = incomePerMonthUSD * courseUAH;
+
+      return <pre>{addSeparator(incomePerMonthUSD)}$ or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY</pre>
+    }
 
   const renderCurrencyCourse = () => {
     return (
@@ -147,8 +174,14 @@ function CurrencyTimeCalculator() {
         </RowDescription>
       </Table>
       <BottomMenu>
+          <InputStyle type="number" value={workHoursPerDay} width={60} onChange={e => setWorkHoursPerDay(e.target.value)}/> work hours per day
+          <br />
           <InputStyle type="number" value={workDayPerMonth} width={60} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days per month
           <br />
+          <pre>{workHoursPerDay*workDayPerMonth} {"  "} work hours per months</pre>
+
+
+
           <br />
          {renderCurrencyCourse()}
          {renderShowHideMenu()}

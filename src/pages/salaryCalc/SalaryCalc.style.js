@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import THEME from "../../theme";
 
+const max_width = '369px';
+
 export const Wrapper = styled.div`
   width: 90%;
   margin: 0 auto;
@@ -36,18 +38,14 @@ export const RowDescription = styled.div`
     }
 `;
 export const BottomMenu = styled.div`
-  max-width: 320px;
+  max-width: ${max_width};
   margin: 60px auto 0;
-`;
-export const CustomCurrencyWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
 `;
 export const Table = styled.div`
       display: grid;
       grid-template-columns: 1fr 1fr 34%;
       height: 170px;
-      max-width: 369px;
+      max-width: ${max_width};
       margin: 0px auto;
 `;
 
