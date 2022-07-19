@@ -20,9 +20,7 @@ const profileLinks = [
 function Footer() {
   return (
     <div className="footer">
-      {
-        getProfilePart()
-      }
+      {getProfilePart()}
     </div>
   )
 }
@@ -36,7 +34,7 @@ function getProfilePart() {
       <div className="profile_links">
         {
           profileLinks.map(link =>
-            <a href={link.href} target="_blank" rel="noreferrer">
+            <a key={link.href} href={link.href} target="_blank" rel="noreferrer">
               {link.imageComponent}
             </a>
           )

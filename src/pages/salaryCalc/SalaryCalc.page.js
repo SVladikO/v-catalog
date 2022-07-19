@@ -1,28 +1,12 @@
 import React, {useState} from "react";
+import {searchParams} from '../../common/location.js';
+import {QUERY_PARAMS} from '../../common/route.js';
 
-import {Wrapper, InputStyle, Title, ContentToCenter, Table, RowDescription, BottomMenu} from './SalaryCalc.style';
+import { Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu } from './SalaryCalc.style';
 
 
-  function addSeparator(num) {
-    const str = new String(num.toFixed(0));
-
-    if (str.length <= 3) {
-      return str;
-    }
-
-    const arr = str.split('');
-    let index = arr.length - 3;
-
-    while (index > 0) {
-      arr.splice(index, 0, '\'')
-      index = index - 3;
-    }
-
-    const result = arr.join('');
-
-    return result;
-
-  }
+const params = searchParams();
+const isShowSecretPart = params.has(QUERY_PARAMS.SHOW_SECRET);
 
 function Input({changeHandler, value, name, isShow}) {
   const convertToNumber = str => +str.split('\'').join('');
@@ -64,7 +48,7 @@ function CurrencyTimeCalculator() {
     const overtimePriceUSD = incomePerHour * amountExtraHoursPerMonth;
     const overtimePriceCustomCurrency = overtimePriceUSD * courseUAH;
 
-    return <pre>{addSeparator(overtimePriceUSD)}$ or {addSeparator(overtimePriceCustomCurrency)} {customCurrencyName} = OVERTIME PRICE</pre>
+    return <pre>{addSeparator(overtimePriceUSD)}$ or {addSeparator(overtimePriceCustomCurrency)} {customCurrencyName} = OVERTIME PRICE {workHoursPerDay}h {workDayPerMonth}mos</pre>
   }
 
   const renderIncreasedSalary = () => {
@@ -110,8 +94,8 @@ function CurrencyTimeCalculator() {
     <>
 
       <Table>
-        <ContentToCenter>{showUSD ? '$' : ''}</ContentToCenter>
-        <ContentToCenter>{showCustomCurrency ? customCurrencyName : ''}</ContentToCenter>
+        <ToCenter>{showUSD ? '$' : ''}</ToCenter>
+        <ToCenter>{showCustomCurrency ? customCurrencyName : ''}</ToCenter>
         <span></span>
 
 
@@ -181,7 +165,9 @@ function CurrencyTimeCalculator() {
           <pre>{workHoursPerDay*workDayPerMonth} {"  "} work hours per months</pre>
 
 
-
+          {isShowSecretPart && 'Secret part:'} <br />
+          {isShowSecretPart && renderOvertimePrice()}
+          {isShowSecretPart && renderIncreasedSalary()}
           <br />
          {renderCurrencyCourse()}
          {renderShowHideMenu()}
@@ -190,6 +176,26 @@ function CurrencyTimeCalculator() {
   )
 }
 
+function addSeparator(num) {
+    const str = new String(num.toFixed(0));
+
+    if (str.length <= 3) {
+      return str;
+    }
+
+    const arr = str.split('');
+    let index = arr.length - 3;
+
+    while (index > 0) {
+      arr.splice(index, 0, '\'')
+      index = index - 3;
+    }
+
+    const result = arr.join('');
+
+    return result;
+
+}
 
 function SalaryCalcPage() {
   return (
@@ -200,5 +206,7 @@ function SalaryCalcPage() {
     </Wrapper>
   )
 }
+
+
 
 export default SalaryCalcPage;

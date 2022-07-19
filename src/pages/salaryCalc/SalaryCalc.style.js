@@ -16,7 +16,7 @@ export const Title = styled.div`
   font-size: ${THEME.FONT.SIZE.LARGE}px;
 `;
 
-export const ContentToCenter = styled.div`
+export const ToCenter = styled.div`
   display: flex;
   justify-content: center;
 `;

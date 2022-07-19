@@ -7,6 +7,12 @@ export const ROUTE_PATH = {
   SALARY_CALC: "/salary-calc"
 }
 
+export const QUERY_PARAMS = {
+    HIDE_HEADER: 'hide_header',
+    HIDE_FOOTER: 'hide_footer',
+    SHOW_SECRET: 'secret_part'
+}
+
 export const HEADER_MENU_LINKS = [
   {
     title: "$HEADER.MENU_ITEM.WEBSITES_CATALOG",

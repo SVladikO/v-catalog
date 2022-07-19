@@ -4,22 +4,18 @@ import Text from "../text/text.component";
 
 import {Wrapper, LinkWrapper } from './Menu.style.js'
 
-import {Link, useLocation} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Menu({links}) {
+  const [pathname, setPathname] = React.useState(window.location.pathname);
   const itemWidth = 100 / links.length - 1 + '%';
-const location = useLocation();
+
   return (
     <Wrapper>
       {
-        links.map(
-          (link) =>
-          <LinkWrapper isSelected={location.pathname === link.path} style={{width: itemWidth}}>
-            <Link
-              key={link.title}
-
-              to={link.path}
-            >
+        links.map(link =>
+          <LinkWrapper key={link.title} isSelected={pathname === link.path} style={{width: itemWidth}}>
+            <Link to={link.path} onClick={() => setPathname(link.path)}>
               <Text translationKey={link.title}/>
             </Link>
             </LinkWrapper>
