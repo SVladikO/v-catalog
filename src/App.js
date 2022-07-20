@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import {BrowserRouter, Routes, Route, useSearchParams } from 'react-router-dom';
+import React from "react";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './App.style.scss';
 import {AppContent, BottomMenuMobile} from './App.style.js';
@@ -25,19 +25,19 @@ function App() {
   const isHideFooter = params.has(QUERY_PARAMS.HIDE_FOOTER);
 
   return (
-    <BrowserRouter>
+    <Router>
       <div className="app">
         {isHideHeader ? null : <Header/>}
-        <AppContent>
-          <Routes>
-            <Route exact path={ROUTE_PATH.HOME} element={<HomePage/>} />
-            <Route path={ROUTE_PATH.WEBSITES_CATALOG}element={<WebsiteCatalogPage/>} />
-            <Route path={ROUTE_PATH.PACKAGES} element={<PackagePage/>} />
-            <Route path={ROUTE_PATH.CV} element={<CVPage/>} />
-            <Route path={ROUTE_PATH.TIME_TABLE_F} element={<TimetableFPage/>} />
-            <Route path={ROUTE_PATH.SALARY_CALC} element={<SalaryCalcPage/>} />
-          </Routes>
-        </AppContent>
+        <Switch>
+           <AppContent>
+             <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
+             <Route path={ROUTE_PATH.WEBSITES_CATALOG}><WebsiteCatalogPage/></Route>
+             <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
+             <Route path={ROUTE_PATH.CV}><CVPage/></Route>
+             <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
+             <Route path={ROUTE_PATH.SALARY_CALC}><SalaryCalcPage/></Route>
+           </AppContent>
+         </Switch>
         {isHideFooter
             ? null
             : <BottomMenuMobile>
@@ -46,7 +46,7 @@ function App() {
         }
         <Footer/>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
