@@ -4,6 +4,8 @@ import {QUERY_PARAMS} from '../../common/route.js';
 
 import { Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton, RowDescription, BottomMenu } from './IncomeCalculator.style';
 
+import NumberInput from './components/NumberInput.component.js'
+
 const params = searchParams();
 const isShowSecretPart = params.has(QUERY_PARAMS.SHOW_SECRET);
 
@@ -90,15 +92,16 @@ function CurrencyTimeCalculator() {
     )
   }
 
-  return (
-    <>
-
-      <Table>
+  const HeaderRow = (
+      <>
         <ToCenter>{showUSD ? '$' : ''}</ToCenter>
         <ToCenter>{showCustomCurrency ? customCurrencyName : ''}</ToCenter>
-        <span></span>
+        <span>In 1</span>
+      </>
+  );
 
-
+  const HourRow = (
+      <>
         <Input
           isShow={showUSD}
           name='usd_income_per_hour'
@@ -111,22 +114,30 @@ function CurrencyTimeCalculator() {
           value={monthIncome / workDayPerMonth / workHoursPerDay * customCourse}
           changeHandler={value => convertHourIncomeToMonth(value / customCourse)}
         />
-        <RowDescription>1h</RowDescription>
+        <RowDescription>hour</RowDescription>
+      </>
+  );
 
+  const DayRow = (
+      <>
         <Input
-          isShow={showUSD}
-          name='usd_income_per_day'
-          changeHandler={value => convertDayIncomeToMonth(value)}
-          value={monthIncome / workDayPerMonth}
-        />
-        <Input
-          isShow={showCustomCurrency}
-          name='uah_income_per_day'
-          changeHandler={value => convertDayIncomeToMonth(value / customCourse)}
-          value={monthIncome / workDayPerMonth * customCourse}
-        />
-        <RowDescription>1d</RowDescription>
+         isShow={showUSD}
+         name='usd_income_per_day'
+         changeHandler={value => convertDayIncomeToMonth(value)}
+         value={monthIncome / workDayPerMonth}
+       />
+       <Input
+         isShow={showCustomCurrency}
+         name='uah_income_per_day'
+         changeHandler={value => convertDayIncomeToMonth(value / customCourse)}
+         value={monthIncome / workDayPerMonth * customCourse}
+       />
+       <RowDescription>day</RowDescription>
+      </>
+  );
 
+  const MonthRow = (
+      <>
         <Input
           isShow={showUSD}
           name='usd_income_per_month'
@@ -139,8 +150,12 @@ function CurrencyTimeCalculator() {
           changeHandler={value => setMonthIncome(value / customCourse)}
           value={monthIncome * customCourse}
         />
-        <RowDescription>1mos</RowDescription>
+        <RowDescription>month</RowDescription>
+      </>
+  );
 
+  const YearRow = (
+      <>
         <Input
           isShow={showUSD}
           name='usd_income_by_years'
@@ -153,20 +168,29 @@ function CurrencyTimeCalculator() {
           changeHandler={value => convertYearsIncomeToMonth(value / customCourse)}
           value={monthIncome * 12 * years * customCourse}
         />
-        <RowDescription>
-          <NumberInput value={years} changeHandler={setYears}>y</NumberInput>
-        </RowDescription>
+        <RowDescription>year</RowDescription>
+      </>
+  );
+
+
+
+  return (
+    <>
+      <Table>
+        {HeaderRow}
+        {HourRow}
+        {DayRow}
+        {MonthRow}
+        {YearRow}
       </Table>
       <BottomMenu>
-          <NumberInput value={workHoursPerDay} changeHandler={setWorkHoursPerDay}>work hours per day</NumberInput><br />
-          <NumberInput value={workDayPerMonth} changeHandler={setWorkDayPerMonth}>work days per month</NumberInput>
-          <br />
-          <pre>{workHoursPerDay*workDayPerMonth} {"  "} work hours per months</pre>
+          <pre>{workHoursPerDay*workDayPerMonth} {"  "} hours/months</pre>
+          <NumberInput value={workHoursPerDay} changeHandler={setWorkHoursPerDay}>hours/day</NumberInput>
+          <NumberInput value={workDayPerMonth} changeHandler={setWorkDayPerMonth}>days/month</NumberInput>
 
 
-          {isShowSecretPart && 'Secret part:'} <br />
+          {isShowSecretPart && 'Secret part:'}
           {isShowSecretPart && renderOvertimePrice()}
-          <br />
          {renderCurrencyCourse()}
          {renderShowHideMenu()}
       </BottomMenu>
@@ -174,16 +198,7 @@ function CurrencyTimeCalculator() {
   )
 }
 
-function NumberInput({value, changeHandler, children}) {
-    return (
-        <NumberButtonWrapper>
-            <NumberButton onClick={() => changeHandler(value-1)}>-</NumberButton>
-            <InputStyle value={value} onChange={e => changeHandler(e.target.value)} width={30} />
-            <NumberButton onClick={() => changeHandler(value+1)}>+</NumberButton>
-            {" "}{children}
-        </NumberButtonWrapper>
-    )
-}
+
 
 function addSeparator(num) {
     const str = new String(num.toFixed(0));

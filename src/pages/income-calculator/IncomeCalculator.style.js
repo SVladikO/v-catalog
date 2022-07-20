@@ -6,7 +6,6 @@ const max_width = '369px';
 export const Wrapper = styled.div`
   width: 90%;
   margin: 0 auto;
-
 `;
 
 export const Title = styled.div`
@@ -32,24 +31,8 @@ export const InputStyle = styled.input`
   }
 `;
 
-export const NumberButtonWrapper = styled.span`
-    display: flex;
-    align-items: center;
-`;
-export const NumberButton = styled.button`
-    color: #282c34;
-    border: none;
-    border-radius: 2px;
-    height: 28px;
-    width: 28px;
-`;
-
 export const RowDescription = styled.div`
     padding: 0 0 0 6px;
-
-    &::before {
-        content: 'in '};
-    }
 `;
 export const BottomMenu = styled.div`
   max-width: ${max_width};
