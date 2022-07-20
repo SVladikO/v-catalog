@@ -9,7 +9,7 @@ import CVPage from "./pages/cv/cv.component";
 import WebsiteCatalogPage from "./pages/website-catalog/website-catalog.component";
 import HomePage from "./pages/home/home.component";
 import TimetableFPage from "./pages/timetabeF/TimetableF.page";
-import SalaryCalcPage from "./pages/salaryCalc/SalaryCalc.page";
+import IncomeCalculatorPage from "./pages/income-calculator/IncomeCalculator.page";
 import PackagePage from "./pages/packages/Package.page";
 import Footer from "./components/footer/footer.component";
 import Menu from "./components/menu/menu.component";
@@ -35,7 +35,7 @@ function App() {
              <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
              <Route path={ROUTE_PATH.CV}><CVPage/></Route>
              <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
-             <Route path={ROUTE_PATH.SALARY_CALC}><SalaryCalcPage/></Route>
+             <Route path={ROUTE_PATH.INCOME_CALCULATOR}><IncomeCalculatorPage/></Route>
            </AppContent>
          </Switch>
         {isHideFooter

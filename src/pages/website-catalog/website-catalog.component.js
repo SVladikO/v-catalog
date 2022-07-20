@@ -9,7 +9,7 @@ function WebsiteCatalog() {
   return (
     <Wrapper>
       <PageTitle>Web pet projects</PageTitle>
-      <ItemTitle><Link to={ROUTE_PATH.SALARY_CALC}>Income calculator</Link></ItemTitle>
+      <ItemTitle><Link to={ROUTE_PATH.INCOME_CALCULATOR}>Income calculator</Link></ItemTitle>
       <ItemTitle><Link to={ROUTE_PATH.TIME_TABLE_F}>Timetable-f </Link></ItemTitle>
     </Wrapper>
   )

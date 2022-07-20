@@ -2,15 +2,13 @@ import React, {useState} from "react";
 import {searchParams} from '../../common/location.js';
 import {QUERY_PARAMS} from '../../common/route.js';
 
-import { Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu } from './SalaryCalc.style';
-
+import { Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu } from './IncomeCalculator.style';
 
 const params = searchParams();
 const isShowSecretPart = params.has(QUERY_PARAMS.SHOW_SECRET);
 
 function Input({changeHandler, value, name, isShow}) {
   const convertToNumber = str => +str.split('\'').join('');
-
 
   if (!isShow) {
     return <div></div>;
@@ -25,7 +23,7 @@ function Input({changeHandler, value, name, isShow}) {
 }
 
 function CurrencyTimeCalculator() {
-  const [courseUAH, setCourseUAH] = useState(35);
+  const [customCourse, setCustomCourse] = useState(37);
   const [monthIncome, setMonthIncome] = useState(5000);
   const [workDayPerMonth, setWorkDayPerMonth] = useState(21);
   const [workHoursPerDay, setWorkHoursPerDay] = useState(8);
@@ -46,7 +44,7 @@ function CurrencyTimeCalculator() {
     const incomePerHour = monthIncome / workDayPerMonth / workHoursPerDay;
     const amountExtraHoursPerMonth = (workHoursPerDay-8)*workDayPerMonth;
     const overtimePriceUSD = incomePerHour * amountExtraHoursPerMonth;
-    const overtimePriceCustomCurrency = overtimePriceUSD * courseUAH;
+    const overtimePriceCustomCurrency = overtimePriceUSD * customCourse;
 
     return <pre>{addSeparator(overtimePriceUSD)}$ or {addSeparator(overtimePriceCustomCurrency)} {customCurrencyName} = OVERTIME PRICE {workHoursPerDay}h {workDayPerMonth}mos</pre>
   }
@@ -58,7 +56,7 @@ function CurrencyTimeCalculator() {
 
       const incomePerHourUSD = monthIncome / workDayPerMonth / workHoursPerDay;
       const incomePerMonthUSD = incomePerHourUSD * 8 * workDayPerMonth;
-      const incomePerMonthCustomCurrency = incomePerMonthUSD * courseUAH;
+      const incomePerMonthCustomCurrency = incomePerMonthUSD * customCourse;
 
       return <pre>{addSeparator(incomePerMonthUSD)}$ or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY</pre>
     }
@@ -68,7 +66,7 @@ function CurrencyTimeCalculator() {
         <div>
            {showCustomCurrency
                 ? <>
-                    <InputStyle width={60} value={courseUAH} onChange={e => setCourseUAH(e.target.value)} type='number'/>
+                    <InputStyle width={60} value={customCourse} onChange={e => setCustomCourse(e.target.value)} />
                     <InputStyle width={60} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
                    </>
                 : <span></span>
@@ -108,8 +106,8 @@ function CurrencyTimeCalculator() {
         <Input
           isShow={showCustomCurrency}
           name='uah_income_per_hour'
-          value={monthIncome / workDayPerMonth / workHoursPerDay * courseUAH}
-          changeHandler={value => convertHourIncomeToMonth(value / courseUAH)}
+          value={monthIncome / workDayPerMonth / workHoursPerDay * customCourse}
+          changeHandler={value => convertHourIncomeToMonth(value / customCourse)}
         />
         <RowDescription>1h</RowDescription>
 
@@ -122,8 +120,8 @@ function CurrencyTimeCalculator() {
         <Input
           isShow={showCustomCurrency}
           name='uah_income_per_day'
-          changeHandler={value => convertDayIncomeToMonth(value / courseUAH)}
-          value={monthIncome / workDayPerMonth * courseUAH}
+          changeHandler={value => convertDayIncomeToMonth(value / customCourse)}
+          value={monthIncome / workDayPerMonth * customCourse}
         />
         <RowDescription>1d</RowDescription>
 
@@ -136,8 +134,8 @@ function CurrencyTimeCalculator() {
         <Input
           isShow={showCustomCurrency}
           name='uah_income_per_month'
-          changeHandler={value => setMonthIncome(value / courseUAH)}
-          value={monthIncome * courseUAH}
+          changeHandler={value => setMonthIncome(value / customCourse)}
+          value={monthIncome * customCourse}
         />
         <RowDescription>1mos</RowDescription>
 
@@ -150,24 +148,23 @@ function CurrencyTimeCalculator() {
         <Input
           isShow={showCustomCurrency}
           name='uah_income_by_years'
-          changeHandler={value => convertYearsIncomeToMonth(value / courseUAH)}
-          value={monthIncome * 12 * years * courseUAH}
+          changeHandler={value => convertYearsIncomeToMonth(value / customCourse)}
+          value={monthIncome * 12 * years * customCourse}
         />
         <RowDescription>
-          <InputStyle type="number" value={years} width={40} onChange={e => setYears(e.target.value)}/> y
+          <InputStyle value={years} width={40} onChange={e => setYears(e.target.value)}/> y
         </RowDescription>
       </Table>
       <BottomMenu>
-          <InputStyle type="number" value={workHoursPerDay} width={60} onChange={e => setWorkHoursPerDay(e.target.value)}/> work hours per day
+          <InputStyle value={workHoursPerDay} width={60} onChange={e => setWorkHoursPerDay(e.target.value)}/> work hours per day
           <br />
-          <InputStyle type="number" value={workDayPerMonth} width={60} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days per month
+          <InputStyle value={workDayPerMonth} width={60} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days per month
           <br />
           <pre>{workHoursPerDay*workDayPerMonth} {"  "} work hours per months</pre>
 
 
           {isShowSecretPart && 'Secret part:'} <br />
           {isShowSecretPart && renderOvertimePrice()}
-          {isShowSecretPart && renderIncreasedSalary()}
           <br />
          {renderCurrencyCourse()}
          {renderShowHideMenu()}
@@ -197,7 +194,7 @@ function addSeparator(num) {
 
 }
 
-function SalaryCalcPage() {
+function IncomeCalculatorPage() {
   return (
     <Wrapper>
       <Title>Income Calculator</Title>
@@ -207,6 +204,4 @@ function SalaryCalcPage() {
   )
 }
 
-
-
-export default SalaryCalcPage;
+export default IncomeCalculatorPage;

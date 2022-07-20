@@ -4,7 +4,7 @@ export const ROUTE_PATH = {
   PACKAGES: "/packages",
   CV: "/cv",
   TIME_TABLE_F: "/timetable-f",
-  SALARY_CALC: "/salary-calc"
+  INCOME_CALCULATOR: "/income-calculator"
 }
 
 export const QUERY_PARAMS = {
