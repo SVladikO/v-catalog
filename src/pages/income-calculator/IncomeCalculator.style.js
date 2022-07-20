@@ -24,10 +24,24 @@ export const ToCenter = styled.div`
 export const InputStyle = styled.input`
   width: ${p => p.width || 100}px;
   margin: 1px;
+  height: 28px;
+  box-sizing: border-box;
   font-size: ${THEME.FONT.SIZE.SMALL}px;
   &:hover {
       background: ${THEME.COLOR.PRIMARY};
   }
+`;
+
+export const NumberButtonWrapper = styled.span`
+    display: flex;
+    align-items: center;
+`;
+export const NumberButton = styled.button`
+    color: #282c34;
+    border: none;
+    border-radius: 2px;
+    height: 28px;
+    width: 28px;
 `;
 
 export const RowDescription = styled.div`

@@ -18,7 +18,7 @@ function Menu({links}) {
             <Link to={link.path} onClick={() => setPathname(link.path)}>
               <Text translationKey={link.title}/>
             </Link>
-            </LinkWrapper>
+          </LinkWrapper>
         )
       }
     </Wrapper>

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {searchParams} from '../../common/location.js';
 import {QUERY_PARAMS} from '../../common/route.js';
 
-import { Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu } from './IncomeCalculator.style';
+import { Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton, RowDescription, BottomMenu } from './IncomeCalculator.style';
 
 const params = searchParams();
 const isShowSecretPart = params.has(QUERY_PARAMS.SHOW_SECRET);
@@ -66,14 +66,16 @@ function CurrencyTimeCalculator() {
         <div>
            {showCustomCurrency
                 ? <>
-                    <InputStyle width={60} value={customCourse} onChange={e => setCustomCourse(e.target.value)} />
-                    <InputStyle width={60} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
+                    <NumberInput value={customCourse} changeHandler={setCustomCourse}>
+                        <InputStyle width={60} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
+                        {
+                           showUSD && showCustomCurrency
+                             ? <span> = 1 $</span>
+                             : null
+                         }
+                   </NumberInput>
                    </>
-                : <span></span>
-           }
-           {showUSD && showCustomCurrency
-             ? <span> = 1 $</span>
-             : <span></span>
+                : null
            }
         </div>
     )
@@ -152,13 +154,12 @@ function CurrencyTimeCalculator() {
           value={monthIncome * 12 * years * customCourse}
         />
         <RowDescription>
-          <InputStyle value={years} width={40} onChange={e => setYears(e.target.value)}/> y
+          <NumberInput value={years} changeHandler={setYears}>y</NumberInput>
         </RowDescription>
       </Table>
       <BottomMenu>
-          <InputStyle value={workHoursPerDay} width={60} onChange={e => setWorkHoursPerDay(e.target.value)}/> work hours per day
-          <br />
-          <InputStyle value={workDayPerMonth} width={60} onChange={e => setWorkDayPerMonth(e.target.value)}/> work days per month
+          <NumberInput value={workHoursPerDay} changeHandler={setWorkHoursPerDay}>work hours per day</NumberInput><br />
+          <NumberInput value={workDayPerMonth} changeHandler={setWorkDayPerMonth}>work days per month</NumberInput>
           <br />
           <pre>{workHoursPerDay*workDayPerMonth} {"  "} work hours per months</pre>
 
@@ -171,6 +172,17 @@ function CurrencyTimeCalculator() {
       </BottomMenu>
     </>
   )
+}
+
+function NumberInput({value, changeHandler, children}) {
+    return (
+        <NumberButtonWrapper>
+            <NumberButton onClick={() => changeHandler(value-1)}>-</NumberButton>
+            <InputStyle value={value} onChange={e => changeHandler(e.target.value)} width={30} />
+            <NumberButton onClick={() => changeHandler(value+1)}>+</NumberButton>
+            {" "}{children}
+        </NumberButtonWrapper>
+    )
 }
 
 function addSeparator(num) {
@@ -191,7 +203,6 @@ function addSeparator(num) {
     const result = arr.join('');
 
     return result;
-
 }
 
 function IncomeCalculatorPage() {
@@ -199,7 +210,6 @@ function IncomeCalculatorPage() {
     <Wrapper>
       <Title>Income Calculator</Title>
       <CurrencyTimeCalculator/>
-      {/*<CurrencyTimeCalculator/>*/}
     </Wrapper>
   )
 }
