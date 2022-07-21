@@ -36,6 +36,21 @@ function CurrencyTimeCalculator() {
   const convertDayIncomeToMonth = value => setMonthIncome(value * workDayPerMonth);
   const convertYearsIncomeToMonth = value => setMonthIncome(value / years / 12);
 
+  const CURRENCY_MENU = [
+  {
+    checked: showUSD,
+    changeHandler: setShowUSD,
+    label: 'USD',
+    id: 'usdCurrency'
+  },
+  {
+    checked: showCustomCurrency,
+    changeHandler: setShowCustomCurrency,
+    label: customCurrencyName,
+    id: 'customCurrency'
+  }
+];
+
   const renderOvertimePrice = () => {
     if (workHoursPerDay <= 8) {
       return <OvertimeWrapper />;
@@ -73,7 +88,7 @@ function CurrencyTimeCalculator() {
                         <InputStyle width='60px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
                         {
                            showUSD && showCustomCurrency
-                             ? <span> = 1 $</span>
+                             ? <span> = 1 USD</span>
                              : null
                          }
                    </NumberInput>
@@ -84,7 +99,20 @@ function CurrencyTimeCalculator() {
     )
   }
 
-  const renderShowHideMenu = () => {
+  const renderCheckboxMenu = (checkboxes) => {
+    return (
+           <CheckboxMenuWrapper>
+               {checkboxes.map(i => (
+                  <>
+                    <InputStyle width='28px' type='checkbox' checked={i.checked} onChange={e => i.changeHandler(e.target.checked)} id={i.id} key={i.id} />
+                    <Label for={i.id} key={i.id+'label'}>{i.label}</Label>
+                  </>
+               ))}
+           </CheckboxMenuWrapper>
+    )
+  }
+
+  const renderTimeMenu = () => {
     return (
            <CheckboxMenuWrapper>
               <InputStyle width='28px' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/>
@@ -97,7 +125,7 @@ function CurrencyTimeCalculator() {
 
   const HeaderRow = (
       <>
-        <ToCenter>{showUSD ? '$' : ''}</ToCenter>
+        <ToCenter>{showUSD ? 'USD' : ''}</ToCenter>
         <ToCenter>{showCustomCurrency ? customCurrencyName : ''}</ToCenter>
         <span>In 1</span>
       </>
@@ -192,7 +220,7 @@ function CurrencyTimeCalculator() {
           <NumberInput value={workHoursPerDay} changeHandler={setWorkHoursPerDay}>hours/day</NumberInput>
           <NumberInput value={workDayPerMonth} changeHandler={setWorkDayPerMonth}>days/month</NumberInput>
          {renderCurrencyCourse()}
-         {renderShowHideMenu()}
+         {renderCheckboxMenu(CURRENCY_MENU)}
       </BottomMenu>
     </>
   )

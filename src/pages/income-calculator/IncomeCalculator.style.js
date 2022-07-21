@@ -34,6 +34,7 @@ export const Label = styled.label`
     font-size: 28px;
     margin: 0px 30px 0px 6px;
     box-sizing: border-box;
+    user-select: none;
 `;
 export const CheckboxMenuWrapper = styled.div`
     display: flex;
