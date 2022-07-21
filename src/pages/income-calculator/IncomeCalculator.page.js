@@ -87,7 +87,7 @@ function CurrencyTimeCalculator() {
            {isVisibleCustomCurrency
                 ? <>
                     <NumberInput value={customCourse} changeHandler={setCustomCourse}>
-                        <InputStyle width='60px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
+                        <InputStyle width='70px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
                         {
                            isVisibleUSD && isVisibleCustomCurrency
                              ? <span> = 1 USD</span>
@@ -154,7 +154,7 @@ function CurrencyTimeCalculator() {
          changeHandler={value => convertDayIncomeToMonth(value / customCourse)}
          value={monthIncome / workDays * customCourse}
        />
-       <RowDescription>workDays</RowDescription>
+       <RowDescription>days</RowDescription>
       </>
   );
 

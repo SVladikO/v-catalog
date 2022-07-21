@@ -21,7 +21,7 @@ export const ToCenter = styled.div`
 `;
 
 export const InputStyle = styled.input`
-  width: ${p => p.width || '100px'};
+  width: ${p => p.width || '130px'};
   margin: 1px;
   height: 28px;
   box-sizing: border-box;
@@ -64,7 +64,7 @@ export const BottomMenu = styled.div`
 `;
 export const Table = styled.div`
       display: grid;
-      grid-template-columns: 1fr 1fr 34%;
+      grid-template-columns: 1fr 1fr 20%;
       height: 170px;
       max-width: ${max_width};
       margin: 0px auto;
