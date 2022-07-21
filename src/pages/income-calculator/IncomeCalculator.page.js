@@ -23,40 +23,42 @@ function Input({changeHandler, value, name, isShow}) {
 }
 
 function CurrencyTimeCalculator() {
-  const [customCourse, setCustomCourse] = useState(37);
   const [monthIncome, setMonthIncome] = useState(5000);
-  const [workDayPerMonth, setWorkDayPerMonth] = useState(21);
-  const [workHoursPerDay, setWorkHoursPerDay] = useState(8);
-  const [years, setYears] = useState(1);
+  const [workDays, setWorkDays] = useState(21);
+  const [workHours, setWorkHours] = useState(8);
+  const [workYears, setWorkYears] = useState(1);
+  
+  const [customCourse, setCustomCourse] = useState(37);
   const [customCurrencyName, setCustomCurrencyName] = useState('UAH');
-  const [showUSD, setShowUSD] = useState(true);
-  const [showCustomCurrency, setShowCustomCurrency] = useState(true);
+  
+  const [isVisibleUSD, setIsVisibleUSD] = useState(true);
+  const [isVisibleCustomCurrency, setIsVisibleCustomCurrency] = useState(true);
 
-  const convertHourIncomeToMonth = value => setMonthIncome(value * workDayPerMonth * workHoursPerDay);
-  const convertDayIncomeToMonth = value => setMonthIncome(value * workDayPerMonth);
-  const convertYearsIncomeToMonth = value => setMonthIncome(value / years / 12);
+  const convertHourIncomeToMonth = value => setMonthIncome(value * workDays * workHours);
+  const convertDayIncomeToMonth = value => setMonthIncome(value * workDays);
+  const convertYearIncomeToMonth = value => setMonthIncome(value / workYears / 12);
 
   const CURRENCY_MENU = [
   {
-    checked: showUSD,
-    changeHandler: setShowUSD,
+    checked: isVisibleUSD,
+    changeHandler: setIsVisibleUSD,
     label: 'USD',
     id: 'usdCurrency'
   },
   {
-    checked: showCustomCurrency,
-    changeHandler: setShowCustomCurrency,
+    checked: isVisibleCustomCurrency,
+    changeHandler: setIsVisibleCustomCurrency,
     label: customCurrencyName,
     id: 'customCurrency'
   }
 ];
 
   const renderOvertimePrice = () => {
-    if (workHoursPerDay <= 8) {
+    if (workHours <= 8) {
       return <OvertimeWrapper />;
     }
-    const incomePerHour = monthIncome / workDayPerMonth / workHoursPerDay;
-    const extraHours = (workHoursPerDay-8)*workDayPerMonth;
+    const incomePerHour = monthIncome / workDays / workHours;
+    const extraHours = (workHours-8)*workDays;
     const overtimePriceUSD = incomePerHour * extraHours;
     const overtimePriceCustomCurrency = overtimePriceUSD * customCourse;
 
@@ -68,26 +70,26 @@ function CurrencyTimeCalculator() {
   }
 
   const renderIncreasedSalary = () => {
-      if (workHoursPerDay >= 8) {
+      if (workHours >= 8) {
         return;
       }
 
-      const incomePerHourUSD = monthIncome / workDayPerMonth / workHoursPerDay;
-      const incomePerMonthUSD = incomePerHourUSD * 8 * workDayPerMonth;
+      const incomePerHourUSD = monthIncome / workDays / workHours;
+      const incomePerMonthUSD = incomePerHourUSD * 8 * workDays;
       const incomePerMonthCustomCurrency = incomePerMonthUSD * customCourse;
 
       return <pre>{addSeparator(incomePerMonthUSD)}$ or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY</pre>
     }
 
-  const renderCurrencyCourse = () => {
+  const renderCurrencyCourseMenu = () => {
     return (
         <div>
-           {showCustomCurrency
+           {isVisibleCustomCurrency
                 ? <>
                     <NumberInput value={customCourse} changeHandler={setCustomCourse}>
                         <InputStyle width='60px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
                         {
-                           showUSD && showCustomCurrency
+                           isVisibleUSD && isVisibleCustomCurrency
                              ? <span> = 1 USD</span>
                              : null
                          }
@@ -112,21 +114,10 @@ function CurrencyTimeCalculator() {
     )
   }
 
-  const renderTimeMenu = () => {
-    return (
-           <CheckboxMenuWrapper>
-              <InputStyle width='28px' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/>
-              <Label>$</Label>
-              <InputStyle width='28px' type='checkbox' checked={showCustomCurrency} onChange={e => setShowCustomCurrency(e.target.checked)}/>
-              <Label>{customCurrencyName}</Label>
-           </CheckboxMenuWrapper>
-    )
-  }
-
   const HeaderRow = (
       <>
-        <ToCenter>{showUSD ? 'USD' : ''}</ToCenter>
-        <ToCenter>{showCustomCurrency ? customCurrencyName : ''}</ToCenter>
+        <ToCenter>{isVisibleUSD ? 'USD' : ''}</ToCenter>
+        <ToCenter>{isVisibleCustomCurrency ? customCurrencyName : ''}</ToCenter>
         <span>In 1</span>
       </>
   );
@@ -134,49 +125,49 @@ function CurrencyTimeCalculator() {
   const HourRow = (
       <>
         <Input
-          isShow={showUSD}
+          isShow={isVisibleUSD}
           name='usd_income_per_hour'
           changeHandler={value => convertHourIncomeToMonth(value)}
-          value={monthIncome / workDayPerMonth / workHoursPerDay}
+          value={monthIncome / workDays / workHours}
         />
         <Input
-          isShow={showCustomCurrency}
+          isShow={isVisibleCustomCurrency}
           name='uah_income_per_hour'
-          value={monthIncome / workDayPerMonth / workHoursPerDay * customCourse}
+          value={monthIncome / workDays / workHours * customCourse}
           changeHandler={value => convertHourIncomeToMonth(value / customCourse)}
         />
         <RowDescription>hour</RowDescription>
       </>
   );
 
-  const DayRow = (
+  const workDaysRow = (
       <>
         <Input
-         isShow={showUSD}
-         name='usd_income_per_day'
+         isShow={isVisibleUSD}
+         name='usd_income_per_workDays'
          changeHandler={value => convertDayIncomeToMonth(value)}
-         value={monthIncome / workDayPerMonth}
+         value={monthIncome / workDays}
        />
        <Input
-         isShow={showCustomCurrency}
-         name='uah_income_per_day'
+         isShow={isVisibleCustomCurrency}
+         name='uah_income_per_workDays'
          changeHandler={value => convertDayIncomeToMonth(value / customCourse)}
-         value={monthIncome / workDayPerMonth * customCourse}
+         value={monthIncome / workDays * customCourse}
        />
-       <RowDescription>day</RowDescription>
+       <RowDescription>workDays</RowDescription>
       </>
   );
 
   const MonthRow = (
       <>
         <Input
-          isShow={showUSD}
+          isShow={isVisibleUSD}
           name='usd_income_per_month'
           changeHandler={value => setMonthIncome(value)}
           value={monthIncome}
         />
         <Input
-          isShow={showCustomCurrency}
+          isShow={isVisibleCustomCurrency}
           name='uah_income_per_month'
           changeHandler={value => setMonthIncome(value / customCourse)}
           value={monthIncome * customCourse}
@@ -188,16 +179,16 @@ function CurrencyTimeCalculator() {
   const YearRow = (
       <>
         <Input
-          isShow={showUSD}
+          isShow={isVisibleUSD}
           name='usd_income_by_years'
-          changeHandler={value => convertYearsIncomeToMonth(value)}
-          value={monthIncome * 12 * years}
+          changeHandler={value => convertYearIncomeToMonth(value)}
+          value={monthIncome * 12 * workYears}
         />
         <Input
-          isShow={showCustomCurrency}
+          isShow={isVisibleCustomCurrency}
           name='uah_income_by_years'
-          changeHandler={value => convertYearsIncomeToMonth(value / customCourse)}
-          value={monthIncome * 12 * years * customCourse}
+          changeHandler={value => convertYearIncomeToMonth(value / customCourse)}
+          value={monthIncome * 12 * workYears * customCourse}
         />
         <RowDescription>year</RowDescription>
       </>
@@ -210,16 +201,17 @@ function CurrencyTimeCalculator() {
       <Table>
         {HeaderRow}
         {HourRow}
-        {DayRow}
+        {workDaysRow}
         {MonthRow}
         {YearRow}
       </Table>
       <BottomMenu>
-          {workHoursPerDay*workDayPerMonth} hours/month
+          {workHours*workDays} hours/month
+          {workHours*workDays} hours/month
           {renderOvertimePrice()}
-          <NumberInput value={workHoursPerDay} changeHandler={setWorkHoursPerDay}>hours/day</NumberInput>
-          <NumberInput value={workDayPerMonth} changeHandler={setWorkDayPerMonth}>days/month</NumberInput>
-         {renderCurrencyCourse()}
+          <NumberInput value={workHours} changeHandler={setWorkHours}>hours/workDays</NumberInput>
+          <NumberInput value={workDays} changeHandler={setWorkDays}>workDayss/month</NumberInput>
+         {renderCurrencyCourseMenu()}
          {renderCheckboxMenu(CURRENCY_MENU)}
       </BottomMenu>
     </>
