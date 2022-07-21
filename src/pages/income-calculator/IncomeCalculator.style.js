@@ -33,6 +33,7 @@ export const InputStyle = styled.input`
 
 export const OvertimeWrapper = styled.div`
     margin: 10px 0 10px 0;
+    height: 28px;
 
 `;
 export const OvertimePrice = styled.span`

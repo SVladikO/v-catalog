@@ -40,7 +40,7 @@ function CurrencyTimeCalculator() {
 
   const renderOvertimePrice = () => {
     if (workHoursPerDay <= 8) {
-      return;
+      return <OvertimeWrapper />;
     }
     const incomePerHour = monthIncome / workDayPerMonth / workHoursPerDay;
     const extraHours = (workHoursPerDay-8)*workDayPerMonth;
