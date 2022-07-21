@@ -1,13 +1,6 @@
 import React, {useState} from "react";
-import {searchParams} from '../../common/location.js';
-import {QUERY_PARAMS} from '../../common/route.js';
-
-import { Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper } from './IncomeCalculator.style';
-
+import { Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper, EmptyMenuRow } from './IncomeCalculator.style';
 import NumberInput from './components/NumberInput.component.js'
-
-const params = searchParams();
-const isShowSecretPart = params.has(QUERY_PARAMS.SHOW_SECRET);
 
 function Input({changeHandler, value, name, isShow}) {
   const convertToNumber = str => +str.split('\'').join('');
@@ -80,7 +73,7 @@ function CurrencyTimeCalculator() {
                          }
                    </NumberInput>
                    </>
-                : null
+                : <EmptyMenuRow />
            }
         </div>
     )
@@ -187,14 +180,10 @@ function CurrencyTimeCalculator() {
         {YearRow}
       </Table>
       <BottomMenu>
-          <>{workHoursPerDay*workDayPerMonth} hours/month</>
-          {isShowSecretPart && 'Secret part:'}
+          {workHoursPerDay*workDayPerMonth} hours/month
           {renderOvertimePrice()}
           <NumberInput value={workHoursPerDay} changeHandler={setWorkHoursPerDay}>hours/day</NumberInput>
           <NumberInput value={workDayPerMonth} changeHandler={setWorkDayPerMonth}>days/month</NumberInput>
-
-
-
          {renderCurrencyCourse()}
          {renderShowHideMenu()}
       </BottomMenu>

@@ -60,7 +60,6 @@ export const Table = styled.div`
       margin: 0px auto;
 `;
 
-export const Wrapper2 = styled.div`
-  width: 80%;
-  margin: 0 auto;
+export const EmptyMenuRow = styled.div`
+  height: 30px;
 `;

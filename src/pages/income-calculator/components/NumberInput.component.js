@@ -6,6 +6,7 @@ import {InputStyle} from '../IncomeCalculator.style';
 const Wrapper = styled.span`
     display: flex;
     align-items: center;
+    height: 30px;
 `;
 
 const NumberButton = styled.button`
