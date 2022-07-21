@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {searchParams} from '../../common/location.js';
 import {QUERY_PARAMS} from '../../common/route.js';
 
-import { Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton, RowDescription, BottomMenu } from './IncomeCalculator.style';
+import { Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper } from './IncomeCalculator.style';
 
 import NumberInput from './components/NumberInput.component.js'
 
@@ -42,13 +42,16 @@ function CurrencyTimeCalculator() {
     if (workHoursPerDay <= 8) {
       return;
     }
-
     const incomePerHour = monthIncome / workDayPerMonth / workHoursPerDay;
-    const amountExtraHoursPerMonth = (workHoursPerDay-8)*workDayPerMonth;
-    const overtimePriceUSD = incomePerHour * amountExtraHoursPerMonth;
+    const extraHours = (workHoursPerDay-8)*workDayPerMonth;
+    const overtimePriceUSD = incomePerHour * extraHours;
     const overtimePriceCustomCurrency = overtimePriceUSD * customCourse;
 
-    return <pre>{addSeparator(overtimePriceUSD)}$ or {addSeparator(overtimePriceCustomCurrency)} {customCurrencyName} = OVERTIME PRICE {workHoursPerDay}h {workDayPerMonth}mos</pre>
+    return <OvertimeWrapper>
+      <OvertimeHours>+{extraHours}h</OvertimeHours> =
+      <OvertimePrice> {addSeparator(overtimePriceUSD)}  $ </OvertimePrice>
+      (<OvertimePrice>{addSeparator(overtimePriceCustomCurrency)} {customCurrencyName}</OvertimePrice>)
+    </OvertimeWrapper>
   }
 
   const renderIncreasedSalary = () => {
@@ -184,13 +187,14 @@ function CurrencyTimeCalculator() {
         {YearRow}
       </Table>
       <BottomMenu>
-          <pre>{workHoursPerDay*workDayPerMonth} {"  "} hours/months</pre>
+          <>{workHoursPerDay*workDayPerMonth} hours/month</>
+          {isShowSecretPart && 'Secret part:'}
+          {renderOvertimePrice()}
           <NumberInput value={workHoursPerDay} changeHandler={setWorkHoursPerDay}>hours/day</NumberInput>
           <NumberInput value={workDayPerMonth} changeHandler={setWorkDayPerMonth}>days/month</NumberInput>
 
 
-          {isShowSecretPart && 'Secret part:'}
-          {isShowSecretPart && renderOvertimePrice()}
+
          {renderCurrencyCourse()}
          {renderShowHideMenu()}
       </BottomMenu>

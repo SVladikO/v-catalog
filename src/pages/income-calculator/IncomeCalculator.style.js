@@ -31,6 +31,19 @@ export const InputStyle = styled.input`
   }
 `;
 
+export const OvertimeWrapper = styled.div`
+    margin: 10px 0 10px 0;
+
+`;
+export const OvertimePrice = styled.span`
+    color: green;
+    font-weight: 600;
+`;
+export const OvertimeHours = styled.span`
+    color: red;
+    font-weight: 600;
+`;
+
 export const RowDescription = styled.div`
     padding: 0 0 0 6px;
 `;

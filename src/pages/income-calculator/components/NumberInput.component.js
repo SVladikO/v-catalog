@@ -25,7 +25,7 @@ function NumberInput({value, changeHandler, children}) {
     return (
         <Wrapper>
             <NumberButton onClick={() => changeHandler(value-1)}>-</NumberButton>
-            <InputStyle value={value} onChange={e => changeHandler(e.target.value)} width={30} />
+            <InputStyle value={value} onChange={e => changeHandler(+e.target.value)} width={40} />
             <NumberButton onClick={() => changeHandler(value+1)}>+</NumberButton>
             <ChildWrapper>{children}</ChildWrapper>
         </Wrapper>
