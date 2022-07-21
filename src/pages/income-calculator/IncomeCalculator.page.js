@@ -1,5 +1,10 @@
 import React, {useState} from "react";
-import { Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper, EmptyMenuRow } from './IncomeCalculator.style';
+import {
+    Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton,
+    RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper,
+    EmptyMenuRow, CheckboxMenuWrapper, Label
+} from './IncomeCalculator.style';
+
 import NumberInput from './components/NumberInput.component.js'
 
 function Input({changeHandler, value, name, isShow}) {
@@ -65,7 +70,7 @@ function CurrencyTimeCalculator() {
            {showCustomCurrency
                 ? <>
                     <NumberInput value={customCourse} changeHandler={setCustomCourse}>
-                        <InputStyle width={60} value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
+                        <InputStyle width='60px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
                         {
                            showUSD && showCustomCurrency
                              ? <span> = 1 $</span>
@@ -81,10 +86,12 @@ function CurrencyTimeCalculator() {
 
   const renderShowHideMenu = () => {
     return (
-           <pre>
-              <InputStyle width='auto' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/> ${"   "}
-              <InputStyle width='auto' type='checkbox' checked={showCustomCurrency} onChange={e => setShowCustomCurrency(e.target.checked)}/> {customCurrencyName}
-           </pre>
+           <CheckboxMenuWrapper>
+              <InputStyle width='28px' type='checkbox' checked={showUSD} onChange={e => setShowUSD(e.target.checked)}/>
+              <Label>$</Label>
+              <InputStyle width='28px' type='checkbox' checked={showCustomCurrency} onChange={e => setShowCustomCurrency(e.target.checked)}/>
+              <Label>{customCurrencyName}</Label>
+           </CheckboxMenuWrapper>
     )
   }
 

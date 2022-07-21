@@ -21,7 +21,7 @@ export const ToCenter = styled.div`
 `;
 
 export const InputStyle = styled.input`
-  width: ${p => p.width || 100}px;
+  width: ${p => p.width || '100px'};
   margin: 1px;
   height: 28px;
   box-sizing: border-box;
@@ -30,7 +30,16 @@ export const InputStyle = styled.input`
       background: ${THEME.COLOR.PRIMARY};
   }
 `;
-
+export const Label = styled.label`
+    font-size: 28px;
+    margin: 0px 30px 0px 6px;
+    box-sizing: border-box;
+`;
+export const CheckboxMenuWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 20px 0 20px 0;
+`;
 export const OvertimeWrapper = styled.div`
     margin: 10px 0 10px 0;
     height: 28px;
