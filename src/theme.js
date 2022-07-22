@@ -2,6 +2,7 @@ const THEME = {
   COLOR: {
     PRIMARY: 'darkturquoise',
     SECONDARY: '#FFF',
+    INVERT_0: '#959595',
     INVERT_1: '#282c34',
     INVERT_2: '#20232a',
     INVERT_3: '#16181d',

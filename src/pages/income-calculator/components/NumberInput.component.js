@@ -20,15 +20,16 @@ const NumberButton = styled.button`
 
 const ChildWrapper = styled.span`
     margin: 0 0 0 6px;
+    ${p => p.color && `color: ${p.color}`}
 `;
 
 function NumberInput({value, changeHandler, children}) {
     return (
         <Wrapper>
             <NumberButton onClick={() => changeHandler(value-1)}>-</NumberButton>
-            <InputStyle value={value} onChange={e => changeHandler(+e.target.value)} width='60px' />
+            <InputStyle value={value} onChange={e => changeHandler(+e.target.value)} width='60px' color={THEME.COLOR.INVERT_0} borderColor={THEME.COLOR.INVERT_0}/>
             <NumberButton onClick={() => changeHandler(value+1)}>+</NumberButton>
-            <ChildWrapper>{children}</ChildWrapper>
+            <ChildWrapper color={THEME.COLOR.INVERT_0}>{children}</ChildWrapper>
         </Wrapper>
     )
 }

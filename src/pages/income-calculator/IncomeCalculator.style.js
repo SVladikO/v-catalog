@@ -26,8 +26,10 @@ export const InputStyle = styled.input`
   height: 28px;
   box-sizing: border-box;
   font-size: ${THEME.FONT.SIZE.SMALL}px;
-  &:hover {
-      background: ${THEME.COLOR.PRIMARY};
+  ${p => p.color && `color: ${p.color}`};
+
+  &[type="checkbox"] {
+    accent-color: #909090;
   }
 `;
 export const Label = styled.label`
@@ -35,6 +37,7 @@ export const Label = styled.label`
     margin: 0px 30px 0px 6px;
     box-sizing: border-box;
     user-select: none;
+    ${p => p.color && `color: ${p.color}`};
 `;
 export const CheckboxMenuWrapper = styled.div`
     display: flex;

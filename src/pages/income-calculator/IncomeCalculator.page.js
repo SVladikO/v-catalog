@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+
+import THEME from "../../theme";
+
 import {
     Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton,
     RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper,
@@ -31,10 +34,10 @@ function CurrencyTimeCalculator() {
   const [workYears, setWorkYears] = useState(1);
   
   const [customCourse, setCustomCourse] = useState(37);
-  const [customCurrencyName, setCustomCurrencyName] = useState('?');
+  const [customCurrencyName, setCustomCurrencyName] = useState('UAH');
   
   const [isVisibleHour, setIsVisibleHour] = useState(true);
-  const [isVisibleDay, setIsVisibleDay] = useState(false);
+  const [isVisibleDay, setIsVisibleDay] = useState(true);
   const [isVisibleMonth, setIsVisibleMonth] = useState(true);
   const [isVisibleYear, setIsVisibleYear] = useState(true);
 
@@ -84,8 +87,7 @@ function CurrencyTimeCalculator() {
     changeHandler: setIsVisibleYear,
     label: 'Y',
     id: '_year'
-  },
-
+  }
 ];
 
   const renderOvertimePrice = () => {
@@ -122,7 +124,7 @@ function CurrencyTimeCalculator() {
            {isVisibleCustomCurrency
                 ? <>
                     <NumberInput value={customCourse} changeHandler={setCustomCourse}>
-                        <InputStyle width='70px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)}/>
+                        <InputStyle width='70px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)} color={THEME.COLOR.INVERT_0}/>
                         {
                            isVisibleUSD && isVisibleCustomCurrency
                              ? <span> = 1 USD</span>
@@ -142,7 +144,7 @@ function CurrencyTimeCalculator() {
                {checkboxes.map(i => (
                   <>
                     <InputStyle width='28px' type='checkbox' checked={i.checked} onChange={e => i.changeHandler(e.target.checked)} id={i.id} key={i.id} />
-                    <Label for={i.id} key={i.id+'label'}>{i.label}</Label>
+                    <Label for={i.id} key={i.id+'label'} color={THEME.COLOR.INVERT_0}>{i.label}</Label>
                   </>
                ))}
            </CheckboxMenuWrapper>
@@ -268,8 +270,6 @@ function CurrencyTimeCalculator() {
     </>
   )
 }
-
-
 
 function addSeparator(num) {
     const str = new String(num.toFixed(0));
