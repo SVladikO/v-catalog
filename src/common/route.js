@@ -9,8 +9,7 @@ export const ROUTE_PATH = {
 
 export const QUERY_PARAMS = {
     HIDE_HEADER: 'h_header',
-    HIDE_FOOTER: 'hide_footer',
-    SHOW_SECRET: 'secret_part'
+    HIDE_FOOTER: 'h_footer',
 }
 
 export const HEADER_MENU_LINKS = [
