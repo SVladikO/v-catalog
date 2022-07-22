@@ -34,7 +34,7 @@ function CurrencyTimeCalculator() {
   const [customCurrencyName, setCustomCurrencyName] = useState('?');
   
   const [isVisibleHour, setIsVisibleHour] = useState(true);
-  const [isVisibleDay, setIsVisibleDay] = useState(true);
+  const [isVisibleDay, setIsVisibleDay] = useState(false);
   const [isVisibleMonth, setIsVisibleMonth] = useState(true);
   const [isVisibleYear, setIsVisibleYear] = useState(true);
 
