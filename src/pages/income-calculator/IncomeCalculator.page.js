@@ -258,10 +258,9 @@ function CurrencyTimeCalculator() {
       </Table>
       <BottomMenu>
           {workHours*workDays} hours/month
-          {workHours*workDays} hours/month
           {renderOvertimePrice()}
-          <NumberInput value={workHours} changeHandler={setWorkHours}>hours/workDays</NumberInput>
-          <NumberInput value={workDays} changeHandler={setWorkDays}>workDayss/month</NumberInput>
+          <NumberInput value={workHours} changeHandler={setWorkHours}>hours/day</NumberInput>
+          <NumberInput value={workDays} changeHandler={setWorkDays}>days/month</NumberInput>
          {renderCurrencyCourseMenu()}
          {renderCheckboxMenu(CURRENCY_MENU)}
          {renderCheckboxMenu(TIME_MENU)}
