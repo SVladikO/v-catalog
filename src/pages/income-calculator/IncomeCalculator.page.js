@@ -25,7 +25,7 @@ function Input({changeHandler, value, name, isShow}) {
 const USD_NAME = '$';
 
 function CurrencyTimeCalculator() {
-  const [monthIncome, setMonthIncome] = useState(5000);
+  const [monthIncome, setMonthIncome] = useState(1000);
   const [workDays, setWorkDays] = useState(21);
   const [workHours, setWorkHours] = useState(8);
   const [workYears, setWorkYears] = useState(1);
