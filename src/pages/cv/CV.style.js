@@ -1,17 +1,26 @@
 import styled from 'styled-components';
 import THEME from '../../theme.js';
 
-
-export const ContentContainer = styled.div`
+export const Wrapper = styled.div`
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 600px;
-    margin: auto;
+    width: 880px;
+    margin: 0 auto;
 
-    @media (max-width: 800px) {
-        width: auto;
-        padding: 0 6px 0;
+    @media (max-width: 880px) {
+        display: block;
+        width: 100%;
+    }
+`;
+export const ContentContainer = styled.div`
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: 610px) {
+        width: 100%;
+        padding: 0 16px;
         flex-direction: column;
     }
 `;

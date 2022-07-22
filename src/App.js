@@ -3,15 +3,16 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import {Wrapper, Content, BottomMenuMobile} from './App.style.js';
 
-import Header from './components/header/header.component';
-import CVPage from "./pages/cv/cv.component";
-import WebsiteCatalogPage from "./pages/website-catalog/website-catalog.component";
-import HomePage from "./pages/home/home.component";
-import TimetableFPage from "./pages/timetabeF/TimetableF.page";
-import IncomeCalculatorPage from "./pages/income-calculator/IncomeCalculator.page";
-import PackagePage from "./pages/packages/Package.page";
-import Footer from "./components/footer/footer.component";
 import Menu from "./components/menu/menu.component";
+import Header from './components/header/header.component';
+import Footer from "./components/footer/footer.component";
+
+import CVPage from "./pages/cv/CV.page";
+import HomePage from "./pages/home/Home.page";
+import PackagePage from "./pages/packages/Package.page";
+import TimetableFPage from "./pages/timetabeF/TimetableF.page";
+import WebsiteCatalogPage from "./pages/website-catalog/Website-catalog.page";
+import IncomeCalculatorPage from "./pages/income-calculator/IncomeCalculator.page";
 
 import {FOOTER_MENU_LINKS, ROUTE_PATH, QUERY_PARAMS} from "./common/route";
 

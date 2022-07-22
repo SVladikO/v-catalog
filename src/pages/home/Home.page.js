@@ -1,9 +1,9 @@
 import Text from "../../components/text/text.component";
 
-import iconAstound from "../../image/company-logo/astound.png";
-import iconBigFishGame from "../../image/company-logo/big-fish-game.png";
 import iconItera from "../../image/company-logo/itera.png";
+import iconAstound from "../../image/company-logo/astound.png";
 import iconPlaytech from "../../image/company-logo/playtech.png";
+import iconBigFishGame from "../../image/company-logo/big-fish-game.png";
 import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
@@ -11,7 +11,7 @@ import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg
 import {Wrapper, Container, Avatar, IntroductionTitle, IntroductionSubTitle,
  Experience, ExperienceColumn, ColumnTitle,  ColumnDetails,
  Companies, CompaniesLogoTitle, LogoWrapper
- } from './home.style.js';
+ } from './Home.style.js';
 
 const experienceDetails = [
   {
