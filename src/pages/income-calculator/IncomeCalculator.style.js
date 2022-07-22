@@ -56,7 +56,6 @@ export const OvertimeHours = styled.span`
 `;
 
 export const RowDescription = styled.div`
-    padding: 0 0 0 6px;
 `;
 export const BottomMenu = styled.div`
   max-width: ${max_width};
@@ -65,11 +64,14 @@ export const BottomMenu = styled.div`
 export const Table = styled.div`
       display: grid;
       grid-template-columns: 1fr 1fr 20%;
-      height: 170px;
+//      height: 170px;
       max-width: ${max_width};
       margin: 0px auto;
 `;
 
 export const EmptyMenuRow = styled.div`
   height: 30px;
+`;
+export const EmptyTD = styled.span`
+ height: 30px;
 `;

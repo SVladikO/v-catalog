@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {
     Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton,
     RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper,
-    EmptyMenuRow, CheckboxMenuWrapper, Label
+    EmptyMenuRow, CheckboxMenuWrapper, Label, EmptyTD
 } from './IncomeCalculator.style';
 
 import NumberInput from './components/NumberInput.component.js'
@@ -22,6 +22,8 @@ function Input({changeHandler, value, name, isShow}) {
   )
 }
 
+const USD_NAME = '$';
+
 function CurrencyTimeCalculator() {
   const [monthIncome, setMonthIncome] = useState(5000);
   const [workDays, setWorkDays] = useState(21);
@@ -29,8 +31,13 @@ function CurrencyTimeCalculator() {
   const [workYears, setWorkYears] = useState(1);
   
   const [customCourse, setCustomCourse] = useState(37);
-  const [customCurrencyName, setCustomCurrencyName] = useState('UAH');
+  const [customCurrencyName, setCustomCurrencyName] = useState('?');
   
+  const [isVisibleHour, setIsVisibleHour] = useState(true);
+  const [isVisibleDay, setIsVisibleDay] = useState(true);
+  const [isVisibleMonth, setIsVisibleMonth] = useState(true);
+  const [isVisibleYear, setIsVisibleYear] = useState(true);
+
   const [isVisibleUSD, setIsVisibleUSD] = useState(true);
   const [isVisibleCustomCurrency, setIsVisibleCustomCurrency] = useState(true);
 
@@ -42,7 +49,7 @@ function CurrencyTimeCalculator() {
   {
     checked: isVisibleUSD,
     changeHandler: setIsVisibleUSD,
-    label: 'USD',
+    label: USD_NAME,
     id: 'usdCurrency'
   },
   {
@@ -51,6 +58,34 @@ function CurrencyTimeCalculator() {
     label: customCurrencyName,
     id: 'customCurrency'
   }
+];
+
+  const TIME_MENU = [
+  {
+    checked: isVisibleHour,
+    changeHandler: setIsVisibleHour,
+    label: 'H',
+    id: '_hour'
+  },
+  {
+    checked: isVisibleDay,
+    changeHandler: setIsVisibleDay,
+    label: 'D',
+    id: '_day'
+  },
+  {
+    checked: isVisibleMonth,
+    changeHandler: setIsVisibleMonth,
+    label: 'M',
+    id: '_month'
+  },
+  {
+    checked: isVisibleYear,
+    changeHandler: setIsVisibleYear,
+    label: 'Y',
+    id: '_year'
+  },
+
 ];
 
   const renderOvertimePrice = () => {
@@ -64,7 +99,7 @@ function CurrencyTimeCalculator() {
 
     return <OvertimeWrapper>
       <OvertimeHours>+{extraHours}h</OvertimeHours> =
-      <OvertimePrice> {addSeparator(overtimePriceUSD)}  $ </OvertimePrice>
+      <OvertimePrice> {addSeparator(overtimePriceUSD)}{USD_NAME} </OvertimePrice>
       (<OvertimePrice>{addSeparator(overtimePriceCustomCurrency)} {customCurrencyName}</OvertimePrice>)
     </OvertimeWrapper>
   }
@@ -78,7 +113,7 @@ function CurrencyTimeCalculator() {
       const incomePerMonthUSD = incomePerHourUSD * 8 * workDays;
       const incomePerMonthCustomCurrency = incomePerMonthUSD * customCourse;
 
-      return <pre>{addSeparator(incomePerMonthUSD)}$ or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY</pre>
+      return <pre>{addSeparator(incomePerMonthUSD)}{USD_NAME} or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY</pre>
     }
 
   const renderCurrencyCourseMenu = () => {
@@ -114,15 +149,24 @@ function CurrencyTimeCalculator() {
     )
   }
 
+  const EmptyRow = (
+    <>
+      <EmptyTD></EmptyTD>
+      <EmptyTD></EmptyTD>
+      <EmptyTD></EmptyTD>
+    </>
+  );
+
   const HeaderRow = (
       <>
-        <ToCenter>{isVisibleUSD ? 'USD' : ''}</ToCenter>
+        <ToCenter>{isVisibleUSD ? USD_NAME : ''}</ToCenter>
         <ToCenter>{isVisibleCustomCurrency ? customCurrencyName : ''}</ToCenter>
         <span>In 1</span>
       </>
   );
 
-  const HourRow = (
+  const HourRow = isVisibleHour
+  ?  (
       <>
         <Input
           isShow={isVisibleUSD}
@@ -138,9 +182,11 @@ function CurrencyTimeCalculator() {
         />
         <RowDescription>hour</RowDescription>
       </>
-  );
+  )
+  : EmptyRow;
 
-  const workDaysRow = (
+  const DayRow = isVisibleDay
+  ? (
       <>
         <Input
          isShow={isVisibleUSD}
@@ -156,9 +202,11 @@ function CurrencyTimeCalculator() {
        />
        <RowDescription>days</RowDescription>
       </>
-  );
+  )
+  : EmptyRow;
 
-  const MonthRow = (
+  const MonthRow = isVisibleMonth
+   ? (
       <>
         <Input
           isShow={isVisibleUSD}
@@ -174,9 +222,11 @@ function CurrencyTimeCalculator() {
         />
         <RowDescription>month</RowDescription>
       </>
-  );
+  )
+  : EmptyRow;
 
-  const YearRow = (
+  const YearRow = isVisibleYear
+  ? (
       <>
         <Input
           isShow={isVisibleUSD}
@@ -192,7 +242,8 @@ function CurrencyTimeCalculator() {
         />
         <RowDescription>year</RowDescription>
       </>
-  );
+  )
+  : EmptyRow;
 
 
 
@@ -201,7 +252,7 @@ function CurrencyTimeCalculator() {
       <Table>
         {HeaderRow}
         {HourRow}
-        {workDaysRow}
+        {DayRow}
         {MonthRow}
         {YearRow}
       </Table>
@@ -213,6 +264,7 @@ function CurrencyTimeCalculator() {
           <NumberInput value={workDays} changeHandler={setWorkDays}>workDayss/month</NumberInput>
          {renderCurrencyCourseMenu()}
          {renderCheckboxMenu(CURRENCY_MENU)}
+         {renderCheckboxMenu(TIME_MENU)}
       </BottomMenu>
     </>
   )
