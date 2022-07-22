@@ -11,12 +11,11 @@ import companies from "./data";
 function CVPage() {
   return (
     <ContentContainer>
-      <PositionTitle>Senior Frontend developer</PositionTitle>
+      <PositionTitle>Frontend developer</PositionTitle>
       <About>Ukraine · Remote</About>
       <ExperienceTitle>Experience:</ExperienceTitle>
       <ExperienceSubTitle>{YEARS_IN_IT} years in IT · English Upper-Intermediate</ExperienceSubTitle>
       {companies.map(item => <WorkplaceItem key={item.company} {...item} />)}
-
       <ContactDetails/>
 
     </ContentContainer>

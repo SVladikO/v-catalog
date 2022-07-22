@@ -21,8 +21,7 @@ import {searchParams} from './common/location.js'
 function App() {
 
   const params = searchParams();
-  const isHideHeader = params.has(QUERY_PARAMS.HIDE_HEADER);
-  const isHideFooter = params.has(QUERY_PARAMS.HIDE_FOOTER);
+  const isHideMenu = params.has(QUERY_PARAMS.HIDE_HEADER);
 
   return (
     <Router>
@@ -38,7 +37,7 @@ function App() {
              <Route path={ROUTE_PATH.INCOME_CALCULATOR}><IncomeCalculatorPage/></Route>
            </AppContent>
          </Switch>
-        {isHideFooter
+        {isHideMenu
             ? null
             : <BottomMenuMobile>
                 <Menu links={FOOTER_MENU_LINKS}/>
