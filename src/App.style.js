@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import THEME from "./theme";
 
-export const AppContent = styled.div`
+export const Wrapper = styled.div`
+`;
+
+export const Content = styled.div`
     padding: 46px 0 120px;
     font-size: ${THEME.FONT.SIZE.SMALL}px;
 `;
@@ -17,10 +20,6 @@ export const BottomMenuMobile = styled.div`
     .menu {
       justify-content: space-around;
       height: 60px;
-    }
-
-    .link {
-      font-family: Roboto;
     }
 
     @media only screen and (max-width: 600px) {

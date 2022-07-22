@@ -9,8 +9,8 @@ export const Wrapper = styled.div`
 `;
 
 export const PageTitle = styled.div`
-    font-size: ${THEME.FONT.SIZE.LARGE}px;
-    font-weight: 900;
+    font-size: ${THEME.FONT.SIZE.MEDIUM}px;
+    font-weight: 500;
     margin: 20px 0 40px;
 `;
 

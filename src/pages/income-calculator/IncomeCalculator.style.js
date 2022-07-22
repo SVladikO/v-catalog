@@ -51,11 +51,11 @@ export const OvertimeWrapper = styled.div`
 `;
 export const OvertimePrice = styled.span`
     color: green;
-    font-weight: 600;
+    font-weight: 700;
 `;
 export const OvertimeHours = styled.span`
     color: red;
-    font-weight: 600;
+    font-weight: 700;
 `;
 
 export const RowDescription = styled.div`

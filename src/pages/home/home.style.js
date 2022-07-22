@@ -49,15 +49,12 @@ export const ExperienceColumn = styled.div`
     width: 270px;
     padding: 10px;
     margin-bottom: 20px;
-    font-family: 'Roboto', sans-serif;
 `;
 export const ColumnTitle = styled.div`
     color: ${THEME.COLOR.INVERT_2};
     margin:  0 0 10px;
     font-size: 20px;
-    font-weight: 500;
     font-size: ${THEME.FONT.SIZE.MEDIUM}px;
-    font-weight: 600;
 `;
 export const ColumnDetails = styled.div`
     color: ${THEME.COLOR.INVERT_1};
@@ -98,4 +95,3 @@ export const LogoWrapper = styled.div`
         }
     }
 `;
-//export const Wrapper = styled.div``;

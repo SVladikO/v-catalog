@@ -17,30 +17,29 @@ export const ContentContainer = styled.div`
 `;
 export const PositionTitle = styled.div`
     font-size: 42px;
-    font-family: Roboto;
+    font-weight: 700;
     margin: 40px 0 20px;
 `;
 export const About = styled.div`
     font-size: ${THEME.FONT.SIZE.MEDIUM}px;
-    font-weight: 600;
+    font-weight: 500;
     color: ${THEME.COLOR.FILL_1};
 `;
 export const Salary = styled.span`
     color: ${THEME.COLOR.PRIMARY};
 `;
-
+export const ExperienceTitle = styled.div`
+    padding: 12px 0 12px 0;
+    font-size: ${THEME.FONT.SIZE.MEDIUM}px;
+    font-weight: 500;
+`;
 export const ExperienceSubTitle = styled.div`
     font-size: ${THEME.FONT.SIZE.SMALL}px;
     color: ${THEME.COLOR.FILL_1};
-    font-weight: 600;
+    font-weight: 500;
 
 `;
-export const ExperienceTitle = styled.div`
-    padding: 12px 0 12px 0;
-    font-family: Roboto;
-    font-size: ${THEME.FONT.SIZE.MEDIUM}px;
-    font-weight: 900;
-`;
+
 
 
 

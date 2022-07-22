@@ -12,7 +12,6 @@ export const ContentContainer = styled.div`
 const detailsChild = styled.div`
     margin: 8px 0;
     font-size: 14px;
-    font-family: Roboto, sans-serif;
 `;
 export const Avatar = styled.img`
 //    border-radius: 50%;
@@ -24,7 +23,6 @@ border-radius: 50%;
 `;
 export const Name = styled.div`
     font-size: 24px;
-    font-family: Roboto;
     margin: 0 0;
 `;
 export const Location = styled(detailsChild)`
@@ -34,7 +32,6 @@ export const Location = styled(detailsChild)`
 export const ContactTitle = styled.div`
     margin: 12px 0;
     color: #000;
-    font-family: Roboto;
 `;
 
 export const Clipboards = styled(detailsChild)`

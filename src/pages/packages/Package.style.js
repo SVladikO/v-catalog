@@ -11,8 +11,8 @@ export const Package = styled.div`
 `;
 
 export const PackageTitle = styled.div`
-  font-size: ${THEME.FONT.SIZE.LARGE}px;
-  font-weight: 900;
+  font-size: ${THEME.FONT.SIZE.MEDIUM}px;
+  font-weight: 500;
 `;
 
 export const PackageDescription = styled.div`
@@ -20,22 +20,20 @@ export const PackageDescription = styled.div`
 `;
 
 export const TryOnline = styled.a`
-  // font-size: ${THEME.FONT.LARGE}px;
-  // font-weight: 900;
 `;
 
 export const Links = styled.div`
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 500;
   display: flex;
   justify-content: end;
   
   &>a {
     margin: 5px;
+    color: ${THEME.COLOR.INVERT_3};
   }
   
   &>a:hover {
-    font-weight: bold;
-    font-family
-    color: ${THEME.COLOR.INVERT_3}
+    color: ${THEME.COLOR.PRIMARY}
   }
 `;

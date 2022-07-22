@@ -4,7 +4,6 @@ import THEME from "../../theme";
 export const MainContainer = styled.div`
     width: 600px;
     position: relative;
-    font-family: 'Roboto';
     font-size: ${THEME.FONT.SIZE.MEDIUM}px;
     padding: 20px 28px 10px 0;
     margin: 0 0 20px;

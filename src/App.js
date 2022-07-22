@@ -1,8 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import './App.style.scss';
-import {AppContent, BottomMenuMobile} from './App.style.js';
+import {Wrapper, Content, BottomMenuMobile} from './App.style.js';
 
 import Header from './components/header/header.component';
 import CVPage from "./pages/cv/cv.component";
@@ -25,17 +24,17 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
+      <Wrapper>
         {isHideMenu ? null : <Header/>}
         <Switch>
-           <AppContent>
+           <Content>
              <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
              <Route path={ROUTE_PATH.WEBSITES_CATALOG}><WebsiteCatalogPage/></Route>
              <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
              <Route path={ROUTE_PATH.CV}><CVPage/></Route>
              <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
              <Route path={ROUTE_PATH.INCOME_CALCULATOR}><IncomeCalculatorPage/></Route>
-           </AppContent>
+           </Content>
          </Switch>
         {isHideMenu
             ? null
@@ -44,7 +43,7 @@ function App() {
               </BottomMenuMobile>
         }
         <Footer/>
-      </div>
+      </Wrapper>
     </Router>
   );
 }
