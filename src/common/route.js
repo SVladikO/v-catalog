@@ -8,7 +8,7 @@ export const ROUTE_PATH = {
 }
 
 export const QUERY_PARAMS = {
-    HIDE_HEADER: 'hide_header',
+    HIDE_HEADER: 'h_header',
     HIDE_FOOTER: 'hide_footer',
     SHOW_SECRET: 'secret_part'
 }
