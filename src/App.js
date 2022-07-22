@@ -26,7 +26,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {isHideHeader ? null : <Header/>}
+        {isHideMenu ? null : <Header/>}
         <Switch>
            <AppContent>
              <Route exact path={ROUTE_PATH.HOME}><HomePage/></Route>
