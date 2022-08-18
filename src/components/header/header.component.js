@@ -1,7 +1,7 @@
 import React from "react";
 
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
 
 import {Wrapper, Content} from './Header.style.js';
@@ -21,7 +21,7 @@ function Header({currentLanguage, setSiteLanguage}) {
   return (
     <Wrapper>
       <Content>
-        <Link to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
+        <NavLink to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></NavLink>
         <NavigationMenu links={HEADER_MENU_LINKS}/>
         <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
       </Content>
