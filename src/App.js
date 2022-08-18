@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import {Wrapper, Content, BottomMenuMobile} from './App.style.js';
 
-import Menu from "./components/menu/menu.component";
+import NavigationMenu from "./components/NavigationMenu/NavigationMenu.component";
 import Header from './components/header/header.component';
 import Footer from "./components/footer/footer.component";
 
@@ -40,7 +40,7 @@ function App() {
         {isHideMenu
             ? null
             : <BottomMenuMobile>
-                <Menu links={FOOTER_MENU_LINKS}/>
+                <NavigationMenu links={FOOTER_MENU_LINKS}/>
               </BottomMenuMobile>
         }
         <Footer/>

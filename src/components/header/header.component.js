@@ -6,7 +6,7 @@ import {createStructuredSelector} from "reselect";
 
 import {Wrapper, Content} from './Header.style.js';
 
-import Menu from "../menu/menu.component";
+import NavigationMenu from "../NavigationMenu/NavigationMenu.component";
 import Text from '../text/text.component';
 import Dropdown from "../dropdown/dropdown.component";
 
@@ -22,7 +22,7 @@ function Header({currentLanguage, setSiteLanguage}) {
     <Wrapper>
       <Content>
         <Link to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></Link>
-        <Menu links={HEADER_MENU_LINKS}/>
+        <NavigationMenu links={HEADER_MENU_LINKS}/>
         <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
       </Content>
     </Wrapper>

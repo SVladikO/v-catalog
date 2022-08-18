@@ -25,18 +25,3 @@ export const Wrapper = styled.div`
 
 `;
 
-export const LinkWrapper = styled.div`
-    box-sizing: border-box;
-    ${p => p.isSelected
-        ? `border-bottom: solid 3px ${THEME.COLOR.PRIMARY};`
-        : ''
-     }
-
-    & a {
-        ${p => p.isSelected
-                ? `color: ${THEME.COLOR.PRIMARY};`
-                : ''
-             }
-    }
-
-`;
