@@ -12,6 +12,10 @@ function WebsiteCatalog() {
         {title: "Income calculator", path: ROUTE_PATH.INCOME_CALCULATOR},
    ])
 
+   const englishLinks = renderLinks([
+        {title: "English alphabet", path: ROUTE_PATH.ENGLISH_ALPHABET}
+   ]);
+
    const restLinks = renderLinks([
         {title: "Timetable-f", path: ROUTE_PATH.TIME_TABLE_F}
    ]);
@@ -33,8 +37,12 @@ function WebsiteCatalog() {
     <Wrapper>
       <PageTitle>Own projects</PageTitle>
 
+      <CategoryTitle>ENGLISH:</CategoryTitle>
+      {englishLinks}
+
       <CategoryTitle>FINANCES:</CategoryTitle>
       {financeLinks}
+
 
       <CategoryTitle>REST:</CategoryTitle>
       {restLinks}

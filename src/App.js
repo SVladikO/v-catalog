@@ -13,6 +13,7 @@ import PackagePage from "./pages/packages/Package.page";
 import TimetableFPage from "./pages/timetabeF/TimetableF.page";
 import WebsiteCatalogPage from "./pages/website-catalog/Website-catalog.page";
 import IncomeCalculatorPage from "./pages/income-calculator/IncomeCalculator.page";
+import EnglishAlphabetPage from "./pages/english-alphabet/index.js";
 
 import {FOOTER_MENU_LINKS, ROUTE_PATH, QUERY_PARAMS} from "./common/route";
 
@@ -35,6 +36,7 @@ function App() {
              <Route path={ROUTE_PATH.CV}><CVPage/></Route>
              <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
              <Route path={ROUTE_PATH.INCOME_CALCULATOR}><IncomeCalculatorPage/></Route>
+             <Route path={ROUTE_PATH.ENGLISH_ALPHABET}><EnglishAlphabetPage/></Route>
            </Content>
          </Switch>
         {isHideMenu
