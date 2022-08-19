@@ -1,21 +1,17 @@
-import React, {useState} from "react";
+import useLocalStorage from '../../hooks/useLocalStorage.js'
 
 import THEME from "../../theme";
 
 import {
-    Wrapper, InputStyle, Title, ToCenter, Table, NumberButtonWrapper, NumberButton,
-    RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper,
-    EmptyMenuRow, CheckboxMenuWrapper, Label, EmptyTD
+    Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper,
+
 } from './IncomeCalculator.style';
 
 import NumberInput from './components/NumberInput.component.js'
 
-function Input({changeHandler, value, name, isShow}) {
+function Input({changeHandler, value, name}) {
   const convertToNumber = str => +str.split('\'').join('');
 
-  if (!isShow) {
-    return <div></div>;
-  }
 
   return (
     <InputStyle
@@ -28,67 +24,17 @@ function Input({changeHandler, value, name, isShow}) {
 const USD_NAME = '$';
 
 function CurrencyTimeCalculator() {
-  const [monthIncome, setMonthIncome] = useState(1000);
-  const [workDays, setWorkDays] = useState(21);
-  const [workHours, setWorkHours] = useState(8);
-  const [workYears, setWorkYears] = useState(1);
+  const [monthIncome, setMonthIncome] = useLocalStorage('salary', 1000);
+  const [workDays, setWorkDays] = useLocalStorage('workDays', 21);
+  const [workHours, setWorkHours] = useLocalStorage('workHours', 8);
+  const [workYears, setWorkYears] = useLocalStorage('workYears', 1);
   
-  const [customCourse, setCustomCourse] = useState(37);
-  const [customCurrencyName, setCustomCurrencyName] = useState('UAH');
+  const [customCourse, setCustomCourse] = useLocalStorage('customCourse', 40);
+  const [customCurrencyName, setCustomCurrencyName] = useLocalStorage('customCurrencyName', 'UAH');
   
-  const [isVisibleHour, setIsVisibleHour] = useState(true);
-  const [isVisibleDay, setIsVisibleDay] = useState(true);
-  const [isVisibleMonth, setIsVisibleMonth] = useState(true);
-  const [isVisibleYear, setIsVisibleYear] = useState(true);
-
-  const [isVisibleUSD, setIsVisibleUSD] = useState(true);
-  const [isVisibleCustomCurrency, setIsVisibleCustomCurrency] = useState(true);
-
   const convertHourIncomeToMonth = value => setMonthIncome(value * workDays * workHours);
   const convertDayIncomeToMonth = value => setMonthIncome(value * workDays);
   const convertYearIncomeToMonth = value => setMonthIncome(value / workYears / 12);
-
-  const CURRENCY_MENU = [
-  {
-    checked: isVisibleUSD,
-    changeHandler: setIsVisibleUSD,
-    label: USD_NAME,
-    id: 'usdCurrency'
-  },
-  {
-    checked: isVisibleCustomCurrency,
-    changeHandler: setIsVisibleCustomCurrency,
-    label: customCurrencyName,
-    id: 'customCurrency'
-  }
-];
-
-  const TIME_MENU = [
-  {
-    checked: isVisibleHour,
-    changeHandler: setIsVisibleHour,
-    label: 'H',
-    id: '_hour'
-  },
-  {
-    checked: isVisibleDay,
-    changeHandler: setIsVisibleDay,
-    label: 'D',
-    id: '_day'
-  },
-  {
-    checked: isVisibleMonth,
-    changeHandler: setIsVisibleMonth,
-    label: 'M',
-    id: '_month'
-  },
-  {
-    checked: isVisibleYear,
-    changeHandler: setIsVisibleYear,
-    label: 'Y',
-    id: '_year'
-  }
-];
 
   const renderOvertimePrice = () => {
     if (workHours <= 8) {
@@ -115,157 +61,112 @@ function CurrencyTimeCalculator() {
       const incomePerMonthUSD = incomePerHourUSD * 8 * workDays;
       const incomePerMonthCustomCurrency = incomePerMonthUSD * customCourse;
 
-      return <pre>{addSeparator(incomePerMonthUSD)}{USD_NAME} or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY</pre>
+      return <div>
+               {addSeparator(incomePerMonthUSD)}{USD_NAME} or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY
+               </div>
     }
 
   const renderCurrencyCourseMenu = () => {
     return (
         <div>
-           {isVisibleCustomCurrency
-                ? <>
-                    <NumberInput value={customCourse} changeHandler={setCustomCourse}>
-                        <InputStyle width='70px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)} color={THEME.COLOR.INVERT_0}/>
-                        {
-                           isVisibleUSD && isVisibleCustomCurrency
-                             ? <span> = 1 USD</span>
-                             : null
-                         }
-                   </NumberInput>
-                   </>
-                : <EmptyMenuRow />
-           }
+           <>
+             <NumberInput value={customCourse} changeHandler={setCustomCourse}>
+               <InputStyle width='70px' value={customCurrencyName} onChange={e => setCustomCurrencyName(e.target.value)} color={THEME.COLOR.INVERT_0}/>
+               <span> = 1 USD</span>
+               </NumberInput>
+            </>
         </div>
     )
   }
 
-  const renderCheckboxMenu = (checkboxes) => {
-    return (
-           <CheckboxMenuWrapper>
-               {checkboxes.map(i => (
-                  <>
-                    <InputStyle width='28px' type='checkbox' checked={i.checked} onChange={e => i.changeHandler(e.target.checked)} id={i.id} key={i.id} />
-                    <Label for={i.id} key={i.id+'label'} color={THEME.COLOR.INVERT_0}>{i.label}</Label>
-                  </>
-               ))}
-           </CheckboxMenuWrapper>
-    )
-  }
-
-  const EmptyRow = (
-    <>
-      <EmptyTD></EmptyTD>
-      <EmptyTD></EmptyTD>
-      <EmptyTD></EmptyTD>
-    </>
-  );
-
   const HeaderRow = (
       <>
-        <ToCenter>{isVisibleUSD ? USD_NAME : ''}</ToCenter>
-        <ToCenter>{isVisibleCustomCurrency ? customCurrencyName : ''}</ToCenter>
+        <ToCenter>{USD_NAME}</ToCenter>
+        <ToCenter>{customCurrencyName}</ToCenter>
         <span>In 1</span>
       </>
   );
 
-  const HourRow = isVisibleHour
-  ?  (
+  const HourRow = (
       <>
         <Input
-          isShow={isVisibleUSD}
           name='usd_income_per_hour'
           changeHandler={value => convertHourIncomeToMonth(value)}
           value={monthIncome / workDays / workHours}
         />
         <Input
-          isShow={isVisibleCustomCurrency}
           name='uah_income_per_hour'
           value={monthIncome / workDays / workHours * customCourse}
           changeHandler={value => convertHourIncomeToMonth(value / customCourse)}
         />
         <RowDescription>hour</RowDescription>
       </>
-  )
-  : EmptyRow;
+  );
 
-  const DayRow = isVisibleDay
-  ? (
+  const DayRow = (
       <>
         <Input
-         isShow={isVisibleUSD}
          name='usd_income_per_workDays'
          changeHandler={value => convertDayIncomeToMonth(value)}
          value={monthIncome / workDays}
        />
        <Input
-         isShow={isVisibleCustomCurrency}
          name='uah_income_per_workDays'
          changeHandler={value => convertDayIncomeToMonth(value / customCourse)}
          value={monthIncome / workDays * customCourse}
        />
        <RowDescription>days</RowDescription>
       </>
-  )
-  : EmptyRow;
+  );
 
-  const MonthRow = isVisibleMonth
-   ? (
+  const MonthRow = (
       <>
         <Input
-          isShow={isVisibleUSD}
           name='usd_income_per_month'
           changeHandler={value => setMonthIncome(value)}
           value={monthIncome}
         />
         <Input
-          isShow={isVisibleCustomCurrency}
           name='uah_income_per_month'
           changeHandler={value => setMonthIncome(value / customCourse)}
           value={monthIncome * customCourse}
         />
         <RowDescription>month</RowDescription>
       </>
-  )
-  : EmptyRow;
+  );
 
-  const YearRow = isVisibleYear
-  ? (
+  const YearRow = (
       <>
         <Input
-          isShow={isVisibleUSD}
           name='usd_income_by_years'
           changeHandler={value => convertYearIncomeToMonth(value)}
           value={monthIncome * 12 * workYears}
         />
         <Input
-          isShow={isVisibleCustomCurrency}
           name='uah_income_by_years'
           changeHandler={value => convertYearIncomeToMonth(value / customCourse)}
           value={monthIncome * 12 * workYears * customCourse}
         />
         <RowDescription>year</RowDescription>
       </>
-  )
-  : EmptyRow;
-
-
+  );
 
   return (
     <>
       <Table>
-        {HeaderRow}
-        {HourRow}
-        {DayRow}
-        {MonthRow}
-        {YearRow}
+         {HeaderRow}
+         {HourRow}
+         {DayRow}
+         {MonthRow}
+         {YearRow}
       </Table>
       <BottomMenu>
           {workHours*workDays} hours/month
           {renderOvertimePrice()}
+          {renderIncreasedSalary()}
           <NumberInput value={workHours} changeHandler={setWorkHours}>hours/day</NumberInput>
           <NumberInput value={workDays} changeHandler={setWorkDays}>days/month</NumberInput>
          {renderCurrencyCourseMenu()}
-         {renderCheckboxMenu(CURRENCY_MENU)}
-         {renderCheckboxMenu(TIME_MENU)}
       </BottomMenu>
     </>
   )

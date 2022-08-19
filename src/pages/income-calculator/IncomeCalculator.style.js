@@ -27,32 +27,18 @@ export const InputStyle = styled.input`
   box-sizing: border-box;
   font-size: ${THEME.FONT.SIZE.SMALL}px;
   ${p => p.color && `color: ${p.color}`};
+`;
 
-  &[type="checkbox"] {
-    accent-color: #909090;
-  }
-`;
-export const Label = styled.label`
-    font-size: 28px;
-    margin: 0px 30px 0px 6px;
-    box-sizing: border-box;
-    user-select: none;
-    ${p => p.color && `color: ${p.color}`};
-`;
-export const CheckboxMenuWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    margin: 20px 0 20px 0;
-`;
 export const OvertimeWrapper = styled.div`
     margin: 10px 0 10px 0;
     height: 28px;
-
 `;
+
 export const OvertimePrice = styled.span`
     color: green;
     font-weight: 700;
 `;
+
 export const OvertimeHours = styled.span`
     color: red;
     font-weight: 700;
@@ -60,21 +46,15 @@ export const OvertimeHours = styled.span`
 
 export const RowDescription = styled.div`
 `;
+
 export const BottomMenu = styled.div`
   max-width: ${max_width};
   margin: 60px auto 0;
 `;
+
 export const Table = styled.div`
       display: grid;
       grid-template-columns: 1fr 1fr 20%;
-//      height: 170px;
       max-width: ${max_width};
       margin: 0px auto;
-`;
-
-export const EmptyMenuRow = styled.div`
-  height: 30px;
-`;
-export const EmptyTD = styled.span`
- height: 30px;
 `;
