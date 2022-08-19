@@ -19,7 +19,7 @@ function PackagePage() {
 
   return (
     <Wrapper>
-       <PageTitle>Node Packages</PageTitle>
+       <PageTitle>Own packages</PageTitle>
 
       {packages.map(p =>
         <Package key={p.name}>

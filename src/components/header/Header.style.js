@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+
 import THEME from "../../theme";
+import {ContentWidth} from '../common.style.js';
 
 export const Wrapper = styled.div`
     z-index: 1;
@@ -13,7 +15,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-    max-width: 1260px;
+    max-width: ${ContentWidth}px;
     width: 90%;
     margin: auto;
     display: flex;

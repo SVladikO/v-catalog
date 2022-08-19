@@ -3,14 +3,41 @@ import {Link} from 'react-router-dom';
 
 import {ROUTE_PATH} from "../../common/route";
 
-import {Wrapper, PageTitle, ItemTitle} from '../../components/common.style.js';
+import {ReactComponent as ArrowRightIcon} from "../../image/arrow-right.svg";
+
+import {Wrapper, PageTitle, CategoryTitle, ItemTitle} from '../../components/common.style.js';
 
 function WebsiteCatalog() {
+   const financeLinks = renderLinks([
+        {title: "Income calculator", path: ROUTE_PATH.INCOME_CALCULATOR},
+   ])
+
+   const restLinks = renderLinks([
+        {title: "Timetable-f", path: ROUTE_PATH.TIME_TABLE_F}
+   ]);
+
+   function renderLinks(array) {
+       return array.map(
+              (f, index) =>
+                  <Link to={f.path}>
+                    <ItemTitle key={f.title}>
+                         {" "}{index + 1}{". "}
+                         {f.title}
+                         <ArrowRightIcon />
+                     </ItemTitle>
+                  </Link>
+            );
+   }
+
   return (
     <Wrapper>
-      <PageTitle>Web pet projects</PageTitle>
-      <ItemTitle><Link to={ROUTE_PATH.INCOME_CALCULATOR}>Income calculator</Link></ItemTitle>
-      <ItemTitle><Link to={ROUTE_PATH.TIME_TABLE_F}>Timetable-f </Link></ItemTitle>
+      <PageTitle>Own projects</PageTitle>
+
+      <CategoryTitle>FINANCES:</CategoryTitle>
+      {financeLinks}
+
+      <CategoryTitle>REST:</CategoryTitle>
+      {restLinks}
     </Wrapper>
   )
 }
