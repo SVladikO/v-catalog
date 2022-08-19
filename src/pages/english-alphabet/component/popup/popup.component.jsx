@@ -1,15 +1,11 @@
 import React, {useState} from 'react';
 import './popup.style.css'
 
-function Popup(props) {
-
-    const {
-
+function Popup({
         isCloseButton = true,
-        hidePopup = () => {
-        },
+        switchPopup = () => {},
         children,
-    } = props;
+}) {
 
     return (
         <div className="f_popup_container">
@@ -17,7 +13,7 @@ function Popup(props) {
             <div className="f_popup_content_container">
                 {
                     isCloseButton
-                        ? <div className="f_popup_close_button" onClick={hidePopup}><span>&#10005;</span></div>
+                        ? <div className="f_popup_close_button" onClick={switchPopup}><span>&#10005;</span></div>
                         : null
                 }
                 <div className="f_popup_content">

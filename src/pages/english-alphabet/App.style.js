@@ -20,3 +20,10 @@ export  const Input = styled.input`
     width: 80%;
     padding: 4px 8px;
 `;
+
+export const ButtonList = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+`;

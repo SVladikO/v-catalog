@@ -3,8 +3,7 @@ import useLocalStorage from '../../hooks/useLocalStorage.js'
 import THEME from "../../theme";
 
 import {
-    Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper,
-
+    Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper
 } from './IncomeCalculator.style';
 
 import NumberInput from './components/NumberInput.component.js'
@@ -27,7 +26,7 @@ function CurrencyTimeCalculator() {
   const [monthIncome, setMonthIncome] = useLocalStorage('salary', 1000);
   const [workDays, setWorkDays] = useLocalStorage('workDays', 21);
   const [workHours, setWorkHours] = useLocalStorage('workHours', 8);
-  const [workYears, setWorkYears] = useLocalStorage('workYears', 1);
+  const [workYears] = useLocalStorage('workYears', 1);
   
   const [customCourse, setCustomCourse] = useLocalStorage('customCourse', 40);
   const [customCurrencyName, setCustomCurrencyName] = useLocalStorage('customCurrencyName', 'UAH');

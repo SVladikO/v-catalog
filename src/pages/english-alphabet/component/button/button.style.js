@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonTag = styled.button`
+export const Button = styled.button`
     font-size: 18px;
     font-weight: 600;
     padding: 12px 4px;

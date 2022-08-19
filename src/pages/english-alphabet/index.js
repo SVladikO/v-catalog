@@ -1,39 +1,55 @@
 import {useState} from 'react';
 
-import {AppTag, Input} from './App.style';
-import Button from "./component/button/button.component";
-import {Header} from "./App.style";
+import alphabet from "./alphabet.json";
+
 import './App.css';
-import ButtonList from "./component/button-list/button-list.component";
-// import Popup from "./component/popup2/popup.component";
+import {Header} from "./App.style";
+import {AppTag, Input, ButtonList} from './App.style';
+
+import useLocalStorage from '../../hooks/useLocalStorage.js'
+
 import Popup from './component/popup/popup.component';
+import {Button} from "./component/button/button.style";
 import Introduction from "./component/introduction/introduction.component";
 
 function App() {
-    let [englishText, changeEnglishText] = useState("")
-    let [isPopupVisible, hidePopup] = useState(true);
+    let [englishText, setEnglishText] = useState("");
+    let [ isOpenIntroductionPopup, setIsOpenIntroductionPopup] = useLocalStorage(' isOpenIntroductionPopup', true);
 
-    function switchPopup() {
-        hidePopup(!isPopupVisible);
+    const handleSwitchPopup = () => {
+        setIsOpenIntroductionPopup(!isOpenIntroductionPopup)
     }
 
-    function clearState() {
-        changeEnglishText("");
+    function deleteEnglishText() {
+        setEnglishText("");
     }
 
+    const addLetter = letter => () => setEnglishText(prevValue => prevValue + letter);
 
+    let alphabetButtons = alphabet.map(
+        ([letter, uaTranscription, engTranscription]) =>
+            <Button key={uaTranscription} onClick={addLetter(letter)}>
+                {letter} [{engTranscription}]
+            </Button>
+    );
 
     return (
         <AppTag>
             <Header>
-                <Input type="text" value={englishText}/>
-                <Button handleClick={clearState} title="X" minWidth={"18px"}/>
+                <Input type="text" value={englishText} readOnly/>
+                <Button onClick={deleteEnglishText}>CLEAN</Button>
             </Header>
-            <ButtonList englishText={englishText} changeEnglishText={changeEnglishText}/>
+            <ButtonList>
+                {alphabetButtons}
+            </ButtonList>
+            <div>Show letters</div>
+            <div>UA transcription</div>
+            <div>EN transcription</div>
+
             {
-                isPopupVisible
-                    ? <Popup hidePopup={switchPopup}>
-                        <Introduction handleClick={switchPopup}/>
+                 isOpenIntroductionPopup
+                    ? <Popup switchPopup={handleSwitchPopup}>
+                        <Introduction handleClick={handleSwitchPopup}/>
                     </Popup>
                     : null
             }
