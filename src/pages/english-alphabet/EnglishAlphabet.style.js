@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import THEME from "../../theme";
 
 export  const AppTag = styled.div`
     padding: 10px;
@@ -26,4 +27,11 @@ export const ButtonList = styled.div`
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+`;
+
+export const Letter = styled.span`
+    padding: 0 4px 0 0;
+    color: ${THEME.COLOR.INVERT_0};
+    text-transform: uppercase;
+    opacity: 0.2;
 `;

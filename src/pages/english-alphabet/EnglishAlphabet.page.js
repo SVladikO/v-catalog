@@ -1,18 +1,15 @@
 import {useState} from 'react';
 
+import {Header, AppTag, Input, ButtonList, Letter} from './EnglishAlphabet.style';
+
 import alphabet from "./alphabet.json";
-
-import './App.css';
-import {Header} from "./App.style";
-import {AppTag, Input, ButtonList} from './App.style';
-
 import useLocalStorage from '../../hooks/useLocalStorage.js'
 
 import Popup from './component/popup/popup.component';
 import {Button} from "./component/button/button.style";
 import Introduction from "./component/introduction/introduction.component";
 
-function App() {
+function EnglishAlphabet() {
     let [englishText, setEnglishText] = useState("");
     let [ isOpenIntroductionPopup, setIsOpenIntroductionPopup] = useLocalStorage(' isOpenIntroductionPopup', true);
 
@@ -23,9 +20,9 @@ function App() {
     const addLetter = letter => () => setEnglishText(prevValue => prevValue + letter);
 
     let alphabetButtons = alphabet.map(
-        ([letter, uaTranscription, engTranscription]) =>
-            <Button key={uaTranscription} onClick={addLetter(letter)}>
-                {letter} [{engTranscription}]
+        ([letter, engTranscription]) =>
+            <Button key={engTranscription} onClick={addLetter(letter)}>
+                <Letter>{letter}</Letter>[{engTranscription}]
             </Button>
     );
 
@@ -39,9 +36,6 @@ function App() {
             <ButtonList>
                 {alphabetButtons}
             </ButtonList>
-            <div>Show letters</div>
-            <div>UA transcription</div>
-            <div>EN transcription</div>
 
             {
                  isOpenIntroductionPopup
@@ -54,4 +48,4 @@ function App() {
     );
 };
 
-export default App;
+export default EnglishAlphabet;
