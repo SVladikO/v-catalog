@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import THEME from "../..//theme";
-
+import THEME from "../../theme";
 
 export  const Wrapper = styled.div`
     position: fixed;
@@ -19,7 +18,7 @@ export  const Wrapper = styled.div`
 export  const Content = styled.div`
     background: ${THEME.COLOR.SECONDARY};
     margin: 10px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px 15px;
 
 `;

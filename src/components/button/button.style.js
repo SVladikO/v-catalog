@@ -1,27 +1,31 @@
 import styled from 'styled-components';
+import THEME from "../../theme";
 
 export const LightButton = styled.button`
-    font-size: 18px;
-    font-weight: 600;
-    padding: 12px 4px;
-    margin: 2px;
-    appearance: none;
-    // background-color: #0030ff;
-    color: #000;
-    font-family: Roboto;
-    background-color: #fff;
+    ${ (p => p.width ? {width:  p.width} : {}) };
+
     border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-    flex: 1 1 0px;
-    min-width: ${ props => props.minWidth ? props.minWidth : "30%" };
-    overflow: hidden;
-    -webkit-appearance: none;
     border: solid 1px #000;
+
+    font-size: ${THEME.FONT.SIZE.SMALL}px;
+    font-family: Roboto;
+    font-weight: 600;
+
+    padding: 6px 10px;
+    color: #000;
+    background-color: #fff;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:hover {
+      background: ${THEME.COLOR.SECONDARY_HOVER};
+    }
+
 `;
 

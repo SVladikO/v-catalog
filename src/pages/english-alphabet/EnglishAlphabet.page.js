@@ -7,13 +7,13 @@ import useLocalStorage from '../../hooks/useLocalStorage.js'
 
 import Popup from '../../components/popup';
 import {LightButton} from "../../components/button/button.style";
-import Introduction from "./component/introduction/introduction.component";
+import Introduction from "../../components/Introduction/Introduction.component";
 
 function EnglishAlphabet() {
     let [englishText, setEnglishText] = useState("");
-    let [ isOpenIntroductionPopup, setIsOpenIntroductionPopup] = useLocalStorage(' isOpenIntroductionPopup', true);
+    let [ isOpenPopup, setIsOpenPopup] = useLocalStorage(' isOpenIntroAlphabetPopup', true);
 
-    const closePopup = () => setIsOpenIntroductionPopup(!isOpenIntroductionPopup);
+    const closePopup = () => setIsOpenPopup(!isOpenPopup);
     const deleteEnglishText = () => setEnglishText("");
     const deleteLastLetterFromEnglishText = () => setEnglishText(englishText.slice(0, -1));
 
@@ -21,7 +21,7 @@ function EnglishAlphabet() {
 
     let alphabetButtons = alphabet.map(
         ([letter, engTranscription]) =>
-            <LightButton key={engTranscription} onClick={addLetter(letter)}>
+            <LightButton key={engTranscription} onClick={addLetter(letter)} width="30%" style={{margin: '4px'}} >
                 <Letter>{letter}</Letter>[{engTranscription}]
             </LightButton>
     );
@@ -31,17 +31,27 @@ function EnglishAlphabet() {
             <div>Practice English alphabet</div>
             <Header>
                 <Input type="text" value={englishText} readOnly/>
-                <LightButton minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} >C</LightButton>
-                <LightButton minWidth={'50px'} onClick={deleteEnglishText}>X</LightButton>
+                <LightButton minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} style={{margin: '4px'}}>C</LightButton>
+                <LightButton minWidth={'50px'} onClick={deleteEnglishText} style={{margin: '4px'}}>X</LightButton>
             </Header>
             <ButtonList>
                 {alphabetButtons}
             </ButtonList>
 
             {
-                 isOpenIntroductionPopup
+                 isOpenPopup
                     ? <Popup closePopup={closePopup}>
-                        <Introduction handleClick={closePopup}/>
+                        <Introduction
+                            title='English Alphabet'
+                            description={
+                                [
+                                 "Hi.",
+                                 "- Can you spell your name or maybe address ?",
+                                 "If no - this page can help."
+                                 ]}
+                            buttonTitle="Let's practice ?)"
+                            handleClick={closePopup}
+                        />
                     </Popup>
                     : null
             }
@@ -50,5 +60,3 @@ function EnglishAlphabet() {
 };
 
 export default EnglishAlphabet;
-
-//                 isOpenIntroductionPopup

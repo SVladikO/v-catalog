@@ -1,12 +1,15 @@
 import useLocalStorage from '../../hooks/useLocalStorage.js'
 
-import THEME from "../../theme";
 
+import THEME from "../../theme";
 import {
     Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper
 } from './IncomeCalculator.style';
 
+import Popup from "../../components/popup";
+
 import NumberInput from './components/NumberInput.component.js'
+import Introduction from "../../components/Introduction/Introduction.component";
 
 function Input({changeHandler, value, name}) {
   const convertToNumber = str => +str.split('\'').join('');
@@ -30,10 +33,14 @@ function CurrencyTimeCalculator() {
   
   const [customCourse, setCustomCourse] = useLocalStorage('customCourse', 40);
   const [customCurrencyName, setCustomCurrencyName] = useLocalStorage('customCurrencyName', 'UAH');
-  
+
   const convertHourIncomeToMonth = value => setMonthIncome(value * workDays * workHours);
   const convertDayIncomeToMonth = value => setMonthIncome(value * workDays);
   const convertYearIncomeToMonth = value => setMonthIncome(value / workYears / 12);
+
+  const [isOpenPopup, setIsOpenPopup] = useLocalStorage(' isOpenIntroIncomeCalcPopup', true);
+
+  const closePopup = () => setIsOpenPopup(!isOpenPopup);
 
   const renderOvertimePrice = () => {
     if (workHours <= 8) {
@@ -167,6 +174,31 @@ function CurrencyTimeCalculator() {
           <NumberInput value={workDays} changeHandler={setWorkDays}>days/month</NumberInput>
          {renderCurrencyCourseMenu()}
       </BottomMenu>
+      {
+        isOpenPopup
+        ? <Popup closePopup={closePopup}
+            title={"Вивчи Англійський алфавіт"}
+            subTitle={"Чи зможеш продиктувати своє імя і прізвище Англійською ?"}
+            description={"Перевірити себе"}
+          >
+            <Introduction
+              title='Salary calculator'
+              description={
+                [
+                    "Hi there.)",
+                    "- How much does your time cost ?",
+                    "- What's your one hour price ?",
+                    "- What's your one work day price ?",
+                    "",
+                    "You can find all answers right now.",
+                ]
+              }
+              buttonTitle="Let's calculate ?)"
+              handleClick={closePopup}
+            />
+          </Popup>
+        : null
+      }
     </>
   )
 }

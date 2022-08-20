@@ -22,15 +22,15 @@ function WebsiteCatalog() {
 
    function renderLinks(array) {
        return array.map(
-              (f, index) =>
-                  <Link to={f.path}>
-                    <ItemTitle key={f.title}>
-                         {" "}{index + 1}{". "}
-                         {f.title}
-                         <ArrowRightIcon />
-                     </ItemTitle>
-                  </Link>
-            );
+          (f, index) =>
+              <Link to={f.path} key={f.title}>
+                  <ItemTitle>
+                      {" "}{index + 1}{". "}
+                      {f.title}
+                      <ArrowRightIcon />
+                  </ItemTitle>
+              </Link>
+          );
    }
 
   return (

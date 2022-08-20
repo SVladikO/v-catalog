@@ -33,5 +33,5 @@ export const Letter = styled.span`
     padding: 0 4px 0 0;
     color: ${THEME.COLOR.INVERT_0};
     text-transform: uppercase;
-    opacity: 0.2;
+    opacity: 0.4;
 `;
