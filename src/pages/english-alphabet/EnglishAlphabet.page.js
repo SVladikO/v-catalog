@@ -1,5 +1,6 @@
 import {useState} from 'react';
 
+import {PageTitle} from '../../components/common.style.js'
 import {Header, AppTag, Input, ButtonList, Letter, ChangeOpacityTitle} from './EnglishAlphabet.style';
 
 import alphabet from "./alphabet.json";
@@ -31,7 +32,7 @@ function EnglishAlphabet() {
 
     return (
         <AppTag>
-            <div>Practice English alphabet</div>
+            <PageTitle>English spelling practice</PageTitle>
             <Header>
                 <Input type="text" value={englishText} readOnly/>
                 <LightButton minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} style={{margin: '4px'}}>C</LightButton>
