@@ -6,7 +6,7 @@ import alphabet from "./alphabet.json";
 import useLocalStorage from '../../hooks/useLocalStorage.js'
 
 import Popup from '../../components/popup';
-import {Button} from "./component/button/button.style";
+import {LightButton} from "../../components/button/button.style";
 import Introduction from "./component/introduction/introduction.component";
 
 function EnglishAlphabet() {
@@ -21,9 +21,9 @@ function EnglishAlphabet() {
 
     let alphabetButtons = alphabet.map(
         ([letter, engTranscription]) =>
-            <Button key={engTranscription} onClick={addLetter(letter)}>
+            <LightButton key={engTranscription} onClick={addLetter(letter)}>
                 <Letter>{letter}</Letter>[{engTranscription}]
-            </Button>
+            </LightButton>
     );
 
     return (
@@ -31,8 +31,8 @@ function EnglishAlphabet() {
             <div>Practice English alphabet</div>
             <Header>
                 <Input type="text" value={englishText} readOnly/>
-                <Button minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} >C</Button>
-                <Button minWidth={'50px'} onClick={deleteEnglishText}>X</Button>
+                <LightButton minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} >C</LightButton>
+                <LightButton minWidth={'50px'} onClick={deleteEnglishText}>X</LightButton>
             </Header>
             <ButtonList>
                 {alphabetButtons}
