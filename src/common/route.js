@@ -4,7 +4,7 @@ export const ROUTE_PATH = {
   PACKAGES: "/packages",
   CV: "/cv",
   TIME_TABLE_F: "/timetable-f",
-  INCOME_CALCULATOR: "/income-calculator",
+  INCOME_CALCULATOR: "/time-calculator",
   ENGLISH_ALPHABET: "/english-alphabet"
 }
 
