@@ -7,7 +7,7 @@ export default function Introduction({title, description, buttonTitle, handleCli
             {title && <Title>{title}</Title>}
             {description && (
                 <Description>
-                    {description.map(row => <Row>{row}</Row>)}
+                    {description.map(rowText => <Row key={rowText}>{rowText}</Row>)}
                 </Description>
                 )
             }
