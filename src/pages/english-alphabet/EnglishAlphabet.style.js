@@ -33,5 +33,11 @@ export const Letter = styled.span`
     padding: 0 4px 0 0;
     color: ${THEME.COLOR.INVERT_0};
     text-transform: uppercase;
-    opacity: 0.4;
+    opacity: ${p => p.opacity/10};
 `;
+
+export const ChangeOpacityTitle = styled.div`
+    margin: 20px 0 6px;
+
+`;
+
