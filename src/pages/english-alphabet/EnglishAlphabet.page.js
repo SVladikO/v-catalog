@@ -52,7 +52,7 @@ function EnglishAlphabet() {
                             description={
                                 [
                                  "Hi.",
-                                 "- Can you spell your name or maybe address ?",
+                                 "- Can you spell your name ?",
                                  "If no - this page can help."
                                  ]}
                             buttonTitle="Let's practice ?)"

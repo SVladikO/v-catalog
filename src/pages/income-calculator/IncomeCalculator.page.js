@@ -184,14 +184,12 @@ function CurrencyTimeCalculator() {
             description={"Перевірити себе"}
           >
             <Introduction
-              title='Salary calculator'
+              title='Time calculator'
               description={
                 [
                     "Hi there.)",
                     "- How much does your time cost ?",
                     "- What's your one hour price ?",
-                    "- What's your one work day price ?",
-                    "",
                     "You can find all answers right now.",
                 ]
               }
