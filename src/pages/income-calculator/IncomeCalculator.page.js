@@ -228,7 +228,7 @@ function addSeparator(num) {
 function IncomeCalculatorPage() {
   return (
     <Wrapper>
-      <Title>Income Calculator</Title>
+      <Title>Time Calculator</Title>
       <CurrencyTimeCalculator/>
     </Wrapper>
   )

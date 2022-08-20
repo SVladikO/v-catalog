@@ -9,7 +9,7 @@ import {Wrapper, PageTitle, CategoryTitle, ItemTitle} from '../../components/com
 
 function WebsiteCatalog() {
    const financeLinks = renderLinks([
-        {title: "Income calculator", path: ROUTE_PATH.INCOME_CALCULATOR},
+        {title: "Time calculator", path: ROUTE_PATH.INCOME_CALCULATOR},
    ])
 
    const englishLinks = renderLinks([
