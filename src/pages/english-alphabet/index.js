@@ -16,13 +16,9 @@ function App() {
     let [englishText, setEnglishText] = useState("");
     let [ isOpenIntroductionPopup, setIsOpenIntroductionPopup] = useLocalStorage(' isOpenIntroductionPopup', true);
 
-    const handleSwitchPopup = () => {
-        setIsOpenIntroductionPopup(!isOpenIntroductionPopup)
-    }
-
-    function deleteEnglishText() {
-        setEnglishText("");
-    }
+    const deleteEnglishText = () => setEnglishText("");
+    const handleSwitchPopup = () => setIsOpenIntroductionPopup(!isOpenIntroductionPopup);
+    const deleteLastLetterFromEnglishText = () => setEnglishText(englishText.slice(0, -1));
 
     const addLetter = letter => () => setEnglishText(prevValue => prevValue + letter);
 
@@ -37,7 +33,8 @@ function App() {
         <AppTag>
             <Header>
                 <Input type="text" value={englishText} readOnly/>
-                <Button onClick={deleteEnglishText}>CLEAN</Button>
+                <Button minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} >C</Button>
+                <Button minWidth={'50px'} onClick={deleteEnglishText}>X</Button>
             </Header>
             <ButtonList>
                 {alphabetButtons}
