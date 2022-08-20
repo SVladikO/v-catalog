@@ -31,11 +31,16 @@ export const InputStyle = styled.input`
 
 export const OvertimeWrapper = styled.div`
     margin: 10px 0 10px 0;
-    height: 28px;
+    height: 50px;
 `;
 
 export const OvertimePrice = styled.span`
     color: green;
+    font-weight: 700;
+`;
+
+export const OvertimeTitle = styled.div`
+    color: red;
     font-weight: 700;
 `;
 

@@ -3,7 +3,8 @@ import useLocalStorage from '../../hooks/useLocalStorage.js'
 
 import THEME from "../../theme";
 import {
-    Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu, OvertimeHours, OvertimePrice, OvertimeWrapper
+    Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, BottomMenu,
+     OvertimeHours, OvertimePrice, OvertimeTitle, OvertimeWrapper
 } from './IncomeCalculator.style';
 
 import Popup from "../../components/popup";
@@ -43,33 +44,30 @@ function CurrencyTimeCalculator() {
   const closePopup = () => setIsOpenPopup(!isOpenPopup);
 
   const renderOvertimePrice = () => {
-    if (workHours <= 8) {
-      return <OvertimeWrapper />;
-    }
     const incomePerHour = monthIncome / workDays / workHours;
     const extraHours = (workHours-8)*workDays;
     const overtimePriceUSD = incomePerHour * extraHours;
     const overtimePriceCustomCurrency = overtimePriceUSD * customCourse;
 
     return <OvertimeWrapper>
-      <OvertimeHours>+{extraHours}h</OvertimeHours> =
-      <OvertimePrice> {addSeparator(overtimePriceUSD)}{USD_NAME} </OvertimePrice>
+      <OvertimeTitle>Overtime</OvertimeTitle>
+      <OvertimeHours>+{extraHours} h/month</OvertimeHours> =
+      <OvertimePrice>+{addSeparator(overtimePriceUSD)}{USD_NAME} </OvertimePrice>
       (<OvertimePrice>{addSeparator(overtimePriceCustomCurrency)} {customCurrencyName}</OvertimePrice>)
     </OvertimeWrapper>
   }
 
   const renderIncreasedSalary = () => {
-      if (workHours >= 8) {
-        return;
-      }
-
       const incomePerHourUSD = monthIncome / workDays / workHours;
       const incomePerMonthUSD = incomePerHourUSD * 8 * workDays;
       const incomePerMonthCustomCurrency = incomePerMonthUSD * customCourse;
 
-      return <div>
-               {addSeparator(incomePerMonthUSD)}{USD_NAME} or {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName} = YOUR HIGHER SALARY
-               </div>
+      return <OvertimeWrapper>
+                <OvertimeTitle> Increased salary </OvertimeTitle>
+               {addSeparator(incomePerMonthUSD)}{USD_NAME}
+               or
+               {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName}
+               </OvertimeWrapper>
     }
 
   const renderCurrencyCourseMenu = () => {
@@ -168,8 +166,12 @@ function CurrencyTimeCalculator() {
       </Table>
       <BottomMenu>
           {workHours*workDays} hours/month
-          {renderOvertimePrice()}
-          {renderIncreasedSalary()}
+          { (workHours === 8)
+                ? <OvertimeWrapper />
+                : (workHours >= 8)
+                    ? renderOvertimePrice()
+                    : <OvertimeWrapper />
+          }
           <NumberInput value={workHours} changeHandler={setWorkHours}>hours/day</NumberInput>
           <NumberInput value={workDays} changeHandler={setWorkDays}>days/month</NumberInput>
          {renderCurrencyCourseMenu()}
