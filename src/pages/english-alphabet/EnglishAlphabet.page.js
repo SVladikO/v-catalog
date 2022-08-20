@@ -5,7 +5,7 @@ import {Header, AppTag, Input, ButtonList, Letter} from './EnglishAlphabet.style
 import alphabet from "./alphabet.json";
 import useLocalStorage from '../../hooks/useLocalStorage.js'
 
-import Popup from './component/popup/popup.component';
+import Popup from '../../components/popup';
 import {Button} from "./component/button/button.style";
 import Introduction from "./component/introduction/introduction.component";
 
@@ -13,8 +13,8 @@ function EnglishAlphabet() {
     let [englishText, setEnglishText] = useState("");
     let [ isOpenIntroductionPopup, setIsOpenIntroductionPopup] = useLocalStorage(' isOpenIntroductionPopup', true);
 
+    const closePopup = () => setIsOpenIntroductionPopup(!isOpenIntroductionPopup);
     const deleteEnglishText = () => setEnglishText("");
-    const handleSwitchPopup = () => setIsOpenIntroductionPopup(!isOpenIntroductionPopup);
     const deleteLastLetterFromEnglishText = () => setEnglishText(englishText.slice(0, -1));
 
     const addLetter = letter => () => setEnglishText(prevValue => prevValue + letter);
@@ -28,6 +28,7 @@ function EnglishAlphabet() {
 
     return (
         <AppTag>
+            <div>Practice English alphabet</div>
             <Header>
                 <Input type="text" value={englishText} readOnly/>
                 <Button minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} >C</Button>
@@ -39,8 +40,8 @@ function EnglishAlphabet() {
 
             {
                  isOpenIntroductionPopup
-                    ? <Popup switchPopup={handleSwitchPopup}>
-                        <Introduction handleClick={handleSwitchPopup}/>
+                    ? <Popup closePopup={closePopup}>
+                        <Introduction handleClick={closePopup}/>
                     </Popup>
                     : null
             }
@@ -49,3 +50,5 @@ function EnglishAlphabet() {
 };
 
 export default EnglishAlphabet;
+
+//                 isOpenIntroductionPopup
