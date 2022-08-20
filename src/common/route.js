@@ -1,8 +1,8 @@
 export const ROUTE_PATH = {
-  HOME: '/',
-  WEBSITES_CATALOG: "/websites-catalog",
-  PACKAGES: "/packages",
   CV: "/cv",
+  HOME: '/',
+  ABOUT: "/about",
+  PACKAGES: "/packages",
   TIME_TABLE_F: "/timetable-f",
   INCOME_CALCULATOR: "/time-calculator",
   ENGLISH_ALPHABET: "/english-alphabet"
@@ -15,12 +15,12 @@ export const QUERY_PARAMS = {
 
 export const HEADER_MENU_LINKS = [
   {
-    title: "$HEADER.MENU_ITEM.WEBSITES_CATALOG",
-    path: ROUTE_PATH.WEBSITES_CATALOG
-  },
-  {
     title: "$HEADER.MENU_ITEM.NP",
     path: ROUTE_PATH.PACKAGES
+  },
+  {
+      title: "$HEADER.MENU_ITEM.ABOUT",
+      path: ROUTE_PATH.ABOUT
   },
   {
     title: "$HEADER.MENU_ITEM.CV",
@@ -34,12 +34,12 @@ export const FOOTER_MENU_LINKS = [
     path: ROUTE_PATH.HOME
   },
   {
-    title: "$FOOTER.MENU_ITEM.GAME",
-    path: ROUTE_PATH.WEBSITES_CATALOG
-  },
-  {
     title: "$FOOTER.MENU_ITEM.NP",
     path: ROUTE_PATH.PACKAGES
+  },
+  {
+      title: "$FOOTER.MENU_ITEM.ABOUT",
+      path: ROUTE_PATH.ABOUT
   },
   {
     title: "$FOOTER.MENU_ITEM.CV",

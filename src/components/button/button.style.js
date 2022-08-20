@@ -8,7 +8,6 @@ export const LightButton = styled.button`
     border: solid 1px #000;
 
     font-size: ${THEME.FONT.SIZE.SMALL}px;
-    font-family: Roboto;
     font-weight: 600;
 
     padding: 6px 10px;

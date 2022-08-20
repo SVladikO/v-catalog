@@ -35,7 +35,7 @@ function WebsiteCatalog() {
 
   return (
     <Wrapper>
-      <PageTitle>Own projects</PageTitle>
+      <PageTitle>Web projects</PageTitle>
 
       <CategoryTitle>ENGLISH:</CategoryTitle>
       {englishLinks}
