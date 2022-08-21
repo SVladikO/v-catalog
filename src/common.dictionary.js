@@ -82,6 +82,8 @@ const translations = {
   },
 };
 
+export const defaultLanguage = 'en';
+
 export const websiteLanguages = [
     {
       value: "en",

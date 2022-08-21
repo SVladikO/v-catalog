@@ -10,13 +10,12 @@ import Text from '../text/text.component';
 import Dropdown from "../Dropdown/Dropdown.component";
 import NavigationMenu from "../NavigationMenu/NavigationMenu.component";
 
-import {websiteLanguages} from "../../common.dictionary";
+import {websiteLanguages, defaultLanguage} from "../../common.dictionary";
 
 import {setSiteLanguage} from '../../redux/config/config.actions'
 import {selectCurrentLanguage} from "../../redux/config/config.selector";
 
-
-function Header({currentLanguage, setSiteLanguage}) {
+function Header({currentLanguage = defaultLanguage, setSiteLanguage}) {
   let filteredLanguages = websiteLanguages.filter(item => item.value !== currentLanguage);
 
   return (
