@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import {Wrapper, Content, BottomMenuMobile} from './App.style.js';
 
-import Header from './components/header/header.component';
+import Header from './components/Header/Header.component';
 import Footer from "./components/footer/footer.component";
 import NavigationMenu from "./components/NavigationMenu/NavigationMenu.component";
 
