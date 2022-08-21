@@ -1,7 +1,7 @@
 export const ROUTE_PATH = {
   CV: "/cv",
   HOME: '/',
-  ABOUT: "/about",
+  AUTHOR: "/about",
   PACKAGES: "/packages",
   TIME_TABLE_F: "/timetable-f",
   INCOME_CALCULATOR: "/time-calculator",
@@ -19,8 +19,8 @@ export const HEADER_MENU_LINKS = [
     path: ROUTE_PATH.PACKAGES
   },
   {
-      title: "$HEADER.MENU_ITEM.ABOUT",
-      path: ROUTE_PATH.ABOUT
+      title: "$HEADER.MENU_ITEM.AUTHOR",
+      path: ROUTE_PATH.AUTHOR
   },
   {
     title: "$HEADER.MENU_ITEM.CV",
@@ -38,8 +38,8 @@ export const FOOTER_MENU_LINKS = [
     path: ROUTE_PATH.PACKAGES
   },
   {
-      title: "$FOOTER.MENU_ITEM.ABOUT",
-      path: ROUTE_PATH.ABOUT
+      title: "$FOOTER.MENU_ITEM.AUTHOR",
+      path: ROUTE_PATH.AUTHOR
   },
   {
     title: "$FOOTER.MENU_ITEM.CV",

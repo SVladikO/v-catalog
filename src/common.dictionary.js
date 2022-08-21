@@ -8,9 +8,9 @@ const translations = {
     "en": "V-Catalog",
     "ua": "V-Catalog"
   },
-  "HEADER.MENU_ITEM.ABOUT": {
-    "en": "About",
-    "ua": "About"
+  "HEADER.MENU_ITEM.AUTHOR": {
+    "en": "Author",
+    "ua": "Author"
   },
   "HEADER.MENU_ITEM.NP": {
     "en": "NP",
@@ -64,9 +64,9 @@ const translations = {
     "en": "HOME",
     "ua": "ГОЛОВНА"
   },
-  "FOOTER.MENU_ITEM.ABOUT": {
-    "en": "ABOUT",
-    "ua": "ABOUT"
+  "FOOTER.MENU_ITEM.AUTHOR": {
+    "en": "AUTHOR",
+    "ua": "AUTHOR"
   },
   "FOOTER.MENU_ITEM.NP": {
     "en": "NP",

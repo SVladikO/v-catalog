@@ -31,7 +31,7 @@ function App() {
         <Switch>
            <Content>
              <Route exact path={ROUTE_PATH.HOME}><WebsiteCatalogPage/></Route>
-             <Route path={ROUTE_PATH.ABOUT}><HomePage/></Route>
+             <Route path={ROUTE_PATH.AUTHOR}><HomePage/></Route>
              <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
              <Route path={ROUTE_PATH.CV}><CVPage/></Route>
              <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
