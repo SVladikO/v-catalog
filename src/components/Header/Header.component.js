@@ -2,9 +2,13 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
 
-import {Wrapper, Content} from './Header.style.js';
+import {Wrapper, Content, RightPart} from './Header.style.js';
+
+import {ReactComponent as ArrowTopRightIcon} from "../../image/arrow-top-right.svg";
 
 import {ROUTE_PATH, HEADER_MENU_LINKS} from "../../common/route";
+
+import {GIT_LINK} from '../../common/link.js';
 
 import Text from '../text/text.component';
 import Dropdown from "../Dropdown/Dropdown.component";
@@ -23,11 +27,14 @@ function Header({currentLanguage = defaultLanguage, setSiteLanguage}) {
       <Content>
         <NavLink to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></NavLink>
         <NavigationMenu links={HEADER_MENU_LINKS}/>
-        <Dropdown
-          title={String.fromCodePoint("2400")}
-          options={filteredLanguages}
-          handleSelect={setSiteLanguage}
-        />
+        <RightPart>
+            <Dropdown
+              title={String.fromCodePoint("2400")}
+              options={filteredLanguages}
+              handleSelect={setSiteLanguage}
+            />
+            <a href={GIT_LINK} target="_blank" rel="noreferrer">GitHub <ArrowTopRightIcon /></a>
+        </RightPart>
       </Content>
     </Wrapper>
   )

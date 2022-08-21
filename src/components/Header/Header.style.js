@@ -33,3 +33,24 @@ export const Content = styled.div`
         }
     }
 `;
+
+export const RightPart = styled.div`
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+
+    &>a {
+        color: ${THEME.COLOR.SECONDARY};
+        font-size: ${THEME.FONT.SIZE.SMALL}px;
+        margin: 0 0 0 20px;
+    }
+
+    &>a:hover {
+        color: ${THEME.COLOR.PRIMARY};
+    }
+
+    &>a>svg {
+        color: ${THEME.COLOR.SECONDARY};
+        font-size: 14px;
+    }
+`;

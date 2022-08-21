@@ -1,5 +1,7 @@
 import './footer.style.scss'
 
+import {GIT_LINK, LINKED_IN_LINK} from '../../common/link.js';
+
 import Text from "../text/text.component";
 
 import {ReactComponent as GithubIcon} from "../../image/footer/github.svg";
@@ -7,11 +9,11 @@ import {ReactComponent as LinkedinIcon} from "../../image/footer/linkedin.svg";
 
 const profileLinks = [
   {
-    href: 'https://github.com/SVladikO',
+    href: GIT_LINK,
     imageComponent: <GithubIcon/>,
   },
   {
-    href: 'https://www.linkedin.com/in/vlad-serhiychuk-b753b7188/',
+    href: LINKED_IN_LINK,
     imageComponent: <LinkedinIcon/>,
   }
 ];
