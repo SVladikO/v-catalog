@@ -82,17 +82,15 @@ const translations = {
   },
 };
 
-export function getLanguages() {
-  return [
+export const websiteLanguages = [
     {
-      key: "en",
-      value: "English"
+      value: "en",
+      title: "English"
     },
     {
-      key: "ua",
-      value: "Українська"
-    },
-  ];
-}
+      value: "ua",
+      title: "Українська"
+    }
+];
 
 export default translations;

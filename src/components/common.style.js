@@ -3,6 +3,16 @@ import THEME from "../theme";
 
 export const ContentWidth = 1000;
 
+export const InvisibleWrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    box-sizing: border-box;
+`;
+
 export const Wrapper = styled.div`
   max-width: ${ContentWidth}px;
   margin: 0 auto;

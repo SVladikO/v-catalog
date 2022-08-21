@@ -1,29 +1,34 @@
-import React from "react";
-
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {createStructuredSelector} from "reselect";
 
 import {Wrapper, Content} from './Header.style.js';
 
-import NavigationMenu from "../NavigationMenu/NavigationMenu.component";
-import Text from '../text/text.component';
-import Dropdown from "../dropdown/dropdown.component";
-
-import {getLanguages} from "../../common.dictionary";
-import {setSiteLanguage} from '../../redux/config/config.actions'
-import {selectCurrentLanguage} from "../../redux/config/config.selector";
 import {ROUTE_PATH, HEADER_MENU_LINKS} from "../../common/route";
 
+import Text from '../text/text.component';
+import Dropdown from "../Dropdown/Dropdown.component";
+import NavigationMenu from "../NavigationMenu/NavigationMenu.component";
+
+import {websiteLanguages} from "../../common.dictionary";
+
+import {setSiteLanguage} from '../../redux/config/config.actions'
+import {selectCurrentLanguage} from "../../redux/config/config.selector";
+
+
 function Header({currentLanguage, setSiteLanguage}) {
-  let filteredLanguages = getLanguages().filter(item => item.key !== currentLanguage);
+  let filteredLanguages = websiteLanguages.filter(item => item.value !== currentLanguage);
 
   return (
     <Wrapper>
       <Content>
         <NavLink to={ROUTE_PATH.HOME}><Text translationKey={"$HEADER.LOGO.TEXT"}/></NavLink>
         <NavigationMenu links={HEADER_MENU_LINKS}/>
-        <Dropdown unicode={"2400"} items={filteredLanguages} action={setSiteLanguage}/>
+        <Dropdown
+          title={String.fromCodePoint("2400")}
+          options={filteredLanguages}
+          handleSelect={setSiteLanguage}
+        />
       </Content>
     </Wrapper>
   )
