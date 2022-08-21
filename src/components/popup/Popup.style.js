@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import THEME from "../../theme";
 
-export  const Wrapper = styled.div`
+import {InvisibleWrapper} from '../common.style';
+
+export  const Wrapper = styled(InvisibleWrapper)`
     background: rgb(32 35 42 / 90%);
     display: flex;
     justify-content: center;
