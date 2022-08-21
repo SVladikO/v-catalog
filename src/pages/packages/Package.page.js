@@ -23,7 +23,9 @@ function PackagePage() {
 
       {packages.map(p =>
         <Package key={p.name}>
-            <PackageTitle>{p.name}</PackageTitle>
+            <PackageTitle>
+               <a href={p.npm_link} target='_blank'>{p.name}</a>
+            </PackageTitle>
             <PackageDescription>{p.description}</PackageDescription>
             <Links>
               <a href={p.npm_link} target='_blank'><NPMIcon height={20}/></a><br/>
