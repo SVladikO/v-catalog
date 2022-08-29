@@ -17,13 +17,14 @@ function WebsiteCatalog() {
    ]);
 
    const restLinks = renderLinks([
-        {title: "Timetable-f", path: ROUTE_PATH.TIME_TABLE_F}
+        {title: "Timetable-f", path: ROUTE_PATH.TIME_TABLE_F},
+        {title: "Canvas animation dots", path: ROUTE_PATH.CANVAS_ANIMATION_DOTS},
    ]);
 
    function renderLinks(array) {
        return array.map(
           (f, index) =>
-              <Link to={f.path} key={f.title}>
+              <Link to={f.path} key={f.title} target="_blank" rel="noreferrer">
                   <ItemTitle>
                       {" "}{index + 1}{". "}
                       {f.title}
@@ -44,7 +45,7 @@ function WebsiteCatalog() {
       {financeLinks}
 
 
-      <CategoryTitle>REST:</CategoryTitle>
+      <CategoryTitle>OTHER:</CategoryTitle>
       {restLinks}
     </Wrapper>
   )

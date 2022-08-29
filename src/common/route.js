@@ -4,6 +4,7 @@ export const ROUTE_PATH = {
   AUTHOR: "/about",
   PACKAGES: "/packages",
   TIME_TABLE_F: "/timetable-f",
+  CANVAS_ANIMATION_DOTS: "/animation.html",
   INCOME_CALCULATOR: "/time-calculator",
   ENGLISH_ALPHABET: "/english-alphabet"
 }

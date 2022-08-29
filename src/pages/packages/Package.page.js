@@ -24,12 +24,12 @@ function PackagePage() {
       {packages.map(p =>
         <Package key={p.name}>
             <PackageTitle>
-               <a href={p.npm_link} target='_blank'>{p.name}</a>
+               <a href={p.npm_link} target='_blank' rel="noreferrer">{p.name}</a>
             </PackageTitle>
             <PackageDescription>{p.description}</PackageDescription>
             <Links>
-              <a href={p.npm_link} target='_blank'><NPMIcon height={20}/></a><br/>
-              <a href={p.git_link} target='_blank'><GithubIcon height={20}/></a>
+              <a href={p.npm_link} target='_blank' rel="noreferrer"><NPMIcon height={20}/></a><br/>
+              <a href={p.git_link} target='_blank' rel="noreferrer"><GithubIcon height={20}/></a>
               {
                 p.try_online_link
                   ? <TryOnline href={p.try_online_link}>(Try Online)</TryOnline>
