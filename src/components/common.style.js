@@ -36,8 +36,8 @@ export const CategoryTitle = styled.div`
 export const ItemTitle = styled.div`
     font-size: ${THEME.FONT.SIZE.SMALL}px;
     position: relative;
-    width: 200px;
-    padding: 2px 4px 2px 2px;
+    width: 250px;
+    padding: 4px 6px 4px 5px;
     color: ${THEME.COLOR.INVERT_0};
 
     &:hover {
