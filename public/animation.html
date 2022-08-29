@@ -3,19 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <title>v-catalog</title>
-    <link rel="stylesheet" href="style.css">
     <style>
       body {
         margin: 0;
         overflow: hidden;
         background: black;
       }
+
+      input[type="color"] {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 0;
+        background: black;
+      }
     </style>
   </head>
   <body>
     <div id="root"></div>
+    <input type="color" id="color_pick" value="#baf628">
     <script>
       (function() {
+
+      document
+        .querySelector('input')
+        .addEventListener(
+             'input',
+             e => particleColor = hexToRgbA(e.target.value).slice(0, -2)
+        );
+
+    let particleColor = 'rgba(189, 246, 40,';
 
     let canvas = document.createElement('canvas');
     let ctx = canvas.getContext('2d')
@@ -24,7 +41,7 @@
     let particles = [];
     let properties = {
         bgColor            : 'rgba(17, 17,  19, 1)',
-        particleColor(opacity=1) { return 'rgba(0, 251, 255,'+opacity+')'}, //      : 'rgba(255, 40, 40, 1)',
+        getParticleColor: (opacity=1) => particleColor + opacity + ')',
         particleRadius     : 3,
         particleCount      : 160,
         particleMaxVelocity: 0.5,
@@ -57,7 +74,7 @@
             ctx.beginPath();
             ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI*2);
             ctx.closePath();
-            ctx.fillStyle = properties.particleColor();
+            ctx.fillStyle = properties.getParticleColor();
             ctx.fill();
 
         }
@@ -93,7 +110,7 @@
                 if (length < properties.lineLength) {
                     opacity = 1-length/properties.lineLength;
                     ctx.lineWidth = '0.5';
-                    ctx.strokeStyle = properties.particleColor(opacity);
+                    ctx.strokeStyle = properties.getParticleColor(opacity);
                     ctx.beginPath();
                     ctx.moveTo(x1, y1);
                     ctx.lineTo(x2, y2);
@@ -102,7 +119,6 @@
                 }
             }
         }
-
     }
     function reDrawParticles() {
         for (let i = 0; i < properties.particleCount; i++) {
@@ -111,6 +127,19 @@
             particles[i].reDraw()
         }
     }
+
+     function hexToRgbA(hex){
+            var c;
+            if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+                c= hex.substring(1).split('');
+                if(c.length== 3){
+                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+                }
+                c= '0x'+c.join('');
+                return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
+            }
+            throw new Error('Bad Hex');
+     }
 
     function loop() {
         reDrawBackground();
