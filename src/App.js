@@ -1,11 +1,14 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {Routes, Route} from "react-router-dom";
 
 import {Wrapper, Content, BottomMenuMobile} from './App.style.js';
+
 
 import Header from './components/Header/Header.component';
 import Footer from "./components/footer/footer.component";
 import NavigationMenu from "./components/NavigationMenu/NavigationMenu.component";
+
+import {FOOTER_MENU_LINKS, ROUTE_PATH} from "./common/route";
 
 import CVPage from "./pages/cv/CV.page";
 import HomePage from "./pages/home/Home.page";
@@ -15,40 +18,23 @@ import WebsiteCatalogPage from "./pages/website-catalog/Website-catalog.page";
 import EnglishAlphabetPage from "./pages/english-alphabet/EnglishAlphabet.page";
 import IncomeCalculatorPage from "./pages/income-calculator/IncomeCalculator.page";
 
-import {FOOTER_MENU_LINKS, ROUTE_PATH, QUERY_PARAMS} from "./common/route";
+export default function App() {
+    return (
+        <Wrapper>
+            {<Header/>}
+            <Content>
+                <Routes>
+                    <Route exact path={ROUTE_PATH.HOME} element={<WebsiteCatalogPage/>}/>
+                    <Route path={ROUTE_PATH.AUTHOR} element={<HomePage/>}/>
+                    <Route path={ROUTE_PATH.PACKAGES} element={<PackagePage/>}/>
+                    <Route path={ROUTE_PATH.CV} element={<CVPage/>}/>
 
-import {searchParams} from './common/location.js'
-
-function App() {
-
-  const params = searchParams();
-  const isHideMenu = params.has(QUERY_PARAMS.HIDE_HEADER);
-
-  return (
-    <Router>
-      <Wrapper>
-        {isHideMenu ? null : <Header/>}
-        <Switch>
-           <Content>
-             <Route exact path={ROUTE_PATH.HOME}><WebsiteCatalogPage/></Route>
-             <Route path={ROUTE_PATH.AUTHOR}><HomePage/></Route>
-             <Route path={ROUTE_PATH.PACKAGES}><PackagePage/></Route>
-             <Route path={ROUTE_PATH.CV}><CVPage/></Route>
-             <Route path={ROUTE_PATH.TIME_TABLE_F}><TimetableFPage/></Route>
-             <Route path={ROUTE_PATH.INCOME_CALCULATOR}><IncomeCalculatorPage/></Route>
-             <Route path={ROUTE_PATH.ENGLISH_ALPHABET}><EnglishAlphabetPage/></Route>
-           </Content>
-         </Switch>
-        {isHideMenu
-            ? null
-            : <BottomMenuMobile>
-                <NavigationMenu links={FOOTER_MENU_LINKS}/>
-              </BottomMenuMobile>
-        }
-        <Footer/>
-      </Wrapper>
-    </Router>
-  );
+                    <Route path={ROUTE_PATH.TIME_TABLE_F} element={<TimetableFPage/>}/>
+                    <Route path={ROUTE_PATH.INCOME_CALCULATOR} element={<IncomeCalculatorPage/>}/>
+                    <Route path={ROUTE_PATH.ENGLISH_ALPHABET} element={<EnglishAlphabetPage/>}/>
+                </Routes>
+                <Footer/>
+            </Content>
+        </Wrapper>
+    );
 }
-
-export default App;

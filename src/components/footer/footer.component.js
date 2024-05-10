@@ -1,4 +1,3 @@
-import './footer.style.scss'
 
 import {GIT_LINK, LINKED_IN_LINK} from '../../common/link.js';
 

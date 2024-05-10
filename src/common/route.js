@@ -16,22 +16,22 @@ export const QUERY_PARAMS = {
 
 export const HEADER_MENU_LINKS = [
   {
-    title: "$HEADER.MENU_ITEM.NP",
+    title: "PACKAGES",
     path: ROUTE_PATH.PACKAGES
   },
   {
-      title: "$HEADER.MENU_ITEM.AUTHOR",
+      title: "AUTHOR",
       path: ROUTE_PATH.AUTHOR
   },
   {
-    title: "$HEADER.MENU_ITEM.CV",
+    title: "CV",
     path: ROUTE_PATH.CV
   },
 ];
 
 export const FOOTER_MENU_LINKS = [
   {
-    title: "$FOOTER.MENU_ITEM.HOME",
+    title: "HOME",
     path: ROUTE_PATH.HOME
   },
   {

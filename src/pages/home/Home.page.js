@@ -8,62 +8,62 @@ import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
 
-import {Wrapper, Container, Avatar, IntroductionTitle, IntroductionSubTitle,
- Experience, ExperienceColumn, ColumnTitle,  ColumnDetails,
- Companies, CompaniesLogoTitle, LogoWrapper
- } from './Home.style.js';
+import {
+    Wrapper, Container, Avatar, IntroductionTitle, IntroductionSubTitle,
+    Experience, ExperienceColumn, ColumnTitle, ColumnDetails,
+    Companies, CompaniesLogoTitle, LogoWrapper
+} from './Home.style.js';
+import {YEARS_AS_BE_DEVELOPER, YEARS_AS_REACT_DEVELOPER, YEARS_IN_IT} from "../../common.dictionary";
 
 const experienceDetails = [
-  {
-    title: "$INTRODUCTION.EXPERIENCE.TITLE",
-    details: "$INTRODUCTION.EXPERIENCE.DETAILS",
-  },
-  {
-    title: "$INTRODUCTION.TECHNOLOGY.TITLE",
-    details: "$INTRODUCTION.TECHNOLOGY.DETAILS",
-  },
-  {
-    title: "$INTRODUCTION.POSITION.TITLE",
-    details: "$INTRODUCTION.POSITION.DETAILS",
-  },
+    {
+        title: "Experience",
+        details: `${YEARS_IN_IT}+ years in IT industry. Took a part in 10 project with different architecture and complexity.`,
+    },
+    {
+        title: "Used technologies",
+        details: "JS, React, Redux, HTML/CSS, Java, Angular, Node.js, MySQL",
+    },
+    {
+        title: "Position",
+        details: `Backend Java (${YEARS_AS_BE_DEVELOPER} years) Frontend ${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ years (where React ${YEARS_AS_REACT_DEVELOPER}+)`,
+    },
 ];
 
 function HomePage() {
-  return (
-    <Wrapper>
-      <Container>
-        <Avatar src="https://avatars.githubusercontent.com/u/10807650?v=4" alt=""/>
-        <IntroductionTitle><Text translationKey="$INTRO.TITLE.BRAND_NAME"/></IntroductionTitle>
-        <IntroductionSubTitle><Text translationKey="$INTRO.SUB_TITLE.PURPOSE"/></IntroductionSubTitle>
-      </Container>
-      <Experience>
-        {
-          experienceDetails.map(item =>
-            <ExperienceColumn key={item.title}>
-              <ColumnTitle>
-                <Text translationKey={item.title}/>
-              </ColumnTitle>
-              <ColumnDetails><Text translationKey={item.details}/></ColumnDetails>
-            </ExperienceColumn>
-          )
-        }
-      </Experience>
-      <Companies>
-        <CompaniesLogoTitle>
-          <Text translationKey="$INTRODUCTION.TITLE"/>
-        </CompaniesLogoTitle>
-        <LogoWrapper>
-          <OnePlusOneLogo/>
-          <img src={iconPlaytech} alt="Playtech"/>
-          <img src={iconAstound} alt="Astound commerce"/>
-          <img src={iconItera} alt="Itera"/>
-          <img src={iconKyivSmartCity} alt="Kyiv Smart City"/>
-          <img src={iconBigFishGame} alt="Big fish game"/>
-        </LogoWrapper>
-      </Companies>
-    </Wrapper>
+    return (
+        <Wrapper>
+            <Container>
+                <Avatar src="https://avatars.githubusercontent.com/u/10807650?v=4" alt=""/>
+                <IntroductionTitle><Text>svladiko</Text></IntroductionTitle>
+                <IntroductionSubTitle><Text>Pet projects of Vlad Serhiychuk</Text></IntroductionSubTitle>
+            </Container>
+            <Experience>
+                {
+                    experienceDetails.map(item =>
+                        <ExperienceColumn key={item.title}>
+                            <ColumnTitle>{item.title}</ColumnTitle>
+                            <ColumnDetails>{item.details}</ColumnDetails>
+                        </ExperienceColumn>
+                    )
+                }
+            </Experience>
+            <Companies>
+                <CompaniesLogoTitle>
+                    <Text translationKey="$INTRODUCTION.TITLE"/>
+                </CompaniesLogoTitle>
+                <LogoWrapper>
+                    <OnePlusOneLogo/>
+                    <img src={iconPlaytech} alt="Playtech"/>
+                    <img src={iconAstound} alt="Astound commerce"/>
+                    <img src={iconItera} alt="Itera"/>
+                    <img src={iconKyivSmartCity} alt="Kyiv Smart City"/>
+                    <img src={iconBigFishGame} alt="Big fish game"/>
+                </LogoWrapper>
+            </Companies>
+        </Wrapper>
 
-  );
+    );
 }
 
 export default HomePage;

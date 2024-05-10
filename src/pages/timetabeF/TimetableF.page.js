@@ -1,9 +1,7 @@
 import React from 'react';
-
 import {useState, useEffect} from 'react';
 import Timetable from 'timetable-f';
-
-import Code from 'react-code-tag/index.js';
+import Code from 'react_code_tag/index.js';
 
 import {Wrapper, Row, Button} from './TimetableF.style.js';
 
