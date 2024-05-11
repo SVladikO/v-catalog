@@ -9,11 +9,12 @@ export const Wrapper = styled.div`
     padding: 0 0 100px;
 `;
 
-export const Container = styled.div`
+export const IntroWrapper = styled.div`
     min-width: 100vw;
     background-color: ${THEME.COLOR.INVERT_1};
-    padding: 20px 0 70px;
+    padding: 70px 0 10px;
 `;
+
 export const Avatar = styled.img`
     border-radius: 50%;
     height: 200px;
@@ -21,18 +22,20 @@ export const Avatar = styled.img`
     display: block;
 `;
 export const IntroductionTitle = styled.div`
-    font-size: 45px;
-    color: ${THEME.COLOR.PRIMARY};
+    font-size: 26px;
+    font-weight: 400;
+    color: #fff;
     text-align: center;
-    margin: 10px 0 0 0;
+    margin: 24px 0 0 0;
 `;
 
 export const IntroductionSubTitle = styled.div`
     font-size: 24px;
-    color: ${THEME.COLOR.SECONDARY};
+    color: #A8A6A6;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
 `;
+
 export const Experience = styled.div`
     padding: 50px 10px 0;
     width: 910px;

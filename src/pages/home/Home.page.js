@@ -10,7 +10,7 @@ import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
 
 import {
-    Wrapper, Container, Avatar, IntroductionTitle, IntroductionSubTitle,
+    Wrapper, IntroWrapper, Avatar, IntroductionTitle, IntroductionSubTitle,
     Experience, ExperienceColumn, ColumnTitle, ColumnDetails,
     Companies, CompaniesLogoTitle, LogoWrapper, RowWrapper
 } from './Home.style.js';
@@ -20,7 +20,7 @@ import Index from "../../components/work-places";
 const experienceDetails = [
     {
         title: "EXPERIENCE",
-        details: `${YEARS_IN_IT}+ years in IT industry. Took a part in 10 project with different architecture and complexity.`,
+        details: `${YEARS_IN_IT}+ years in IT industry. I've taken a part in more than 10 projects with different architecture and complexity.`,
     },
     {
         title: "TECHNOLOGIES",
@@ -35,11 +35,11 @@ const experienceDetails = [
 function HomePage() {
     return (
         <Wrapper>
-            <Container>
+            <IntroWrapper>
                 <Avatar src="https://avatars.githubusercontent.com/u/10807650?v=4" alt=""/>
-                <IntroductionTitle><Text>svladiko</Text></IntroductionTitle>
-                <IntroductionSubTitle><Text>Pet projects of Vlad Serhiychuk</Text></IntroductionSubTitle>
-            </Container>
+                <IntroductionTitle>FRONTEND DEVELOPER</IntroductionTitle>
+                <IntroductionSubTitle>9 years in IT * English B2</IntroductionSubTitle>
+            </IntroWrapper>
             <Experience>
                 {
                     experienceDetails.map(item =>
