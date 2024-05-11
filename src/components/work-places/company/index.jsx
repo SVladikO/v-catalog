@@ -7,9 +7,9 @@ import {
   Location,
   Skills,
   SubTitle,
-} from './workplace-item.style';
+} from './Company.style';
 
-function WorkplaceItem(props) {
+function Company(props) {
   const {position, company, fromTo, duration, responsibility, skills} = props;
 
   return (
@@ -30,4 +30,4 @@ function WorkplaceItem(props) {
   )
 }
 
-export default WorkplaceItem;
+export default Company;

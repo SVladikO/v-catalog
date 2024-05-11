@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-    padding: 46px 0 120px;
+    padding: 0 0 120px;
     font-size: ${THEME.FONT.SIZE.SMALL}px;
 `;
 

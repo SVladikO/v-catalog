@@ -34,7 +34,7 @@ export const IntroductionSubTitle = styled.div`
     margin-top: 15px;
 `;
 export const Experience = styled.div`
-    padding: 30px 10px;
+    padding: 50px 10px 0;
     width: 910px;
     margin: 0 auto;
     display: flex;
@@ -46,29 +46,35 @@ export const Experience = styled.div`
     }
 `;
 export const ExperienceColumn = styled.div`
-    width: 270px;
-    padding: 10px;
-    margin-bottom: 20px;
+    width: 205px;
+    padding: 10px 10px 0;
 `;
 export const ColumnTitle = styled.div`
     color: ${THEME.COLOR.INVERT_2};
-    margin:  0 0 10px;
+    margin: 0 0 20px;
     font-size: 20px;
-    font-size: ${THEME.FONT.SIZE.MEDIUM}px;
+    font-weight: 400;
 `;
 export const ColumnDetails = styled.div`
     color: ${THEME.COLOR.INVERT_1};
-    font-size: ${THEME.FONT.SIZE.SMALL}px;
+    font-size: 16px;
+`;
+
+export const RowWrapper = styled.div`
+    padding: 100px 0 0;
+    //border: solid 1px red;
 `;
 
 export const Companies = styled.div`
-     display: flex;
-     flex-direction: column;
-     align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 export const CompaniesLogoTitle = styled.div`
-    margin: 30px 0 24px;
-    font-size: ${THEME.FONT.SIZE.MEDIUM}px;
+    margin: 0  0 40px;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
 
     @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {
         margin: 10px 0;
@@ -90,8 +96,8 @@ export const LogoWrapper = styled.div`
         flex-wrap: wrap;
 
         img {
-          margin: 10px 5px;
-          height: 40px;
+            margin: 10px 5px;
+            height: 40px;
         }
     }
 `;

@@ -1,7 +1,7 @@
 export const ROUTE_PATH = {
   CV: "/cv",
-  HOME: '/',
-  AUTHOR: "/about",
+  HOME: "/",
+  PROJECTS: "/projects",
   PACKAGES: "/packages",
   TIME_TABLE_F: "/timetable-f",
   CANVAS_ANIMATION_DOTS: "/animation.html",
@@ -10,18 +10,22 @@ export const ROUTE_PATH = {
 }
 
 export const QUERY_PARAMS = {
-    HIDE_HEADER: 'h_header',
-    HIDE_FOOTER: 'h_footer',
+    HIDE_HEADER: "h_header",
+    HIDE_FOOTER: "h_footer",
 }
 
 export const HEADER_MENU_LINKS = [
   {
-    title: "PACKAGES",
-    path: ROUTE_PATH.PACKAGES
+      title: "HOME",
+      path: ROUTE_PATH.HOME
   },
   {
-      title: "AUTHOR",
-      path: ROUTE_PATH.AUTHOR
+      title: "PROJECTS",
+      path: ROUTE_PATH.PROJECTS
+  },
+  {
+    title: "PACKAGES",
+    path: ROUTE_PATH.PACKAGES
   },
   {
     title: "CV",
@@ -32,7 +36,7 @@ export const HEADER_MENU_LINKS = [
 export const FOOTER_MENU_LINKS = [
   {
     title: "HOME",
-    path: ROUTE_PATH.HOME
+    path: ROUTE_PATH.PROJECTS
   },
   {
     title: "$FOOTER.MENU_ITEM.NP",
@@ -40,7 +44,7 @@ export const FOOTER_MENU_LINKS = [
   },
   {
       title: "$FOOTER.MENU_ITEM.AUTHOR",
-      path: ROUTE_PATH.AUTHOR
+      path: ROUTE_PATH.HOME
   },
   {
     title: "$FOOTER.MENU_ITEM.CV",

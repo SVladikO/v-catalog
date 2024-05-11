@@ -1,4 +1,5 @@
 import Text from "../../components/text/text.component";
+import WorkPlaces from "../../components/work-places";
 
 import iconItera from "../../image/company-logo/itera.png";
 import iconAstound from "../../image/company-logo/astound.png";
@@ -11,21 +12,22 @@ import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg
 import {
     Wrapper, Container, Avatar, IntroductionTitle, IntroductionSubTitle,
     Experience, ExperienceColumn, ColumnTitle, ColumnDetails,
-    Companies, CompaniesLogoTitle, LogoWrapper
+    Companies, CompaniesLogoTitle, LogoWrapper, RowWrapper
 } from './Home.style.js';
 import {YEARS_AS_BE_DEVELOPER, YEARS_AS_REACT_DEVELOPER, YEARS_IN_IT} from "../../common.dictionary";
+import Index from "../../components/work-places";
 
 const experienceDetails = [
     {
-        title: "Experience",
+        title: "EXPERIENCE",
         details: `${YEARS_IN_IT}+ years in IT industry. Took a part in 10 project with different architecture and complexity.`,
     },
     {
-        title: "Used technologies",
+        title: "TECHNOLOGIES",
         details: "JS, React, Redux, HTML/CSS, Java, Angular, Node.js, MySQL",
     },
     {
-        title: "Position",
+        title: "POSITIONS",
         details: `Backend Java (${YEARS_AS_BE_DEVELOPER} years) Frontend ${YEARS_IN_IT - YEARS_AS_BE_DEVELOPER}+ years (where React ${YEARS_AS_REACT_DEVELOPER}+)`,
     },
 ];
@@ -48,19 +50,29 @@ function HomePage() {
                     )
                 }
             </Experience>
-            <Companies>
-                <CompaniesLogoTitle>
-                    <Text translationKey="$INTRODUCTION.TITLE"/>
-                </CompaniesLogoTitle>
-                <LogoWrapper>
-                    <OnePlusOneLogo/>
-                    <img src={iconPlaytech} alt="Playtech"/>
-                    <img src={iconAstound} alt="Astound commerce"/>
-                    <img src={iconItera} alt="Itera"/>
-                    <img src={iconKyivSmartCity} alt="Kyiv Smart City"/>
-                    <img src={iconBigFishGame} alt="Big fish game"/>
-                </LogoWrapper>
-            </Companies>
+            <RowWrapper>
+                <Companies>
+                    <CompaniesLogoTitle>WORKED WITH</CompaniesLogoTitle>
+                    <LogoWrapper>
+                        <OnePlusOneLogo/>
+                        <img src={iconPlaytech} alt="Playtech"/>
+                        <img src={iconAstound} alt="Astound commerce"/>
+                        <img src={iconItera} alt="Itera"/>
+                        <img src={iconKyivSmartCity} alt="Kyiv Smart City"/>
+                        <img src={iconBigFishGame} alt="Big fish game"/>
+                    </LogoWrapper>
+                </Companies>
+            </RowWrapper>
+            <RowWrapper>
+                <CompaniesLogoTitle>OWN PACKAGES</CompaniesLogoTitle>
+            </RowWrapper>
+            <RowWrapper>
+                <CompaniesLogoTitle>OWN PROJECTS</CompaniesLogoTitle>
+            </RowWrapper>
+            <RowWrapper>
+                <CompaniesLogoTitle>WORK EXPERIENCE</CompaniesLogoTitle>
+                <WorkPlaces />
+            </RowWrapper>
         </Wrapper>
 
     );

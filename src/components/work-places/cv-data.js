@@ -1,5 +1,13 @@
 export default [
   {
+    position: "Software Engineer",
+    company: "Playtech",
+    fromTo: "Sep 2022 - Current time ",
+    duration: "",
+    responsibility: "I've worked on sport betting framework. My main responsibility were feature development, refactoring, bug fix, CR.",
+    skills: "JS, React, Redux, HTML, CSS",
+  },
+  {
     position: "Senior Frontend Developer",
     company: "1+1 media",
     fromTo: "Jul 2021 - Apr 2022",
@@ -17,7 +25,7 @@ export default [
     fromTo: "Aug 2019 - Apr 2021",
     duration: "1 yr 9 mos",
     responsibility: "I've worked on client side (configuration, branding, support, upgrade, bugfix).",
-    skills: "JS, React, Node.js, HTML, CSS",
+    skills: "JS, React, HTML, CSS",
   },
   {
     position: "Front End Developer",
