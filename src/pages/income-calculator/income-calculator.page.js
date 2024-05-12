@@ -2,7 +2,7 @@ import {useState} from 'react';
 import THEME from "../../theme";
 
 import {
-    Wrapper, InputStyle, Title, ToCenter, Table, RowDescription, InputWrapper,
+    Wrapper, OutputTitle, InputStyle, Title, ToCenter, Table, RowDescription, InputWrapper,
     OvertimeHours, OvertimePrice, OvertimeTitle, OvertimeWrapper
 } from './income-calculator.page.style';
 
@@ -36,49 +36,6 @@ function CurrencyTimeCalculator() {
     const convertDayIncomeToMonth = value => setMonthIncome(value * workDays);
     const convertYearIncomeToMonth = value => setMonthIncome(value / workYears / 12);
 
-    const renderOvertimePrice = () => {
-        const incomePerHour = monthIncome / workDays / workHours;
-        const extraHours = (workHours - 8) * workDays;
-        const overtimePriceUSD = incomePerHour * extraHours;
-        const overtimePriceCustomCurrency = overtimePriceUSD * customCourse;
-
-        return <OvertimeWrapper>
-            <OvertimeTitle>Overtime</OvertimeTitle>
-            <OvertimeHours>+{extraHours} h/month</OvertimeHours> =
-            <OvertimePrice>+{addSeparator(overtimePriceUSD)}{USD_NAME} </OvertimePrice>
-            (<OvertimePrice>{addSeparator(overtimePriceCustomCurrency)} {customCurrencyName}</OvertimePrice>)
-        </OvertimeWrapper>
-    }
-
-    const renderIncreasedSalary = () => {
-        const incomePerHourUSD = monthIncome / workDays / workHours;
-        const incomePerMonthUSD = incomePerHourUSD * 8 * workDays;
-        const incomePerMonthCustomCurrency = incomePerMonthUSD * customCourse;
-
-        return <OvertimeWrapper>
-            <OvertimeTitle> Increased salary </OvertimeTitle>
-            {addSeparator(incomePerMonthUSD)}{USD_NAME}
-            or
-            {addSeparator(incomePerMonthCustomCurrency)} {customCurrencyName}
-        </OvertimeWrapper>
-    }
-
-    const renderCurrencyCourseMenu = () => {
-        return (
-            <div>
-                <>
-                    <NumberInput label={"Salary per month"} value={customCourse} changeHandler={setCustomCourse}>
-                        <InputStyle width='70px' value={customCurrencyName}
-                                    onChange={e => setCustomCurrencyName(e.target.value)} color={THEME.COLOR.INVERT_0}/>
-                        <span> = 1 USD</span>
-                    </NumberInput>
-                </>
-            </div>
-        )
-    }
-
-    const fixNumber = number => Number.parseFloat(number).toFixed(0)
-
     const HeaderRow = (
         <>
             <ToCenter>1 hour</ToCenter>
@@ -87,11 +44,11 @@ function CurrencyTimeCalculator() {
             <ToCenter>1 year</ToCenter>
             <ToCenter>10 year</ToCenter>
 
-            <ToCenter>{fixNumber(monthIncome / workDays / workHours)}</ToCenter>
-            <ToCenter>{fixNumber(monthIncome / workDays)}</ToCenter>
-            <ToCenter>{fixNumber(monthIncome)}</ToCenter>
-            <ToCenter>{fixNumber(monthIncome * 12)}</ToCenter>
-            <ToCenter>{fixNumber(monthIncome * 12 * 10)}</ToCenter>
+            <ToCenter>{addSeparator(monthIncome / workDays / workHours)}</ToCenter>
+            <ToCenter>{addSeparator(monthIncome / workDays)}</ToCenter>
+            <ToCenter>{addSeparator(monthIncome)}</ToCenter>
+            <ToCenter>{addSeparator(monthIncome * 12)}</ToCenter>
+            <ToCenter>{addSeparator(monthIncome * 12 * 10)}</ToCenter>
         </>
     );
 
@@ -102,6 +59,7 @@ function CurrencyTimeCalculator() {
                 <NumberInput label={"Work days per month"} value={workDays} changeHandler={setWorkDays}/>
                 <NumberInput label={"Salary per month"} value={monthIncome} changeHandler={setMonthIncome}/>
             </InputWrapper>
+            <OutputTitle>Your income in</OutputTitle>
             <Table>
                 {HeaderRow}
             </Table>

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     width: 350px;
-    margin: 0 auto;
+    margin: 0 auto 15px;
 `;
 const Label = styled.div`
     font-size: 24px;
@@ -16,6 +16,8 @@ const InputWrapper = styled.span`
     display: flex;
     align-items: center;
     height: 30px;
+    width: 100px;
+    
 `;
 
 function NumberInput({label, value, changeHandler}) {
@@ -26,7 +28,6 @@ function NumberInput({label, value, changeHandler}) {
                 <InputStyle
                     value={value}
                     onChange={e => changeHandler(+e.target.value)} width='60px'
-                    color={THEME.COLOR.INVERT_0}
                     borderColor={THEME.COLOR.INVERT_0}/>
             </InputWrapper>
         </Wrapper>
