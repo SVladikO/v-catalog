@@ -6,7 +6,6 @@ export const MainContainer = styled.div`
     position: relative;
     font-size: ${THEME.FONT.SIZE.MEDIUM}px;
     padding: 35px 28px 0;
-    margin: 0 0 20px;
     box-sizing: border-box;
     
     @media (max-width: 800px) {

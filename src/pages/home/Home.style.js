@@ -65,7 +65,7 @@ export const ColumnDetails = styled.div`
 
 export const RowWrapper = styled.div`
     padding: 100px 0 0;
-    //border: solid 1px red;
+    max-width: 800px;
 `;
 
 export const Companies = styled.div`

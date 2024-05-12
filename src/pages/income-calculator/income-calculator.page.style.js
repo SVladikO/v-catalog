@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import THEME from "../../theme";
 
-const max_width = '369px';
+const max_width = '600px';
 
 export const Wrapper = styled.div`
   width: 90%;
@@ -18,6 +18,8 @@ export const Title = styled.div`
 export const ToCenter = styled.div`
   display: flex;
   justify-content: center;
+  font-size: 20px;
+  font-weight: 400;
 `;
 
 export const InputStyle = styled.input`
@@ -52,14 +54,20 @@ export const OvertimeHours = styled.span`
 export const RowDescription = styled.div`
 `;
 
-export const BottomMenu = styled.div`
-  max-width: ${max_width};
-  margin: 60px auto 0;
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 40px;
+  
+  & > * {
+    margin: 0 auto 15px;
+  }
 `;
 
 export const Table = styled.div`
       display: grid;
-      grid-template-columns: 1fr 1fr 20%;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       max-width: ${max_width};
       margin: 0px auto;
 `;

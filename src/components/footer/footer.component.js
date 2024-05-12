@@ -1,10 +1,8 @@
-
-import {GIT_LINK, LINKED_IN_LINK} from '../../common/link.js';
-
-import Text from "../text/text.component";
-
 import {ReactComponent as GithubIcon} from "../../image/footer/github.svg";
 import {ReactComponent as LinkedinIcon} from "../../image/footer/linkedin.svg";
+
+const GIT_LINK = 'https://github.com/SVladikO';
+const LINKED_IN_LINK = 'https://www.linkedin.com/in/vlad-serhiychuk-b753b7188/';
 
 function Footer() {
   return (
@@ -17,9 +15,6 @@ function Footer() {
 function getProfilePart() {
   return (
     <div className="profile_container">
-      <div className="profile_title">
-        <Text translationKey="$FOOTER.PROFILE.TITLE"/>
-      </div>
       <div className="profile_links">
         <a href={GIT_LINK} target="_blank" rel="noreferrer">
             <GithubIcon/>

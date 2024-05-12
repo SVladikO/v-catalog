@@ -4,31 +4,26 @@ import {Routes, Route} from "react-router-dom";
 import {Wrapper, Content} from './App.style.js';
 
 
-import Footer from "./components/footer/footer.component";
-
-import {FOOTER_MENU_LINKS, ROUTE_PATH} from "./common/route";
 
 import HomePage from "./pages/home/Home.page";
-import PackagePage from "./pages/packages/Package.page";
-import TimetableFPage from "./pages/timetabeF/TimetableF.page";
-import WebsiteCatalogPage from "./pages/website-catalog/Website-catalog.page";
+// import PackagePage from "./pages/packages/Package.page";
+// import TimetableFPage from "./pages/timetabeF/TimetableF.page";
+// import WebsiteCatalogPage from "./pages/website-catalog/Website-catalog.page";
 import EnglishAlphabetPage from "./pages/english-alphabet/EnglishAlphabet.page";
-import IncomeCalculatorPage from "./pages/income-calculator/IncomeCalculator.page";
+import IncomeCalculatorPage from "./pages/income-calculator/income-calculator.page";
 
 export default function App() {
     return (
         <Wrapper>
             <Content>
                 <Routes>
-                    <Route exact path={ROUTE_PATH.PROJECTS} element={<WebsiteCatalogPage/>}/>
-                    <Route path={ROUTE_PATH.HOME} element={<HomePage/>}/>
-                    <Route path={ROUTE_PATH.PACKAGES} element={<PackagePage/>}/>
-
-                    <Route path={ROUTE_PATH.TIME_TABLE_F} element={<TimetableFPage/>}/>
-                    <Route path={ROUTE_PATH.INCOME_CALCULATOR} element={<IncomeCalculatorPage/>}/>
-                    <Route path={ROUTE_PATH.ENGLISH_ALPHABET} element={<EnglishAlphabetPage/>}/>
+                    <Route path="/" element={<HomePage/>}/>
+                    <Route path='/income-calculator' element={<IncomeCalculatorPage/>}/>
+                    {/*<Route path={ROUTE_PATH.PACKAGES} element={<PackagePage/>}/>*/}
+                    {/*<Route exact path={ROUTE_PATH.PROJECTS} element={<WebsiteCatalogPage/>}/>*/}
+                    {/*<Route path={ROUTE_PATH.TIME_TABLE_F} element={<TimetableFPage/>}/>*/}
+                    <Route path="/english-alphabet-spelling" element={<EnglishAlphabetPage/>}/>
                 </Routes>
-                <Footer/>
             </Content>
         </Wrapper>
     );

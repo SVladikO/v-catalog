@@ -7,7 +7,7 @@ import {
   Location,
   Skills,
   SubTitle,
-} from './Company.style';
+} from './work-place.style';
 
 function Company(props) {
   const {position, company, fromTo, duration, responsibility, skills} = props;

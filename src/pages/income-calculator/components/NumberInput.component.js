@@ -1,35 +1,34 @@
 import styled from 'styled-components';
 import THEME from "../../../theme";
 
-import {InputStyle} from '../IncomeCalculator.style';
+import {InputStyle} from '../income-calculator.page.style';
 
-const Wrapper = styled.span`
+const Wrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    margin: 0 auto;
+`;
+const Label = styled.div`
+    font-size: 24px;
+`;
+const InputWrapper = styled.span`
     display: flex;
     align-items: center;
     height: 30px;
 `;
 
-const NumberButton = styled.button`
-    color: ${THEME.COLOR.INVERT_1};
-    border: none;
-    border-radius: 2px;
-    height: 28px;
-    width: 28px;
-    margin: 0 2px 0 2px;
-`;
-
-const ChildWrapper = styled.span`
-    margin: 0 0 0 6px;
-    ${p => p.color && `color: ${p.color}`}
-`;
-
-function NumberInput({value, changeHandler, children}) {
+function NumberInput({label, value, changeHandler}) {
     return (
         <Wrapper>
-            <NumberButton onClick={() => changeHandler(value-1)}>-</NumberButton>
-            <InputStyle value={value} onChange={e => changeHandler(+e.target.value)} width='60px' color={THEME.COLOR.INVERT_0} borderColor={THEME.COLOR.INVERT_0}/>
-            <NumberButton onClick={() => changeHandler(value+1)}>+</NumberButton>
-            <ChildWrapper color={THEME.COLOR.INVERT_0}>{children}</ChildWrapper>
+            <Label>{label}</Label>
+            <InputWrapper>
+                <InputStyle
+                    value={value}
+                    onChange={e => changeHandler(+e.target.value)} width='60px'
+                    color={THEME.COLOR.INVERT_0}
+                    borderColor={THEME.COLOR.INVERT_0}/>
+            </InputWrapper>
         </Wrapper>
     )
 }

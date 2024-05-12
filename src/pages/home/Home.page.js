@@ -1,5 +1,5 @@
-import Text from "../../components/text/text.component";
-import WorkPlaces from "../../components/work-places";
+import WorkPlaces from "../../components/work-places/work-places";
+import Footer from "../../components/footer/footer.component";
 
 import iconItera from "../../image/company-logo/itera.png";
 import iconAstound from "../../image/company-logo/astound.png";
@@ -8,14 +8,18 @@ import iconBigFishGame from "../../image/company-logo/big-fish-game.png";
 import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
+import Items from "../../components/items/items";
 
 import {
     Wrapper, IntroWrapper, Avatar, IntroductionTitle, IntroductionSubTitle,
     Experience, ExperienceColumn, ColumnTitle, ColumnDetails,
     Companies, CompaniesLogoTitle, LogoWrapper, RowWrapper
 } from './Home.style.js';
-import {YEARS_AS_BE_DEVELOPER, YEARS_AS_REACT_DEVELOPER, YEARS_IN_IT} from "../../common.dictionary";
-import Index from "../../components/work-places";
+
+const YEARS_IN_IT = new Date().getFullYear() - 2015;
+const YEARS_AS_BE_DEVELOPER = 2;
+const YEARS_AS_FE_DEVELOPER_WITHOUT_REACT = 2;
+const YEARS_AS_REACT_DEVELOPER = YEARS_IN_IT - YEARS_AS_BE_DEVELOPER - YEARS_AS_FE_DEVELOPER_WITHOUT_REACT;
 
 const experienceDetails = [
     {
@@ -64,15 +68,32 @@ function HomePage() {
                 </Companies>
             </RowWrapper>
             <RowWrapper>
-                <CompaniesLogoTitle>OWN PACKAGES</CompaniesLogoTitle>
+                <CompaniesLogoTitle>OWN PROJECTS</CompaniesLogoTitle>
+                <Items items={
+                    [
+                        {title: 'INCOME CALCULATOR', description: 'We help you to calculate your income and see a bigger picture.', link: '/income-calculator'},
+                        {title: 'ENGLISH ALPHABET TRAINER', description: 'description', link: '/english-alphabet-spelling'},
+                    ]
+                }
+                />
             </RowWrapper>
             <RowWrapper>
-                <CompaniesLogoTitle>OWN PROJECTS</CompaniesLogoTitle>
+                <CompaniesLogoTitle>OWN PACKAGES</CompaniesLogoTitle>
+                <Items items={
+                    [
+                        {title: 'timetable-f', description: 'description', link: '/link'},
+                        {title: 'react-code-tag', description: 'description', link: '/link'},
+                    ]
+                }
+                />
             </RowWrapper>
+
+
             <RowWrapper>
                 <CompaniesLogoTitle>WORK EXPERIENCE</CompaniesLogoTitle>
-                <WorkPlaces />
+                <WorkPlaces/>
             </RowWrapper>
+            <Footer/>
         </Wrapper>
 
     );

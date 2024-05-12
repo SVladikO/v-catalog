@@ -1,21 +1,14 @@
 import {useState} from 'react';
 
-import {PageTitle} from '../../components/common.style.js'
 import {Header, AppTag, Input, ButtonList, Letter, ChangeOpacityTitle} from './EnglishAlphabet.style';
+import PetProjectIntro from '../../components/pet-project-intro/pet-project-intro'
 
 import alphabet from "./alphabet.json";
-import useLocalStorage from '../../hooks/useLocalStorage.js'
-
-import Popup from '../../components/popup';
-import {LightButton} from "../../components/button/button.style";
-import Introduction from "../../components/Introduction/Introduction.component";
 
 function EnglishAlphabet() {
     let [englishText, setEnglishText] = useState("");
-    let [ isOpenPopup, setIsOpenPopup] = useLocalStorage(' isOpenIntroAlphabetPopup', true);
-    let [ letterOpacity, setLetterOpacity] = useLocalStorage('letterOpacity', 4);
+    let [letterOpacity, setLetterOpacity] = useState('letterOpacity', 4);
 
-    const closePopup = () => setIsOpenPopup(!isOpenPopup);
     const deleteEnglishText = () => setEnglishText("");
     const deleteLastLetterFromEnglishText = () => setEnglishText(englishText.slice(0, -1));
 
@@ -25,43 +18,31 @@ function EnglishAlphabet() {
 
     let alphabetButtons = alphabet.map(
         ([letter, engTranscription]) =>
-            <LightButton key={engTranscription} onClick={addLetter(letter)} width="30%" style={{margin: '4px'}} >
+            <button key={engTranscription} onClick={addLetter(letter)} width="30%" style={{margin: '4px'}}>
                 <Letter opacity={letterOpacity}>{letter}</Letter>[{engTranscription}]
-            </LightButton>
+            </button>
     );
 
     return (
-        <AppTag>
-            <PageTitle>English spelling practice</PageTitle>
-            <Header>
-                <Input type="text" value={englishText} readOnly/>
-                <LightButton minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} style={{margin: '4px'}}>C</LightButton>
-                <LightButton minWidth={'50px'} onClick={deleteEnglishText} style={{margin: '4px'}}>X</LightButton>
-            </Header>
-            <ButtonList>
-                {alphabetButtons}
-            </ButtonList>
-            <ChangeOpacityTitle>Show/Hide letter in button</ChangeOpacityTitle>
-            <input type="range" min="0" max="10" value={letterOpacity} onChange={changeLetterOpacity} />
-
-            {
-                 isOpenPopup
-                    ? <Popup closePopup={closePopup}>
-                        <Introduction
-                            title='English Alphabet'
-                            description={
-                                [
-                                 "Hi.",
-                                 "- Can you spell your name ?",
-                                 "If no - this page can help."
-                                 ]}
-                            buttonTitle="Let's practice ?)"
-                            handleClick={closePopup}
-                        />
-                    </Popup>
-                    : null
-            }
-        </AppTag>
+        <div>
+            <PetProjectIntro
+                title={"English Alphabet spelling trenager"}
+                description={"Try to spell your name, address etc. We created this page to help you improve your spelling skills."}
+            />
+            <AppTag>
+                <Header>
+                    <Input type="text" value={englishText} readOnly/>
+                    <button minWidth={'50px'} onClick={deleteLastLetterFromEnglishText} style={{margin: '4px'}}>C
+                    </button>
+                    <button minWidth={'50px'} onClick={deleteEnglishText} style={{margin: '4px'}}>X</button>
+                </Header>
+                <ButtonList>
+                    {alphabetButtons}
+                </ButtonList>
+                <ChangeOpacityTitle>Show/Hide letter in button</ChangeOpacityTitle>
+                <input type="range" min="0" max="10" value={letterOpacity} onChange={changeLetterOpacity}/>
+            </AppTag>
+        </div>
     );
 };
 

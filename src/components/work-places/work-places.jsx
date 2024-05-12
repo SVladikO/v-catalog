@@ -1,10 +1,10 @@
 import companies from './cv-data';
-import Company from './company';
+import WorkPlace from './work-place/work-place';
 
 function WorkPlaces () {
     return (
         <>
-            {companies.map(item => <Company key={item.company} {...item} />)}
+            {companies.map(item => <WorkPlace key={item.company} {...item} />)}
         </>
     )
 }
