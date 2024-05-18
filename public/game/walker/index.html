@@ -12,8 +12,8 @@
     const ctx = canvas.getContext("2d");
 
     const userDotRadius = 10;
-    let userPositionX = 200;
-    let userPositionY = 200;
+    let userX = 180;
+    let userY = 180;
     let visibilityRadius = 300;
     let userMoveStep = 1;
     let userRotation = 0
@@ -22,6 +22,7 @@
     let mousePositionY = 200;
 
     //Object on the canvas
+    // const rectangles = [[200, 200]];
     const rectangles = [[10, 10], [200, 200], [300, 80], [300, 400], [400, 300], [500, 90], [500, 10]];
     const rectangleSideLenght = 40;
 
@@ -36,7 +37,7 @@
 
     function renderLine() {
         ctx.beginPath();
-        ctx.moveTo(userPositionX, userPositionY);
+        ctx.moveTo(userX, userY);
         ctx.lineTo(mousePositionX, mousePositionY);
         ctx.stroke();
     }
@@ -56,8 +57,8 @@
     }
 
     function changeUserRotation() {
-        var dx = mousePositionX - userPositionX;
-        var dy = mousePositionY - userPositionY;
+        var dx = mousePositionX - userX;
+        var dy = mousePositionY - userY;
 
         userRotation = Math.atan2(dy, dx);
     }
@@ -68,7 +69,7 @@
 
     function renderUser() {
         ctx.beginPath();
-        ctx.arc(userPositionX, userPositionY, userDotRadius, 0, 300);
+        ctx.arc(userX, userY, userDotRadius, 0, 300);
         ctx.fillStyle = "red";
         ctx.fill()
     }
@@ -76,9 +77,9 @@
     function renderUserDirection() {
         const step = 1;
 
-        ctx.moveTo(userPositionX, userPositionY);
-        ctx.arc(userPositionX, userPositionY, visibilityRadius, userRotation - step, userRotation + step, false);
-        ctx.lineTo(userPositionX, userPositionY);
+        ctx.moveTo(userX, userY);
+        ctx.arc(userX, userY, visibilityRadius, userRotation - step, userRotation + step, false);
+        ctx.lineTo(userX, userY);
         ctx.stroke();
     }
 
@@ -102,16 +103,16 @@
     window.addEventListener("keypress", (event) => {
         // switch (event.keyCode) {
         //     case 87: //move up
-        //         userPositionY -= userMoveStep;
+        //         userY -= userMoveStep;
         //         break;
         //     case 83: //move down
-        //         userPositionY += userMoveStep;
+        //         userY += userMoveStep;
         //         break;
         //     case 65: //move left
-        //         userPositionX -= userMoveStep;
+        //         userX -= userMoveStep;
         //         break;
         //     case 68: //move right
-        //         userPositionX += userMoveStep;
+        //         userX += userMoveStep;
         // }
         enableMove(event.key)
 
@@ -160,11 +161,11 @@
     }
 
     function isOutOfRange(num, min, max) {
-        return num < min || num > max;
+        return num <= min || num >= max;
     }
 
     function isInRange(num, min, max) {
-        return num > min && num < max;
+        return num >= min && num <= max;
     }
 
     /**
@@ -176,12 +177,15 @@
      */
     function isOnBlock(userX, userY) {
         const rect = rectangles.find(rec => {
-            const [minX, minY] = rec;
-            const maxX = minX + rectangleSideLenght;
-            const maxY = minY + rectangleSideLenght;
+            const [x, y] = rec;
+            const minX = x - userDotRadius;
+            const minY = y - userDotRadius;
+            const maxX = minX + rectangleSideLenght + userDotRadius + userDotRadius;
+            const maxY = minY + rectangleSideLenght + userDotRadius + userDotRadius;
 
-            const is = isInRange(x, minX, maxX) && isInRange(y, minY, maxY)
-            console.log(1234, is, x, y);
+            const is = isInRange(userX, minX, maxX) && isInRange(userY, minY, maxY)
+
+            // console.log(1234, is, `x ${minX} < ${userX} < ${maxX} ::: y ${minY} < ${userY} < ${maxY}`)
 
             return is;
         })
@@ -191,31 +195,31 @@
 
     function changeUserCoordinates() {
         if (pressedKey.w) {
-            const modifiedUserY = userPositionY - userMoveStep;
+            const modifiedUserY = userY - userMoveStep;
 
-            if (isInCanvas(modifiedUserY, canvas.height)) {
-                userPositionY = modifiedUserY;
+            if (isInCanvas(modifiedUserY, canvas.height) && !isOnBlock(userX, modifiedUserY)) {
+                userY = modifiedUserY;
             }
         }
         if (pressedKey.s) {
-            const modifiedUserY = userPositionY + userMoveStep;
+            const modifiedUserY = userY + userMoveStep;
 
-            if (isInCanvas(modifiedUserY, canvas.width)) {
-                userPositionY = modifiedUserY;
+            if (isInCanvas(modifiedUserY, canvas.width) && !isOnBlock(userX, modifiedUserY)) {
+                userY = modifiedUserY;
             }
         }
         if (pressedKey.a) {
-            const modifiedUserX = userPositionX - userMoveStep;
+            const modifiedUserX = userX - userMoveStep;
 
-            if (isInCanvas(modifiedUserX, canvas.width)) {
-                userPositionX = modifiedUserX;
+            if (isInCanvas(modifiedUserX, canvas.width) && !isOnBlock(modifiedUserX, userY)) {
+                userX = modifiedUserX;
             }
         }
         if (pressedKey.d) {
-            const modifiedUserX = userPositionX + userMoveStep;
+            const modifiedUserX = userX + userMoveStep;
 
-            if (isInCanvas(modifiedUserX, canvas.width)) {
-                userPositionX = modifiedUserX;
+            if (isInCanvas(modifiedUserX, canvas.width) && !isOnBlock(modifiedUserX, userY)) {
+                userX = modifiedUserX;
             }
         }
     }
