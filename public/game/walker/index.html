@@ -17,7 +17,6 @@
     const userBorderLineWidth = 1;
     const bulletBgColor = 'red';
 
-
     const boxBgColor = "#663300";
     const boxBorderColor = "#4d2600";
     const boxBorderLineWidth = 5;
@@ -26,7 +25,7 @@
     let userX = 180;
     let userY = 180;
     let visibilityRadius = 300;
-    let userMoveStep = 1;
+    let userMoveStep = 0.5;
     let userAngle = 0
 
     let mousePositionX = 200;
@@ -41,7 +40,7 @@
         maxDistance: 200,
         bulletRadius: 5,
         bulletFillColor: bulletBgColor,
-        distanceStep: 3,
+        distanceStep: 2,
         cartrigesMove: [],
         cartridgeСlip: 10,
         rechargeTime: 2,
@@ -206,8 +205,6 @@
     window.addEventListener("mousemove", (event) => {
         mousePositionX = event.clientX
         mousePositionY = event.clientY
-        drawAll();
-
     });
 
     function loop() {
