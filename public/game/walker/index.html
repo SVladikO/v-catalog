@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Walker</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;">
+</canvas>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    let userPositionX = 200;
+    let userPositionY = 200;
+    let visibilityRadius = 200;
+    let userMoveStep = 1;
+    let userRotation = 0
+
+    let mousePositionX = 200;
+    let mousePositionY = 200;
+
+    function clearCanvas() {
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function prepareCanvas() {
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+    }
+
+    function renderLine() {
+        ctx.beginPath();
+        ctx.moveTo(userPositionX, userPositionY);
+        ctx.lineTo(mousePositionX, mousePositionY);
+        ctx.stroke();
+    }
+
+    function changeUserRotation() {
+        var dx = mousePositionX - userPositionX;
+        var dy = mousePositionY - userPositionY;
+
+        userRotation = Math.atan2(dy, dx);
+    }
+
+    function renderLines() {
+        renderLine();
+    }
+
+    function renderCirlce() {
+        ctx.beginPath();
+        ctx.arc(userPositionX, userPositionY, 10, 0, 300);
+        ctx.fillStyle = "black";
+        ctx.fill()
+
+        const step = 1;
+
+        ctx.moveTo(userPositionX, userPositionY);
+        ctx.arc(userPositionX, userPositionY, visibilityRadius, userRotation - step, userRotation + step, false);
+        ctx.lineTo(userPositionX, userPositionY);
+        ctx.stroke();
+    }
+
+    function drawAll() {
+        clearCanvas();
+        prepareCanvas();
+        renderCirlce();
+        renderLines();
+        changeUserRotation()
+    }
+
+    const pressedKey = {
+        'w': false, //up
+        's': false, //down
+        'a': false, //left
+        'd': false, //right
+    }
+
+    window.addEventListener("keypress", (event) => {
+        // switch (event.keyCode) {
+        //     case 87: //move up
+        //         userPositionY -= userMoveStep;
+        //         break;
+        //     case 83: //move down
+        //         userPositionY += userMoveStep;
+        //         break;
+        //     case 65: //move left
+        //         userPositionX -= userMoveStep;
+        //         break;
+        //     case 68: //move right
+        //         userPositionX += userMoveStep;
+        // }
+        enableMove(event.key)
+
+        drawAll();
+    });
+
+    window.addEventListener("keyup", (event) => {
+        disableMove(event.key);
+    });
+
+    window.addEventListener("mousemove", (event) => {
+        mousePositionX = event.clientX
+        mousePositionY = event.clientY
+        drawAll();
+
+    });
+
+    function loop() {
+        changeUserCoordinates()
+        drawAll();
+        window.requestAnimationFrame(loop);
+    }
+
+    loop();
+
+    function enableMove(key) {
+        pressedKey[key.toLowerCase()] = true;
+    }
+
+    function disableMove(key) {
+        pressedKey[key.toLowerCase()] = false;
+    }
+
+    function blockMoveOutOfMapHorizontally(position, modifiedPosition) {
+        return blockMoveOutOfMap(position, modifiedPosition, 0, canvas.width)
+    }
+
+    function blockMoveOutOfMapVertically(position, modifiedPosition) {
+        return blockMoveOutOfMap(position, modifiedPosition, 0, canvas.height)
+    }
+
+    function blockMoveOutOfMap(position, modifiedPosition, min, max) {
+        if (modifiedPosition > max || modifiedPosition < min) {
+            return position;
+        }
+        return modifiedPosition
+    }
+
+    function changeUserCoordinates() {
+        if (pressedKey.w) {
+            userPositionY = blockMoveOutOfMapVertically(userPositionY, userPositionY - userMoveStep);
+        }
+        if (pressedKey.s) {
+            userPositionY = blockMoveOutOfMapVertically(userPositionY, userPositionY + userMoveStep);
+        }
+        if (pressedKey.a) {
+            userPositionX = blockMoveOutOfMapHorizontally(userPositionX, userPositionX - userMoveStep);
+        }
+        if (pressedKey.d) {
+            userPositionX = blockMoveOutOfMapHorizontally(userPositionX, userPositionX + userMoveStep);
+        }
+    }
+
+</script>
+</body>
+</html>
