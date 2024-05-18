@@ -58,6 +58,7 @@
             lastY: userY,
             angle: userAngle,
             isDead: false,
+            isKickedBox: false,
         }
     }
 
@@ -65,6 +66,7 @@
         if (key != ' ') {
             return;
         }
+        new Audio('./public/gun-shot-fast.mp3').play()
         const bullet = getCartridge();
 
         weapon.cartrigesMove.push(bullet)
@@ -76,6 +78,7 @@
         const {lastX, lastY, angle} = bullet;
         bullet.lastX = lastX + Math.cos(angle) * weapon.distanceStep;
         bullet.lastY = lastY + Math.sin(angle) * weapon.distanceStep;
+        bullet.isKickedBox = isOnBlock(lastX, lastY);
         bullet.isDead = isOutOfRange(lastX, 0, canvas.width) || isOutOfRange(lastY, 0, canvas.height) || isOnBlock(lastX, lastY)
     }
 
@@ -85,6 +88,11 @@
         ctx.beginPath();
         ctx.arc(lastX, lastY, bullet.isDead ? weapon.bulletDeadRadius : weapon.bulletRadius, 0, 2 * Math.PI);
         ctx.fillStyle = bullet.isDead ? weapon.bulletDeadBgColor : weapon.bulletBgColor;
+
+        if (bullet.isKickedBox) {
+            new Audio('./public/missed-1.mp3').play()
+        }
+
         ctx.fill()
     }
 
@@ -129,19 +137,19 @@
         userAngle = Math.atan2(dy, dx);
     }
 
-    function renderUser() {
+    function renderUser(x, y) {
         ctx.beginPath();
-        ctx.arc(userX, userY, userDotRadius, 0, 300);
+        ctx.arc(x, y, userDotRadius, 0, 300);
         ctx.fillStyle = userBgColor;
         ctx.fill()
     }
 
-    function renderUserDirection() {
+    function renderUserDirection(x, y) {
         const step = 1;
 
-        ctx.moveTo(userX, userY);
-        ctx.arc(userX, userY, visibilityRadius, userAngle - step, userAngle + step, false);
-        ctx.lineTo(userX, userY);
+        ctx.moveTo(x, y);
+        ctx.arc(x, userY, visibilityRadius, userAngle - step, userAngle + step, false);
+        ctx.lineTo(x, y);
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
         ctx.stroke();
@@ -156,8 +164,8 @@
         weapon.cartrigesMove.forEach(renderBullet);
         weapon.cartrigesMove = weapon.cartrigesMove.filter(bullet => !bullet.isDead);
 
-        renderUser();
-        renderUserDirection();
+        renderUser(userX, userY);
+        renderUserDirection(userX, userY);
         renderLine();
         changeUserAngle()
 
