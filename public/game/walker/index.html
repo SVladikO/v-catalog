@@ -15,7 +15,8 @@
 
     const userBgColor = "black";
     const userBorderLineWidth = 1;
-    const bulletBgColor = 'red';
+    const bulletBgColor = '#b30000';
+    const bulletDeadBgColor = '#ffff00';
 
     const boxBgColor = "#663300";
     const boxBorderColor = "#4d2600";
@@ -39,7 +40,9 @@
     const weapon = {
         maxDistance: 200,
         bulletRadius: 5,
-        bulletFillColor: bulletBgColor,
+        bulletDeadRadius: 15,
+        bulletBgColor,
+        bulletDeadBgColor,
         distanceStep: 2,
         cartrigesMove: [],
         cartridgeСlip: 10,
@@ -54,6 +57,7 @@
             lastX: userX,
             lastY: userY,
             angle: userAngle,
+            isDead: false,
         }
     }
 
@@ -68,18 +72,19 @@
         console.log('shoot made', {weapon})
     }
 
-    function updateBulletCoordinate(bullet) {
+    function updateBulletData(bullet) {
         const {lastX, lastY, angle} = bullet;
         bullet.lastX = lastX + Math.cos(angle) * weapon.distanceStep;
         bullet.lastY = lastY + Math.sin(angle) * weapon.distanceStep;
+        bullet.isDead = isOutOfRange(lastX, 0, canvas.width) || isOutOfRange(lastY, 0, canvas.height) || isOnBlock(lastX, lastY)
     }
 
     function renderBullet(bullet) {
         const {lastX, lastY} = bullet;
 
         ctx.beginPath();
-        ctx.arc(lastX, lastY, weapon.bulletRadius, 0, 2 * Math.PI);
-        ctx.fillStyle = weapon.bulletFillColor;
+        ctx.arc(lastX, lastY, bullet.isDead ? weapon.bulletDeadRadius : weapon.bulletRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = bullet.isDead ? weapon.bulletDeadBgColor : weapon.bulletBgColor;
         ctx.fill()
     }
 
@@ -96,8 +101,6 @@
         ctx.beginPath();
         ctx.moveTo(userX, userY);
         ctx.lineTo(mousePositionX, mousePositionY);
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
         ctx.stroke();
     }
 
@@ -126,10 +129,6 @@
         userAngle = Math.atan2(dy, dx);
     }
 
-    function renderLines() {
-        renderLine();
-    }
-
     function renderUser() {
         ctx.beginPath();
         ctx.arc(userX, userY, userDotRadius, 0, 300);
@@ -153,12 +152,13 @@
         prepareCanvas();
         renderRectangles()
 
-        weapon.cartrigesMove.forEach(updateBulletCoordinate);
+        weapon.cartrigesMove.forEach(updateBulletData);
         weapon.cartrigesMove.forEach(renderBullet);
+        weapon.cartrigesMove = weapon.cartrigesMove.filter(bullet => !bullet.isDead);
 
         renderUser();
         renderUserDirection();
-        renderLines();
+        renderLine();
         changeUserAngle()
 
 
