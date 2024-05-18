@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.a`
-    background: #D9D9D9;
+    border: solid 2px #D9D9D9;
+    
     padding: 10px;
     max-width: 320px;
     min-width: 320px;
@@ -25,11 +26,16 @@ export const Left = styled.div`
 
 `;
 
+export const Img = styled.img`
+    height: 120px;
+    width: 120px;
+`;
+
 export const Right = styled.div`
     min-width: 120px;
     max-width: 120px;
     min-height: 120px;
     max-height: 120px;
-    background: #fff;
+    background: #593535;
     margin: 0 0 0 10px;
 `;

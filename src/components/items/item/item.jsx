@@ -1,7 +1,7 @@
-import {Wrapper, Title, Description, Left, Right} from './item.style.js';
+import {Wrapper, Img, Title, Description, Left, Right} from './item.style.js';
 
 export default function Item(props) {
-    const {title, description, link} = props.item;
+    const {title, description, link, src} = props.item;
 
     return (
         <Wrapper href={link} target="_blank">
@@ -9,7 +9,9 @@ export default function Item(props) {
                 <Title>{title}</Title>
                 <Description>{description}</Description>
             </Left>
-            <Right></Right>
+            <Right>
+                <Img src={src} />
+            </Right>
 
         </Wrapper>
     )

@@ -92,7 +92,7 @@ export default function IncomeCalculatorPage() {
         <Wrapper>
             <PetProjectIntro
                 title={"Income calculator"}
-                description={"We help you to calculate your income and see a bigger picture."}
+                description={"We will help you to calculate your income in different time."}
             />
             <CurrencyTimeCalculator/>
         </Wrapper>
