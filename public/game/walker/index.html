@@ -157,7 +157,7 @@
     }
 
     function isInCanvas(modifiedPosition, max) {
-        return !isOutOfRange(modifiedPosition, 0, max)
+        return !isOutOfRange(modifiedPosition, 0 + userDotRadius, max - userDotRadius)
     }
 
     function isOutOfRange(num, min, max) {
