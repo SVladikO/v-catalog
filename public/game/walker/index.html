@@ -11,21 +11,26 @@
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
+    const userDotRadius = 10;
     let userPositionX = 200;
     let userPositionY = 200;
-    let visibilityRadius = 200;
+    let visibilityRadius = 300;
     let userMoveStep = 1;
     let userRotation = 0
 
     let mousePositionX = 200;
     let mousePositionY = 200;
 
+    //Object on the canvas
+    const rectangles = [[10, 10], [200, 200], [300, 80], [300, 400], [400, 300], [500, 90], [500, 10]];
+    const rectangleLenght = 40;
+
     function clearCanvas() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
     function prepareCanvas() {
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "green";
         ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
 
@@ -33,6 +38,20 @@
         ctx.beginPath();
         ctx.moveTo(userPositionX, userPositionY);
         ctx.lineTo(mousePositionX, mousePositionY);
+        ctx.stroke();
+    }
+
+    function renderRectangles() {
+        rectangles.forEach(coordinates => {
+            const [x, y] = coordinates;
+            renderRectangle(x, y);
+        })
+    }
+
+    function renderRectangle(x, y) {
+        ctx.rect(x, y, rectangleLenght, rectangleLenght);
+        ctx.fillStyle = "black";
+        ctx.fill()
         ctx.stroke();
     }
 
@@ -47,12 +66,14 @@
         renderLine();
     }
 
-    function renderCirlce() {
+    function renderUser() {
         ctx.beginPath();
-        ctx.arc(userPositionX, userPositionY, 10, 0, 300);
-        ctx.fillStyle = "black";
+        ctx.arc(userPositionX, userPositionY, userDotRadius, 0, 300);
+        ctx.fillStyle = "red";
         ctx.fill()
+    }
 
+    function renderUserDirection() {
         const step = 1;
 
         ctx.moveTo(userPositionX, userPositionY);
@@ -64,7 +85,9 @@
     function drawAll() {
         clearCanvas();
         prepareCanvas();
-        renderCirlce();
+        renderRectangles()
+        renderUser();
+        renderUserDirection();
         renderLines();
         changeUserRotation()
     }
