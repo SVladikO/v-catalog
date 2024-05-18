@@ -11,6 +11,17 @@
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
+    const canvasBgColor = "#ffc34d";
+
+    const userBgColor = "black";
+    const userBorderLineWidth = 1;
+    const bulletBgColor = 'red';
+
+
+    const boxBgColor = "#663300";
+    const boxBorderColor = "#4d2600";
+    const boxBorderLineWidth = 5;
+
     const userDotRadius = 10;
     let userX = 180;
     let userY = 180;
@@ -29,7 +40,7 @@
     const weapon = {
         maxDistance: 200,
         bulletRadius: 5,
-        bulletFillColor: 'blue',
+        bulletFillColor: bulletBgColor,
         distanceStep: 3,
         cartrigesMove: [],
         cartridgeСlip: 10,
@@ -78,7 +89,7 @@
     }
 
     function prepareCanvas() {
-        ctx.fillStyle = "green";
+        ctx.fillStyle = canvasBgColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
 
@@ -86,6 +97,8 @@
         ctx.beginPath();
         ctx.moveTo(userX, userY);
         ctx.lineTo(mousePositionX, mousePositionY);
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
         ctx.stroke();
     }
 
@@ -98,9 +111,13 @@
 
     function renderRectangle(x, y) {
         ctx.rect(x, y, rectangleSideLenght, rectangleSideLenght);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = boxBgColor;
         ctx.fill()
+        ctx.strokeStyle = boxBorderColor;
+        ctx.lineWidth = boxBorderLineWidth;
         ctx.stroke();
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
     }
 
     function changeUserAngle() {
@@ -117,7 +134,7 @@
     function renderUser() {
         ctx.beginPath();
         ctx.arc(userX, userY, userDotRadius, 0, 300);
-        ctx.fillStyle = "red";
+        ctx.fillStyle = userBgColor;
         ctx.fill()
     }
 
@@ -127,6 +144,8 @@
         ctx.moveTo(userX, userY);
         ctx.arc(userX, userY, visibilityRadius, userAngle - step, userAngle + step, false);
         ctx.lineTo(userX, userY);
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
         ctx.stroke();
     }
 
@@ -153,6 +172,9 @@
         'd': false, //right
     }
 
+    window.addEventListener("click", (event) => {
+        shoot(' ')
+    });
     window.addEventListener("keypress", (event) => {
         // switch (event.keyCode) {
         //     case 87: //move up
