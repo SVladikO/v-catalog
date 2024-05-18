@@ -16,7 +16,7 @@
     let userY = 180;
     let visibilityRadius = 300;
     let userMoveStep = 1;
-    let userRotation = 0
+    let userAngle = 0
 
     let mousePositionX = 200;
     let mousePositionY = 200;
@@ -25,6 +25,53 @@
     // const rectangles = [[200, 200]];
     const rectangles = [[10, 10], [200, 200], [300, 80], [300, 400], [400, 300], [500, 90], [500, 10]];
     const rectangleSideLenght = 40;
+
+    const weapon = {
+        maxDistance: 200,
+        bulletRadius: 5,
+        bulletFillColor: 'blue',
+        distanceStep: 3,
+        cartrigesMove: [],
+        cartridgeСlip: 10,
+        rechargeTime: 2,
+    }
+
+    function getCartridge() {
+        return {
+            currentDistance: 0,
+            startX: userX,
+            startY: userY,
+            lastX: userX,
+            lastY: userY,
+            angle: userAngle,
+        }
+    }
+
+    function shoot(key) {
+        if (key != ' ') {
+            return;
+        }
+        const bullet = getCartridge();
+
+        weapon.cartrigesMove.push(bullet)
+
+        console.log('shoot made', {weapon})
+    }
+
+    function updateBulletCoordinate(bullet) {
+        const {lastX, lastY, angle} = bullet;
+        bullet.lastX = lastX + Math.cos(angle) * weapon.distanceStep;
+        bullet.lastY = lastY + Math.sin(angle) * weapon.distanceStep;
+    }
+
+    function renderBullet(bullet) {
+        const {lastX, lastY} = bullet;
+
+        ctx.beginPath();
+        ctx.arc(lastX, lastY, weapon.bulletRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = weapon.bulletFillColor;
+        ctx.fill()
+    }
 
     function clearCanvas() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -56,11 +103,11 @@
         ctx.stroke();
     }
 
-    function changeUserRotation() {
+    function changeUserAngle() {
         var dx = mousePositionX - userX;
         var dy = mousePositionY - userY;
 
-        userRotation = Math.atan2(dy, dx);
+        userAngle = Math.atan2(dy, dx);
     }
 
     function renderLines() {
@@ -78,7 +125,7 @@
         const step = 1;
 
         ctx.moveTo(userX, userY);
-        ctx.arc(userX, userY, visibilityRadius, userRotation - step, userRotation + step, false);
+        ctx.arc(userX, userY, visibilityRadius, userAngle - step, userAngle + step, false);
         ctx.lineTo(userX, userY);
         ctx.stroke();
     }
@@ -87,10 +134,16 @@
         clearCanvas();
         prepareCanvas();
         renderRectangles()
+
+        weapon.cartrigesMove.forEach(updateBulletCoordinate);
+        weapon.cartrigesMove.forEach(renderBullet);
+
         renderUser();
         renderUserDirection();
         renderLines();
-        changeUserRotation()
+        changeUserAngle()
+
+
     }
 
     const pressedKey = {
@@ -115,11 +168,16 @@
         //         userX += userMoveStep;
         // }
         enableMove(event.key)
+        shoot(event.key)
+
+        console.log("keypress", {event})
 
         drawAll();
     });
 
     window.addEventListener("keyup", (event) => {
+        console.log("keyup", {event})
+
         disableMove(event.key);
     });
 
