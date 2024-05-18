@@ -23,7 +23,7 @@
 
     //Object on the canvas
     const rectangles = [[10, 10], [200, 200], [300, 80], [300, 400], [400, 300], [500, 90], [500, 10]];
-    const rectangleLenght = 40;
+    const rectangleSideLenght = 40;
 
     function clearCanvas() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -49,7 +49,7 @@
     }
 
     function renderRectangle(x, y) {
-        ctx.rect(x, y, rectangleLenght, rectangleLenght);
+        ctx.rect(x, y, rectangleSideLenght, rectangleSideLenght);
         ctx.fillStyle = "black";
         ctx.fill()
         ctx.stroke();
@@ -137,41 +137,86 @@
 
     loop();
 
+    /**
+     * Enable user move.
+     *
+     * @param key - Pressed keyboard key.
+     */
     function enableMove(key) {
         pressedKey[key.toLowerCase()] = true;
     }
 
+    /**
+     * Disable user move.
+     *
+     * @param key - Pressed keyboard key.
+     */
     function disableMove(key) {
         pressedKey[key.toLowerCase()] = false;
     }
 
-    function blockMoveOutOfMapHorizontally(position, modifiedPosition) {
-        return blockMoveOutOfMap(position, modifiedPosition, 0, canvas.width)
+    function isInCanvas(modifiedPosition, max) {
+        return !isOutOfRange(modifiedPosition, 0, max)
     }
 
-    function blockMoveOutOfMapVertically(position, modifiedPosition) {
-        return blockMoveOutOfMap(position, modifiedPosition, 0, canvas.height)
+    function isOutOfRange(num, min, max) {
+        return num < min || num > max;
     }
 
-    function blockMoveOutOfMap(position, modifiedPosition, min, max) {
-        if (modifiedPosition > max || modifiedPosition < min) {
-            return position;
-        }
-        return modifiedPosition
+    function isInRange(num, min, max) {
+        return num > min && num < max;
+    }
+
+    /**
+     * Check is new user coordinates move on block
+     *
+     * @param userX
+     * @param userY
+     * @returns {boolean}
+     */
+    function isOnBlock(userX, userY) {
+        const rect = rectangles.find(rec => {
+            const [minX, minY] = rec;
+            const maxX = minX + rectangleSideLenght;
+            const maxY = minY + rectangleSideLenght;
+
+            const is = isInRange(x, minX, maxX) && isInRange(y, minY, maxY)
+            console.log(1234, is, x, y);
+
+            return is;
+        })
+
+        return !!rect;
     }
 
     function changeUserCoordinates() {
         if (pressedKey.w) {
-            userPositionY = blockMoveOutOfMapVertically(userPositionY, userPositionY - userMoveStep);
+            const modifiedUserY = userPositionY - userMoveStep;
+
+            if (isInCanvas(modifiedUserY, canvas.height)) {
+                userPositionY = modifiedUserY;
+            }
         }
         if (pressedKey.s) {
-            userPositionY = blockMoveOutOfMapVertically(userPositionY, userPositionY + userMoveStep);
+            const modifiedUserY = userPositionY + userMoveStep;
+
+            if (isInCanvas(modifiedUserY, canvas.width)) {
+                userPositionY = modifiedUserY;
+            }
         }
         if (pressedKey.a) {
-            userPositionX = blockMoveOutOfMapHorizontally(userPositionX, userPositionX - userMoveStep);
+            const modifiedUserX = userPositionX - userMoveStep;
+
+            if (isInCanvas(modifiedUserX, canvas.width)) {
+                userPositionX = modifiedUserX;
+            }
         }
         if (pressedKey.d) {
-            userPositionX = blockMoveOutOfMapHorizontally(userPositionX, userPositionX + userMoveStep);
+            const modifiedUserX = userPositionX + userMoveStep;
+
+            if (isInCanvas(modifiedUserX, canvas.width)) {
+                userPositionX = modifiedUserX;
+            }
         }
     }
 
