@@ -22,10 +22,18 @@
     const boxBorderColor = "#4d2600";
     const boxBorderLineWidth = 5;
 
+    let ganster1X = 900;
+    let ganster1Y = 10;
+    let ganster1Angle = 0
+
+    let ganster2X = 900;
+    let ganster2Y = 550;
+    let ganster2Angle = 0
+
     const userDotRadius = 10;
     let userX = 180;
     let userY = 180;
-    let visibilityRadius = 300;
+    let visibilityRadius = 100;
     let userMoveStep = 0.5;
     let userAngle = 0
 
@@ -34,10 +42,11 @@
 
     //Object on the canvas
     // const rectangles = [[200, 200]];
-    const rectangles = [[10, 10], [200, 200], [300, 80], [300, 400], [400, 300], [500, 90], [500, 10]];
+    const rectangles = [[10, 10], [200, 200], [300, 80], [300, 400], [700, 500], [500, 10], [700, 50]];
     const rectangleSideLenght = 40;
 
     const weapon = {
+        bulletAmount: 30,
         maxDistance: 200,
         bulletRadius: 5,
         bulletDeadRadius: 15,
@@ -49,14 +58,14 @@
         rechargeTime: 2,
     }
 
-    function getCartridge() {
+    function getCartridge(fromX, fromY, angle) {
         return {
             currentDistance: 0,
-            startX: userX,
-            startY: userY,
-            lastX: userX,
-            lastY: userY,
-            angle: userAngle,
+            startX: fromX,
+            startY: fromY,
+            lastX: fromX,
+            lastY: fromY,
+            angle: angle,
             isDead: false,
             isKickedBox: false,
         }
@@ -66,12 +75,16 @@
         if (key != ' ') {
             return;
         }
+
+        if (!weapon.bulletAmount) {
+            alert('no bullets')
+            return;
+        }
+
+        weapon.bulletAmount -= 1;
         new Audio('./public/gun-shot-fast.mp3').play()
-        const bullet = getCartridge();
-
+        const bullet = getCartridge(userX, userY, userAngle);
         weapon.cartrigesMove.push(bullet)
-
-        console.log('shoot made', {weapon})
     }
 
     function updateBulletData(bullet) {
@@ -90,7 +103,7 @@
         ctx.fillStyle = bullet.isDead ? weapon.bulletDeadBgColor : weapon.bulletBgColor;
 
         if (bullet.isKickedBox) {
-            new Audio('./public/missed-1.mp3').play()
+            // new Audio('./public/missed-1.mp3').play()
         }
 
         ctx.fill()
@@ -130,11 +143,22 @@
         ctx.lineWidth = 1;
     }
 
-    function changeUserAngle() {
-        var dx = mousePositionX - userX;
-        var dy = mousePositionY - userY;
+    setInterval(() => {
+        const bullet = getCartridge(ganster1X, ganster1Y, ganster1Angle);
+        weapon.cartrigesMove.push(bullet)
+    }, 1000)
 
-        userAngle = Math.atan2(dy, dx);
+
+    setInterval(() => {
+        const bullet = getCartridge(ganster2X, ganster2Y, ganster2Angle);
+        weapon.cartrigesMove.push(bullet)
+    }, 1500)
+
+    function getRadianAngle(fromX, toX, fromY, toY) {
+        var dx = toX - fromX;
+        var dy = toY - fromY;
+
+        return Math.atan2(dy, dx);
     }
 
     function renderUser(x, y) {
@@ -144,11 +168,11 @@
         ctx.fill()
     }
 
-    function renderUserDirection(x, y) {
+    function renderUserDirection(x, y, angle) {
         const step = 1;
 
         ctx.moveTo(x, y);
-        ctx.arc(x, userY, visibilityRadius, userAngle - step, userAngle + step, false);
+        ctx.arc(x, y, visibilityRadius, angle - step, angle + step, false);
         ctx.lineTo(x, y);
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
@@ -164,12 +188,20 @@
         weapon.cartrigesMove.forEach(renderBullet);
         weapon.cartrigesMove = weapon.cartrigesMove.filter(bullet => !bullet.isDead);
 
+        userAngle = getRadianAngle(userX, mousePositionX, userY, mousePositionY)
+        ganster1Angle = getRadianAngle(ganster1X, userX, ganster1Y, userY)
+        ganster2Angle = getRadianAngle(ganster2X, userX, ganster2Y, userY)
+
         renderUser(userX, userY);
-        renderUserDirection(userX, userY);
+        renderUserDirection(userX, userY, userAngle);
+
+        renderUser(ganster1X, ganster1Y);
+        renderUserDirection(ganster1X, ganster1Y, ganster1Angle);
+
+        renderUser(ganster2X, ganster2Y);
+        renderUserDirection(ganster2X, ganster2Y, ganster2Angle);
+
         renderLine();
-        changeUserAngle()
-
-
     }
 
     const pressedKey = {
@@ -199,14 +231,10 @@
         enableMove(event.key)
         shoot(event.key)
 
-        console.log("keypress", {event})
-
         drawAll();
     });
 
     window.addEventListener("keyup", (event) => {
-        console.log("keyup", {event})
-
         disableMove(event.key);
     });
 
@@ -269,7 +297,6 @@
             const maxY = minY + rectangleSideLenght + userDotRadius + userDotRadius;
 
             const is = isInRange(userX, minX, maxX) && isInRange(userY, minY, maxY)
-
             // console.log(1234, is, `x ${minX} < ${userX} < ${maxX} ::: y ${minY} < ${userY} < ${maxY}`)
 
             return is;
@@ -289,7 +316,7 @@
         if (pressedKey.s) {
             const modifiedUserY = userY + userMoveStep;
 
-            if (isInCanvas(modifiedUserY, canvas.width) && !isOnBlock(userX, modifiedUserY)) {
+            if (isInCanvas(modifiedUserY, canvas.height) && !isOnBlock(userX, modifiedUserY)) {
                 userY = modifiedUserY;
             }
         }
