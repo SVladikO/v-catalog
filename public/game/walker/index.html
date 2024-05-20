@@ -58,16 +58,8 @@
         flyBullets.forEach(bullet => bullet.render());
         flyBullets = flyBullets.filter(bullet => !bullet.isDead);
 
-        user.angle = getRadianAngle(user.x, mousePositionX, user.y, mousePositionY)
-
-        renderUnit(user.x, user.y);
-        renderUnitDirection(user.x, user.y, user.angle);
-
-        gansters.forEach(unit => {
-            unit.angle = getRadianAngle(unit.x, user.x, unit.y, user.y)
-            renderUnit(unit.x, unit.y);
-            renderUnitDirection(unit.x, unit.y, unit.angle);
-        })
+        user.render(mousePositionX, mousePositionY);
+        gansters.forEach(unit => unit.render(user.x, user.y))
 
         renderLine();
     }
@@ -76,7 +68,7 @@
 
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)
-        user.shoot(event.key)
+        event.key === ' '  && user.shoot()
 
         drawAll();
     });

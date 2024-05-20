@@ -63,12 +63,7 @@ class Unit {
         }
     }
 
-    shoot(key) {
-
-        // if (key != ' ') {
-        //     return;
-        // }
-
+    shoot() {
         // if (!this.weapon.bulletAmount) {
         //     alert('no bullets')
         //     return;
@@ -107,6 +102,39 @@ class Unit {
 
     getBullet() {
         return new Bullet(this.x, this.y, this.angle, this.weapon);
+    }
+
+    render(toX, toY) {
+        this.updateAngle(toX, toY);
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, style.user.dorRadius, 0, 300);
+        ctx.fillStyle = style.user.bgColor;
+        ctx.fill()
+
+
+        this.renderDirection();
+
+        ctx.font = "20px Arial";
+        ctx.fillText(this.health, this.x, this.y + 30);
+    }
+
+    updateAngle(toX, toY) {
+        var dx = toX - this.x;
+        var dy = toY - this.y;
+
+        this.angle = Math.atan2(dy, dx);
+    }
+
+    renderDirection() {
+        const step = 1;
+
+        ctx.moveTo(this.x, this.y);
+        ctx.arc(this.x, this.y, this.visibilityRadius, this.angle - step, this.angle + step, false);
+        ctx.lineTo(this.x, this.y);
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
+        ctx.stroke();
     }
 }
 

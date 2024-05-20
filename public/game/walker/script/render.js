@@ -32,13 +32,3 @@ function renderUnit(x, y) {
     ctx.fill()
 }
 
-function renderUnitDirection(x, y, angle) {
-    const step = 1;
-
-    ctx.moveTo(x, y);
-    ctx.arc(x, y, user.visibilityRadius, angle - step, angle + step, false);
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-}
