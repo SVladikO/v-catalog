@@ -18,6 +18,23 @@ let style = {
     }
 }
 
+const weapon = {
+    bulletAmount: 30,
+    maxDistance: 200,
+    bulletDeadRadius: 15,
+    distanceStep: 2,
+    cartrigesMove: [],
+    cartridgeСlip: 10,
+    rechargeTime: 2,
+}
+
+const pressedKey = {
+    'w': false, //up
+    's': false, //down
+    'a': false, //left
+    'd': false, //right
+}
+
 let ganster1X = 900;
 let ganster1Y = 10;
 let ganster1Angle = 0
@@ -26,6 +43,19 @@ let ganster2Health = 20;
 let ganster2X = 900;
 let ganster2Y = 550;
 let ganster2Angle = 0
+
+let gansters = []
+
+function getUser(x = 10, y = 10, health = 100, step = 0.5, visibilityRadius = 300,) {
+    return {
+        health,
+        x,
+        y,
+        step,
+        visibilityRadius,
+        angle: 0,
+    }
+}
 
 const user = {
     health: 100,

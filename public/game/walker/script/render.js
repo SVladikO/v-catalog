@@ -38,14 +38,14 @@ function renderRectangle(x, y) {
     ctx.lineWidth = 1;
 }
 
-function renderUser(x, y) {
+function renderUnit(x, y) {
     ctx.beginPath();
     ctx.arc(x, y, style.user.dorRadius, 0, 300);
     ctx.fillStyle = style.user.bgColor;
     ctx.fill()
 }
 
-function renderUserDirection(x, y, angle) {
+function renderUnitDirection(x, y, angle) {
     const step = 1;
 
     ctx.moveTo(x, y);

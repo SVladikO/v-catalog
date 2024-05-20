@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Walker</title>
+    <style>
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
 </head>
 <body>
-<canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;">
-</canvas>
-<button onclick="changeStyleToWinter()">winter</button>
-<button onclick="changeStyleToSummer()">summer</button>
-<button onclick="changeStyleToSpring()">spring</button>
+<div>
+    <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;">
+    </canvas>
+</div>
+
+<div>
+    <button onclick="changeStyleToWinter()">winter</button>
+    <button onclick="changeStyleToSummer()">summer</button>
+    <button onclick="changeStyleToSpring()">spring</button>
+</div>
+
+
 <script src="./script/calculation.js"></script>
 <script src="./script/global_var.js"></script>
 <script src="./script/render.js"></script>
@@ -19,64 +36,6 @@
     const ctx = canvas.getContext("2d");
 
 
-    //Object on the canvas
-    // const rectangles = [[200, 200]];
-
-    const weapon = {
-        bulletAmount: 30,
-        maxDistance: 200,
-        bulletDeadRadius: 15,
-        distanceStep: 2,
-        cartrigesMove: [],
-        cartridgeСlip: 10,
-        rechargeTime: 2,
-    }
-
-    function getCartridge(fromX, fromY, angle) {
-        return {
-            currentDistance: 0,
-            startX: fromX,
-            startY: fromY,
-            lastX: fromX,
-            lastY: fromY,
-            angle: angle,
-            isDead: false,
-            isKickedBox: false,
-        }
-    }
-
-    function shoot(key) {
-        if (key != ' ') {
-            return;
-        }
-
-        if (!weapon.bulletAmount) {
-            alert('no bullets')
-            return;
-        }
-
-        weapon.bulletAmount -= 1;
-        // new Audio('./public/gun-shot-fast.mp3').play()
-        const bullet = getCartridge(user.x, user.y, user.angle);
-        weapon.cartrigesMove.push(bullet)
-    }
-
-    function updateBulletData(bullet) {
-        const {lastX, lastY, angle} = bullet;
-        bullet.lastX = lastX + Math.cos(angle) * weapon.distanceStep;
-        bullet.lastY = lastY + Math.sin(angle) * weapon.distanceStep;
-        bullet.isKickedBox = isOnBlock(lastX, lastY, style.bullet.radius);
-        bullet.isDead = isOutOfRange(lastX, 0, canvas.width) || isOutOfRange(lastY, 0, canvas.height) || isOnBlock(lastX, lastY, style.bullet.radius)
-    }
-
-    function clearCanvas() {
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function prepareCanvas() {
-        ctx.fillStyle = style.board.bgColor;
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
-    }
 
     setInterval(() => {
         const intervalId = setInterval(() => {
@@ -92,7 +51,6 @@
         }, 1000)
     }, 4000)
 
-
     function drawAll() {
         clearCanvas();
         prepareCanvas();
@@ -106,23 +64,16 @@
         ganster1Angle = getRadianAngle(ganster1X, user.x, ganster1Y, user.y)
         ganster2Angle = getRadianAngle(ganster2X, user.x, ganster2Y, user.y)
 
-        renderUser(user.x, user.y);
-        renderUserDirection(user.x, user.y, user.angle);
+        renderUnit(user.x, user.y);
+        renderUnitDirection(user.x, user.y, user.angle);
 
-        renderUser(ganster1X, ganster1Y);
-        renderUserDirection(ganster1X, ganster1Y, ganster1Angle);
+        renderUnit(ganster1X, ganster1Y);
+        renderUnitDirection(ganster1X, ganster1Y, ganster1Angle);
 
-        renderUser(ganster2X, ganster2Y);
-        renderUserDirection(ganster2X, ganster2Y, ganster2Angle);
+        renderUnit(ganster2X, ganster2Y);
+        renderUnitDirection(ganster2X, ganster2Y, ganster2Angle);
 
         renderLine();
-    }
-
-    const pressedKey = {
-        'w': false, //up
-        's': false, //down
-        'a': false, //left
-        'd': false, //right
     }
 
     window.addEventListener("click", (event) => {
@@ -134,11 +85,9 @@
 
         drawAll();
     });
-
     window.addEventListener("keyup", (event) => {
         disableMove(event.key);
     });
-
     window.addEventListener("mousemove", (event) => {
         mousePositionX = event.clientX
         mousePositionY = event.clientY
@@ -151,55 +100,6 @@
     }
 
     loop();
-
-    /**
-     * Enable user move.
-     *
-     * @param key - Pressed keyboard key.
-     */
-    function enableMove(key) {
-        pressedKey[key.toLowerCase()] = true;
-    }
-
-    /**
-     * Disable user move.
-     *
-     * @param key - Pressed keyboard key.
-     */
-    function disableMove(key) {
-        pressedKey[key.toLowerCase()] = false;
-    }
-
-    function changeUserCoordinates() {
-        if (pressedKey.w) {
-            const modifiedY = user.y - user.step;
-
-            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY, style.user.dorRadius)) {
-                user.y = modifiedY;
-            }
-        }
-        if (pressedKey.s) {
-            const modifiedY = user.y + user.step;
-
-            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY, style.user.dorRadius)) {
-                user.y = modifiedY;
-            }
-        }
-        if (pressedKey.a) {
-            const modifiedX = user.x - user.step;
-
-            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y, style.user.dorRadius)) {
-                user.x = modifiedX;
-            }
-        }
-        if (pressedKey.d) {
-            const modifiedX = user.x + user.step;
-
-            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y, style.user.dorRadius)) {
-                user.x = modifiedX;
-            }
-        }
-    }
 
 </script>
 </body>
