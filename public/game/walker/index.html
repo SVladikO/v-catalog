@@ -5,6 +5,9 @@
     <title>Walker</title>
     <style>
         * {
+            font-family: Arial;
+            padding: 0;
+            margin: 0;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
             -khtml-user-select: none;
@@ -12,21 +15,78 @@
             -ms-user-select: none;
             user-select: none;
         }
+
+        canvas {
+            cursor: cell;
+        }
+
+        .guns > img {
+            height: 80px;
+            border: solid 1px black;
+            margin: 10px;
+        }
+
+        .wrapper {
+            display: flex;
+
+        }
+
+        #notification {
+            display: none;
+            position: absolute;
+            top: 0;
+            border: solid 1px red;
+            width: 1000px;
+            height: 600px;
+            background: #ff0000e3;
+            justify-content: center;
+            align-items: center;
+        }
+        #alert_notification {
+            color: red;
+        }
+
+        .themes {
+            padding: 10px;
+        }
+        .themes > button {
+            font-size: 30px;
+            padding: 4px 8px;
+            margin: 4px;
+        }
     </style>
 </head>
 <body>
-<div>
-    <h1 id="notification"></h1>
-    <h2 id="health"></h2>
-    <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;">
-    </canvas>
+<div class="wrapper">
+    <div class="board">
+        <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
+        <h1 id="notification"></h1>
+        <h1 id="alert_notification"></h1>
+    </div>
+    <div class="control_panel">
+        <h1 id="health" class="themes"></h1>
+        <div class="guns themes">
+            <h1>Available guns:</h1>
+            <img onclick="updateWeapon('weapon_gun1')" src="./public/img/gun1.jpeg" alt="">
+            <img onclick="updateWeapon('weapon_gun2')" src="./public/img/gun2.png" alt="">
+            <img onclick="updateWeapon('weapon_gun3')" src="./public/img/gun3.jpeg" alt="">
+        </div>
+        <div class="themes">
+            <h1>Themes:</h1>
+            <button onclick="changeStyleToWinter()">winter</button>
+            <button onclick="changeStyleToSummer()">summer</button>
+            <button onclick="changeStyleToSpring()">spring</button>
+        </div>
+
+        <div class="themes">
+            <h1>Sound control:</h1>
+            <button onclick="mute()">Mute</button>
+            <button onclick="unmute()">Unmute</button>
+        </div>
+    </div>
 </div>
 
-<div>
-    <button onclick="changeStyleToWinter()">winter</button>
-    <button onclick="changeStyleToSummer()">summer</button>
-    <button onclick="changeStyleToSpring()">spring</button>
-</div>
+
 
 <!--SCRIPTS-->
 
@@ -40,12 +100,32 @@
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
+
+    let isMute = true;
+
+    function mute() {
+        isMute = true;
+    }
+
+    function unmute() {
+        isMute = false;
+    }
+    function updateWeapon(n) {
+        const weapons = {
+            weapon_gun1,
+            weapon_gun2,
+            weapon_gun3,
+        }
+
+        user.weapon = weapons[n]
+    }
+
     function drawAll() {
         clearCanvas();
         prepareCanvas();
         renderRectangles()
 
-        health.textContent = 'Health: ' + user.health + '    _ Bullet amount: ' + user.weapon.bulletAmount
+        health.textContent = 'Health: ' + user.health + ' / Bullets amount: ' + user.weapon.bulletAmount
 
         flyBullets.forEach(bullet => bullet.move());
         flyBullets.forEach(bullet => bullet.render());
@@ -53,23 +133,24 @@
 
         user.render(mousePositionX, mousePositionY);
         units
-            .filter(unit => user.isVisibleForMe(unit.x, unit.y))
+            // .filter(unit => user.isVisibleForMe(unit.x, unit.y))
             .forEach(unit => unit.render(user.x, user.y))
 
         units = units.filter(unit => unit.isAlive())
 
         if (!user.isAlive()) {
             notification.textContent = 'GAME OVER';
+            notification.style.display = 'flex';
         }
 
-        renderLine();
+        // renderLine();
     }
 
     canvas.addEventListener("click", () => user.shoot());
 
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)
-        event.key === ' '  && user.shoot()
+        event.key === ' ' && user.reloadGun()
 
         drawAll();
     });
@@ -91,11 +172,11 @@
     loop();
 
 
-
     setInterval(() => {
         const intervalId = setInterval(() => {
-            units.forEach(unit =>  {
-                if (unit.isVisibleForMe(user.x, user.y)){
+            units.forEach(unit => {
+                unit.reloadGun();
+                if (unit.isVisibleForMe(user.x, user.y)) {
                     unit.shoot()
                 } else {
                     console.log('invisible')

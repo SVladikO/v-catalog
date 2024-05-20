@@ -17,48 +17,50 @@ let style = {
         radius: 5,
     }
 }
-// bulletsInFly
-// user
-//  ...
-// weapon
-// units
-//   {...unit, weapon}
+
+
 
 let flyBullets = [];
 
-const weapon1 = {
-    bulletAmount: 30,
-    maxDistance: 200,
-    shootSound: '',
-    emptySound: '',
+const weapon_gun1 = {
+    bulletAmount: 8,
+    reloadBulletAmount: 8,
+    maxDistance: 150,
+    damage: 2,
+    sound: {
+        reload: './public/sound/gun1_recharge.mp3',
+        shoot: './public/sound/gun1_shoot.mp3',
+    },
     bulletDeadRadius: 15,
     distanceStep: 2,
-    cartrigesMove: [],
-    cartridgeСlip: 10,
     rechargeTime: 2,
 }
 
-const weapon2 = {
+const weapon_gun2 = {
     bulletAmount: 30,
-    maxDistance: 200,
-    shootSound: '',
-    emptySound: '',
+    reloadBulletAmount: 30,
+    maxDistance: 250,
+    damage: 2,
+    sound: {
+        reload: './public/sound/gun1_recharge.mp3',
+        shoot: './public/sound/gun2_shoot.mp3',
+    },
     bulletDeadRadius: 15,
     distanceStep: 2,
-    cartrigesMove: [],
-    cartridgeСlip: 10,
     rechargeTime: 2,
 }
 
-const weapon3 = {
-    bulletAmount: 30,
-    maxDistance: 200,
-    shootSound: '',
-    emptySound: '',
+const weapon_gun3 = {
+    bulletAmount: 2,
+    reloadBulletAmount: 2,
+    maxDistance: 100,
+    damage: 20,
+    sound: {
+        reload: './public/sound/gun3_recharge.mp3',
+        shoot: './public/sound/gun3_shoot.mp3',
+    },
     bulletDeadRadius: 15,
     distanceStep: 2,
-    cartrigesMove: [],
-    cartridgeСlip: 10,
     rechargeTime: 2,
 }
 
@@ -67,13 +69,16 @@ const UNIT_TYPE = {
     'UNIT': 'UNIT'
 }
 
+
 const user = new Unit(getRandom(20, 40), getRandom(20, 40), 4, UNIT_TYPE.USER)
 
 let units = [
-    new Unit(getRandom(20, 40), getRandom(400, 550), 10, UNIT_TYPE.UNIT),
-    new Unit(getRandom(200, 300), getRandom(300, 400), 20, UNIT_TYPE.UNIT),
-    new Unit(getRandom(700, 800), getRandom(100, 500), 40, UNIT_TYPE.UNIT),
-    new Unit(getRandom(700, 800), getRandom(400, 550), 80, UNIT_TYPE.UNIT),
+    new Unit(getRandom(20, 40), getRandom(10, 550), 10, UNIT_TYPE.UNIT, weapon_gun1),
+    new Unit(getRandom(20, 40), getRandom(300, 600), 10, UNIT_TYPE.UNIT, weapon_gun2),
+    new Unit(getRandom(10, 300), getRandom(100, 500), 20, UNIT_TYPE.UNIT, weapon_gun1),
+    new Unit(getRandom(10, 300), getRandom(100, 500), 20, UNIT_TYPE.UNIT, weapon_gun1),
+    new Unit(getRandom(700, 800), getRandom(100, 500), 40, UNIT_TYPE.UNIT, weapon_gun2),
+    new Unit(getRandom(700, 800), getRandom(400, 550), 30, UNIT_TYPE.UNIT, weapon_gun1),
 ]
 
 

@@ -1,18 +1,5 @@
-const _weapon = {
-    bulletAmount: 30,
-    maxDistance: 200,
-    //damage
-    shootSound: '',
-    emptySound: '',
-    bulletDeadRadius: 15,
-    distanceStep: 2,
-    cartrigesMove: [],
-    cartridgeСlip: 10,
-    rechargeTime: 2,
-}
-
 class Unit {
-    constructor(x = 10, y = 10, health = 100, unitType, weapon = _weapon,  step = 0.3,  dorRadius = 5, visibilityRadius = 300, radius = 5) {
+    constructor(x = 10, y = 10, health = 100, unitType, weapon = weapon_gun3, step = 1, dorRadius = 5, visibilityRadius = 200, radius = 5) {
         this.x = x;
         this.y = y;
         this.unitType = unitType;
@@ -22,7 +9,7 @@ class Unit {
         this.step = step;
         this.health = health;
         this.radius = radius;
-        this.visibilityRadius = visibilityRadius;
+        this.visibilityRadius = weapon.maxDistance;
         this.angle = 0;
 
         this.moveDirection = {
@@ -78,21 +65,30 @@ class Unit {
         return isInRangeX && isInRangeY;
     }
 
+    reloadGun() {
+        this.weapon.bulletAmount = this.weapon.reloadBulletAmount;
+        !isMute && new Audio(this.weapon.sound.reload).play();
+        window.alert_notification.textContent = '';
+    }
+
     shoot() {
-        // if (!this.weapon.bulletAmount) {
-        //     alert('no bullets')
-        //     return;
-        // }
-
-        this.weapon.bulletAmount -= 1;
-        // new Audio('./public/gun-shot-fast.mp3').play()
-        const bullet = this.getBullet()
-
-        if (!bullet) {
-            debugger
+        if (!this.weapon.bulletAmount) {
+            window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
+            !isMute && new Audio('./public/sound/gun-empty.mp3').play()
+            return;
         }
 
+        alert.textContent = 'no bullets';
+
+        this.weapon.bulletAmount -= 1;
+        !isMute && new Audio(this.weapon.sound.shoot).play()
+        const bullet = this.getBullet()
+
         flyBullets.push(bullet)
+
+        if (!this.weapon.bulletAmount) {
+            window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
+        }
     }
 
     /**
@@ -125,8 +121,7 @@ class Unit {
         ctx.fillStyle = style.user.bgColor;
         ctx.fill()
 
-
-        this.renderDirection();
+        // this.renderDirection();
 
         ctx.font = "20px Arial";
         ctx.fillText(this.health, this.x, this.y + 30);
@@ -142,11 +137,15 @@ class Unit {
     renderDirection() {
         const step = 1;
 
-        ctx.moveTo(this.x, this.y);
+        const circlX = this.x + Math.cos(this.angle) * this.visibilityRadius;
+        const circlY = this.y + Math.sin(this.angle) * this.visibilityRadius;
+
+        ctx.moveTo(circlX, circlY);
         ctx.arc(this.x, this.y, this.visibilityRadius, this.angle - step, this.angle + step, false);
-        ctx.lineTo(this.x, this.y);
+        ctx.lineTo(circlX, circlY);
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
+
         ctx.stroke();
     }
 
@@ -177,6 +176,7 @@ class Bullet {
         this.lastX = fromX;
         this.lastY = fromY;
         this.angle = angle;
+        this.weapon = weapon; //
         this.damage = 2; //
         this.radius = 5; //
         this.flyStep = 2;
@@ -186,10 +186,26 @@ class Bullet {
         this.ownerType = ownerType
     }
 
+    isMaxDistance() {
+        const distance = calcDistance(this.startX, this.startY, this.lastX, this.lastY)
+
+        return distance > this.weapon.maxDistance;
+
+        function calcDistance(x1, y1, x2, y2) {
+            const X = x2 - x1;
+            const Y = y2 - y1;
+            return Math.sqrt(X * X + Y * Y );
+        }
+    }
 
     move() {
         this.lastX = this.lastX + Math.cos(this.angle) * this.flyStep;
         this.lastY = this.lastY + Math.sin(this.angle) * this.flyStep;
+
+        if (this.isMaxDistance()) {
+            this.isDead = true;
+            return;
+        }
 
         const _isOnBlock = isOnBlock(this.lastX, this.lastY, style.bullet.radius);
         const _isOutOfX = isOutOfRange(this.lastX, 0, canvas.width)
@@ -200,7 +216,7 @@ class Bullet {
 
         //For UNIT bullet check does it kick USER
         if (this.ownerType === UNIT_TYPE.UNIT && user.isBulletOn(this.lastX, this.lastY)) {
-            user.health -= this.damage;
+            user.health -= this.weapon.damage;
             this.isDead = true;
         }
 
@@ -208,7 +224,7 @@ class Bullet {
         if (this.ownerType === UNIT_TYPE.USER) {
             units.forEach(unit => {
                 if (unit.isBulletOn(this.lastX, this.lastY)) {
-                    unit.health -= this.damage;
+                    unit.health -= this.weapon.damage;
                     this.isDead = true;
                 }
             })
@@ -221,7 +237,7 @@ class Bullet {
         ctx.fillStyle = this.isDead ? style.bullet.bgColorCrashed : style.bullet.bgColor;
 
         if (this.isKickedBox) {
-            // new Audio('./public/missed-1.mp3').play()
+            !isMute && new Audio('./public/sound/missed.mp3').play()
         }
 
         ctx.fill()
