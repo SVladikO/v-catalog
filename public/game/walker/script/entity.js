@@ -12,7 +12,7 @@ const _weapon = {
 }
 
 class Unit {
-    constructor(x = 10, y = 10, weapon = _weapon, step = 0.5, health = 100, dorRadius = 5, visibilityRadius = 300, radius = 5) {
+    constructor(x = 10, y = 10, health = 100, weapon = _weapon,  step = 0.5,  dorRadius = 5, visibilityRadius = 300, radius = 5) {
         this.x = x;
         this.y = y;
 

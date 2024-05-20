@@ -63,10 +63,10 @@ const weapon3 = {
 }
 
 let gansters = [
-    new Unit(10, 500),
-    new Unit(800, 10),
-    new Unit(600, 600),
-    new Unit(500, 550),
+    new Unit(getRandom(20, 40), getRandom(400, 550), 10),
+    new Unit(getRandom(200, 300), getRandom(300, 400), 20),
+    new Unit(getRandom(700, 800), getRandom(100, 500), 40),
+    new Unit(getRandom(700, 800), getRandom(400, 550), 80),
 ]
 
 const user = new Unit()
