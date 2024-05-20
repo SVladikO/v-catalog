@@ -17,10 +17,20 @@ let style = {
         radius: 5,
     }
 }
+// bulletsInFly
+// user
+//  ...
+// weapon
+// units
+//   {...unit, weapon}
 
-const weapon = {
+let flyBullets = [];
+
+const weapon1 = {
     bulletAmount: 30,
     maxDistance: 200,
+    shootSound: '',
+    emptySound: '',
     bulletDeadRadius: 15,
     distanceStep: 2,
     cartrigesMove: [],
@@ -28,21 +38,38 @@ const weapon = {
     rechargeTime: 2,
 }
 
-const pressedKey = {
-    'w': false, //up
-    's': false, //down
-    'a': false, //left
-    'd': false, //right
+const weapon2 = {
+    bulletAmount: 30,
+    maxDistance: 200,
+    shootSound: '',
+    emptySound: '',
+    bulletDeadRadius: 15,
+    distanceStep: 2,
+    cartrigesMove: [],
+    cartridgeСlip: 10,
+    rechargeTime: 2,
+}
+
+const weapon3 = {
+    bulletAmount: 30,
+    maxDistance: 200,
+    shootSound: '',
+    emptySound: '',
+    bulletDeadRadius: 15,
+    distanceStep: 2,
+    cartrigesMove: [],
+    cartridgeСlip: 10,
+    rechargeTime: 2,
 }
 
 let gansters = [
-    getUnit(10, 500),
-    getUnit(800, 10),
-    getUnit(600, 600),
-    getUnit(500, 550),
+    new Unit(10, 500),
+    new Unit(800, 10),
+    new Unit(600, 600),
+    new Unit(500, 550),
 ]
 
-const user = getUnit()
+const user = new Unit()
 
 const mouse = {
     x: 200,
@@ -71,23 +98,3 @@ const rectangles = [
     [getRandom(400, 1000), getRandom(500, 600)],
 ]
 const rectangleSideLenght = 40;
-
-function getUnit(
-    x = 10,
-    y = 10,
-    health = 100,
-    step = 0.5,
-    dorRadius = 5,
-    visibilityRadius = 300,
-    radius = 5,
-) {
-    return {
-        health,
-        x,
-        y,
-        step,
-        radius,
-        visibilityRadius,
-        angle: 0,
-    }
-}

@@ -26,10 +26,10 @@
     <button onclick="changeStyleToSpring()">spring</button>
 </div>
 
-
 <!--SCRIPTS-->
 
 <script src="./script/calculation.js"></script>
+<script src="./script/entity.js"></script>
 <script src="./script/global_var.js"></script>
 <script src="./script/render.js"></script>
 <script src="./script/style.js"></script>
@@ -40,10 +40,7 @@
 
     setInterval(() => {
         const intervalId = setInterval(() => {
-            gansters.forEach(unit => {
-                const bullet = getBullet(unit.x, unit.y, unit.angle);
-                weapon.cartrigesMove.push(bullet)
-            })
+            gansters.forEach(unit =>  unit.shoot(' '))
 
         }, 300)
 
@@ -57,9 +54,9 @@
         prepareCanvas();
         renderRectangles()
 
-        weapon.cartrigesMove.forEach(updateBulletData);
-        weapon.cartrigesMove.forEach(renderBullet);
-        weapon.cartrigesMove = weapon.cartrigesMove.filter(bullet => !bullet.isDead);
+        flyBullets.forEach(bullet => bullet.move());
+        flyBullets.forEach(bullet => bullet.render());
+        flyBullets = flyBullets.filter(bullet => !bullet.isDead);
 
         user.angle = getRadianAngle(user.x, mousePositionX, user.y, mousePositionY)
 
@@ -75,17 +72,17 @@
         renderLine();
     }
 
-    window.addEventListener("click", (event) => {
-        shoot(' ')
-    });
+    canvas.addEventListener("click", () => user.shoot(' '));
+
     window.addEventListener("keypress", (event) => {
-        enableMove(event.key)
-        shoot(event.key)
+        user.enableMove(event.key)
+        user.shoot(event.key)
 
         drawAll();
     });
     window.addEventListener("keyup", (event) => {
-        disableMove(event.key);
+        user.disableMove(event.key);
+
     });
     window.addEventListener("mousemove", (event) => {
         mousePositionX = event.clientX
@@ -93,7 +90,7 @@
     });
 
     function loop() {
-        changeUserCoordinates()
+        user.move();
         drawAll();
         window.requestAnimationFrame(loop);
     }

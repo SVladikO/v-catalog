@@ -1,16 +1,3 @@
-function renderBullet(bullet) {
-    const {lastX, lastY} = bullet;
-
-    ctx.beginPath();
-    ctx.arc(lastX, lastY, bullet.isDead ? weapon.bulletDeadRadius : style.bullet.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = bullet.isDead ? style.bullet.bgColorCrashed : style.bullet.bgColor;
-
-    if (bullet.isKickedBox) {
-        // new Audio('./public/missed-1.mp3').play()
-    }
-
-    ctx.fill()
-}
 
 
 function renderLine() {
