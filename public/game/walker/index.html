@@ -27,6 +27,7 @@
         bullet: {
             bgColor: '#b30000',
             bgColorCrashed: '#ffff00',
+            radius: 5,
         }
     }
     let userHealth = 20;
@@ -65,7 +66,6 @@
     const weapon = {
         bulletAmount: 30,
         maxDistance: 200,
-        bulletRadius: 5,
         bulletDeadRadius: 15,
         distanceStep: 2,
         cartrigesMove: [],
@@ -106,15 +106,15 @@
         const {lastX, lastY, angle} = bullet;
         bullet.lastX = lastX + Math.cos(angle) * weapon.distanceStep;
         bullet.lastY = lastY + Math.sin(angle) * weapon.distanceStep;
-        bullet.isKickedBox = isOnBlock(lastX, lastY);
-        bullet.isDead = isOutOfRange(lastX, 0, canvas.width) || isOutOfRange(lastY, 0, canvas.height) || isOnBlock(lastX, lastY)
+        bullet.isKickedBox = isOnBlock(lastX, lastY, style.bullet.radius);
+        bullet.isDead = isOutOfRange(lastX, 0, canvas.width) || isOutOfRange(lastY, 0, canvas.height) || isOnBlock(lastX, lastY, style.bullet.radius)
     }
 
     function renderBullet(bullet) {
         const {lastX, lastY} = bullet;
 
         ctx.beginPath();
-        ctx.arc(lastX, lastY, bullet.isDead ? weapon.bulletDeadRadius : weapon.bulletRadius, 0, 2 * Math.PI);
+        ctx.arc(lastX, lastY, bullet.isDead ? weapon.bulletDeadRadius : style.bullet.radius, 0, 2 * Math.PI);
         ctx.fillStyle = bullet.isDead ? style.bullet.bgColorCrashed : style.bullet.bgColor;
 
         if (bullet.isKickedBox) {
@@ -290,13 +290,13 @@
      * @param y
      * @returns {boolean}
      */
-    function isOnBlock(objX, objY, objectRadius) {
+    function isOnBlock(objX, objY, objRadius) {
         const rect = rectangles.find(rec => {
             const [x, y] = rec;
-            const minX = x - style.user.dorRadius;
-            const minY = y - style.user.dorRadius;
-            const maxX = minX + rectangleSideLenght + style.user.dorRadius * 2;
-            const maxY = minY + rectangleSideLenght + style.user.dorRadius * 2;
+            const minX = x - objRadius;
+            const minY = y - objRadius;
+            const maxX = minX + rectangleSideLenght + objRadius * 2;
+            const maxY = minY + rectangleSideLenght + objRadius * 2;
 
             const is = isInRange(objX, minX, maxX) && isInRange(objY, minY, maxY)
             // console.log(1234, is, `x ${minX} < ${userX} < ${maxX} ::: y ${minY} < ${userY} < ${maxY}`)
@@ -311,28 +311,28 @@
         if (pressedKey.w) {
             const modifiedY = user.y - user.step;
 
-            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY)) {
+            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY, style.user.dorRadius)) {
                 user.y = modifiedY;
             }
         }
         if (pressedKey.s) {
             const modifiedY = user.y + user.step;
 
-            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY)) {
+            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY, style.user.dorRadius)) {
                 user.y = modifiedY;
             }
         }
         if (pressedKey.a) {
             const modifiedX = user.x - user.step;
 
-            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y)) {
+            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y, style.user.dorRadius)) {
                 user.x = modifiedX;
             }
         }
         if (pressedKey.d) {
             const modifiedX = user.x + user.step;
 
-            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y)) {
+            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y, style.user.dorRadius)) {
                 user.x = modifiedX;
             }
         }
