@@ -49,7 +49,7 @@
         angle: 0,
         visibilityRadius: 300,
     }
-    
+
     const mouse = {
         x: 200,
         y: 200,
@@ -58,9 +58,35 @@
     let mousePositionX = 200;
     let mousePositionY = 200;
 
+    function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
     //Object on the canvas
     // const rectangles = [[200, 200]];
-    const rectangles = [[40, 40], [200, 200], [300, 80], [300, 400], [700, 500], [500, 10], [700, 50]];
+    const rectangles = [
+        [getRandom(20, 100), getRandom(100, 200)],
+        [getRandom(20, 100), getRandom(100, 200)],
+        [getRandom(20, 100), getRandom(100, 200)],
+        [getRandom(100, 300), getRandom(20, 200)],
+
+        [getRandom(20, 200), getRandom(400, 600)],
+        [getRandom(20, 200), getRandom(400, 600)],
+        [getRandom(20, 200), getRandom(400, 600)],
+        [getRandom(20, 200), getRandom(400, 600)],
+
+        [getRandom(400, 1000), getRandom(20, 100)],
+        [getRandom(400, 1000), getRandom(20, 100)],
+        [getRandom(400, 1000), getRandom(20, 100)],
+        [getRandom(400, 1000), getRandom(100, 200)],
+
+        [getRandom(400, 1000), getRandom(300, 400)],
+        [getRandom(400, 1000), getRandom(300, 400)],
+        [getRandom(400, 1000), getRandom(400, 500)],
+        [getRandom(400, 1000), getRandom(400, 500)],
+        [getRandom(400, 1000), getRandom(500, 600)],
+        [getRandom(400, 1000), getRandom(500, 600)],
+    ]
     const rectangleSideLenght = 40;
 
     const weapon = {
