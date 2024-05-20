@@ -1,0 +1,46 @@
+function getRadianAngle(fromX, toX, fromY, toY) {
+    var dx = toX - fromX;
+    var dy = toY - fromY;
+
+    return Math.atan2(dy, dx);
+}
+
+function isInCanvas(modifiedPosition, max) {
+    return !isOutOfRange(modifiedPosition, 0 + style.user.dorRadius, max - style.user.dorRadius)
+}
+
+function isOutOfRange(num, min, max) {
+    return num <= min || num >= max;
+}
+
+function isInRange(num, min, max) {
+    return num >= min && num <= max;
+}
+
+/**
+ * Check is new user coordinates move on block
+ *iK
+ * @param x
+ * @param y
+ * @returns {boolean}
+ */
+function isOnBlock(objX, objY, objRadius) {
+    const rect = rectangles.find(rec => {
+        const [x, y] = rec;
+        const minX = x - objRadius;
+        const minY = y - objRadius;
+        const maxX = minX + rectangleSideLenght + objRadius * 2;
+        const maxY = minY + rectangleSideLenght + objRadius * 2;
+
+        const is = isInRange(objX, minX, maxX) && isInRange(objY, minY, maxY)
+        // console.log(1234, is, `x ${minX} < ${userX} < ${maxX} ::: y ${minY} < ${userY} < ${maxY}`)
+
+        return is;
+    })
+
+    return !!rect;
+}
+
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}

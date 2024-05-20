@@ -7,87 +7,20 @@
 <body>
 <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;">
 </canvas>
+<button onclick="changeStyleToWinter()">winter</button>
+<button onclick="changeStyleToSummer()">summer</button>
+<button onclick="changeStyleToSpring()">spring</button>
+<script src="./script/calculation.js"></script>
+<script src="./script/global_var.js"></script>
+<script src="./script/render.js"></script>
+<script src="./script/style.js"></script>
 <script>
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
-    const style = {
-        board: {
-            bgColor: '#ffc34d',
-        },
-        box: {
-            bgColor: '#663300',
-            borderColor: "#4d2600",
-            borderLineWidth: "#4d2600",
-        },
-        user: {
-            bgColor: '#000',
-            dorRadius: 10,
-        },
-        bullet: {
-            bgColor: '#b30000',
-            bgColorCrashed: '#ffff00',
-            radius: 5,
-        }
-    }
-    let userHealth = 20;
-
-    let ganster1Health = 20;
-    let ganster1X = 900;
-    let ganster1Y = 10;
-    let ganster1Angle = 0
-
-    let ganster2Health = 20;
-    let ganster2X = 900;
-    let ganster2Y = 550;
-    let ganster2Angle = 0
-
-    const user = {
-        x: 10,
-        y: 10,
-        step: 0.5,
-        angle: 0,
-        visibilityRadius: 300,
-    }
-
-    const mouse = {
-        x: 200,
-        y: 200,
-    }
-
-    let mousePositionX = 200;
-    let mousePositionY = 200;
-
-    function getRandom(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min
-    }
 
     //Object on the canvas
     // const rectangles = [[200, 200]];
-    const rectangles = [
-        [getRandom(20, 100), getRandom(100, 200)],
-        [getRandom(20, 100), getRandom(100, 200)],
-        [getRandom(20, 100), getRandom(100, 200)],
-        [getRandom(100, 300), getRandom(20, 200)],
-
-        [getRandom(20, 200), getRandom(400, 600)],
-        [getRandom(20, 200), getRandom(400, 600)],
-        [getRandom(20, 200), getRandom(400, 600)],
-        [getRandom(20, 200), getRandom(400, 600)],
-
-        [getRandom(400, 1000), getRandom(20, 100)],
-        [getRandom(400, 1000), getRandom(20, 100)],
-        [getRandom(400, 1000), getRandom(20, 100)],
-        [getRandom(400, 1000), getRandom(100, 200)],
-
-        [getRandom(400, 1000), getRandom(300, 400)],
-        [getRandom(400, 1000), getRandom(300, 400)],
-        [getRandom(400, 1000), getRandom(400, 500)],
-        [getRandom(400, 1000), getRandom(400, 500)],
-        [getRandom(400, 1000), getRandom(500, 600)],
-        [getRandom(400, 1000), getRandom(500, 600)],
-    ]
-    const rectangleSideLenght = 40;
 
     const weapon = {
         bulletAmount: 30,
@@ -136,20 +69,6 @@
         bullet.isDead = isOutOfRange(lastX, 0, canvas.width) || isOutOfRange(lastY, 0, canvas.height) || isOnBlock(lastX, lastY, style.bullet.radius)
     }
 
-    function renderBullet(bullet) {
-        const {lastX, lastY} = bullet;
-
-        ctx.beginPath();
-        ctx.arc(lastX, lastY, bullet.isDead ? weapon.bulletDeadRadius : style.bullet.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = bullet.isDead ? style.bullet.bgColorCrashed : style.bullet.bgColor;
-
-        if (bullet.isKickedBox) {
-            // new Audio('./public/missed-1.mp3').play()
-        }
-
-        ctx.fill()
-    }
-
     function clearCanvas() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
@@ -157,31 +76,6 @@
     function prepareCanvas() {
         ctx.fillStyle = style.board.bgColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height)
-    }
-
-    function renderLine() {
-        ctx.beginPath();
-        ctx.moveTo(user.x, user.y);
-        ctx.lineTo(mousePositionX, mousePositionY);
-        ctx.stroke();
-    }
-
-    function renderRectangles() {
-        rectangles.forEach(coordinates => {
-            const [x, y] = coordinates;
-            renderRectangle(x, y);
-        })
-    }
-
-    function renderRectangle(x, y) {
-        ctx.rect(x, y, rectangleSideLenght, rectangleSideLenght);
-        ctx.fillStyle = style.box.bgColor;
-        ctx.fill()
-        ctx.strokeStyle = style.box.borderColor;
-        ctx.lineWidth = style.box.borderLineWidth;
-        ctx.stroke();
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
     }
 
     setInterval(() => {
@@ -198,30 +92,6 @@
         }, 1000)
     }, 4000)
 
-    function getRadianAngle(fromX, toX, fromY, toY) {
-        var dx = toX - fromX;
-        var dy = toY - fromY;
-
-        return Math.atan2(dy, dx);
-    }
-
-    function renderUser(x, y) {
-        ctx.beginPath();
-        ctx.arc(x, y, style.user.dorRadius, 0, 300);
-        ctx.fillStyle = style.user.bgColor;
-        ctx.fill()
-    }
-
-    function renderUserDirection(x, y, angle) {
-        const step = 1;
-
-        ctx.moveTo(x, y);
-        ctx.arc(x, y, user.visibilityRadius, angle - step, angle + step, false);
-        ctx.lineTo(x, y);
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-    }
 
     function drawAll() {
         clearCanvas();
@@ -298,42 +168,6 @@
      */
     function disableMove(key) {
         pressedKey[key.toLowerCase()] = false;
-    }
-
-    function isInCanvas(modifiedPosition, max) {
-        return !isOutOfRange(modifiedPosition, 0 + style.user.dorRadius, max - style.user.dorRadius)
-    }
-
-    function isOutOfRange(num, min, max) {
-        return num <= min || num >= max;
-    }
-
-    function isInRange(num, min, max) {
-        return num >= min && num <= max;
-    }
-
-    /**
-     * Check is new user coordinates move on block
-     *
-     * @param x
-     * @param y
-     * @returns {boolean}
-     */
-    function isOnBlock(objX, objY, objRadius) {
-        const rect = rectangles.find(rec => {
-            const [x, y] = rec;
-            const minX = x - objRadius;
-            const minY = y - objRadius;
-            const maxX = minX + rectangleSideLenght + objRadius * 2;
-            const maxY = minY + rectangleSideLenght + objRadius * 2;
-
-            const is = isInRange(objX, minX, maxX) && isInRange(objY, minY, maxY)
-            // console.log(1234, is, `x ${minX} < ${userX} < ${maxX} ::: y ${minY} < ${userY} < ${maxY}`)
-
-            return is;
-        })
-
-        return !!rect;
     }
 
     function changeUserCoordinates() {
