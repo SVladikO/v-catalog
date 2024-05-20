@@ -35,36 +35,14 @@ const pressedKey = {
     'd': false, //right
 }
 
-let ganster1X = 900;
-let ganster1Y = 10;
-let ganster1Angle = 0
+let gansters = [
+    getUnit(10, 500),
+    getUnit(800, 10),
+    getUnit(600, 600),
+    getUnit(500, 550),
+]
 
-let ganster2Health = 20;
-let ganster2X = 900;
-let ganster2Y = 550;
-let ganster2Angle = 0
-
-let gansters = []
-
-function getUser(x = 10, y = 10, health = 100, step = 0.5, visibilityRadius = 300,) {
-    return {
-        health,
-        x,
-        y,
-        step,
-        visibilityRadius,
-        angle: 0,
-    }
-}
-
-const user = {
-    health: 100,
-    x: 10,
-    y: 10,
-    step: 0.5,
-    angle: 0,
-    visibilityRadius: 300,
-}
+const user = getUnit()
 
 const mouse = {
     x: 200,
@@ -93,3 +71,23 @@ const rectangles = [
     [getRandom(400, 1000), getRandom(500, 600)],
 ]
 const rectangleSideLenght = 40;
+
+function getUnit(
+    x = 10,
+    y = 10,
+    health = 100,
+    step = 0.5,
+    dorRadius = 5,
+    visibilityRadius = 300,
+    radius = 5,
+) {
+    return {
+        health,
+        x,
+        y,
+        step,
+        radius,
+        visibilityRadius,
+        angle: 0,
+    }
+}

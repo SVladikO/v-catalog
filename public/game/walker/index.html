@@ -27,23 +27,24 @@
 </div>
 
 
+<!--SCRIPTS-->
+
 <script src="./script/calculation.js"></script>
 <script src="./script/global_var.js"></script>
 <script src="./script/render.js"></script>
 <script src="./script/style.js"></script>
+
 <script>
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
-
-
     setInterval(() => {
         const intervalId = setInterval(() => {
-            const bullet = getCartridge(ganster1X, ganster1Y, ganster1Angle);
-            weapon.cartrigesMove.push(bullet)
+            gansters.forEach(unit => {
+                const bullet = getBullet(unit.x, unit.y, unit.angle);
+                weapon.cartrigesMove.push(bullet)
+            })
 
-            const bullet2 = getCartridge(ganster2X, ganster2Y, ganster2Angle);
-            weapon.cartrigesMove.push(bullet2)
         }, 300)
 
         setTimeout(() => {
@@ -61,17 +62,15 @@
         weapon.cartrigesMove = weapon.cartrigesMove.filter(bullet => !bullet.isDead);
 
         user.angle = getRadianAngle(user.x, mousePositionX, user.y, mousePositionY)
-        ganster1Angle = getRadianAngle(ganster1X, user.x, ganster1Y, user.y)
-        ganster2Angle = getRadianAngle(ganster2X, user.x, ganster2Y, user.y)
 
         renderUnit(user.x, user.y);
         renderUnitDirection(user.x, user.y, user.angle);
 
-        renderUnit(ganster1X, ganster1Y);
-        renderUnitDirection(ganster1X, ganster1Y, ganster1Angle);
-
-        renderUnit(ganster2X, ganster2Y);
-        renderUnitDirection(ganster2X, ganster2Y, ganster2Angle);
+        gansters.forEach(unit => {
+            unit.angle = getRadianAngle(unit.x, user.x, unit.y, user.y)
+            renderUnit(unit.x, unit.y);
+            renderUnitDirection(unit.x, unit.y, unit.angle);
+        })
 
         renderLine();
     }

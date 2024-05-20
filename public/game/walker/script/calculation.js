@@ -95,8 +95,9 @@ function disableMove(key) {
     pressedKey[key.toLowerCase()] = false;
 }
 
-function getCartridge(fromX, fromY, angle) {
+function getBullet(fromX, fromY, angle) {
     return {
+        damage: 2,
         currentDistance: 0,
         startX: fromX,
         startY: fromY,
@@ -120,7 +121,7 @@ function shoot(key) {
 
     weapon.bulletAmount -= 1;
     // new Audio('./public/gun-shot-fast.mp3').play()
-    const bullet = getCartridge(user.x, user.y, user.angle);
+    const bullet = getBullet(user.x, user.y, user.angle);
     weapon.cartrigesMove.push(bullet)
 }
 
@@ -130,6 +131,16 @@ function updateBulletData(bullet) {
     bullet.lastY = lastY + Math.sin(angle) * weapon.distanceStep;
     bullet.isKickedBox = isOnBlock(lastX, lastY, style.bullet.radius);
     bullet.isDead = isOutOfRange(lastX, 0, canvas.width) || isOutOfRange(lastY, 0, canvas.height) || isOnBlock(lastX, lastY, style.bullet.radius)
+
+    // gansters.forEach(unit => {
+    //     const is = isInRange(lastX, unit.x - unit.radius, unit.x + unit.radius) || isInRange(lastY, unit.y - unit.radius, unit.y + unit.radius)
+    //
+    //     if (is) {
+    //         bullet.isKickedBox = is;
+    //         bullet.isDead = is;
+    //         unit.health-=bullet.damage;
+    //     }
+    // })
 }
 
 function clearCanvas() {
