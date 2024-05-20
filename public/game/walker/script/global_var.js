@@ -62,14 +62,20 @@ const weapon3 = {
     rechargeTime: 2,
 }
 
-let gansters = [
-    new Unit(getRandom(20, 40), getRandom(400, 550), 10),
-    new Unit(getRandom(200, 300), getRandom(300, 400), 20),
-    new Unit(getRandom(700, 800), getRandom(100, 500), 40),
-    new Unit(getRandom(700, 800), getRandom(400, 550), 80),
+const UNIT_TYPE = {
+    'USER': 'USER',
+    'UNIT': 'UNIT'
+}
+
+const user = new Unit(getRandom(20, 40), getRandom(20, 40), 4, UNIT_TYPE.USER)
+
+let units = [
+    new Unit(getRandom(20, 40), getRandom(400, 550), 10, UNIT_TYPE.UNIT),
+    new Unit(getRandom(200, 300), getRandom(300, 400), 20, UNIT_TYPE.UNIT),
+    new Unit(getRandom(700, 800), getRandom(100, 500), 40, UNIT_TYPE.UNIT),
+    new Unit(getRandom(700, 800), getRandom(400, 550), 80, UNIT_TYPE.UNIT),
 ]
 
-const user = new Unit()
 
 const mouse = {
     x: 200,

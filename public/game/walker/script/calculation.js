@@ -28,8 +28,8 @@ function isOnBlock(objX, objY, objRadius) {
     const rect = rectangles.find(rec => {
         const [x, y] = rec;
         const minX = x - objRadius;
-        const minY = y - objRadius;
         const maxX = minX + rectangleSideLenght + objRadius * 2;
+        const minY = y - objRadius;
         const maxY = minY + rectangleSideLenght + objRadius * 2;
 
         const is = isInRange(objX, minX, maxX) && isInRange(objY, minY, maxY)

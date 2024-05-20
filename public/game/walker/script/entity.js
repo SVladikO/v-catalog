@@ -12,9 +12,10 @@ const _weapon = {
 }
 
 class Unit {
-    constructor(x = 10, y = 10, health = 100, weapon = _weapon,  step = 0.5,  dorRadius = 5, visibilityRadius = 300, radius = 5) {
+    constructor(x = 10, y = 10, health = 100, unitType, weapon = _weapon,  step = 0.3,  dorRadius = 5, visibilityRadius = 300, radius = 5) {
         this.x = x;
         this.y = y;
+        this.unitType = unitType;
 
         this.weapon = weapon;
 
@@ -63,6 +64,20 @@ class Unit {
         }
     }
 
+    /**
+     * Unit will check is user in visible distance. Is it possible to shoot ?
+     *
+     * @returns {*}
+     */
+    isVisibleForMe(userX, userY) {
+        const radius = this.visibilityRadius;
+
+        const isInRangeX = isInRange(userX, this.x - radius, this.x + radius)
+        const isInRangeY = isInRange(userY, this.y - radius, this.y + radius)
+
+        return isInRangeX && isInRangeY;
+    }
+
     shoot() {
         // if (!this.weapon.bulletAmount) {
         //     alert('no bullets')
@@ -86,7 +101,6 @@ class Unit {
      * @param key - Pressed keyboard key.
      */
     enableMove(key) {
-        console.log('e', key)
         this.moveDirection[key.toLowerCase()] = true;
     }
 
@@ -96,12 +110,11 @@ class Unit {
      * @param key - Pressed keyboard key.
      */
     disableMove(key) {
-        console.log('d', key)
         this.moveDirection[key.toLowerCase()] = false;
     }
 
     getBullet() {
-        return new Bullet(this.x, this.y, this.angle, this.weapon);
+        return new Bullet(this.x, this.y, this.angle, this.weapon, this.unitType);
     }
 
     render(toX, toY) {
@@ -136,10 +149,29 @@ class Unit {
         ctx.lineWidth = 1;
         ctx.stroke();
     }
+
+    isAlive() {
+        return this.health > 0;
+    }
+
+    /**
+     * Check is bullet on unit to minus unit health.
+     *
+     * @param x - bullet x.
+     * @param y - bullet y.
+     */
+    isBulletOn(x, y) {
+        const radius = style.user.dorRadius;
+        const isInRangeX = isInRange(x, this.x - radius, this.x + radius)
+        const isInRangeY = isInRange(y, this.y - radius, this.y + radius)
+
+        return isInRangeX && isInRangeY;
+    }
+
 }
 
 class Bullet {
-    constructor(fromX, fromY, angle, weapon) {
+    constructor(fromX, fromY, angle, weapon, ownerType) {
         this.startX = fromX; // we need to calculate max distance
         this.startY = fromY; // we need to calculate max distance
         this.lastX = fromX;
@@ -151,7 +183,9 @@ class Bullet {
         this.currentDistance = 0; //
         this.isDead = false;
         this.isKickedBox = false;
+        this.ownerType = ownerType
     }
+
 
     move() {
         this.lastX = this.lastX + Math.cos(this.angle) * this.flyStep;
@@ -164,15 +198,21 @@ class Bullet {
         this.isKickedBox = _isOnBlock;
         this.isDead = _isOnBlock || _isOutOfX || _isOutY;
 
-        // gansters.forEach(unit => {
-        //     const is = isInRange(this.lastX, unit.x - unit.radius, unit.x + unit.radius) || isInRange(lastY, unit.y - unit.radius, unit.y + unit.radius)
-        //
-        //     if (is) {
-        //         bullet.isKickedBox = is;
-        //         bullet.isDead = is;
-        //         unit.health-=bullet.damage;
-        //     }
-        // })
+        //For UNIT bullet check does it kick USER
+        if (this.ownerType === UNIT_TYPE.UNIT && user.isBulletOn(this.lastX, this.lastY)) {
+            user.health -= this.damage;
+            this.isDead = true;
+        }
+
+        //For unit bullet check does it kick UNIT
+        if (this.ownerType === UNIT_TYPE.USER) {
+            units.forEach(unit => {
+                if (unit.isBulletOn(this.lastX, this.lastY)) {
+                    unit.health -= this.damage;
+                    this.isDead = true;
+                }
+            })
+        }
     }
 
     render() {

@@ -16,6 +16,8 @@
 </head>
 <body>
 <div>
+    <h1 id="notification"></h1>
+    <h2 id="health"></h2>
     <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;">
     </canvas>
 </div>
@@ -38,33 +40,32 @@
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
-    setInterval(() => {
-        const intervalId = setInterval(() => {
-            gansters.forEach(unit =>  unit.shoot(' '))
-
-        }, 300)
-
-        setTimeout(() => {
-            clearInterval(intervalId)
-        }, 1000)
-    }, 4000)
-
     function drawAll() {
         clearCanvas();
         prepareCanvas();
         renderRectangles()
+
+        health.textContent = 'Health: ' + user.health + '    _ Bullet amount: ' + user.weapon.bulletAmount
 
         flyBullets.forEach(bullet => bullet.move());
         flyBullets.forEach(bullet => bullet.render());
         flyBullets = flyBullets.filter(bullet => !bullet.isDead);
 
         user.render(mousePositionX, mousePositionY);
-        gansters.forEach(unit => unit.render(user.x, user.y))
+        units
+            .filter(unit => user.isVisibleForMe(unit.x, unit.y))
+            .forEach(unit => unit.render(user.x, user.y))
+
+        units = units.filter(unit => unit.isAlive())
+
+        if (!user.isAlive()) {
+            notification.textContent = 'GAME OVER';
+        }
 
         renderLine();
     }
 
-    canvas.addEventListener("click", () => user.shoot(' '));
+    canvas.addEventListener("click", () => user.shoot());
 
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)
@@ -88,6 +89,26 @@
     }
 
     loop();
+
+
+
+    setInterval(() => {
+        const intervalId = setInterval(() => {
+            units.forEach(unit =>  {
+                if (unit.isVisibleForMe(user.x, user.y)){
+                    unit.shoot()
+                } else {
+                    console.log('invisible')
+                }
+            })
+
+        }, 300)
+
+        setTimeout(() => {
+            clearInterval(intervalId)
+        }, 1000)
+    }, 4000)
+
 
 </script>
 </body>
