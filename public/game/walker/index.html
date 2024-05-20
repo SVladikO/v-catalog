@@ -11,38 +11,55 @@
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
-    const canvasBgColor = "#ffc34d";
+    const style = {
+        board: {
+            bgColor: '#ffc34d',
+        },
+        box: {
+            bgColor: '#663300',
+            borderColor: "#4d2600",
+            borderLineWidth: "#4d2600",
+        },
+        user: {
+            bgColor: '#000',
+            dorRadius: 10,
+        },
+        bullet: {
+            bgColor: '#b30000',
+            bgColorCrashed: '#ffff00',
+        }
+    }
+    let userHealth = 20;
 
-    const userBgColor = "black";
-    const userBorderLineWidth = 1;
-    const bulletBgColor = '#b30000';
-    const bulletDeadBgColor = '#ffff00';
-
-    const boxBgColor = "#663300";
-    const boxBorderColor = "#4d2600";
-    const boxBorderLineWidth = 5;
-
+    let ganster1Health = 20;
     let ganster1X = 900;
     let ganster1Y = 10;
     let ganster1Angle = 0
 
+    let ganster2Health = 20;
     let ganster2X = 900;
     let ganster2Y = 550;
     let ganster2Angle = 0
 
-    const userDotRadius = 10;
-    let userX = 180;
-    let userY = 180;
-    let visibilityRadius = 100;
-    let userMoveStep = 0.5;
-    let userAngle = 0
+    const user = {
+        x: 10,
+        y: 10,
+        step: 0.5,
+        angle: 0,
+        visibilityRadius: 300,
+    }
+    
+    const mouse = {
+        x: 200,
+        y: 200,
+    }
 
     let mousePositionX = 200;
     let mousePositionY = 200;
 
     //Object on the canvas
     // const rectangles = [[200, 200]];
-    const rectangles = [[10, 10], [200, 200], [300, 80], [300, 400], [700, 500], [500, 10], [700, 50]];
+    const rectangles = [[40, 40], [200, 200], [300, 80], [300, 400], [700, 500], [500, 10], [700, 50]];
     const rectangleSideLenght = 40;
 
     const weapon = {
@@ -50,8 +67,6 @@
         maxDistance: 200,
         bulletRadius: 5,
         bulletDeadRadius: 15,
-        bulletBgColor,
-        bulletDeadBgColor,
         distanceStep: 2,
         cartrigesMove: [],
         cartridgeСlip: 10,
@@ -82,8 +97,8 @@
         }
 
         weapon.bulletAmount -= 1;
-        new Audio('./public/gun-shot-fast.mp3').play()
-        const bullet = getCartridge(userX, userY, userAngle);
+        // new Audio('./public/gun-shot-fast.mp3').play()
+        const bullet = getCartridge(user.x, user.y, user.angle);
         weapon.cartrigesMove.push(bullet)
     }
 
@@ -100,7 +115,7 @@
 
         ctx.beginPath();
         ctx.arc(lastX, lastY, bullet.isDead ? weapon.bulletDeadRadius : weapon.bulletRadius, 0, 2 * Math.PI);
-        ctx.fillStyle = bullet.isDead ? weapon.bulletDeadBgColor : weapon.bulletBgColor;
+        ctx.fillStyle = bullet.isDead ? style.bullet.bgColorCrashed : style.bullet.bgColor;
 
         if (bullet.isKickedBox) {
             // new Audio('./public/missed-1.mp3').play()
@@ -114,13 +129,13 @@
     }
 
     function prepareCanvas() {
-        ctx.fillStyle = canvasBgColor;
+        ctx.fillStyle = style.board.bgColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
 
     function renderLine() {
         ctx.beginPath();
-        ctx.moveTo(userX, userY);
+        ctx.moveTo(user.x, user.y);
         ctx.lineTo(mousePositionX, mousePositionY);
         ctx.stroke();
     }
@@ -134,10 +149,10 @@
 
     function renderRectangle(x, y) {
         ctx.rect(x, y, rectangleSideLenght, rectangleSideLenght);
-        ctx.fillStyle = boxBgColor;
+        ctx.fillStyle = style.box.bgColor;
         ctx.fill()
-        ctx.strokeStyle = boxBorderColor;
-        ctx.lineWidth = boxBorderLineWidth;
+        ctx.strokeStyle = style.box.borderColor;
+        ctx.lineWidth = style.box.borderLineWidth;
         ctx.stroke();
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
@@ -146,7 +161,7 @@
     setInterval(() => {
         const bullet = getCartridge(ganster1X, ganster1Y, ganster1Angle);
         weapon.cartrigesMove.push(bullet)
-    }, 1000)
+    }, 500)
 
 
     setInterval(() => {
@@ -163,8 +178,8 @@
 
     function renderUser(x, y) {
         ctx.beginPath();
-        ctx.arc(x, y, userDotRadius, 0, 300);
-        ctx.fillStyle = userBgColor;
+        ctx.arc(x, y, style.user.dorRadius, 0, 300);
+        ctx.fillStyle = style.user.bgColor;
         ctx.fill()
     }
 
@@ -172,7 +187,7 @@
         const step = 1;
 
         ctx.moveTo(x, y);
-        ctx.arc(x, y, visibilityRadius, angle - step, angle + step, false);
+        ctx.arc(x, y, user.visibilityRadius, angle - step, angle + step, false);
         ctx.lineTo(x, y);
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
@@ -188,12 +203,12 @@
         weapon.cartrigesMove.forEach(renderBullet);
         weapon.cartrigesMove = weapon.cartrigesMove.filter(bullet => !bullet.isDead);
 
-        userAngle = getRadianAngle(userX, mousePositionX, userY, mousePositionY)
-        ganster1Angle = getRadianAngle(ganster1X, userX, ganster1Y, userY)
-        ganster2Angle = getRadianAngle(ganster2X, userX, ganster2Y, userY)
+        user.angle = getRadianAngle(user.x, mousePositionX, user.y, mousePositionY)
+        ganster1Angle = getRadianAngle(ganster1X, user.x, ganster1Y, user.y)
+        ganster2Angle = getRadianAngle(ganster2X, user.x, ganster2Y, user.y)
 
-        renderUser(userX, userY);
-        renderUserDirection(userX, userY, userAngle);
+        renderUser(user.x, user.y);
+        renderUserDirection(user.x, user.y, user.angle);
 
         renderUser(ganster1X, ganster1Y);
         renderUserDirection(ganster1X, ganster1Y, ganster1Angle);
@@ -215,19 +230,6 @@
         shoot(' ')
     });
     window.addEventListener("keypress", (event) => {
-        // switch (event.keyCode) {
-        //     case 87: //move up
-        //         userY -= userMoveStep;
-        //         break;
-        //     case 83: //move down
-        //         userY += userMoveStep;
-        //         break;
-        //     case 65: //move left
-        //         userX -= userMoveStep;
-        //         break;
-        //     case 68: //move right
-        //         userX += userMoveStep;
-        // }
         enableMove(event.key)
         shoot(event.key)
 
@@ -270,7 +272,7 @@
     }
 
     function isInCanvas(modifiedPosition, max) {
-        return !isOutOfRange(modifiedPosition, 0 + userDotRadius, max - userDotRadius)
+        return !isOutOfRange(modifiedPosition, 0 + style.user.dorRadius, max - style.user.dorRadius)
     }
 
     function isOutOfRange(num, min, max) {
@@ -284,19 +286,19 @@
     /**
      * Check is new user coordinates move on block
      *
-     * @param userX
-     * @param userY
+     * @param x
+     * @param y
      * @returns {boolean}
      */
-    function isOnBlock(userX, userY) {
+    function isOnBlock(objX, objY, objectRadius) {
         const rect = rectangles.find(rec => {
             const [x, y] = rec;
-            const minX = x - userDotRadius;
-            const minY = y - userDotRadius;
-            const maxX = minX + rectangleSideLenght + userDotRadius + userDotRadius;
-            const maxY = minY + rectangleSideLenght + userDotRadius + userDotRadius;
+            const minX = x - style.user.dorRadius;
+            const minY = y - style.user.dorRadius;
+            const maxX = minX + rectangleSideLenght + style.user.dorRadius * 2;
+            const maxY = minY + rectangleSideLenght + style.user.dorRadius * 2;
 
-            const is = isInRange(userX, minX, maxX) && isInRange(userY, minY, maxY)
+            const is = isInRange(objX, minX, maxX) && isInRange(objY, minY, maxY)
             // console.log(1234, is, `x ${minX} < ${userX} < ${maxX} ::: y ${minY} < ${userY} < ${maxY}`)
 
             return is;
@@ -307,31 +309,31 @@
 
     function changeUserCoordinates() {
         if (pressedKey.w) {
-            const modifiedUserY = userY - userMoveStep;
+            const modifiedY = user.y - user.step;
 
-            if (isInCanvas(modifiedUserY, canvas.height) && !isOnBlock(userX, modifiedUserY)) {
-                userY = modifiedUserY;
+            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY)) {
+                user.y = modifiedY;
             }
         }
         if (pressedKey.s) {
-            const modifiedUserY = userY + userMoveStep;
+            const modifiedY = user.y + user.step;
 
-            if (isInCanvas(modifiedUserY, canvas.height) && !isOnBlock(userX, modifiedUserY)) {
-                userY = modifiedUserY;
+            if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(user.x, modifiedY)) {
+                user.y = modifiedY;
             }
         }
         if (pressedKey.a) {
-            const modifiedUserX = userX - userMoveStep;
+            const modifiedX = user.x - user.step;
 
-            if (isInCanvas(modifiedUserX, canvas.width) && !isOnBlock(modifiedUserX, userY)) {
-                userX = modifiedUserX;
+            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y)) {
+                user.x = modifiedX;
             }
         }
         if (pressedKey.d) {
-            const modifiedUserX = userX + userMoveStep;
+            const modifiedX = user.x + user.step;
 
-            if (isInCanvas(modifiedUserX, canvas.width) && !isOnBlock(modifiedUserX, userY)) {
-                userX = modifiedUserX;
+            if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, user.y)) {
+                user.x = modifiedX;
             }
         }
     }
