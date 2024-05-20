@@ -185,15 +185,18 @@
     }
 
     setInterval(() => {
-        const bullet = getCartridge(ganster1X, ganster1Y, ganster1Angle);
-        weapon.cartrigesMove.push(bullet)
-    }, 500)
+        const intervalId = setInterval(() => {
+            const bullet = getCartridge(ganster1X, ganster1Y, ganster1Angle);
+            weapon.cartrigesMove.push(bullet)
 
+            const bullet2 = getCartridge(ganster2X, ganster2Y, ganster2Angle);
+            weapon.cartrigesMove.push(bullet2)
+        }, 300)
 
-    setInterval(() => {
-        const bullet = getCartridge(ganster2X, ganster2Y, ganster2Angle);
-        weapon.cartrigesMove.push(bullet)
-    }, 1500)
+        setTimeout(() => {
+            clearInterval(intervalId)
+        }, 1000)
+    }, 4000)
 
     function getRadianAngle(fromX, toX, fromY, toY) {
         var dx = toX - fromX;
