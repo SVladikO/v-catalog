@@ -61,8 +61,8 @@ const weapon_gun3 = {
     type: GUN_TYPE.GUN,
     bulletAmount: 2,
     reloadBulletAmount: 2,
-    maxDistance: 200,
-    damage: 20,
+    maxDistance: 100,
+    damage: 4,
     sound: {
         reload: './public/sound/gun3_recharge.mp3',
         shoot: './public/sound/gun3_shoot.mp3',
@@ -81,7 +81,7 @@ function getUnit(x, y, health, weapon) {
     return new Unit(x, y, health, UNIT_TYPE.UNIT, weapon);
 }
 
-function getPistolUnit(x, y, health = 6) {
+function getPistolUnit(x, y, health = 3) {
     return getUnit(x, y, health, weapon_gun1);
 }
 
@@ -122,7 +122,7 @@ const levels = [
             [450, 50, 100, 100],
         ],
         units: [
-            getPistolUnit(220, 150),
+            getPistolUnit(220, 130),
             getPistolUnit(600, 60),
             getPistolUnit(830, 320),
         ]
@@ -130,6 +130,7 @@ const levels = [
     // level 2
     {
         recs: [
+            [110, 35, 20, 20],
             [0, 250, 350, 350],
             [150, 100, 150, 150],
             [600, 0, 400, 300],
@@ -139,7 +140,7 @@ const levels = [
             [580, 430, 80, 80],
         ],
         units: [
-            getPistolUnit(190, 40),
+            getPistolUnit(190, 20),
             getPistolUnit(330, 190),
             getGunUnit(450, 164),
             getPistolUnit(620, 325),
@@ -160,7 +161,7 @@ const levels = [
             [900, 90, 50, 210],
         ],
         units: [
-            getPistolUnit(80, 168),
+            getPistolUnit(10, 168),
             getPistolUnit(310, 96),
             getGunUnit(510, 30),
             getAkUnit(590, 40),
@@ -177,7 +178,7 @@ const levels = [
     // level 4
     {
         recs: [
-            [34, 90, 20, 50],
+            [65, 90, 10, 10],
             [120, 0, 70, 200],
             [50, 200, 70, 100],
             [95, 300, 25, 100],
@@ -209,6 +210,61 @@ const levels = [
             getGunUnit(980, 536),
             getGunUnit(937, 583),
         ]
+    },
+    // level 5
+    {
+        recs: [
+            [0, 140, 80, 300],
+            [150, 0, 80, 300],
+            [80, 440, 600, 100],
+            [400, 100, 150, 350],
+            [680, 240, 200, 80],
+            [780, 300, 100, 240],
+            [680, 0, 200, 80],
+            [960, 280, 50, 80],
+        ],
+        units: [
+            getPistolUnit(96, 205),
+            getAkUnit(126, 380),
+            getPistolUnit(220, 325),
+            getPistolUnit(420, 30),
+            getPistolUnit(580, 140),
+            getPistolUnit(570, 315),
+            getAkUnit(610, 315),
+            getAkUnit(750, 355),
+            getGunUnit(700, 460),
+            getPistolUnit(915, 35),
+            getPistolUnit(915, 427),
+            getAkUnit(360, 400),
+            getAkUnit(650, 320),
+            getAkUnit(520, 570),
+        ]
+    },
+    // level 6
+    {
+        recs: [
+            [60, 160, 150, 80],
+            [140, 60, 70, 110],
+            [210, 180, 450, 150],
+            [580, 100, 80, 100],
+            [900, 255, 100, 50],
+            [650, 500, 150, 100],
+            [0, 350, 100, 100],
+        ],
+        units: [
+            getAkUnit(940, 540),
+            getAkUnit(420, 520),
+            getPistolUnit(860, 270),
+            getPistolUnit(730, 40),
+            getPistolUnit(140, 330),
+            getPistolUnit(190, 30),
+            getAkUnit(30, 200),
+            getAkUnit(950, 100),
+            getAkUnit(180, 270),
+            getAkUnit(180, 340),
+            getGunUnit(240, 130),
+            getGunUnit(130, 280),
+        ]
     }
 ]
 //
@@ -216,7 +272,7 @@ const levels = [
 // getAkUnit
 // getGunUnit
 
-let levelId = 3
+let levelId = 0;
 let units = levels[levelId].units;
 let rectangles = levels[levelId].recs;
 let user = new Unit(70, 70, 10, UNIT_TYPE.USER, weapon_gun1)

@@ -1,5 +1,5 @@
 class Unit {
-    constructor(x = 10, y = 10, health = 100, unitType, weapon = weapon_gun3, step = 1, dorRadius = 5, visibilityRadius = 200, radius = 5) {
+    constructor(x = 10, y = 10, health = 100, unitType, weapon = weapon_gun3, step = 1, dorRadius = 5, visibilityRadius = 200, radius = 300) {
         this.x = x;
         this.y = y;
         this.unitType = unitType;
