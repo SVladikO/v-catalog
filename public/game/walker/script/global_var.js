@@ -306,7 +306,7 @@ const levels = [
             [350, 450, 100, 100],
         ],
         units: [
-            getPistolUnit(30, 200),
+            getPistolUnit(30, 150),
             getAkUnit(30, 270),
             getPistolUnit(200, 130),
             getGunUnit(290, 140),
@@ -381,7 +381,7 @@ const levels = [
             // getPistolUnit(900, 490),
         ]
     },
-    // level 9
+    // level 10
     {
         finish: {
             x: 400,
@@ -422,7 +422,7 @@ const levels = [
 // getAkUnit
 // getGunUnit
 
-let levelId = 9;
+let levelId = 6;
 let units = levels[levelId].units;
 let rectangles = levels[levelId].recs;
 let finishCoordinates = levels[levelId].finish;
