@@ -8,14 +8,13 @@ function renderLine() {
 }
 
 function renderRectangles() {
-    rectangles.forEach(coordinates => {
-        const [x, y] = coordinates;
-        renderRectangle(x, y);
-    })
+    rectangles.forEach(renderRectangle)
 }
 
-function renderRectangle(x, y) {
-    ctx.rect(x, y, rectangleSideLenght, rectangleSideLenght);
+function renderRectangle(block) {
+    const [x, y, width, height] = block;
+
+    ctx.rect(x, y, width, height);
     ctx.fillStyle = style.box.bgColor;
     ctx.fill()
     ctx.strokeStyle = style.box.borderColor;

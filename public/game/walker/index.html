@@ -83,6 +83,13 @@
             <button onclick="mute()">Mute</button>
             <button onclick="unmute()">Unmute</button>
         </div>
+        <div class="themes">
+            <h1>Levels:</h1>
+            <button onclick="changeLevel(0)">1</button>
+            <button onclick="changeLevel(1)">2</button>
+            <button onclick="changeLevel(2)">3</button>
+            <button onclick="changeLevel(3)">4</button>
+        </div>
     </div>
 </div>
 
@@ -146,7 +153,10 @@
         // renderLine();
     }
 
-    canvas.addEventListener("click", () => user.shoot());
+    canvas.addEventListener("click", (event) => {
+        user.shoot()
+        console.log('click', event.clientX, event.clientY)
+    });
 
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)
@@ -183,12 +193,12 @@
                 }
             })
 
-        }, 300)
+        }, 200)
 
         setTimeout(() => {
             clearInterval(intervalId)
         }, 1000)
-    }, 4000)
+    }, 2000)
 
 
 </script>

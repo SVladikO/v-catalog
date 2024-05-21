@@ -26,11 +26,11 @@ function isInRange(num, min, max) {
  */
 function isOnBlock(objX, objY, objRadius) {
     const rect = rectangles.find(rec => {
-        const [x, y] = rec;
+        const [x, y, width, height] = rec;
         const minX = x - objRadius;
-        const maxX = minX + rectangleSideLenght + objRadius * 2;
+        const maxX = minX + width + objRadius * 2;
         const minY = y - objRadius;
-        const maxY = minY + rectangleSideLenght + objRadius * 2;
+        const maxY = minY + height + objRadius * 2;
 
         const is = isInRange(objX, minX, maxX) && isInRange(objY, minY, maxY)
         // console.log(1234, is, `x ${minX} < ${userX} < ${maxX} ::: y ${minY} < ${userY} < ${maxY}`)

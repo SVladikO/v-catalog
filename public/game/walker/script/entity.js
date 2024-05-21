@@ -118,7 +118,25 @@ class Unit {
 
         ctx.beginPath();
         ctx.arc(this.x, this.y, style.user.dorRadius, 0, 300);
-        ctx.fillStyle = style.user.bgColor;
+
+        let bg;
+
+        switch (this.weapon.type) {
+            case GUN_TYPE.PISTOL:
+                bg = 'red';
+                break;
+            case GUN_TYPE.AK:
+                bg = 'blue';
+                break;
+            case GUN_TYPE.GUN:
+                bg = 'green';
+                break;
+            default:
+                bg = 'orange';
+        }
+
+
+        ctx.fillStyle = bg;
         ctx.fill()
 
         // this.renderDirection();
@@ -194,7 +212,7 @@ class Bullet {
         function calcDistance(x1, y1, x2, y2) {
             const X = x2 - x1;
             const Y = y2 - y1;
-            return Math.sqrt(X * X + Y * Y );
+            return Math.sqrt(X * X + Y * Y);
         }
     }
 
