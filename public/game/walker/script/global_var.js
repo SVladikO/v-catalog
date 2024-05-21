@@ -116,6 +116,10 @@ const verticalStep = canvas.height / 10;
 const levels = [
     // level 1
     {
+        finish: {
+            x: 840,
+            y: 450
+        },
         recs: [
             [0, 250, 800, 350],
             [150, 0, 100, 100],
@@ -125,10 +129,14 @@ const levels = [
             getPistolUnit(220, 130),
             getPistolUnit(600, 60),
             getPistolUnit(830, 320),
-        ]
+        ],
     },
     // level 2
     {
+        finish: {
+            x: 810,
+            y: 450
+        },
         recs: [
             [110, 35, 20, 20],
             [0, 250, 350, 350],
@@ -148,6 +156,10 @@ const levels = [
     },
     // levels 3
     {
+        finish: {
+            x: 70,
+            y: 520
+        },
         recs: [
             [0, 90, 50, 50],
             [190, 0, 100, 80],
@@ -177,6 +189,10 @@ const levels = [
     },
     // level 4
     {
+        finish: {
+            x: 510,
+            y: 340
+        },
         recs: [
             [65, 90, 10, 10],
             [120, 0, 70, 200],
@@ -213,6 +229,10 @@ const levels = [
     },
     // level 5
     {
+        finish: {
+            x: 0,
+            y: 550
+        },
         recs: [
             [0, 140, 80, 300],
             [150, 0, 80, 300],
@@ -242,6 +262,10 @@ const levels = [
     },
     // level 6
     {
+        finish: {
+            x: 630,
+            y: 420
+        },
         recs: [
             [60, 160, 150, 80],
             [140, 60, 70, 110],
@@ -265,6 +289,132 @@ const levels = [
             getGunUnit(240, 130),
             getGunUnit(130, 280),
         ]
+    },
+    // level 7
+    {
+        finish: {
+            x: 825,
+            y: 450
+        },
+        recs: [
+            [60, 160, 100, 80],
+            [170, 40, 70, 70],
+            [340, 40, 70, 70],
+            [500, 40, 70, 70],
+            [680, 40, 100, 300],
+            [580, 260, 100, 200],
+            [350, 450, 100, 100],
+        ],
+        units: [
+            getPistolUnit(30, 200),
+            getAkUnit(30, 270),
+            getPistolUnit(200, 130),
+            getGunUnit(290, 140),
+            getAkUnit(255, 235),
+            getAkUnit(410, 240),
+            getGunUnit(460, 130),
+            getGunUnit(540, 200),
+            getPistolUnit(630, 200),
+            getGunUnit(630, 100),
+            getPistolUnit(880, 100),
+            getPistolUnit(900, 490),
+
+        ]
+    },
+// level 8
+    {
+        finish: {
+            x: 825,
+            y: 450
+        },
+        recs: [
+            [250, 70, 100, 100],
+            [580, 190, 100, 100],
+        ],
+        units: [
+            getAkUnit(60, 280),
+            getAkUnit(90, 280),
+            getGunUnit(80, 250),
+            getPistolUnit(80, 280),
+            getPistolUnit(120, 280),
+            getAkUnit(360, 280),
+            getAkUnit(300, 210),
+            getAkUnit(480, 333),
+            getPistolUnit(630, 350),
+
+            getPistolUnit(900, 490),
+        ]
+    },
+
+// level 9
+    {
+        finish: {
+            x: 850,
+            y: 235
+        },
+        recs: [
+            [150, 180, 100, 100],
+            [460, 60, 100, 100],
+            [520, 410, 100, 100],
+        ],
+        units: [
+            getAkUnit(610, 120),
+            getAkUnit(725, 40),
+            getPistolUnit(875, 160),
+            getAkUnit(675, 430),
+            getAkUnit(750, 520),
+            getPistolUnit(830, 350),
+            getPistolUnit(550, 260),
+            getGunUnit(425, 205),
+            getGunUnit(425, 250),
+            getGunUnit(380, 230),
+            getPistolUnit(360, 375),
+            getAkUnit(325, 80),
+            getPistolUnit(195, 80),
+
+            // getGunUnit(80, 250),
+            // getAkUnit(360, 280),
+            // getAkUnit(300, 210),
+            // getAkUnit(480, 333),
+            // getPistolUnit(630, 350),
+            //
+            // getPistolUnit(900, 490),
+        ]
+    },
+    // level 9
+    {
+        finish: {
+            x: 400,
+            y: 100
+        },
+        recs: [
+            [0, 140, 100, 100],
+            [0, 350, 100, 100],
+            [215, 145, 100, 100],
+            [225, 350, 100, 100],
+            [500, 300, 100, 200],
+            [600, 300, 100, 100],
+        ],
+        units: [
+            getAkUnit(840, 80),
+            getPistolUnit(750, 80),
+            getAkUnit(755, 200),
+            getAkUnit(265, 45),
+            getAkUnit(370, 300),
+            getPistolUnit(635, 90),
+            getPistolUnit(390, 410),
+            getPistolUnit(635, 150),
+            getAkUnit(50, 530),
+            getAkUnit(50, 300),
+            getAkUnit(551, 40),
+            getAkUnit(500, 110),
+            getAkUnit(450, 120),
+            getAkUnit(440, 60),
+            getPistolUnit(270, 300),
+            getPistolUnit(30, 20),
+            getPistolUnit(160, 20),
+            getGunUnit(340, 163),
+        ]
     }
 ]
 //
@@ -272,9 +422,10 @@ const levels = [
 // getAkUnit
 // getGunUnit
 
-let levelId = 0;
+let levelId = 9;
 let units = levels[levelId].units;
 let rectangles = levels[levelId].recs;
+let finishCoordinates = levels[levelId].finish;
 let user = new Unit(70, 70, 10, UNIT_TYPE.USER, weapon_gun1)
 
 
@@ -283,6 +434,7 @@ function changeLevel(id) {
     units = levels[levelId].units;
     rectangles = levels[levelId].recs;
     user = new Unit(70, 70, 10, UNIT_TYPE.USER)
+    finishCoordinates = levels[levelId].finish;
 }
 
 

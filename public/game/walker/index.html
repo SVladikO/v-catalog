@@ -91,6 +91,10 @@
             <button onclick="changeLevel(3)">4</button>
             <button onclick="changeLevel(4)">5</button>
             <button onclick="changeLevel(5)">6</button>
+            <button onclick="changeLevel(6)">7</button>
+            <button onclick="changeLevel(7)">8</button>
+            <button onclick="changeLevel(8)">9</button>
+            <button onclick="changeLevel(9)">10</button>
         </div>
     </div>
 </div>
@@ -152,7 +156,15 @@
             notification.style.display = 'flex';
         }
 
+        renderEnd(finishCoordinates)
+
         // renderLine();
+    }
+
+    function renderEnd(c) {
+        ctx.beginPath();
+        ctx.font = "30px Arial";
+        ctx.fillText('FINISH', c.x, c.y);
     }
 
     canvas.addEventListener("click", (event) => {
@@ -200,7 +212,7 @@
         setTimeout(() => {
             clearInterval(intervalId)
         }, 1000)
-    }, 2000)
+    }, 1000)
 
 
 </script>

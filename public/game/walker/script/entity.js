@@ -143,6 +143,7 @@ class Unit {
 
         ctx.font = "20px Arial";
         ctx.fillText(this.health, this.x, this.y + 30);
+
     }
 
     updateAngle(toX, toY) {
