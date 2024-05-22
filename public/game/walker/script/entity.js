@@ -1,11 +1,12 @@
 class Unit {
-    constructor(x = 10, y = 10, health = 100, unitType, weapon = weapon_gun3, step = 1, dorRadius = 5, visibilityRadius = 200, radius = 300) {
+    constructor(x = 10, y = 10, health = 100, unitType, weapon = weapon_gun3, userIconId, step = 1, dorRadius = 15, visibilityRadius = 200, radius = 300) {
         this.x = x;
         this.y = y;
         this.unitType = unitType;
 
         this.weapon = weapon;
 
+        this.userIconId = userIconId;
         this.step = step;
         this.health = health;
         this.radius = radius;
@@ -135,14 +136,26 @@ class Unit {
                 bg = 'orange';
         }
 
+        bg = 'red';
 
         ctx.fillStyle = bg;
-        ctx.fill()
+        ctx.fill();
 
-        // this.renderDirection();
 
+        const weaponImg = document.getElementById(this.weapon.imageId);
+        ctx.drawImage(weaponImg, this.x, this.y-50, 60, 60);
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 15, 0, 300);
+        ctx.fillStyle = 'black';
+        ctx.fill();
+        ctx.fillStyle = 'white';
+        ctx.textAlign = "center";
         ctx.font = "20px Arial";
-        ctx.fillText(this.health, this.x, this.y + 30);
+        ctx.fillText(this.health, this.x, this.y + 8);
+
+        const unitImage = document.getElementById(this.userIconId);
+        ctx.drawImage(unitImage, this.x - 25, this.y - 60, 50, 50);
 
     }
 

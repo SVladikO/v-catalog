@@ -1,6 +1,6 @@
 let style = {
     board: {
-        bgColor: '#ffc34d',
+        bgColor: '#c8c8c8',
     },
     box: {
         bgColor: '#000',
@@ -9,7 +9,7 @@ let style = {
     },
     user: {
         bgColor: '#000',
-        dorRadius: 10,
+        dorRadius: 15,
     },
     bullet: {
         bgColor: '#cd0000',
@@ -28,6 +28,7 @@ const GUN_TYPE = {
 }
 
 const weapon_gun1 = {
+    imageId: 'gunIconId1',
     type: GUN_TYPE.PISTOL,
     bulletAmount: 8,
     reloadBulletAmount: 8,
@@ -43,6 +44,7 @@ const weapon_gun1 = {
 }
 
 const weapon_gun2 = {
+    imageId: 'gunIconId2',
     type: GUN_TYPE.AK,
     bulletAmount: 30,
     reloadBulletAmount: 30,
@@ -58,6 +60,7 @@ const weapon_gun2 = {
 }
 
 const weapon_gun3 = {
+    imageId: 'gunIconId3',
     type: GUN_TYPE.GUN,
     bulletAmount: 2,
     reloadBulletAmount: 2,
@@ -77,20 +80,24 @@ const UNIT_TYPE = {
     'UNIT': 'UNIT'
 }
 
-function getUnit(x, y, health, weapon) {
-    return new Unit(x, y, health, UNIT_TYPE.UNIT, weapon);
+function getUser() {
+    return new Unit(70, 70, 10, UNIT_TYPE.USER, weapon_gun2, 'userIconId1')
+}
+
+function getUnit(x, y, health, weapon, unitImageId) {
+    return new Unit(x, y, health, UNIT_TYPE.UNIT, weapon, unitImageId);
 }
 
 function getPistolUnit(x, y, health = 3) {
-    return getUnit(x, y, health, weapon_gun1);
+    return getUnit(x, y, health, weapon_gun1, 'monsterIconId1');
 }
 
 function getAkUnit(x, y, health = 4) {
-    return getUnit(x, y, health, weapon_gun2);
+    return getUnit(x, y, health, weapon_gun2, 'monsterIconId2');
 }
 
 function getGunUnit(x, y, health = 4) {
-    return getUnit(x, y, health, weapon_gun3);
+    return getUnit(x, y, health, weapon_gun3, 'monsterIconId3');
 }
 
 // new Unit(getRandom(20, 40), getRandom(10, 550), 10, UNIT_TYPE.UNIT, weapon_gun1),
@@ -422,18 +429,17 @@ const levels = [
 // getAkUnit
 // getGunUnit
 
-let levelId = 6;
+let levelId = 0;
 let units = levels[levelId].units;
 let rectangles = levels[levelId].recs;
 let finishCoordinates = levels[levelId].finish;
-let user = new Unit(70, 70, 10, UNIT_TYPE.USER, weapon_gun1)
-
+let user = getUser();
 
 function changeLevel(id) {
     levelId = id;
     units = levels[levelId].units;
     rectangles = levels[levelId].recs;
-    user = new Unit(70, 70, 10, UNIT_TYPE.USER)
+    user = getUser();
     finishCoordinates = levels[levelId].finish;
 }
 

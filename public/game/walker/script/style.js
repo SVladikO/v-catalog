@@ -10,7 +10,7 @@ function changeStyleToSpring() {
         },
         user: {
             bgColor: '#007706',
-            dorRadius: 10,
+            dorRadius: 15,
         },
         bullet: {
             bgColor: '#cd0000',
@@ -31,7 +31,7 @@ function changeStyleToSummer() {
         },
         user: {
             bgColor: '#000',
-            dorRadius: 10,
+            dorRadius: 15,
         },
         bullet: {
             bgColor: '#cd0000',
@@ -53,7 +53,7 @@ function changeStyleToWinter() {
         },
         user: {
             bgColor: '#0f6270',
-            dorRadius: 10,
+            dorRadius: 15,
         },
         bullet: {
             bgColor: '#0050bc',
