@@ -27,12 +27,13 @@ const GUN_TYPE = {
     GUN: 'GUN',
 }
 
+//pistol
 const weapon_gun1 = {
     imageId: 'gunIconId1',
     type: GUN_TYPE.PISTOL,
     bulletAmount: 8,
     reloadBulletAmount: 8,
-    maxDistance: 250,
+    maxDistance: 300,
     damage: 2,
     sound: {
         reload: './public/sound/gun1_recharge.mp3',
@@ -41,8 +42,10 @@ const weapon_gun1 = {
     bulletDeadRadius: 15,
     distanceStep: 2,
     rechargeTime: 2,
+    shoot: (angle, getBullet) => ([getBullet(angle)]),
 }
 
+//ak
 const weapon_gun2 = {
     imageId: 'gunIconId2',
     type: GUN_TYPE.AK,
@@ -57,14 +60,39 @@ const weapon_gun2 = {
     bulletDeadRadius: 15,
     distanceStep: 2,
     rechargeTime: 2,
+    shoot: (angle, getBullet) => {
+        let bullets = [
+            getBullet(angle),
+        ];
+
+        const isFlyUp1 = getRandom(1,5)% 2 > 0;
+        const isFlyUp2 = getRandom(1,5)% 2 > 0;
+        const isBulletFlyUp1 = getRandom(1,5)% 2 > 0;
+        const isBulletFlyUp2 = getRandom(1,5)% 2 > 0;
+
+        // if(isFlyUp1) {
+        //     isBulletFlyUp1
+        //         ? bullets.push(getBullet(angle + .1 ))
+        //         : bullets.push(getBullet(angle - .1 ))
+        // }
+        console.log(2111111, getRandom(1, 5) / 100, getRandom(1, 5) / 100, getRandom(1, 5) / 100, getRandom(1, 5) / 100)
+        if(isFlyUp2) {
+            isBulletFlyUp2
+                ? bullets.push(getBullet(angle + getRandom(1, 5) / 10 ))
+                : bullets.push(getBullet(angle - getRandom(1,5)/10 ))
+        }
+
+        return bullets;
+    },
 }
 
+//gun
 const weapon_gun3 = {
     imageId: 'gunIconId3',
     type: GUN_TYPE.GUN,
     bulletAmount: 2,
     reloadBulletAmount: 2,
-    maxDistance: 100,
+    maxDistance: 200,
     damage: 4,
     sound: {
         reload: './public/sound/gun3_recharge.mp3',
@@ -73,6 +101,7 @@ const weapon_gun3 = {
     bulletDeadRadius: 15,
     distanceStep: 2,
     rechargeTime: 2,
+    shoot: (angle, getBullet) => ([getBullet(angle-0.3), getBullet(angle), getBullet(angle+0.3)]),
 }
 
 const UNIT_TYPE = {
@@ -81,7 +110,7 @@ const UNIT_TYPE = {
 }
 
 function getUser() {
-    return new Unit(70, 70, 10, UNIT_TYPE.USER, weapon_gun2, 'userIconId1')
+    return new Unit(70, 70, 20, UNIT_TYPE.USER, weapon_gun1, 'userIconId1')
 }
 
 function getUnit(x, y, health, weapon, unitImageId) {
@@ -133,9 +162,9 @@ const levels = [
             [450, 50, 100, 100],
         ],
         units: [
-            getPistolUnit(220, 130),
-            getPistolUnit(600, 60),
-            getPistolUnit(830, 320),
+            // getPistolUnit(220, 130),
+            // getPistolUnit(600, 60),
+            // getPistolUnit(830, 320),
         ],
     },
     // level 2

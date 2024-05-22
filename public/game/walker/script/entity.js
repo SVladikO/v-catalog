@@ -19,6 +19,13 @@ class Unit {
             'a': false, //left
             'd': false, //right
         }
+
+        this.moveDirectionOpposite = {
+            'w': 's', //up
+            's': 'w', //down
+            'a': 'd', //left
+            'd': 'a', //right
+        }
     }
 
     move() {
@@ -67,8 +74,12 @@ class Unit {
     }
 
     reloadGun() {
+        if (this.weapon.bulletAmount > 0 && this.unitType === UNIT_TYPE.USER) {
+            console.log('you cant reload gun before its fully empty ');
+            return;
+        }
         this.weapon.bulletAmount = this.weapon.reloadBulletAmount;
-        !isMute && new Audio(this.weapon.sound.reload).play();
+        !isMute && this.unitType === UNIT_TYPE.USER && new Audio(this.weapon.sound.reload).play();
         window.alert_notification.textContent = '';
     }
 
@@ -83,10 +94,9 @@ class Unit {
 
         this.weapon.bulletAmount -= 1;
         !isMute && new Audio(this.weapon.sound.shoot).play()
-        const bullet = this.getBullet()
-
-        flyBullets.push(bullet)
-
+        const bullets = this.getBullets()
+        console.log('new bullets', bullets)
+        flyBullets = [...flyBullets, ...bullets]
         if (!this.weapon.bulletAmount) {
             window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
         }
@@ -99,6 +109,9 @@ class Unit {
      */
     enableMove(key) {
         this.moveDirection[key.toLowerCase()] = true;
+        //disable opposite move
+        this.moveDirection[key.toLowerCase()] = true;
+
     }
 
     /**
@@ -110,8 +123,8 @@ class Unit {
         this.moveDirection[key.toLowerCase()] = false;
     }
 
-    getBullet() {
-        return new Bullet(this.x, this.y, this.angle, this.weapon, this.unitType);
+    getBullets() {
+        return this.weapon.shoot(this.angle, angle => new Bullet(this.x, this.y, angle, this.weapon, this.unitType));
     }
 
     render(toX, toY) {
