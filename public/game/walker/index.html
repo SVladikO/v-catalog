@@ -50,6 +50,8 @@
             width: 1000px;
             padding: 10px 0;
             margin: 0px;
+            position: absolute;
+            top: 0;
         }
 
         .themes {
@@ -96,6 +98,16 @@
             right: 300px;
         }
 
+        #health {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .gun_images > img {
+            display: none;
+        }
+
         #move_direction {
             bottom: 40px;
             right: 40px;
@@ -139,44 +151,47 @@
         <h1 id="notification"></h1>
         <h1 id="alert_notification"></h1>
     </div>
-    <div class="control_panel">
-        <h1 id="health" class="themes"></h1>
-        <div class="guns themes">
-            <h1>Available guns:</h1>
-            <img onclick="updateWeapon('weapon_gun1')" src="./public/img/gun1.jpeg" alt="">
-            <img onclick="updateWeapon('weapon_gun2')" src="./public/img/gun2.png" alt="">
-            <img onclick="updateWeapon('weapon_gun3')" src="./public/img/gun3.jpeg" alt="">
-        </div>
-        <div class="themes">
-            <h1>Themes:</h1>
-            <button onclick="changeStyleToWinter()">winter</button>
-            <button onclick="changeStyleToSummer()">summer</button>
-            <button onclick="changeStyleToSpring()">spring</button>
-        </div>
+    <h1 id="health" class="themes"></h1>
 
-        <div class="themes">
-            <h1>Sound control:</h1>
-            <button onclick="mute()">Mute</button>
-            <button onclick="unmute()">Unmute</button>
-        </div>
-        <div class="themes">
-            <h1>Levels:</h1>
-            <button onclick="changeLevel(0)">1</button>
-            <button onclick="changeLevel(1)">2</button>
-            <button onclick="changeLevel(2)">3</button>
-            <button onclick="changeLevel(3)">4</button>
-            <button onclick="changeLevel(4)">5</button>
-            <button onclick="changeLevel(5)">6</button>
-            <button onclick="changeLevel(6)">7</button>
-            <button onclick="changeLevel(7)">8</button>
-            <button onclick="changeLevel(8)">9</button>
-            <button onclick="changeLevel(9)">10</button>
-        </div>
-    </div>
+    <!--    <div class="control_panel">-->
+    <!--        <div class="guns themes">-->
+    <!--            <h1>Available guns:</h1>-->
+    <!--            <img onclick="updateWeapon('weapon_gun1')" src="./public/img/gun1.jpeg" alt="">-->
+    <!--            <img onclick="updateWeapon('weapon_gun2')" src="./public/img/gun2.png" alt="">-->
+    <!--            <img onclick="updateWeapon('weapon_gun3')" src="./public/img/gun3.jpeg" alt="">-->
+    <!--        </div>-->
+    <!--        <div class="themes">-->
+    <!--            <h1>Themes:</h1>-->
+    <!--            <button onclick="changeStyleToWinter()">winter</button>-->
+    <!--            <button onclick="changeStyleToSummer()">summer</button>-->
+    <!--            <button onclick="changeStyleToSpring()">spring</button>-->
+    <!--        </div>-->
+
+    <!--        <div class="themes">-->
+    <!--            <h1>Sound control:</h1>-->
+    <!--            <button onclick="mute()">Mute</button>-->
+    <!--            <button onclick="unmute()">Unmute</button>-->
+    <!--        </div>-->
+    <!--        <div class="themes">-->
+    <!--            <h1>Levels:</h1>-->
+    <!--            <button onclick="changeLevel(0)">1</button>-->
+    <!--            <button onclick="changeLevel(1)">2</button>-->
+    <!--            <button onclick="changeLevel(2)">3</button>-->
+    <!--            <button onclick="changeLevel(3)">4</button>-->
+    <!--            <button onclick="changeLevel(4)">5</button>-->
+    <!--            <button onclick="changeLevel(5)">6</button>-->
+    <!--            <button onclick="changeLevel(6)">7</button>-->
+    <!--            <button onclick="changeLevel(7)">8</button>-->
+    <!--            <button onclick="changeLevel(8)">9</button>-->
+    <!--            <button onclick="changeLevel(9)">10</button>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </div>
-<img id="gunIconId1" src="./public/img/pistol2.webp" alt="gun1" width="220" height="277">
-<img id="gunIconId2" src="./public/img/ak1.webp" alt="gun2" width="220" height="277">
-<img id="gunIconId3" src="./public/img/gun1.webp" alt="gun3" width="220" height="277">
+<div class="gun_images">
+    <img id="gunIconId1" src="./public/img/pistol2.webp" alt="gun1" width="220" height="277">
+    <img id="gunIconId2" src="./public/img/ak1.webp" alt="gun2" width="220" height="277">
+    <img id="gunIconId3" src="./public/img/gun1.webp" alt="gun3" width="220" height="277">
+</div>
 
 
 <!--SCRIPTS-->
@@ -254,7 +269,7 @@
 
         ctx.moveTo(x, y);
         ctx.beginPath();
-        ctx.arc(x, y, 10, 0, 300 );
+        ctx.arc(x, y, 10, 0, 300);
         ctx.fillStyle = "red";
         ctx.fill();
     }
