@@ -148,27 +148,33 @@ class Unit {
             default:
                 bg = 'orange';
         }
-
-        bg = 'red';
-
-        ctx.fillStyle = bg;
+// Point of transform origin
+        ctx.arc(0, 0, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue";
         ctx.fill();
 
+        ctx.translate(this.x, this.y)      // 1. Set x,y where we will rotate.
+        ctx.rotate(this.angle)             // 2. Rotate
+        ctx.translate(-this.x, -this.y)    // 3. Move back coordinates to (HZ)
 
+        // 4. Draw
         const weaponImg = document.getElementById(this.weapon.imageId);
-        ctx.drawImage(weaponImg, this.x, this.y-50, 60, 60);
+        ctx.drawImage(weaponImg, this.x + 18, this.y, 75, 40);
+
+        ctx.rotate(-this.angle)             // 5. Rotate back
+        ctx.setTransform(1, 0, 0, 1, 0, 0); // 6. Reset center back.
 
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 15, 0, 300);
+        ctx.arc(this.x, this.y, 10, 0, 300);
         ctx.fillStyle = 'black';
         ctx.fill();
         ctx.fillStyle = 'white';
         ctx.textAlign = "center";
-        ctx.font = "20px Arial";
-        ctx.fillText(this.health, this.x, this.y + 8);
+        ctx.font = "14px Arial";
+        ctx.fillText(this.health, this.x, this.y + 5);
 
-        const unitImage = document.getElementById(this.userIconId);
-        ctx.drawImage(unitImage, this.x - 25, this.y - 60, 50, 50);
+        // const unitImage = document.getElementById(this.userIconId);
+        // ctx.drawImage(unitImage, this.x - 25, this.y - 25, 50, 50);
 
     }
 

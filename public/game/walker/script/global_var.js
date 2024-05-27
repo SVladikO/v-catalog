@@ -162,9 +162,9 @@ const levels = [
             [450, 50, 100, 100],
         ],
         units: [
-            // getPistolUnit(220, 130),
-            // getPistolUnit(600, 60),
-            // getPistolUnit(830, 320),
+            getPistolUnit(220, 130),
+            getPistolUnit(600, 60),
+            getPistolUnit(830, 320),
         ],
     },
     // level 2
