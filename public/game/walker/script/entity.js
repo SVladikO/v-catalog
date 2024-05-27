@@ -5,7 +5,7 @@ class Unit {
         this.unitType = unitType;
 
         this.weapon = weapon;
-
+        this.bulletAmount = weapon.bulletAmount;
         this.userIconId = userIconId;
         this.step = step;
         this.health = health;
@@ -82,17 +82,19 @@ class Unit {
     }
 
     reloadGun() {
-        if (this.weapon.bulletAmount > 0 && this.unitType === UNIT_TYPE.USER) {
+        console.log('reload gun', UNIT_TYPE.USER)
+
+        if (this.bulletAmount > 0 && this.unitType === UNIT_TYPE.USER) {
             console.log('you cant reload gun before its fully empty ');
             return;
         }
-        this.weapon.bulletAmount = this.weapon.reloadBulletAmount;
+        this.bulletAmount = this.weapon.reloadBulletAmount;
         !isMute && this.unitType === UNIT_TYPE.USER && new Audio(this.weapon.sound.reload).play();
         window.alert_notification.textContent = '';
     }
 
     shoot() {
-        if (!this.weapon.bulletAmount) {
+        if (!this.bulletAmount) {
             window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
             !isMute && new Audio('./public/sound/gun-empty.mp3').play()
             return;
@@ -100,12 +102,11 @@ class Unit {
 
         alert.textContent = 'no bullets';
 
-        this.weapon.bulletAmount -= 1;
+        this.bulletAmount -= 1;
         !isMute && new Audio(this.weapon.sound.shoot).play()
         const bullets = this.getBullets()
-        console.log('new bullets', bullets)
         flyBullets = [...flyBullets, ...bullets]
-        if (!this.weapon.bulletAmount) {
+        if (!this.bulletAmount) {
             window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
         }
     }
@@ -135,9 +136,7 @@ class Unit {
         return this.weapon.shoot(this.angle, angle => new Bullet(this.x, this.y, angle, this.weapon, this.unitType));
     }
 
-    render(toX, toY) {
-        this.updateAngle(toX, toY);
-
+    render() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, style.user.dorRadius, 0, 300);
 
@@ -157,9 +156,9 @@ class Unit {
                 bg = 'orange';
         }
 // Point of transform origin
-        ctx.arc(0, 0, 5, 0, 2 * Math.PI);
-        ctx.fillStyle = "blue";
-        ctx.fill();
+//         ctx.arc(0, 0, 5, 0, 2 * Math.PI);
+//         ctx.fillStyle = "blue";
+//         ctx.fill();
 
         ctx.translate(this.x, this.y)      // 1. Set x,y where we will rotate.
         ctx.rotate(this.angle)             // 2. Rotate
@@ -191,6 +190,18 @@ class Unit {
         var dy = toY - this.y;
 
         this.angle = Math.atan2(dy, dx);
+    }
+
+    updateAngleFromExternal(fromX, fromY) {
+        const width = ctx.canvas.width;
+        const height = ctx.canvas.height;
+        const toX = width - 170;
+        const toY = height - 170;
+
+        var dx = fromX - toX;
+        var dy = fromY - toY;
+        this.angle = Math.atan2(dy, dx);
+        console.log(this.angle);
     }
 
     renderDirection() {

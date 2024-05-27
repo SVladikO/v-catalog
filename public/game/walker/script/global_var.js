@@ -468,6 +468,7 @@ function changeLevel(id) {
     levelId = id;
     units = levels[levelId].units;
     rectangles = levels[levelId].recs;
+    debugger
     user = getUser(user.weapon);
     finishCoordinates = levels[levelId].finish;
 }

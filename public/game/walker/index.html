@@ -42,22 +42,79 @@
             justify-content: center;
             align-items: center;
         }
+
         #alert_notification {
             color: red;
             height: 40px;
             text-align: center;
             width: 1000px;
             padding: 10px 0;
-            margin:0px;
+            margin: 0px;
         }
 
         .themes {
             padding: 10px;
         }
+
         .themes > button {
             font-size: 30px;
             padding: 4px 8px;
             margin: 4px;
+        }
+
+        #move_buttons,
+        #move_direction {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: solid 2px red;
+            position: absolute;
+        }
+
+        #move_buttons {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: solid 2px red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 40px;
+            left: 40px;
+        }
+
+        #reload_bullets {
+            border-radius: 50%;
+            border: solid 2px red;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 200px;
+            right: 300px;
+        }
+
+        #move_direction {
+            bottom: 40px;
+            right: 40px;
+        }
+
+        .move_button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: red;
+            display: block;
+        }
+
+        .move_button_not_active {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            margin: auto;
         }
     </style>
 </head>
@@ -65,6 +122,20 @@
 <div class="wrapper">
     <div class="board">
         <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
+
+        <div id="move_buttons">
+            <div class="move_button move-left-btn">a</div>
+            <div>
+                <div class="move_button">w</div>
+                <div class="move_button_not_active"></div>
+                <div class="move_button">s</div>
+            </div>
+            <div class="move_button">d</div>
+        </div>
+        <div id="move_direction"></div>
+        <div id="reload_bullets" onclick="reloadUserGun()">reload</div>
+
+
         <h1 id="notification"></h1>
         <h1 id="alert_notification"></h1>
     </div>
@@ -103,10 +174,6 @@
         </div>
     </div>
 </div>
-<img id="userIconId1" src="./public/img/user-icon-5.webp" alt="The Scream" width="220" height="277">
-<img id="monsterIconId1" src="./public/img/monster6.png" alt="monster1" width="220" height="277">
-<img id="monsterIconId2" src="./public/img/monster2.png" alt="monster2" width="220" height="277">
-<img id="monsterIconId3" src="./public/img/monster3.png" alt="monster3" width="220" height="277">
 <img id="gunIconId1" src="./public/img/pistol2.webp" alt="gun1" width="220" height="277">
 <img id="gunIconId2" src="./public/img/ak1.webp" alt="gun2" width="220" height="277">
 <img id="gunIconId3" src="./public/img/gun1.webp" alt="gun3" width="220" height="277">
@@ -124,7 +191,6 @@
     const canvas = document.getElementById("canvas");
 
     const ctx = canvas.getContext("2d");
-    debugger
     ctx.canvas.width = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
 
@@ -138,6 +204,11 @@
     function unmute() {
         isMute = false;
     }
+
+    function reloadUserGun(n) {
+        user.reloadGun();
+    }
+
     function updateWeapon(n) {
         const weapons = {
             weapon_gun1,
@@ -153,13 +224,13 @@
         prepareCanvas();
         renderRectangles()
 
-        health.textContent = 'Health: ' + user.health + ' / Bullets amount: ' + user.weapon.bulletAmount
+        health.textContent = 'Health: ' + user.health + ' / Bullets amount: ' + user.bulletAmount
 
         flyBullets.forEach(bullet => bullet.move());
         flyBullets.forEach(bullet => bullet.render());
         flyBullets = flyBullets.filter(bullet => !bullet.isDead);
 
-        user.render(mousePositionX, mousePositionY);
+        user.render();
         units
             // .filter(unit => user.isVisibleForMe(unit.x, unit.y))
             .forEach(unit => unit.render(user.x, user.y))
@@ -172,8 +243,20 @@
         }
 
         renderEnd(finishCoordinates)
+        renderMoveDirectionCenter()
+    }
 
-        // renderLine();
+    function renderMoveDirectionCenter() {
+        const width = ctx.canvas.width;
+        const height = ctx.canvas.height;
+        const x = width - 170;
+        const y = height - 170;
+
+        ctx.moveTo(x, y);
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, 300 );
+        ctx.fillStyle = "red";
+        ctx.fill();
     }
 
     function renderEnd(c) {
@@ -187,6 +270,17 @@
         console.log('click', event.clientX, event.clientY)
     });
 
+    var move_buttons = document.getElementById('move_buttons');
+    move_buttons.addEventListener('mousedown', function (e) {
+        console.log('mousedown', e.target.innerText)
+        user.enableMove(e.target.innerText)
+    });
+
+    move_buttons.addEventListener('mouseup', function (e) {
+        console.log('mouseup', e)
+        user.disableMove(e.target.innerText)
+    });
+
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)
         event.key === ' ' && user.reloadGun()
@@ -197,9 +291,14 @@
         user.disableMove(event.key);
 
     });
-    window.addEventListener("mousemove", (event) => {
-        mousePositionX = event.clientX
-        mousePositionY = event.clientY
+    window.addEventListener("mousemove", e => {
+        user.updateAngle(e.clientX, e.clientY);
+    });
+
+    var move_direction = document.getElementById('move_direction');
+    move_direction.addEventListener('click', function (e) {
+        user.updateAngleFromExternal(e.clientX, e.clientY);
+        user.shoot();
     });
 
     function loop() {
@@ -214,7 +313,7 @@
     setInterval(() => {
         const intervalId = setInterval(() => {
             units.forEach(unit => {
-                unit.reloadGun();
+                // unit.reloadGun();
                 if (unit.isVisibleForMe(user.x, user.y)) {
                     unit.shoot()
                 } else {
