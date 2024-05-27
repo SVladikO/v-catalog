@@ -28,9 +28,14 @@ class Unit {
         }
     }
 
+    disableOppositeMove(key) {
+        this.moveDirection[key] = false;
+    }
+
     move() {
         if (this.moveDirection.w) {
             const modifiedY = this.y - this.step;
+            this.disableOppositeMove(this.moveDirectionOpposite['w'])
 
             if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(this.x, modifiedY, style.user.dorRadius)) {
                 this.y = modifiedY;
@@ -38,6 +43,7 @@ class Unit {
         }
         if (this.moveDirection.s) {
             const modifiedY = this.y + this.step;
+            this.disableOppositeMove(this.moveDirectionOpposite['s'])
 
             if (isInCanvas(modifiedY, canvas.height) && !isOnBlock(this.x, modifiedY, style.user.dorRadius)) {
                 this.y = modifiedY;
@@ -45,6 +51,7 @@ class Unit {
         }
         if (this.moveDirection.a) {
             const modifiedX = this.x - this.step;
+            this.disableOppositeMove(this.moveDirectionOpposite['a'])
 
             if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, this.y, style.user.dorRadius)) {
                 this.x = modifiedX;
@@ -52,6 +59,7 @@ class Unit {
         }
         if (this.moveDirection.d) {
             const modifiedX = this.x + this.step;
+            this.disableOppositeMove(this.moveDirectionOpposite['d'])
 
             if (isInCanvas(modifiedX, canvas.width) && !isOnBlock(modifiedX, this.y, style.user.dorRadius)) {
                 this.x = modifiedX;

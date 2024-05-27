@@ -109,8 +109,8 @@ const UNIT_TYPE = {
     'UNIT': 'UNIT'
 }
 
-function getUser() {
-    return new Unit(70, 70, 20, UNIT_TYPE.USER, weapon_gun1, 'userIconId1')
+function getUser(weapon = weapon_gun1) {
+    return new Unit(70, 70, 20, UNIT_TYPE.USER, weapon, 'userIconId1')
 }
 
 function getUnit(x, y, health, weapon, unitImageId) {
@@ -468,7 +468,7 @@ function changeLevel(id) {
     levelId = id;
     units = levels[levelId].units;
     rectangles = levels[levelId].recs;
-    user = getUser();
+    user = getUser(user.weapon);
     finishCoordinates = levels[levelId].finish;
 }
 
