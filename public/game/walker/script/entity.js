@@ -101,6 +101,10 @@ class Unit {
         if (this.bulletAmount <=0 && this.unitType === UNIT_TYPE.USER) {
             window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
             !isMute && playSound('./public/sound/gun-empty.mp3', this.unitType === UNIT_TYPE.USER ? 0.4 : 0)
+
+            setTimeout(() => {
+                this.reloadGun()
+            }, 1000);
             return;
         }
 
@@ -137,8 +141,9 @@ class Unit {
         return this.weapon.shoot(this.angle, angle => new Bullet(this.x, this.y, angle, this.weapon, this.unitType));
     }
 
-    render(newAngel) {
-        // newAngel && this.angle = newAngel;
+    render(directionX, directionY) {
+        this.updateAngle(directionX, directionY)
+
         ctx.beginPath();
         ctx.arc(this.x, this.y, style.user.dorRadius, 0, 300);
 

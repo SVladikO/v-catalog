@@ -142,9 +142,6 @@ const mouse = {
     y: 200,
 }
 
-let mousePositionX = 200;
-let mousePositionY = 200;
-
 const horizontalStep = canvas.width / 10;
 const verticalStep = canvas.height / 10;
 

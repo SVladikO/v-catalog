@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Walker</title>
-    <style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    <style>
         * {
+            touch-action: manipulation;
             font-family: Arial;
             padding: 0;
             margin: 0;
@@ -98,9 +100,19 @@
             position: absolute;
             right: 200px;
         }
+
+        #page_reload_btn {
+            position: absolute;
+            right: 300px;
+            bottom: 50px;
+            border-radius: 20%;
+            border: solid 2px red;
+        }
+
         #reload_gun_btn {
             bottom: 150px;
         }
+
         #shoot_gun_btn {
             bottom: 50px;
         }
@@ -142,19 +154,19 @@
     <div class="board">
         <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
 
-        <div id="user_walk_btn">
-            <div class="move_button move-left-btn">a</div>
-            <div>
-                <div class="move_button">w</div>
-                <div class="move_button_not_active"></div>
-                <div class="move_button">s</div>
-            </div>
-            <div class="move_button">d</div>
-        </div>
-        <div id="user_direction_btn"></div>
-        <div id="reload_gun_btn">reload</div>
-        <div id="shoot_gun_btn">shoot</div>
-
+<!--        <div id="user_walk_btn">-->
+<!--            <div class="move_button move-left-btn">a</div>-->
+<!--            <div>-->
+<!--                <div class="move_button">w</div>-->
+<!--                <div class="move_button_not_active"></div>-->
+<!--                <div class="move_button">s</div>-->
+<!--            </div>-->
+<!--            <div class="move_button">d</div>-->
+<!--        </div>-->
+<!--        <div id="user_direction_btn"></div>-->
+<!--        <div id="reload_gun_btn">reload</div>-->
+<!--        <div id="shoot_gun_btn">shoot</div>-->
+<!--        <div id="page_reload_btn">page reload</div>-->
 
         <h1 id="notification"></h1>
         <h1 id="alert_notification"></h1>
@@ -215,6 +227,9 @@
     ctx.canvas.width = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
 
+    let mousePositionX = 0;
+    let mousePositionY = 0;
+
     let isMute = false;
 
     function mute() {
@@ -250,13 +265,10 @@
         flyBullets.forEach(bullet => bullet.render());
         flyBullets = flyBullets.filter(bullet => !bullet.isDead);
 
-        user.render();
+        user.render(mousePositionX, mousePositionY);
         units
             // .filter(unit => user.isVisibleForMe(unit.x, unit.y))
-            .forEach(unit => {
-                unit.updateAngle(user.x, user.y)
-                unit.render()
-            })
+            .forEach(unit => unit.render(user.x, user.y))
 
         units = units.filter(unit => unit.isAlive())
 
@@ -266,7 +278,7 @@
         }
 
         renderEnd(finishCoordinates)
-        renderMoveDirectionCenter()
+        // renderMoveDirectionCenter()
     }
 
     const moveTabletDirectionCenter = {
@@ -293,10 +305,9 @@
         ctx.fillText('FINISH', c.x, c.y);
     }
 
+    // enableMobileNavigation();
+
     window.addEventListener("click", () => user.shoot());
-
-    
-
 
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)
@@ -304,11 +315,13 @@
 
         drawAll();
     });
-    window.addEventListener("keyup", (event) => user.disableMove(event.key));
-    window.addEventListener("mousemove", e => user.updateAngle(e.clientX, e.clientY));
-   
 
-    
+    window.addEventListener("keyup", (event) => user.disableMove(event.key));
+    window.addEventListener("mousemove", e => {
+        mousePositionX = e.clientX;
+        mousePositionY = e.clientY
+    });
+
 
     function loop() {
         user.move();
@@ -337,34 +350,60 @@
         }, 1000)
     }, 2000)
 
+
     //MOBILE NAVIGATION BUTTONS
     function enableMobileNavigation() {
-        
-        user_walk_btn.addEventListener('mousedown', e => user.enableMove(e.target.innerText));
-        user_walk_btn.addEventListener('mouseup', e => user.disableMove(e.target.innerText));
+        // user_walk_btn.addEventListener('mousedown', e => {
+        //     e.stopPropagation();
+        //     e.preventDefault();
+        //     user.enableMove(e.target.innerText)
+        // });
+        // user_walk_btn.addEventListener('mouseup', e => {
+        //     e.stopPropagation();
+        //     e.preventDefault();
+        //     user.disableMove(e.target.innerText)
+        // });
 
-        user_walk_btn.addEventListener("touchstart", e => user.enableMove(e.target.innerText));
-        user_walk_btn.addEventListener("touchend", e => user.disableMove(e.target.innerText));
-        
-        reload_gun_btn.addEventListener("click", e => {
-            e.stopPropagation();
+        user_walk_btn.addEventListener("touchstart", e => {
+            e.stopPropagation()
+            e.preventDefault();
+            user.enableMove(e.target.innerText)
+        });
+        user_walk_btn.addEventListener("touchend", e => {
+            e.stopPropagation()
+            e.preventDefault();
+            user.disableMove(e.target.innerText)
+        });
+
+        reload_gun_btn.addEventListener("touchstart", e => {
+            e.stopPropagation()
+            e.preventDefault();
             user.reloadGun()
         });
-        shoot_gun_btn.addEventListener("click", e => {
-            e.stopPropagation();
+        shoot_gun_btn.addEventListener("touchstart", e => {
+            e.stopPropagation()
+            e.preventDefault();
             user.shoot()
         });
-        
-        user_direction_btn.addEventListener('click', function (e) {
-            e.stopPropagation()
-            user.updateAngleForMobile(e.clientX, e.clientY);
-            user.shoot();
-        });
+
+        // user_direction_btn.addEventListener('click', function (e) {
+        //     e.stopPropagation()
+        //     user.updateAngleForMobile(e.clientX, e.clientY);
+        //     user.shoot();
+        // });
 
         user_direction_btn.addEventListener('touchmove', function (e) {
             e.stopPropagation()
+            e.preventDefault();
             user.updateAngleForMobile(e.clientX, e.clientY);
             user.shoot();
+        });
+
+        page_reload_btn.addEventListener('click', function (e) {
+            e.stopPropagation()
+            e.preventDefault();
+            window.location.reload(true);
+            location.replace(location.href);
         });
 
     }
