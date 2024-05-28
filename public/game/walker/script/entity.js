@@ -258,7 +258,7 @@ class Bullet {
         this.weapon = weapon; //
         this.damage = 2; //
         this.radius = 5; //
-        this.flyStep = 6;
+        this.flyStep = 8;
         this.currentDistance = 0; //
         this.isDead = false;
         this.isKickedBox = false;
