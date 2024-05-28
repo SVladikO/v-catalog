@@ -111,9 +111,16 @@ class Unit {
         alert.textContent = 'no bullets';
 
         this.bulletAmount -= 1;
-        !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.2 : 0);
+        !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.1 : 0);
         const bullets = this.getBullets()
-        flyBullets = [...flyBullets, ...bullets]
+        flyBullets = [...flyBullets, ...bullets];
+
+        //Speed up bullets reload right after decrement.
+        if (this.bulletAmount <=0 && this.unitType === UNIT_TYPE.USER) {
+            setTimeout(() => {
+                this.reloadGun()
+            }, 1000);
+        }
     }
 
     /**
