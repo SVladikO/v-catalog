@@ -100,14 +100,14 @@ class Unit {
     shoot() {
         if (this.bulletAmount <=0 && this.unitType === UNIT_TYPE.USER) {
             window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
-            !isMute && playSound('./public/sound/gun-empty.mp3', this.unitType === UNIT_TYPE.USER ? 0.4 : 0.05)
+            !isMute && playSound('./public/sound/gun-empty.mp3', this.unitType === UNIT_TYPE.USER ? 0.4 : 0)
             return;
         }
 
         alert.textContent = 'no bullets';
 
         this.bulletAmount -= 1;
-        !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.2 : 0.05);
+        !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.2 : 0);
         const bullets = this.getBullets()
         flyBullets = [...flyBullets, ...bullets]
     }
@@ -137,7 +137,8 @@ class Unit {
         return this.weapon.shoot(this.angle, angle => new Bullet(this.x, this.y, angle, this.weapon, this.unitType));
     }
 
-    render() {
+    render(newAngel) {
+        // newAngel && this.angle = newAngel;
         ctx.beginPath();
         ctx.arc(this.x, this.y, style.user.dorRadius, 0, 300);
 
@@ -193,7 +194,7 @@ class Unit {
         this.angle = Math.atan2(dy, dx);
     }
 
-    updateAngleFromExternal(fromX, fromY) {
+    updateAngleForMobile(fromX, fromY) {
         const width = ctx.canvas.width;
         const height = ctx.canvas.height;
         const toX = width - moveTabletDirectionCenter.x;

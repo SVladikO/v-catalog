@@ -69,8 +69,8 @@
             margin: 4px;
         }
 
-        #move_buttons,
-        #move_direction {
+        #user_walk_btn,
+        #user_direction_btn {
             width: 150px;
             height: 150px;
             border-radius: 50%;
@@ -78,7 +78,7 @@
             position: absolute;
         }
 
-        #move_buttons {
+        #user_walk_btn {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -86,8 +86,8 @@
             left: 40px;
         }
 
-        #reload_bullets,
-        #shoot_bullets {
+        #reload_gun_btn,
+        #shoot_gun_btn {
             border-radius: 50%;
             border: solid 2px red;
             width: 40px;
@@ -98,10 +98,10 @@
             position: absolute;
             right: 200px;
         }
-        #reload_bullets {
+        #reload_gun_btn {
             bottom: 150px;
         }
-        #shoot_bullets {
+        #shoot_gun_btn {
             bottom: 50px;
         }
 
@@ -115,7 +115,7 @@
             display: none;
         }
 
-        #move_direction {
+        #user_direction_btn {
             bottom: 40px;
             right: 40px;
         }
@@ -142,7 +142,7 @@
     <div class="board">
         <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
 
-        <div id="move_buttons">
+        <div id="user_walk_btn">
             <div class="move_button move-left-btn">a</div>
             <div>
                 <div class="move_button">w</div>
@@ -151,9 +151,9 @@
             </div>
             <div class="move_button">d</div>
         </div>
-        <div id="move_direction"></div>
-        <div id="reload_bullets" onclick="reloadUserGun()">reload</div>
-        <div id="shoot_bullets" onclick="userShoot()">shoot</div>
+        <div id="user_direction_btn"></div>
+        <div id="reload_gun_btn">reload</div>
+        <div id="shoot_gun_btn">shoot</div>
 
 
         <h1 id="notification"></h1>
@@ -211,8 +211,6 @@
 <script src="./script/style.js"></script>
 
 <script>
-    const canvas = document.getElementById("canvas");
-
     const ctx = canvas.getContext("2d");
     ctx.canvas.width = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
@@ -227,7 +225,7 @@
         isMute = false;
     }
 
-    function reloadUserGun(n) {
+    function reloadUserGun(e) {
         user.reloadGun();
     }
 
@@ -255,7 +253,10 @@
         user.render();
         units
             // .filter(unit => user.isVisibleForMe(unit.x, unit.y))
-            .forEach(unit => unit.render(user.x, user.y))
+            .forEach(unit => {
+                unit.updateAngle(user.x, user.y)
+                unit.render()
+            })
 
         units = units.filter(unit => unit.isAlive())
 
@@ -292,23 +293,9 @@
         ctx.fillText('FINISH', c.x, c.y);
     }
 
-    canvas.addEventListener("click", (event) => {
-        user.shoot()
-        console.log('click', event.clientX, event.clientY)
-    });
+    window.addEventListener("click", () => user.shoot());
 
-    function userShoot() {
-        user.shoot()
-    }
-
-    var move_buttons = document.getElementById('move_buttons');
-    move_buttons.addEventListener('mousedown', e => user.enableMove(e.target.innerText));
-    move_buttons.addEventListener('mouseup', e => user.disableMove(e.target.innerText));
-
-    move_buttons.addEventListener("touchstart", e => user.enableMove(e.target.innerText));
-    move_buttons.addEventListener("touchend", e => user.disableMove(e.target.innerText));
-    // move_buttons.addEventListener("touchcancel", handleCancel);
-    // move_buttons.addEventListener("touchmove", handleMove);
+    
 
 
     window.addEventListener("keypress", (event) => {
@@ -317,23 +304,11 @@
 
         drawAll();
     });
-    window.addEventListener("keyup", (event) => {
-        user.disableMove(event.key);
+    window.addEventListener("keyup", (event) => user.disableMove(event.key));
+    window.addEventListener("mousemove", e => user.updateAngle(e.clientX, e.clientY));
+   
 
-    });
-    window.addEventListener("mousemove", e => {
-        user.updateAngle(e.clientX, e.clientY);
-    });
-
-    var move_direction = document.getElementById('move_direction');
-    move_direction.addEventListener('click', function (e) {
-        user.updateAngleFromExternal(e.clientX, e.clientY);
-        user.shoot();
-    });
-    move_direction.addEventListener('touchmove', function (e) {
-        user.updateAngleFromExternal(e.clientX, e.clientY);
-        user.shoot();
-    });
+    
 
     function loop() {
         user.move();
@@ -362,6 +337,37 @@
         }, 1000)
     }, 2000)
 
+    //MOBILE NAVIGATION BUTTONS
+    function enableMobileNavigation() {
+        
+        user_walk_btn.addEventListener('mousedown', e => user.enableMove(e.target.innerText));
+        user_walk_btn.addEventListener('mouseup', e => user.disableMove(e.target.innerText));
+
+        user_walk_btn.addEventListener("touchstart", e => user.enableMove(e.target.innerText));
+        user_walk_btn.addEventListener("touchend", e => user.disableMove(e.target.innerText));
+        
+        reload_gun_btn.addEventListener("click", e => {
+            e.stopPropagation();
+            user.reloadGun()
+        });
+        shoot_gun_btn.addEventListener("click", e => {
+            e.stopPropagation();
+            user.shoot()
+        });
+        
+        user_direction_btn.addEventListener('click', function (e) {
+            e.stopPropagation()
+            user.updateAngleForMobile(e.clientX, e.clientY);
+            user.shoot();
+        });
+
+        user_direction_btn.addEventListener('touchmove', function (e) {
+            e.stopPropagation()
+            user.updateAngleForMobile(e.clientX, e.clientY);
+            user.shoot();
+        });
+
+    }
 </script>
 </body>
 </html>
