@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Walker</title>
     <style>
+
         * {
             font-family: Arial;
             padding: 0;
@@ -14,6 +15,10 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+        }
+
+        body {
+            overflow: hidden;
         }
 
         canvas {
@@ -66,18 +71,14 @@
 
         #move_buttons,
         #move_direction {
-            width: 250px;
-            height: 250px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: solid 2px red;
             position: absolute;
         }
 
         #move_buttons {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            border: solid 2px red;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -85,17 +86,23 @@
             left: 40px;
         }
 
-        #reload_bullets {
+        #reload_bullets,
+        #shoot_bullets {
             border-radius: 50%;
             border: solid 2px red;
-            width: 80px;
-            height: 80px;
+            width: 40px;
+            height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
             position: absolute;
-            bottom: 200px;
-            right: 300px;
+            right: 200px;
+        }
+        #reload_bullets {
+            bottom: 150px;
+        }
+        #shoot_bullets {
+            bottom: 50px;
         }
 
         #health {
@@ -114,16 +121,16 @@
         }
 
         .move_button {
-            width: 80px;
-            height: 80px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: red;
             display: block;
         }
 
         .move_button_not_active {
-            width: 50px;
-            height: 50px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             display: block;
             margin: auto;
@@ -146,6 +153,7 @@
         </div>
         <div id="move_direction"></div>
         <div id="reload_bullets" onclick="reloadUserGun()">reload</div>
+        <div id="shoot_bullets" onclick="userShoot()">shoot</div>
 
 
         <h1 id="notification"></h1>
@@ -209,8 +217,7 @@
     ctx.canvas.width = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
 
-
-    let isMute = true;
+    let isMute = false;
 
     function mute() {
         isMute = true;
@@ -261,11 +268,16 @@
         renderMoveDirectionCenter()
     }
 
+    const moveTabletDirectionCenter = {
+        x: 120,
+        y: 120,
+    }
+
     function renderMoveDirectionCenter() {
         const width = ctx.canvas.width;
         const height = ctx.canvas.height;
-        const x = width - 170;
-        const y = height - 170;
+        const x = width - moveTabletDirectionCenter.x;
+        const y = height - moveTabletDirectionCenter.y;
 
         ctx.moveTo(x, y);
         ctx.beginPath();
@@ -285,16 +297,19 @@
         console.log('click', event.clientX, event.clientY)
     });
 
-    var move_buttons = document.getElementById('move_buttons');
-    move_buttons.addEventListener('mousedown', function (e) {
-        console.log('mousedown', e.target.innerText)
-        user.enableMove(e.target.innerText)
-    });
+    function userShoot() {
+        user.shoot()
+    }
 
-    move_buttons.addEventListener('mouseup', function (e) {
-        console.log('mouseup', e)
-        user.disableMove(e.target.innerText)
-    });
+    var move_buttons = document.getElementById('move_buttons');
+    move_buttons.addEventListener('mousedown', e => user.enableMove(e.target.innerText));
+    move_buttons.addEventListener('mouseup', e => user.disableMove(e.target.innerText));
+
+    move_buttons.addEventListener("touchstart", e => user.enableMove(e.target.innerText));
+    move_buttons.addEventListener("touchend", e => user.disableMove(e.target.innerText));
+    // move_buttons.addEventListener("touchcancel", handleCancel);
+    // move_buttons.addEventListener("touchmove", handleMove);
+
 
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)
@@ -312,6 +327,10 @@
 
     var move_direction = document.getElementById('move_direction');
     move_direction.addEventListener('click', function (e) {
+        user.updateAngleFromExternal(e.clientX, e.clientY);
+        user.shoot();
+    });
+    move_direction.addEventListener('touchmove', function (e) {
         user.updateAngleFromExternal(e.clientX, e.clientY);
         user.shoot();
     });
@@ -342,7 +361,6 @@
             clearInterval(intervalId)
         }, 1000)
     }, 2000)
-
 
 </script>
 </body>

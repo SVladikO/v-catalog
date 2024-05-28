@@ -1,3 +1,9 @@
+function playSound(src, volume = 0.2) {
+    const audio = new Audio(src);
+    audio.volume = volume;
+    audio.play()
+}
+
 class Unit {
     constructor(x = 10, y = 10, health = 100, unitType, weapon = weapon_gun3, userIconId, step = 1, dorRadius = 15, visibilityRadius = 200, radius = 300) {
         this.x = x;
@@ -82,33 +88,28 @@ class Unit {
     }
 
     reloadGun() {
-        console.log('reload gun', UNIT_TYPE.USER)
-
         if (this.bulletAmount > 0 && this.unitType === UNIT_TYPE.USER) {
             console.log('you cant reload gun before its fully empty ');
             return;
         }
         this.bulletAmount = this.weapon.reloadBulletAmount;
-        !isMute && this.unitType === UNIT_TYPE.USER && new Audio(this.weapon.sound.reload).play();
+        !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.reload, this.unitType === UNIT_TYPE.USER ? 0.4 : 0.1);
         window.alert_notification.textContent = '';
     }
 
     shoot() {
-        if (!this.bulletAmount) {
+        if (this.bulletAmount <=0 && this.unitType === UNIT_TYPE.USER) {
             window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
-            !isMute && new Audio('./public/sound/gun-empty.mp3').play()
+            !isMute && playSound('./public/sound/gun-empty.mp3', this.unitType === UNIT_TYPE.USER ? 0.4 : 0.05)
             return;
         }
 
         alert.textContent = 'no bullets';
 
         this.bulletAmount -= 1;
-        !isMute && new Audio(this.weapon.sound.shoot).play()
+        !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.2 : 0.05);
         const bullets = this.getBullets()
         flyBullets = [...flyBullets, ...bullets]
-        if (!this.bulletAmount) {
-            window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
-        }
     }
 
     /**
@@ -195,8 +196,8 @@ class Unit {
     updateAngleFromExternal(fromX, fromY) {
         const width = ctx.canvas.width;
         const height = ctx.canvas.height;
-        const toX = width - 170;
-        const toY = height - 170;
+        const toX = width - moveTabletDirectionCenter.x;
+        const toY = height - moveTabletDirectionCenter.y;
 
         var dx = fromX - toX;
         var dy = fromY - toY;
@@ -307,7 +308,7 @@ class Bullet {
         ctx.fillStyle = this.isDead ? style.bullet.bgColorCrashed : style.bullet.bgColor;
 
         if (this.isKickedBox) {
-            !isMute && new Audio('./public/sound/missed.mp3').play()
+            !isMute && playSound('./public/sound/missed.mp3', 0.01);
         }
 
         ctx.fill()
