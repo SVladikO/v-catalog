@@ -10,6 +10,7 @@ class Unit {
         this.y = y;
         this.unitType = unitType;
 
+        this.showFireFromGunImage = 0;
         this.weapon = weapon;
         this.bulletAmount = weapon.bulletAmount;
         this.userIconId = userIconId;
@@ -88,16 +89,13 @@ class Unit {
     }
 
     reloadGun() {
-        if (this.bulletAmount > 0 && this.unitType === UNIT_TYPE.USER) {
-            return;
-        }
         this.bulletAmount = this.weapon.reloadBulletAmount;
         !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.reload, this.unitType === UNIT_TYPE.USER ? 0.4 : 0.1);
         hideNoBulletNotification()
     }
 
     shoot() {
-        if (this.bulletAmount <=0 && this.unitType === UNIT_TYPE.USER) {
+        if (this.bulletAmount <= 0 && this.unitType === UNIT_TYPE.USER) {
             !isMute && playSound('./public/sound/gun-empty.mp3', this.unitType === UNIT_TYPE.USER ? 0.4 : 0)
             showNoBulletNotification()
             // setTimeout(() => {
@@ -109,6 +107,7 @@ class Unit {
         this.bulletAmount -= 1;
         !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.1 : 0);
         const bullets = this.getBullets()
+        this.showFireFromGunImage = 3;
         flyBullets = [...flyBullets, ...bullets];
     }
 
@@ -134,7 +133,9 @@ class Unit {
     }
 
     getBullets() {
-        return this.weapon.shoot(this.angle, angle => new Bullet(this.x, this.y, angle, this.weapon, this.unitType));
+        const startBulletX = this.x + Math.cos(this.angle) * 45;
+        const startBulletY = this.y + Math.sin(this.angle) * 45;
+        return this.weapon.shoot(this.angle, angle => new Bullet(startBulletX, startBulletY, angle, this.weapon, this.unitType));
     }
 
     render(directionX, directionY) {
@@ -171,6 +172,12 @@ class Unit {
         const weaponImg = document.getElementById(this.weapon.imageId);
         ctx.drawImage(weaponImg, this.x + 18, this.y, 75, 40);
 
+        // 4. Draw fire
+        if (this.showFireFromGunImage) {
+            const weaponImgg = document.getElementById('gunFireIconId1');
+            ctx.drawImage(weaponImgg, this.x + 40, this.y - 18, 75, 40);
+            this.showFireFromGunImage -= 1;
+        }
         ctx.rotate(-this.angle)             // 5. Rotate back
         ctx.setTransform(1, 0, 0, 1, 0, 0); // 6. Reset center back.
 
@@ -251,7 +258,7 @@ class Bullet {
         this.weapon = weapon; //
         this.damage = 2; //
         this.radius = 5; //
-        this.flyStep = 2;
+        this.flyStep = 6;
         this.currentDistance = 0; //
         this.isDead = false;
         this.isKickedBox = false;
