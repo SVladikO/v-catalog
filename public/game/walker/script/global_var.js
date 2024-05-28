@@ -75,7 +75,6 @@ const weapon_gun2 = {
         //         ? bullets.push(getBullet(angle + .1 ))
         //         : bullets.push(getBullet(angle - .1 ))
         // }
-        console.log(2111111, getRandom(1, 5) / 100, getRandom(1, 5) / 100, getRandom(1, 5) / 100, getRandom(1, 5) / 100)
         if(isFlyUp2) {
             isBulletFlyUp2
                 ? bullets.push(getBullet(angle + getRandom(1, 5) / 10 ))

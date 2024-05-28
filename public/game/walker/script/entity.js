@@ -89,38 +89,27 @@ class Unit {
 
     reloadGun() {
         if (this.bulletAmount > 0 && this.unitType === UNIT_TYPE.USER) {
-            console.log('you cant reload gun before its fully empty ');
             return;
         }
         this.bulletAmount = this.weapon.reloadBulletAmount;
         !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.reload, this.unitType === UNIT_TYPE.USER ? 0.4 : 0.1);
-        window.alert_notification.textContent = '';
+        hideNoBulletNotification()
     }
 
     shoot() {
         if (this.bulletAmount <=0 && this.unitType === UNIT_TYPE.USER) {
-            window.alert_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
             !isMute && playSound('./public/sound/gun-empty.mp3', this.unitType === UNIT_TYPE.USER ? 0.4 : 0)
-
-            setTimeout(() => {
-                this.reloadGun()
-            }, 1000);
+            showNoBulletNotification()
+            // setTimeout(() => {
+            //     this.reloadGun()
+            // }, 1000);
             return;
         }
-
-        alert.textContent = 'no bullets';
 
         this.bulletAmount -= 1;
         !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.1 : 0);
         const bullets = this.getBullets()
         flyBullets = [...flyBullets, ...bullets];
-
-        //Speed up bullets reload right after decrement.
-        if (this.bulletAmount <=0 && this.unitType === UNIT_TYPE.USER) {
-            setTimeout(() => {
-                this.reloadGun()
-            }, 1000);
-        }
     }
 
     /**
@@ -215,7 +204,6 @@ class Unit {
         var dx = fromX - toX;
         var dy = fromY - toY;
         this.angle = Math.atan2(dy, dx);
-        console.log(this.angle);
     }
 
     renderDirection() {

@@ -47,15 +47,17 @@
             align-items: center;
         }
 
-        #alert_notification {
-            color: red;
+        #no_bullets_notification {
+            display: none;
+            background: red;
+            color: white;
             height: 40px;
-            text-align: center;
-            width: 1000px;
             padding: 10px 0;
-            margin: 0px;
+            justify-content: center;
             position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
         }
 
         .themes {
@@ -186,10 +188,10 @@
         <!--        <div id="shoot_gun_btn">shoot</div>-->
         <!--        <div id="page_reload_btn">page reload</div>-->
 
+        <h1 id="health" class="themes"></h1>
         <h1 id="notification"></h1>
-        <h1 id="alert_notification"></h1>
+        <h1 id="no_bullets_notification"></h1>
     </div>
-    <h1 id="health" class="themes"></h1>
 
     <!--    <div class="control_panel">-->
     <!--        <div class="guns themes">-->
@@ -211,7 +213,7 @@
     <!--            <button onclick="unmute()">Unmute</button>-->
     <!--        </div>-->
     <div id="game_level_wrapper">
-        <h1>Levels:</h1>
+        <h1 id="selectedLevel">Level: 1/10</h1>
         <div>1</div>
         <div>2</div>
         <div>3</div>
@@ -352,9 +354,15 @@
     });
 
     game_level_wrapper.addEventListener("click", e => {
+        if (e.target.localName !== 'div' || e.target.id === 'game_level_wrapper') {
+            return;
+        }
+
         restartGame();
-        const id = e.target.innerHTML - 1;
-        changeLevel(id);
+        const currentLevel = e.target.innerHTML;
+        const index = currentLevel - 1;
+        selectedLevel.innerHTML = `Level: ${currentLevel}/10`;
+        changeLevel(index);
     });
 
 
@@ -374,7 +382,6 @@
                 if (unit.isVisibleForMe(user.x, user.y)) {
                     unit.shoot()
                 } else {
-                    console.log('invisible')
                 }
             })
 
@@ -385,6 +392,16 @@
         }, 1000)
     }, 2000)
 
+    function showNoBulletNotification() {
+        window.no_bullets_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
+        window.no_bullets_notification.style.display = 'flex';
+    }
+
+    function hideNoBulletNotification() {
+        window.no_bullets_notification.textContent = 'Press "SPACE" to reload. No bullets. ';
+        window.no_bullets_notification.style.display = 'none';
+
+    }
 
     //MOBILE NAVIGATION BUTTONS
     function enableMobileNavigation() {
