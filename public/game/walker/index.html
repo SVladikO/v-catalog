@@ -166,6 +166,7 @@
             justify-content: center;
             align-items: center;
         }
+
         #available_guns {
             position: absolute;
             bottom: 0;
@@ -310,9 +311,14 @@
         flyBullets.forEach(bullet => bullet.render());
         flyBullets = flyBullets.filter(bullet => !bullet.isDead);
 
+        user.isShootEnabled && user.shoot();
         user.render(mousePositionX, mousePositionY);
+
+        units.forEach(unit => unit.unitRandomDirection())
+        units.forEach(unit => unit.move())
         units
             // .filter(unit => user.isVisibleForMe(unit.x, unit.y))
+
             .forEach(unit => unit.render(user.x, user.y))
 
         units = units.filter(unit => unit.isAlive())
@@ -363,7 +369,8 @@
 
     // enableMobileNavigation();
 
-    window.addEventListener("click", () => user.shoot());
+    window.addEventListener("mousedown", () => user.isShootEnabled = true);
+    window.addEventListener("mouseup", () => user.isShootEnabled = false);
 
     window.addEventListener("keypress", (event) => {
         user.enableMove(event.key)

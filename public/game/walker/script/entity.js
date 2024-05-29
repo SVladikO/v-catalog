@@ -10,11 +10,14 @@ class Unit {
         this.y = y;
         this.unitType = unitType;
 
+        this.isShootEnabled = false;
+        this.shootSpeedStep = 30;
         this.showFireFromGunImage = 0;
         this.weapon = weapon;
         this.bulletAmount = weapon.bulletAmount;
         this.userIconId = userIconId;
         this.step = step;
+        this.randomMoveDedline = 10;
         this.health = health;
         this.radius = radius;
         this.visibilityRadius = weapon.maxDistance;
@@ -37,6 +40,22 @@ class Unit {
 
     disableOppositeMove(key) {
         this.moveDirection[key] = false;
+    }
+
+    /**
+     * Let unit(gangster) move randomly.
+     */
+    unitRandomDirection() {
+        if (!this.randomMoveDedline) {
+            const randomIndex = getRandom(0, 4);
+            const buttons = Object.keys(this.moveDirection)
+            buttons.forEach(key => this.moveDirection[key] = false)
+
+            this.moveDirection[buttons[randomIndex]] = true;
+            this.randomMoveDedline = getRandom(3, 30);
+        }
+
+        this.randomMoveDedline--;
     }
 
     move() {
@@ -95,20 +114,27 @@ class Unit {
     }
 
     shoot() {
-        if (this.bulletAmount <= 0 && this.unitType === UNIT_TYPE.USER) {
-            !isMute && this.unitType === UNIT_TYPE.USER &&  playSound('./public/sound/gun-empty.mp3', 0.4)
-            showNoBulletNotification()
-            // setTimeout(() => {
-            //     this.reloadGun()
-            // }, 1000);
-            return;
+        if (!this.shootSpeedStep) {
+            this.shootSpeedStep = 30;
+
+            if (this.bulletAmount <= 0 && this.unitType === UNIT_TYPE.USER) {
+                !isMute && this.unitType === UNIT_TYPE.USER && playSound('./public/sound/gun-empty.mp3', 0.4)
+                showNoBulletNotification()
+                // setTimeout(() => {
+                //     this.reloadGun()
+                // }, 1000);
+                return;
+            }
+
+            this.bulletAmount -= 1;
+            !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.shoot, .1);
+            const bullets = this.getBullets()
+            this.showFireFromGunImage = 3;
+            flyBullets = [...flyBullets, ...bullets];
         }
 
-        this.bulletAmount -= 1;
-        !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.shoot,  .1);
-        const bullets = this.getBullets()
-        this.showFireFromGunImage = 3;
-        flyBullets = [...flyBullets, ...bullets];
+        this.shootSpeedStep--;
+
     }
 
     /**
