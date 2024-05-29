@@ -157,11 +157,11 @@ const levels = [
             [150, 0, 100, 100],
             [450, 50, 100, 100],
         ],
-        units: [
+        getUnits: () => ([
             getPistolUnit(220, 130),
             getPistolUnit(600, 60),
             getPistolUnit(830, 320),
-        ],
+        ]),
     },
     // level 2
     {
@@ -179,12 +179,12 @@ const levels = [
             [420, 380, 80, 80],
             [580, 430, 80, 80],
         ],
-        units: [
+        getUnits: () => ([
             getPistolUnit(190, 20),
             getPistolUnit(330, 190),
             getGunUnit(450, 164),
             getPistolUnit(620, 325),
-        ]
+        ])
     },
     // levels 3
     {
@@ -204,7 +204,7 @@ const levels = [
             [800, 150, 100, 150],
             [900, 90, 50, 210],
         ],
-        units: [
+        getUnits: () => ([
             getPistolUnit(10, 168),
             getPistolUnit(310, 96),
             getGunUnit(510, 30),
@@ -217,7 +217,7 @@ const levels = [
             getGunUnit(690, 570),
             getPistolUnit(690, 570),
             getGunUnit(600, 510),
-        ]
+        ]),
     },
     // level 4
     {
@@ -244,7 +244,7 @@ const levels = [
             [800, 400, 80, 70],
             [915, 515, 40, 40],
         ],
-        units: [
+        getUnits: () => ([
             getPistolUnit(88, 165),
             getGunUnit(72, 330),
             getPistolUnit(198, 458),
@@ -257,7 +257,7 @@ const levels = [
             getGunUnit(763, 429),
             getGunUnit(980, 536),
             getGunUnit(937, 583),
-        ]
+        ]),
     },
     // level 5
     {
@@ -275,7 +275,7 @@ const levels = [
             [680, 0, 200, 80],
             [960, 280, 50, 80],
         ],
-        units: [
+        getUnits: () => ([
             getPistolUnit(96, 205),
             getAkUnit(126, 380),
             getPistolUnit(220, 325),
@@ -290,7 +290,7 @@ const levels = [
             getAkUnit(360, 400),
             getAkUnit(650, 320),
             getAkUnit(520, 570),
-        ]
+        ]),
     },
     // level 6
     {
@@ -307,7 +307,7 @@ const levels = [
             [650, 500, 150, 100],
             [0, 350, 100, 100],
         ],
-        units: [
+        getUnits: () => ([
             getAkUnit(940, 540),
             getAkUnit(420, 520),
             getPistolUnit(860, 270),
@@ -320,7 +320,7 @@ const levels = [
             getAkUnit(180, 340),
             getGunUnit(240, 130),
             getGunUnit(130, 280),
-        ]
+        ]),
     },
     // level 7
     {
@@ -337,7 +337,7 @@ const levels = [
             [580, 260, 100, 200],
             [350, 450, 100, 100],
         ],
-        units: [
+        getUnits: () => ([
             getPistolUnit(30, 150),
             getAkUnit(30, 270),
             getPistolUnit(200, 130),
@@ -350,8 +350,7 @@ const levels = [
             getGunUnit(630, 100),
             getPistolUnit(880, 100),
             getPistolUnit(900, 490),
-
-        ]
+        ]),
     },
 // level 8
     {
@@ -363,7 +362,7 @@ const levels = [
             [250, 70, 100, 100],
             [580, 190, 100, 100],
         ],
-        units: [
+        getUnits: () => ([
             getAkUnit(60, 280),
             getAkUnit(90, 280),
             getGunUnit(80, 250),
@@ -373,9 +372,8 @@ const levels = [
             getAkUnit(300, 210),
             getAkUnit(480, 333),
             getPistolUnit(630, 350),
-
             getPistolUnit(900, 490),
-        ]
+        ]),
     },
 
 // level 9
@@ -389,7 +387,7 @@ const levels = [
             [460, 60, 100, 100],
             [520, 410, 100, 100],
         ],
-        units: [
+        getUnits: () => ([
             getAkUnit(610, 120),
             getAkUnit(725, 40),
             getPistolUnit(875, 160),
@@ -411,7 +409,7 @@ const levels = [
             // getPistolUnit(630, 350),
             //
             // getPistolUnit(900, 490),
-        ]
+        ]),
     },
     // level 10
     {
@@ -427,7 +425,7 @@ const levels = [
             [500, 300, 100, 200],
             [600, 300, 100, 100],
         ],
-        units: [
+        getUnits: () => ([
             getAkUnit(840, 80),
             getPistolUnit(750, 80),
             getAkUnit(755, 200),
@@ -446,7 +444,7 @@ const levels = [
             getPistolUnit(30, 20),
             getPistolUnit(160, 20),
             getGunUnit(340, 163),
-        ]
+        ]),
     }
 ]
 //
@@ -455,19 +453,18 @@ const levels = [
 // getGunUnit
 
 let levelId = 0;
-let units = levels[levelId].units;
+let units = levels[levelId].getUnits();
 let rectangles = levels[levelId].recs;
 let finishCoordinates = levels[levelId].finish;
 let user = getUser();
 
-function changeLevel(id) {
-    levelId = id;
-    units = levels[levelId].units;
-    rectangles = levels[levelId].recs;
+function changeLevel(levelIndex) {
     user = getUser(user.weapon);
-    finishCoordinates = levels[levelId].finish;
+    rectangles = levels[levelIndex].recs;
+    units = levels[levelIndex].getUnits();
+    finishCoordinates = levels[levelIndex].finish;
+    levelId = levelIndex;
 }
-
 
 // [horizontalStep * 2, 0],
 // [horizontalStep * 3, 0],
