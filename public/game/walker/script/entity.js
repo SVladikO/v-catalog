@@ -90,13 +90,13 @@ class Unit {
 
     reloadGun() {
         this.bulletAmount = this.weapon.reloadBulletAmount;
-        !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.reload, this.unitType === UNIT_TYPE.USER ? 0.4 : 0.1);
+        !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.reload, 0.4);
         hideNoBulletNotification()
     }
 
     shoot() {
         if (this.bulletAmount <= 0 && this.unitType === UNIT_TYPE.USER) {
-            !isMute && playSound('./public/sound/gun-empty.mp3', this.unitType === UNIT_TYPE.USER ? 0.4 : 0)
+            !isMute && this.unitType === UNIT_TYPE.USER &&  playSound('./public/sound/gun-empty.mp3', 0.4)
             showNoBulletNotification()
             // setTimeout(() => {
             //     this.reloadGun()
@@ -105,7 +105,7 @@ class Unit {
         }
 
         this.bulletAmount -= 1;
-        !isMute && playSound(this.weapon.sound.shoot, this.unitType === UNIT_TYPE.USER ? 0.1 : 0);
+        !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.shoot,  .1);
         const bullets = this.getBullets()
         this.showFireFromGunImage = 3;
         flyBullets = [...flyBullets, ...bullets];
@@ -320,7 +320,7 @@ class Bullet {
         ctx.fillStyle = this.isDead ? style.bullet.bgColorCrashed : style.bullet.bgColor;
 
         if (this.isKickedBox) {
-            !isMute && playSound('./public/sound/missed.mp3', 0.01);
+            // !isMute && playSound('./public/sound/missed.mp3', 0.01);
         }
 
         ctx.fill()
