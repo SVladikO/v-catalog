@@ -117,15 +117,15 @@ function getUnit(x, y, health, weapon, unitImageId) {
 }
 
 function getPistolUnit(x, y, health = 3) {
-    return getUnit(x, y, health, weapon_gun1, 'monsterIconId1');
+    return getUnit(x, y, health, weapon_gun1, 'userIconId2');
 }
 
 function getAkUnit(x, y, health = 4) {
-    return getUnit(x, y, health, weapon_gun2, 'monsterIconId2');
+    return getUnit(x, y, health, weapon_gun2, 'userIconId2');
 }
 
 function getGunUnit(x, y, health = 4) {
-    return getUnit(x, y, health, weapon_gun3, 'monsterIconId3');
+    return getUnit(x, y, health, weapon_gun3, 'userIconId2');
 }
 
 // new Unit(getRandom(20, 40), getRandom(10, 550), 10, UNIT_TYPE.UNIT, weapon_gun1),

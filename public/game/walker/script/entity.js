@@ -168,27 +168,31 @@ class Unit {
         ctx.rotate(this.angle)             // 2. Rotate
         ctx.translate(-this.x, -this.y)    // 3. Move back coordinates to (HZ)
 
-        // 4. Draw
+        // 4. Draw gun
         const weaponImg = document.getElementById(this.weapon.imageId);
-        ctx.drawImage(weaponImg, this.x + 18, this.y, 75, 40);
+        ctx.drawImage(weaponImg, this.x, this.y - 5, 75, 40);
 
         // 4. Draw fire
         if (this.showFireFromGunImage) {
             const weaponImgg = document.getElementById('gunFireIconId1');
-            ctx.drawImage(weaponImgg, this.x + 40, this.y - 18, 75, 40);
+            ctx.drawImage(weaponImgg, this.x + 20, this.y - 23, 75, 40);
             this.showFireFromGunImage -= 1;
         }
+
+        const userIconId1 = document.getElementById(this.userIconId);
+        ctx.drawImage(userIconId1, this.x - 30, this.y - 25, 50, 50);
+
         ctx.rotate(-this.angle)             // 5. Rotate back
         ctx.setTransform(1, 0, 0, 1, 0, 0); // 6. Reset center back.
 
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 10, 0, 300);
-        ctx.fillStyle = 'black';
-        ctx.fill();
-        ctx.fillStyle = 'white';
-        ctx.textAlign = "center";
-        ctx.font = "14px Arial";
-        ctx.fillText(this.health, this.x, this.y + 5);
+        // ctx.beginPath();
+        // ctx.arc(this.x, this.y, 10, 0, 300);
+        // ctx.fillStyle = 'black';
+        // ctx.fill();
+        // ctx.fillStyle = 'white';
+        // ctx.textAlign = "center";
+        // ctx.font = "14px Arial";
+        // ctx.fillText(this.health, this.x, this.y + 5);
 
         // const unitImage = document.getElementById(this.userIconId);
         // ctx.drawImage(unitImage, this.x - 25, this.y - 25, 50, 50);
