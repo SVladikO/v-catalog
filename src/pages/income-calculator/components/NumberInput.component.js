@@ -26,6 +26,7 @@ function NumberInput({label, value, changeHandler}) {
             <Label>{label}</Label>
             <InputWrapper>
                 <InputStyle
+                    type='number'
                     value={value}
                     onChange={e => changeHandler(+e.target.value)} width='60px'
                     borderColor={THEME.COLOR.INVERT_0}/>

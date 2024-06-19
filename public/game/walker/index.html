@@ -49,7 +49,7 @@
 
         #no_bullets_notification {
             display: none;
-            background: red;
+            background: #ff00001c;
             color: white;
             height: 40px;
             padding: 10px 0;
@@ -314,6 +314,7 @@
         user.isShootEnabled && user.shoot();
         user.render(mousePositionX, mousePositionY);
 
+        units.forEach(unit => (user.isShootEnabled || unit.isShootEnabled) && unit.shoot())
         units.forEach(unit => unit.unitRandomDirection())
         units.forEach(unit => unit.move())
         units
@@ -408,20 +409,12 @@
 
 
     setInterval(() => {
-        const intervalId = setInterval(() => {
-            units.forEach(unit => {
-                // unit.reloadGun();
-                if (unit.isVisibleForMe(user.x, user.y)) {
-                    unit.shoot()
-                } else {
-                }
-            })
-
-        }, 200)
+        units.forEach(unit => unit.isShootEnabled = true);
 
         setTimeout(() => {
-            clearInterval(intervalId)
-        }, 1000)
+            units.forEach(unit => unit.isShootEnabled = false);
+        }, 1000);
+
     }, 2000)
 
     function showNoBulletNotification() {

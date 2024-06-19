@@ -14,6 +14,6 @@ export const Title = styled.div`
     text-transform: uppercase;
 `;
 export const Description = styled.div`
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
 `;

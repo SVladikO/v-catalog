@@ -1,54 +1,49 @@
 import {useState} from 'react';
-import THEME from "../../theme";
 
 import {
-    Wrapper, OutputTitle, InputStyle, Title, ToCenter, Table, RowDescription, InputWrapper,
-    OvertimeHours, OvertimePrice, OvertimeTitle, OvertimeWrapper
+    Wrapper, OutputTitle, InputStyle, ToCenter, Table, InputWrapper,
 } from './income-calculator.page.style';
 
 import NumberInput from './components/NumberInput.component.js'
 import PetProjectIntro from '../../components/pet-project-intro/pet-project-intro'
 
-function Input({changeHandler, value, name}) {
-    const convertToNumber = str => +str.split('\'').join('');
-
-
-    return (
-        <InputStyle
-            name={name}
-            value={addSeparator(value)}
-            onChange={e => changeHandler(convertToNumber(e.target.value))}/>
-    )
-}
-
-const USD_NAME = '$';
-
-function CurrencyTimeCalculator() {
+function MoneyCalculator() {
     const [monthIncome, setMonthIncome] = useState(1000);
-    const [workDays, setWorkDays] = useState(21);
+    const [monthSaved, setMonthSaved] = useState(1000);
+    const [workDays, setWorkDays] = useState(23);
     const [workHours, setWorkHours] = useState(8);
     const [workYears] = useState(1);
 
-    const [customCourse, setCustomCourse] = useState(40);
-    const [customCurrencyName, setCustomCurrencyName] = useState('UAH');
-
-    const convertHourIncomeToMonth = value => setMonthIncome(value * workDays * workHours);
-    const convertDayIncomeToMonth = value => setMonthIncome(value * workDays);
-    const convertYearIncomeToMonth = value => setMonthIncome(value / workYears / 12);
-
     const HeaderRow = (
         <>
+
+            <ToCenter></ToCenter>
             <ToCenter>1 hour</ToCenter>
             <ToCenter>1 day</ToCenter>
             <ToCenter>1 month</ToCenter>
             <ToCenter>1 year</ToCenter>
             <ToCenter>10 year</ToCenter>
 
+            <ToCenter>Income</ToCenter>
             <ToCenter>{addSeparator(monthIncome / workDays / workHours)}</ToCenter>
             <ToCenter>{addSeparator(monthIncome / workDays)}</ToCenter>
             <ToCenter>{addSeparator(monthIncome)}</ToCenter>
             <ToCenter>{addSeparator(monthIncome * 12)}</ToCenter>
             <ToCenter>{addSeparator(monthIncome * 12 * 10)}</ToCenter>
+
+            <ToCenter>Saved</ToCenter>
+            <ToCenter></ToCenter>
+            <ToCenter></ToCenter>
+            <ToCenter>{addSeparator(monthSaved)}</ToCenter>
+            <ToCenter>{addSeparator(monthSaved * 12)}</ToCenter>
+            <ToCenter>{addSeparator(monthSaved * 12 * 10)}</ToCenter>
+
+            <ToCenter>Spent</ToCenter>
+            <ToCenter></ToCenter>
+            <ToCenter></ToCenter>
+            <ToCenter>{addSeparator(monthIncome - monthSaved)}</ToCenter>
+            <ToCenter>{addSeparator((monthIncome - monthSaved) * 12)}</ToCenter>
+            <ToCenter>{addSeparator((monthIncome - monthSaved) * 12 * 10)}</ToCenter>
         </>
     );
 
@@ -58,8 +53,8 @@ function CurrencyTimeCalculator() {
                 <NumberInput label={"Work hours per day"} value={workHours} changeHandler={setWorkHours}/>
                 <NumberInput label={"Work days per month"} value={workDays} changeHandler={setWorkDays}/>
                 <NumberInput label={"Salary per month"} value={monthIncome} changeHandler={setMonthIncome}/>
+                <NumberInput label={"Save per month"} value={monthSaved} changeHandler={setMonthSaved}/>
             </InputWrapper>
-            <OutputTitle>Your income in</OutputTitle>
             <Table>
                 {HeaderRow}
             </Table>
@@ -94,7 +89,7 @@ export default function IncomeCalculatorPage() {
                 title={"Income calculator"}
                 description={"We will help you to calculate your income in different time."}
             />
-            <CurrencyTimeCalculator/>
+            <MoneyCalculator/>
         </Wrapper>
     )
 }

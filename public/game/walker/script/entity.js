@@ -5,13 +5,24 @@ function playSound(src, volume = 0.2) {
 }
 
 class Unit {
-    constructor(x = 10, y = 10, health = 100, unitType, weapon = weapon_gun3, userIconId, step = 1, dorRadius = 15, visibilityRadius = 200, radius = 300) {
+    constructor(
+        x = 10,
+        y = 10,
+        health = 100,
+        unitType,
+        weapon = weapon_gun3,
+        userIconId,
+        step = 1,
+        dorRadius = 15,
+        visibilityRadius = 200,
+        radius = 300
+    ) {
         this.x = x;
         this.y = y;
         this.unitType = unitType;
 
         this.isShootEnabled = false;
-        this.shootSpeedStep = 30;
+        this.shootSpeedIndicator = weapon.shootSpeedStep;
         this.showFireFromGunImage = 0;
         this.weapon = weapon;
         this.bulletAmount = weapon.bulletAmount;
@@ -108,14 +119,17 @@ class Unit {
     }
 
     reloadGun() {
+        if (this.bulletAmount) {
+            return
+        }
         this.bulletAmount = this.weapon.reloadBulletAmount;
         !isMute && this.unitType === UNIT_TYPE.USER && playSound(this.weapon.sound.reload, 0.4);
         hideNoBulletNotification()
     }
 
     shoot() {
-        if (!this.shootSpeedStep) {
-            this.shootSpeedStep = 30;
+        if (!this.shootSpeedIndicator) {
+            this.shootSpeedIndicator = this.weapon.shootSpeedStep;
 
             if (this.bulletAmount <= 0 && this.unitType === UNIT_TYPE.USER) {
                 !isMute && this.unitType === UNIT_TYPE.USER && playSound('./public/sound/gun-empty.mp3', 0.4)
@@ -133,7 +147,7 @@ class Unit {
             flyBullets = [...flyBullets, ...bullets];
         }
 
-        this.shootSpeedStep--;
+        this.shootSpeedIndicator--;
 
     }
 
