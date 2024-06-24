@@ -16,7 +16,6 @@ function MoneyCalculator() {
 
     const HeaderRow = (
         <>
-
             <ToCenter></ToCenter>
             <ToCenter>1 hour</ToCenter>
             <ToCenter>1 day</ToCenter>

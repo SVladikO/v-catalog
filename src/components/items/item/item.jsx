@@ -12,7 +12,6 @@ export default function Item(props) {
             <Right>
                 <Img src={src} />
             </Right>
-
         </Wrapper>
     )
 }

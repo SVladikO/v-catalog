@@ -8,6 +8,9 @@ import iconBigFishGame from "../../image/company-logo/big-fish-game.png";
 import iconKyivSmartCity from "../../image/company-logo/kyiv-smart-city.png";
 
 import presentation1 from "../../image/presentation/1.png";
+import presentation2 from "../../image/presentation/2.png";
+import presentation3 from "../../image/presentation/3.png";
+import presentation4 from "../../image/presentation/4.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
 import Items from "../../components/items/items";
@@ -74,9 +77,9 @@ function HomePage() {
                 <Items items={
                     [
                         {title: 'INCOME CALCULATOR', description: 'We will help you to calculate your income in different time.', link: '/income-calculator', src: presentation1},
-                        {title: 'ENGLISH ALPHABET TRAINER', description: 'We will help you improve English alphabet spelling. ', link: '/english-alphabet-spelling'},
-                        {title: 'CANVAS ANIMATION 1', description: 'Here are I practiced canvas animation.', link: '/canvas_animation_1.html'},
-                        {title: 'WALKER', description: 'Beta version of game.', link: '/game/walker/index.html'},
+                        {title: 'ENGLISH ALPHABET TRAINER', description: 'We will help you improve English alphabet spelling. ', link: '/english-alphabet-spelling', src: presentation2},
+                        {title: 'CANVAS ANIMATION 1', description: 'Here are I practiced canvas animation.', link: '/canvas_animation_1.html', src: presentation3},
+                        {title: 'WALKER', description: 'Beta version of game.', link: '/game/walker/index.html', src: presentation4},
                     ]
                 }
                 />
