@@ -26,9 +26,14 @@ function NumberInput({label, value, changeHandler}) {
             <Label>{label}</Label>
             <InputWrapper>
                 <InputStyle
-                    type='number'
+                    type='text'
                     value={value}
-                    onChange={e => changeHandler(+e.target.value)} width='60px'
+                    onChange={e => {
+                        const value  = +e.target.value;
+                        if (Number.isInteger(value)) {
+                            changeHandler(value)
+                        }
+                    }} width='60px'
                     borderColor={THEME.COLOR.INVERT_0}/>
             </InputWrapper>
         </Wrapper>
