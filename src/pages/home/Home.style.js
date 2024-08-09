@@ -38,15 +38,14 @@ export const IntroductionSubTitle = styled.div`
 
 export const Experience = styled.div`
     padding: 50px 10px 0;
-    width: 910px;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 
-    @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {
-        width: auto;
-    }
+    // @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {
+    //     width: auto;
+    // }
 `;
 export const ExperienceColumn = styled.div`
     width: 205px;
