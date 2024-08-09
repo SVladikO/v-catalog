@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.a`
     border: solid 2px #D9D9D9;
-    
+
     padding: 10px;
     max-width: 320px;
     min-width: 320px;
@@ -17,6 +17,11 @@ export const Title = styled.div`
     color: #000;
     margin: 0 0 10px;
 `;
+export const Skills = styled.div`
+    font-size: 16px;
+    color: #332828;
+`;
+
 export const Description = styled.div`
     font-size: 16px;
     color: #000;

@@ -12,6 +12,7 @@ import presentation2 from "../../image/presentation/2.png";
 import presentation3 from "../../image/presentation/3.png";
 import presentation4 from "../../image/presentation/4.png";
 import presentation5 from "../../image/presentation/5.png";
+import projectDepoistuImg from "../../image/presentation/depoistu.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
 import Items from "../../components/items/items";
@@ -77,11 +78,48 @@ function HomePage() {
                 <CompaniesLogoTitle>OWN PROJECTS</CompaniesLogoTitle>
                 <Items items={
                     [
-                        {title: 'INCOME CALCULATOR', description: 'We will help you to calculate your income in different time.', link: '/income-calculator', src: presentation1},
-                        {title: 'ENGLISH ALPHABET TRAINER', description: 'We will help you improve English alphabet spelling. ', link: '/english-alphabet-spelling', src: presentation2},
-                        {title: 'CANVAS ANIMATION 1', description: 'Here are I practiced canvas animation.', link: '/canvas_animation_1.html', src: presentation3},
-                        {title: 'WALKER', description: 'Beta version of game.', link: 'https://svladiko.com/game/walker/index.html', src: presentation4},
-                        {title: 'INSTRUMENT CHORDS', description: 'Guitar, ukulele, piano chords. Select group of chords and switch instruments.', link: 'https://svladiko.com/external/instrument-chords/index.html', src: presentation5},
+                        {
+                            title: 'INSTRUMENT CHORDS',
+                            skills: ['react', 'js'],
+                            description: 'Guitar, ukulele, piano chords. Select group of chords and switch instruments.',
+                            link: 'https://svladiko.com/external/instrument-chords/index.html',
+                            src: presentation5
+                        },
+                        {
+                            title: 'WALK AND SHOOT',
+                            skills: ['react', 'js', 'canvas'],
+                            description: 'Game where you can walk and shoot gangsters.',
+                            link: 'https://svladiko.com/external/walker/index.html',
+                            src: presentation4
+                        },
+                        {
+                            title: 'Depoistu (Closed)',
+                            skills: ['js', 'react', 'redux', 'Node.js', 'MySql'],
+                            description: 'Ukraine menu aggregator. The main purpose to collect all menu of Ukraine in one place. Closed after 1y 6m',
+                            link: 'https://www.youtube.com/watch?v=uId5voBQ5Ls',
+                            src: projectDepoistuImg
+                        },
+                        {
+                            title: 'INCOME CALCULATOR',
+                            skills: ['react'],
+                            description: 'We will help you to calculate your income in different time.',
+                            link: '/income-calculator',
+                            src: presentation1
+                        },
+                        {
+                            title: 'ENGLISH ALPHABET TRAINER',
+                            skills: ['react'],
+                            description: 'We will help you improve English alphabet spelling. ',
+                            link: '/english-alphabet-spelling',
+                            src: presentation2
+                        },
+                        {
+                            title: 'CANVAS ANIMATION 1',
+                            skills: ['js', 'canvas'],
+                            description: 'Here are I practiced canvas animation.',
+                            link: '/canvas_animation_1.html',
+                            src: presentation3
+                        },
                     ]
                 }
                 />
@@ -90,14 +128,12 @@ function HomePage() {
                 <CompaniesLogoTitle>OWN PACKAGES</CompaniesLogoTitle>
                 <Items items={
                     [
-                        {title: 'timetable-f', description: 'description', link: '/link'},
-                        {title: 'react-code-tag', description: 'description', link: '/link'},
+                        {title: 'timetable-f', skills: [], description: 'description', link: '/link'},
+                        {title: 'react-code-tag', skills: [], description: 'description', link: '/link'},
                     ]
                 }
                 />
             </RowWrapper>
-
-
             <RowWrapper>
                 <CompaniesLogoTitle>WORK EXPERIENCE</CompaniesLogoTitle>
                 <WorkPlaces/>

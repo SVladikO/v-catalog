@@ -33,7 +33,7 @@ export const IntroductionSubTitle = styled.div`
     font-size: 24px;
     color: #A8A6A6;
     text-align: center;
-    margin-top: 10px;
+    margin: 10px auto 20px;
 `;
 
 export const Experience = styled.div`
@@ -60,7 +60,7 @@ export const ColumnTitle = styled.div`
 `;
 export const ColumnDetails = styled.div`
     color: ${THEME.COLOR.INVERT_1};
-    font-size: 16px;
+    font-size: 18px;
 `;
 
 export const RowWrapper = styled.div`
