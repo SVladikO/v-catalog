@@ -42,51 +42,44 @@ export const Experience = styled.div`
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
-    // @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {
-    //     width: auto;
-    // }
+    
 `;
 export const ExperienceColumn = styled.div`
     width: 205px;
     padding: 10px 10px 0;
     ${
-    css`
-        @media screen and (max-width: 700px) {
-            width: 100%;
-            padding: 10px 10px 30px;
-        }
-    `}
+            css`
+                @media screen and (max-width: 700px) {
+                    width: 100%;
+                    padding: 10px 10px 30px;
+                }
+            `}
 `;
 export const ColumnTitle = styled.div`
     color: ${THEME.COLOR.INVERT_2};
     margin: 0 0 20px;
     font-size: 20px;
     font-weight: 400;
-    ${
-            css`
-                @media screen and (max-width: 700px) {
-                    margin: 0 0 10px;
-                }
-            `}
+    ${css`
+        @media screen and (max-width: 700px) {
+            margin: 0 0 10px;
+        }
+    `}
 `;
 export const ColumnDetails = styled.div`
     color: ${THEME.COLOR.INVERT_1};
     font-size: 18px;
 `;
-
 export const RowWrapper = styled.div`
     padding: 100px 0 0;
-    max-width: 800px;
 `;
-
 export const Companies = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
 export const CompaniesLogoTitle = styled.div`
-    margin: 0  0 40px;
+    margin: 0 0 40px;
     font-size: 24px;
     font-weight: 400;
     text-align: center;
