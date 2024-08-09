@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import THEME from "../../theme";
 
 export const Wrapper = styled.div`
@@ -51,12 +51,25 @@ export const Experience = styled.div`
 export const ExperienceColumn = styled.div`
     width: 205px;
     padding: 10px 10px 0;
+    ${
+    css`
+        @media screen and (max-width: 700px) {
+            width: 100%;
+            padding: 10px 10px 30px;
+        }
+    `}
 `;
 export const ColumnTitle = styled.div`
     color: ${THEME.COLOR.INVERT_2};
     margin: 0 0 20px;
     font-size: 20px;
     font-weight: 400;
+    ${
+            css`
+                @media screen and (max-width: 700px) {
+                    margin: 0 0 10px;
+                }
+            `}
 `;
 export const ColumnDetails = styled.div`
     color: ${THEME.COLOR.INVERT_1};
