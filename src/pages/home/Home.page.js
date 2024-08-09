@@ -81,28 +81,28 @@ function HomePage() {
                         {
                             title: 'INSTRUMENT CHORDS',
                             skills: ['react', 'js'],
-                            description: 'Guitar, ukulele, piano chords. Select group of chords and switch instruments.',
+                            description: 'Guitar, ukulele, piano chords. Sometimes each of us want to play new songs on different instruments. For situation when you met new chords I created this website. Select chords and switch between instruments.',
                             link: 'https://svladiko.com/external/instrument-chords/index.html',
                             src: presentation5
                         },
                         {
                             title: 'WALK AND SHOOT',
                             skills: ['react', 'js', 'canvas'],
-                            description: 'Game where you can walk and shoot gangsters.',
+                            description: 'Game where you can walk and shoot gangsters. I have decided to play games but for don`t feel guilty of wasting time it should be my games. That`s how this game was created.',
                             link: 'https://svladiko.com/external/walker/index.html',
                             src: presentation4
                         },
                         {
                             title: 'Depoistu (Closed)',
                             skills: ['js', 'react', 'redux', 'Node.js', 'MySql'],
-                            description: 'Ukraine menu aggregator. The main purpose to collect all menu of Ukraine in one place. Closed after 1y 6m',
+                            description: 'Ukraine menu aggregator. We have tried to standardise and collect all menu of Ukraine in one place. \n We have organised team from people who only started their IT path. Intern FE, intern QA, intern UI/UX. In this project I have lead different roles: FE, BE, UX/UI, team leader, manager, scrum master, DevOps, sales manager. Each of us have got an amazing experience. We have closed this project after 1y 6m because of War in Ukraine.',
                             link: 'https://www.youtube.com/watch?v=uId5voBQ5Ls',
                             src: projectDepoistuImg
                         },
                         {
                             title: 'INCOME CALCULATOR',
                             skills: ['react'],
-                            description: 'We will help you to calculate your income in different time.',
+                            description: 'We will help you to calculate your income in different time. It`s always good to know what will be left in the end of the year.',
                             link: '/income-calculator',
                             src: presentation1
                         },
@@ -116,7 +116,7 @@ function HomePage() {
                         {
                             title: 'CANVAS ANIMATION 1',
                             skills: ['js', 'canvas'],
-                            description: 'Here are I practiced canvas animation.',
+                            description: 'Here are I practiced canvas animation from youtube lesson.',
                             link: '/canvas_animation_1.html',
                             src: presentation3
                         },
