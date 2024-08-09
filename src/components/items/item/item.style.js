@@ -9,9 +9,9 @@ export const Wrapper = styled.a`
     justify-content: space-between;
 
     ${css`
-        @media screen and (max-width: 700px) {
-            max-width: 320px;
-            min-width: 320px;
+        @media screen and (max-width: 600px) {
+            max-width: 90%;
+            min-width: 90%;
         }
     `}
 `
@@ -41,7 +41,7 @@ export const Img = styled.img`
     width: 200px;
 
     ${css`
-        @media screen and (max-width: 700px) {
+        @media screen and (max-width: 600px) {
             height: 120px;
             width: 120px;
         `}
@@ -56,7 +56,7 @@ export const Right = styled.div`
     margin: 0 0 0 10px;
     
     ${css`
-        @media screen and (max-width: 700px) {
+        @media screen and (max-width: 600px) {
             min-width: 120px;
             max-width: 120px;
             min-height: 120px;
