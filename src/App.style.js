@@ -3,7 +3,7 @@ import THEME from "./theme";
 
 export const Wrapper = styled.div`
     //border: solid 1px red;
-    width: 1400px;
+    width: 1200px;
     margin: 0 auto;
     overflow: hidden;
 `;
