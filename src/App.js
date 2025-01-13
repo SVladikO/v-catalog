@@ -11,10 +11,12 @@ import TimetableFPage from "./pages/timetabeF/TimetableF.page";
 // import WebsiteCatalogPage from "./pages/website-catalog/Website-catalog.page";
 import EnglishAlphabetPage from "./pages/english-alphabet/EnglishAlphabet.page";
 import IncomeCalculatorPage from "./pages/income-calculator/income-calculator.page";
+import Header from "./components/header/header";
 
 export default function App() {
     return (
         <Wrapper>
+            <Header />
             <Content>
                 <Routes>
                     <Route path="/" element={<HomePage/>}/>
