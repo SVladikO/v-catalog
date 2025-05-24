@@ -12,6 +12,7 @@ import presentation2 from "../../image/presentation/2.png";
 import presentation3 from "../../image/presentation/3.png";
 import presentation4 from "../../image/presentation/4.png";
 import presentation5 from "../../image/presentation/5.png";
+import presentation6 from "../../image/presentation/6.png";
 import projectDepoistuImg from "../../image/presentation/depoistu.png";
 
 import {ReactComponent as OnePlusOneLogo} from "../../image/company-logo/1+1.svg";
@@ -98,6 +99,13 @@ function HomePage() {
                             description: 'Ukraine menu aggregator. We have tried to standardise and collect all menu of Ukraine in one place. \n We have organised team from people who only started their IT path. Intern FE, intern QA, intern UI/UX. In this project I have lead different roles: FE, BE, UX/UI, team leader, manager, scrum master, DevOps, sales manager. Each of us have got an amazing experience. We have closed this project after 1y 6m because of War in Ukraine.',
                             link: 'https://www.youtube.com/watch?v=uId5voBQ5Ls',
                             src: projectDepoistuImg
+                        },
+                        {
+                            title: 'HUNTER',
+                            skills: ['html, css, js'],
+                            description: "Three maps, time counter. I took this project for practice porposes.",
+                            link: 'https://svladiko.com/external/hunting/index.html',
+                            src: presentation6
                         },
                         {
                             title: 'INCOME CALCULATOR',
