@@ -83,7 +83,7 @@ function HomePage() {
                             title: 'INSTRUMENT CHORDS',
                             skills: ['react', 'js'],
                             description: 'Guitar, ukulele, piano chords. Sometimes each of us want to play new songs on different instruments. For situation when you met new chords I created this website. Select chords and switch between instruments.',
-                            link: 'https://mroom.site',
+                            link: 'https://svladiko.com/external/music-chords/index.html',
                             src: presentation5
                         },
                         {
