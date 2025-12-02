@@ -47,12 +47,12 @@ const experienceDetails = [
 function HomePage() {
     return (
         <Wrapper>
-            <IntroWrapper>
+            <IntroWrapper className='t-Intro'>
                 <Avatar src="https://avatars.githubusercontent.com/u/10807650?v=4" alt=""/>
                 <IntroductionTitle>FRONTEND DEVELOPER</IntroductionTitle>
                 <IntroductionSubTitle>9 years in IT * English B2</IntroductionSubTitle>
             </IntroWrapper>
-            <Experience>
+            <Experience  className='t-Experience'>
                 {
                     experienceDetails.map(item =>
                         <ExperienceColumn key={item.title}>
@@ -62,7 +62,7 @@ function HomePage() {
                     )
                 }
             </Experience>
-            <RowWrapper>
+            <RowWrapper  className='t-WorkedWith'>
                 <Companies>
                     <CompaniesLogoTitle>WORKED WITH</CompaniesLogoTitle>
                     <LogoWrapper>
@@ -75,7 +75,7 @@ function HomePage() {
                     </LogoWrapper>
                 </Companies>
             </RowWrapper>
-            <RowWrapper>
+            <RowWrapper className='t-OwnProjects'>
                 <CompaniesLogoTitle>OWN PROJECTS</CompaniesLogoTitle>
                 <Items items={
                     [
@@ -132,7 +132,7 @@ function HomePage() {
                 }
                 />
             </RowWrapper>
-            <RowWrapper>
+            <RowWrapper className='t-OwnPackages'>
                 <CompaniesLogoTitle>OWN PACKAGES</CompaniesLogoTitle>
                 <Items items={
                     [
@@ -142,7 +142,7 @@ function HomePage() {
                 }
                 />
             </RowWrapper>
-            <RowWrapper>
+            <RowWrapper className='t-WorkExperience'>
                 <CompaniesLogoTitle>WORK EXPERIENCE</CompaniesLogoTitle>
                 <WorkPlaces/>
             </RowWrapper>

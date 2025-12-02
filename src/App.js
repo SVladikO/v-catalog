@@ -14,20 +14,13 @@ import Header from "./components/header/header";
 
 export default function App() {
     return (
-        <>
-            {/* <Header/> */}
-            <Wrapper>
-                <Content>
-                    <Routes>
-                        <Route path="/" element={<HomePage/>}/>
-                        <Route path='/income-calculator' element={<IncomeCalculatorPage/>}/>
-                        {/*<Route path={ROUTE_PATH.PACKAGES} element={<PackagePage/>}/>*/}
-                        {/*<Route exact path={ROUTE_PATH.PROJECTS} element={<WebsiteCatalogPage/>}/>*/}
-                        <Route path="/t" element={<TimetableFPage/>}/>
-                        <Route path="/english-alphabet-spelling" element={<EnglishAlphabetPage/>}/>
-                    </Routes>
-                </Content>
-            </Wrapper>
-        </>
+        <Routes>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path='/income-calculator' element={<IncomeCalculatorPage/>}/>
+            {/*<Route path={ROUTE_PATH.PACKAGES} element={<PackagePage/>}/>*/}
+            {/*<Route exact path={ROUTE_PATH.PROJECTS} element={<WebsiteCatalogPage/>}/>*/}
+            <Route path="/t" element={<TimetableFPage/>}/>
+            <Route path="/english-alphabet-spelling" element={<EnglishAlphabetPage/>}/>
+        </Routes>
     );
 }
