@@ -1,111 +1,96 @@
 import styled, {css} from 'styled-components';
 import THEME from "../../theme";
 
+export const widthCss = css`
+    max-width: 1120px;
+    width: 100vw;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+`;
+
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 0 100px;
+    background: #F3F3F3;
+    overflow: hidden;
 `;
 
-export const IntroWrapper = styled.div`
-    min-width: 100vw;
-    background-color: ${THEME.COLOR.INVERT_1};
-    padding: 70px 0 10px;
+export const ScrollDown = styled.a`
+    margin: 140px auto 0;
+    font-size: 22px;
 `;
 
-export const Avatar = styled.img`
-    border-radius: 50%;
-    height: 200px;
-    margin: 0 auto;
-    display: block;
-`;
-export const IntroductionTitle = styled.div`
-    font-size: 26px;
-    font-weight: 400;
-    color: #fff;
-    text-align: center;
-    margin: 24px 0 0 0;
-`;
-
-export const IntroductionSubTitle = styled.div`
-    font-size: 24px;
-    color: #A8A6A6;
-    text-align: center;
-    margin: 10px auto 20px;
-`;
-
-export const Experience = styled.div`
-    padding: 50px 10px 0;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    
-`;
-export const ExperienceColumn = styled.div`
-    width: 205px;
-    padding: 10px 10px 0;
-    ${
-            css`
-                @media screen and (max-width: 700px) {
-                    width: 100%;
-                    padding: 10px 10px 30px;
-                }
-            `}
-`;
-export const ColumnTitle = styled.div`
-    color: ${THEME.COLOR.INVERT_2};
-    margin: 0 0 20px;
-    font-size: 20px;
-    font-weight: 400;
-    ${css`
-        @media screen and (max-width: 700px) {
-            margin: 0 0 10px;
-        }
-    `}
-`;
-export const ColumnDetails = styled.div`
-    color: ${THEME.COLOR.INVERT_1};
-    font-size: 18px;
-`;
 export const RowWrapper = styled.div`
-    padding: 100px 0 0;
+    ${widthCss};
+    position: relative;
+    padding-bottom: 100px;
+    padding-top: 70px;
+    overflow: hidden;
+
+    @media only screen and (max-width: 1200px) {
+        padding-bottom: 10px;
+    }
+`;
+
+export const CompaniesWrapper = styled.div`
+    width: 100%;
+    background: white;
+    padding: 40px 0;
+    
+    
+    display: flex;
+    justify-content: center;
+
+    @media only screen and (max-width: 1000px) {
+        padding: 40px 0 20px;
+    }
+
 `;
 export const Companies = styled.div`
     display: flex;
-    flex-direction: column;
+    gap: 30px;
+    flex-direction: row;
     align-items: center;
+
+    svg, img {
+        filter: grayscale(100%);
+        height: 50px;
+    }
+    
+    svg:hover, img:hover {
+        filter: grayscale(0%);
+    }
+
+
+    @media only screen and (max-width: 1000px) {
+        width: 100vw;
+        padding: 0 30px 20px;
+        overflow-x: auto;
+    }
 `;
 export const CompaniesLogoTitle = styled.div`
-    margin: 0 0 40px;
-    font-size: 24px;
+    margin: 0 auto 40px;
+    font-size: 36px;
     font-weight: 400;
-    text-align: center;
+    position: relative;
+    z-index: 2;
+
+    @media only screen and (max-width: 1200px) {
+        margin: 10px 0 16px;
+    }
+`;
+
+export const CompaniesLogoTitle2 = styled.div`
+    ${widthCss};
+    
+    margin: 0 auto 40px;
+    font-size: 36px;
+    font-weight: 400;
 
     @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {
         margin: 10px 0;
-    }
-`;
-
-export const LogoWrapper = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 800px;
-    padding: 0 20px;
-
-    svg, img {
-        height: 60px;
-    }
-
-    @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {
-        width: auto;
-        flex-wrap: wrap;
-
-        img {
-            margin: 10px 5px;
-            height: 40px;
-        }
     }
 `;
