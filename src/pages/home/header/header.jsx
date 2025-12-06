@@ -4,7 +4,9 @@ const Header = () => {
     return (
         <Wrapper className="t-Header">
             <InnerWrapper>
-                <Logo>Serhiichuk CV</Logo>
+                <a href='#AboutMe'>
+                    <Logo>Serhiichuk CV</Logo>
+                </a>
                 <Navigation>
                     <NavigationItem href='#AboutMe'>About me</NavigationItem>
                     <NavigationItem href='#OwnProjects'>Projects</NavigationItem>

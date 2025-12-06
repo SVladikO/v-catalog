@@ -125,7 +125,7 @@ function HomePage() {
             </div>
 
             <RowWrapper  id="WorkExperience" className='t-WorkExperience'>
-                <CompaniesLogoTitle>Work experience</CompaniesLogoTitle>
+                <CompaniesLogoTitle>Experience</CompaniesLogoTitle>
                 <WorkPlaces/>
             </RowWrapper>
             <ContactMe />

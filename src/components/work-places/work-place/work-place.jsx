@@ -7,6 +7,8 @@ import {
     TimeInterval,
     Responsibility,
     Location,
+    WorkDuration,
+    WorkFromTo,
     Skills,
     SubTitle,
 } from './work-place.style';
@@ -18,8 +20,8 @@ function Company(props) {
         <ControlWrapper>
             <Wrapper className='desktop'>
                 <div>
-                    <div>${fromTo}</div>
-                    <div>{duration}</div>
+                    <WorkFromTo>{fromTo}</WorkFromTo>
+                    <WorkDuration>{duration}</WorkDuration>
                 </div>
                 <div>{company}</div>
                 <div>{position}</div>

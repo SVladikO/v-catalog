@@ -2,11 +2,19 @@ import styled from 'styled-components';
 import THEME from "../../../theme";
 
 export const ControlWrapper = styled.div`
-    & > div.mobile { display: none; }
     
+    & > div.mobile {
+        display: none;
+    }
+
     @media (max-width: 800px) {
-        & > div.desktop { display: none; }
-        & > div.mobile { display: flex; }
+        & > div.desktop {
+            display: none;
+        }
+
+        & > div.mobile {
+            display: flex;
+        }
     }
 `;
 
@@ -15,7 +23,8 @@ export const Wrapper = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     padding: 20px 0 20px;
     border-bottom: solid 1px #E7E7E7;
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: 400;
 `;
 
 export const MainContainer = styled.div`
@@ -38,6 +47,13 @@ export const Position = styled.div`
     color: #000;
     font-size: 22px;
     font-weight: 500;
+`;
+export const WorkDuration = styled.div`
+    color: #858585;
+    font-size: 15px;
+`;
+export const WorkFromTo = styled.div`
+
 `;
 export const CompanyName = styled.div`
     color: ${THEME.COLOR.INVERT_3};

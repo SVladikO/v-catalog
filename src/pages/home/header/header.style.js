@@ -23,6 +23,7 @@ export const InnerWrapper = styled.div`
 `;
 export const Logo = styled.div`
     font-size: 24px;
+    font-family: RobotoFlex;
     font-weight: 400;
 `;
 export const Navigation = styled.div`
@@ -34,10 +35,11 @@ export const Navigation = styled.div`
     @media only screen and (max-width: 750px) {
         display: none;
     }
-
 `;
 export const NavigationItem = styled.a`
     font-size: 18px;
+    font-family: RobotoFlex;
+    font-weight: 400;
     
     &:hover {
         color: #008433;

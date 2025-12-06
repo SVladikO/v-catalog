@@ -71,12 +71,18 @@ export const Companies = styled.div`
         overflow-x: auto;
     }
 `;
+
+const fontCss = css`
+    font-size: 36px;
+    font-family: RobotoCondensedRegular;
+
+`
 export const CompaniesLogoTitle = styled.div`
     margin: 0 auto 40px;
-    font-size: 36px;
-    font-weight: 400;
     position: relative;
     z-index: 2;
+    
+    ${fontCss};
 
     @media only screen and (max-width: 1200px) {
         margin: 10px 0 16px;
@@ -85,9 +91,8 @@ export const CompaniesLogoTitle = styled.div`
 
 export const CompaniesLogoTitle2 = styled.div`
     ${widthCss};
-    
+    ${fontCss};
     margin: 0 auto 40px;
-    font-size: 36px;
     font-weight: 400;
 
     @media only screen and (max-width: ${THEME.MEDIA.TABLET}) {

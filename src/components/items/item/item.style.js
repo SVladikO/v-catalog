@@ -51,7 +51,8 @@ export const SecondaryLink = styled.a`
 `
 export const Title = styled.div`
     font-size: 24px;
-    font-weight: 500;
+    font-family: RobotoFlex;
+    font-weight: 400;
     color: #000;
     margin: 0 0 10px;
 `;
@@ -62,6 +63,8 @@ export const Skill = styled.div`
     padding: 2px 4px;
     border-radius: 2px;
     font-size: 16px;
+    font-family: RobotoFlex;
+    font-weight: 400;
 `;
 
 export const Skills = styled.div`
@@ -69,12 +72,12 @@ export const Skills = styled.div`
     flex-direction: row;
     gap: 10px;
     font-size: 18px;
-    color: #332828;
 `;
 
 export const Description = styled.div`
     font-size: 18px;
     color: #000;
+    font-weight: 300;
 `;
 
 export const Left = styled.div`

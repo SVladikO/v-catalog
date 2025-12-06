@@ -2,7 +2,7 @@ export default [
   {
     position: "Software Engineer",
     company: "Playtech",
-    fromTo: "Sep 2022 - Current time ",
+    fromTo: "Sep 2022 - Now",
     duration: new Date().getFullYear() - 2022 + " + years",
     responsibility: "I've worked on sport betting framework. My main responsibility were feature development, refactoring, bug fix, CR.",
     skills: "JS, React, Redux, HTML, CSS",

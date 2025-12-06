@@ -26,7 +26,7 @@ const ContactMe = () => {
                     </Dev>
                     <Dev>
                         <DevLabel>Design</DevLabel>
-                        <DevContact>myroniuk.com</DevContact>
+                        <DevContact>irinapsy18@gmail.com</DevContact>
                     </Dev>
                 </Developed>
                 <Made>Made in Ukraine 2023 🇺🇦</Made>

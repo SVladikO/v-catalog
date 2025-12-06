@@ -23,6 +23,7 @@ export const ExtraContent = styled.div`
 `;
 export const ExtraContentHeader = styled.div`
     font-size: 40px;
+    font-family: RobotoCondensedRegular;
 `;
 export const ExtraContentBody = styled.div`
     font-size: 16px;
@@ -55,9 +56,12 @@ export const Position = styled.div`
     color: #000;
     font-size: 36px;
     font-weight: 400;
+    font-family: RobotoCondensedRegular;
 `;
 
 export const PIB = styled.div`
     color: #008433;
     font-size: 72px;
+    font-family: RobotoCondensedMedium;
+    font-weight: 500;
 `;
