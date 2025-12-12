@@ -70,6 +70,7 @@ export const Skill = styled.div`
 export const Skills = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
     font-size: 18px;
 `;

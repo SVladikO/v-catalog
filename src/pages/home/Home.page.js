@@ -49,7 +49,7 @@ const projectList = [
     },
     {
         title: 'Depoistu (Closed)',
-        skills: ['React', 'Redux', 'JavaScript', 'Node.js', 'MySql'],
+        skills: ['React', 'Redux', 'Node.js', 'MySql'],
         description: 'Ukraine menu aggregator. 4 people teams. In this project I have lead different roles: FE, BE, UX/UI, team leader, manager, scrum master, DevOps, sales manager.',
         link: 'https://www.youtube.com/watch?v=uId5voBQ5Ls',
         gitLink: 'https://github.com/SVladikO/depoistu',
