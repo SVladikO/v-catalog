@@ -15,6 +15,7 @@ import presentation3 from "../../image/presentation/3.png";
 import presentation4 from "../../image/presentation/4.png";
 import presentation5 from "../../image/presentation/5.png";
 import presentation6 from "../../image/presentation/6.png";
+import vutokSrc from "../../image/presentation/7.jpeg";
 import projectDepoistuImg from "../../image/presentation/depoistu.png";
 
 import ArrowDownSrc from '../../image/arrow-down.svg'
@@ -31,8 +32,16 @@ import ContactMe from "./contact-me/contact-me";
 
 const projectList = [
     {
+        title: 'Vutok',
+        skills: ['React', 'Redux', 'Node.js', 'MySql'],
+        description: 'Social media.',
+        link: 'https://vutok.com',
+        gitLink: 'https://github.com/SVladikO/vutok',
+        src: vutokSrc
+    },
+    {
         title: 'Instrument chords',
-        skills: ['react', 'js'],
+        skills: ['React', 'JavaScript'],
         description: 'List of Chords for Guitar, Ukulele, Piano. Select chords and switch between instruments.',
         link: 'https://svladiko.com/external/music-chords/index.html',
         gitLink: 'https://github.com/SVladikO/instrument-chords',
@@ -40,7 +49,7 @@ const projectList = [
     },
     {
         title: 'Depoistu (Closed)',
-        skills: ['js', 'react', 'redux', 'Node.js', 'MySql'],
+        skills: ['React', 'Redux', 'JavaScript', 'Node.js', 'MySql'],
         description: 'Ukraine menu aggregator. 4 people teams. In this project I have lead different roles: FE, BE, UX/UI, team leader, manager, scrum master, DevOps, sales manager.',
         link: 'https://www.youtube.com/watch?v=uId5voBQ5Ls',
         gitLink: 'https://github.com/SVladikO/depoistu',
@@ -48,7 +57,7 @@ const projectList = [
     },
     {
         title: 'Walk and shoot',
-        skills: ['react', 'js', 'canvas'],
+        skills: ['React', 'Canvas', 'JavaScript'],
         description: 'Game: You can walk and shoot gangsters.',
         link: 'https://svladiko.com/external/walker/index.html',
         gitLink: 'https://github.com/SVladikO/walk_and_shoot',
@@ -56,7 +65,7 @@ const projectList = [
     },
     {
         title: 'Hunter',
-        skills: ['html', 'css', 'js'],
+        skills: ['HTML', 'CSS', 'JavaScript'],
         description: "Game: Three maps, time counter. I took this project for practice porposes.",
         link: 'https://svladiko.com/external/hunting/index.html',
         gitLink: 'https://github.com/SVladikO/hunting-duck',
@@ -64,7 +73,7 @@ const projectList = [
     },
     {
         title: 'Income calculator',
-        skills: ['react'],
+        skills: ['React'],
         description: 'We will help you to calculate your income in different time. It`s always good to know what will be left in the end of the year.',
         link: '/income-calculator',
         gitLink: 'https://github.com/SVladikO/v-catalog/tree/master/src/pages/income-calculator',
@@ -79,7 +88,7 @@ const projectList = [
     // },
     {
         title: 'Canvas animation',
-        skills: ['js', 'canvas'],
+        skills: ['JavaScript', 'Canvas'],
         description: 'I practiced canvas animation from youtube lesson.',
         link: '/canvas_animation_1.html',
         gitLink: 'https://github.com/SVladikO/v-catalog/blob/master/public/canvas_animation_1.html',
