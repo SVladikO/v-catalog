@@ -32,9 +32,9 @@ import ContactMe from "./contact-me/contact-me";
 
 const projectList = [
     {
-        title: 'Vutok',
+        title: 'Vutok Social (Closed)',
         skills: ['React', 'Redux', 'Node.js', 'MySql'],
-        description: 'Social media.',
+        description: 'Ukraine Social media website. Production 1 year. User was able: request/reject friendship, create/edit profile, create/edit post text/image. Chat WS send/edit/like message see when opponent type you message. Also was implemented own news architecture. Later we called latest NewApi. Changes were constantly deployed on 4 domains (fe, be, image, ws for chat) and two services (news cms, be requests tracking) I run locally. Two people team. Me and designer. I mentored designer on this project to help him create real portfolio. ',
         link: 'https://vutok.com',
         gitLink: 'https://github.com/SVladikO/vutok',
         src: vutokSrc
