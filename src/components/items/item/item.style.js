@@ -79,6 +79,7 @@ export const Description = styled.div`
     font-size: 18px;
     color: #000;
     font-weight: 300;
+    white-space: pre-wrap;
 `;
 
 export const Left = styled.div`

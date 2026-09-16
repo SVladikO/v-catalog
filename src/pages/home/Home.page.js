@@ -32,28 +32,77 @@ import ContactMe from "./contact-me/contact-me";
 
 const projectList = [
     {
-        title: 'Vutok Social (Closed)',
+        title: 'Vutok Social (Live)',
         skills: ['React', 'Redux', 'Node.js', 'MySql'],
-        description: 'Ukraine Social media website. Production 1 year. User was able: request/reject friendship, create/edit profile, create/edit post text/image. Chat WS send/edit/like message see when opponent type you message. Also was implemented own news architecture. Later we called latest NewApi. Changes were constantly deployed on 4 domains (fe, be, image, ws for chat) and two services (news cms, be requests tracking) I run locally. Two people team. Me and designer. I mentored designer on this project to help him create real portfolio. ',
+        description:
+`A Ukrainian social media platform. 
+
+In production:
+- from 01.08.2025
+- after 4 months of development
+        
+Deployed domains: 
+- frontend 
+- backend 
+- image server
+- WebSocket chat server
+
+The platform also included two supporting services: a news CMS and a backend request-tracking service, which I ran locally.
+`,
+// Current features include:
+//
+// * Creating, editing and delete user profiles.
+// * Sending, accepting, and rejecting friend requests.
+// * Creating and editing posts with text and images.
+// * Real-time WebSocket chat with message creation, replies, likes, and typing indicators.
+// * A separate API and CMS for creating and managing news articles.
+// * Integration with external news APIs to retrieve the latest news.
+//
+// Planned features include:
+//
+// * Job search functionality, currently in beta.
+// * Classified advertisements and search.
         link: 'https://vutok.com',
         gitLink: 'https://github.com/SVladikO/vutok',
         src: vutokSrc
     },
     {
-        title: 'Instrument chords',
-        skills: ['React', 'JavaScript'],
-        description: 'List of Chords for Guitar, Ukulele, Piano. Select chords and switch between instruments.',
-        link: 'https://svladiko.com/external/music-chords/index.html',
-        gitLink: 'https://github.com/SVladikO/instrument-chords',
-        src: presentation5
-    },
-    {
         title: 'Depoistu (Closed)',
         skills: ['React', 'Redux', 'Node.js', 'MySql'],
-        description: 'Ukraine menu aggregator. 4 people teams. In this project I have lead different roles: FE, BE, UX/UI, team leader, manager, scrum master, DevOps, sales manager.',
+        description:
+            `Ukraine menu aggregator.
+
+In production:
+- for 6 months
+- after 9 months of development
+
+I lead/mentored 4 people team:
+- 1 Designer
+- 1 QA
+- 2 FE devs
+ 
+In this project I have different roles:
+ FE, BE, UX/UI, team leader, manager, scrum master, DevOps, sales manager.
+ `,
         link: 'https://www.youtube.com/watch?v=uId5voBQ5Ls',
         gitLink: 'https://github.com/SVladikO/depoistu',
         src: projectDepoistuImg
+    },
+
+    {
+        title: 'Instrument chords',
+        skills: ['React', 'JavaScript'],
+        description:
+`Chords for:
+ - Guitar
+ - Ukulele
+ - Piano
+ 
+ Select chords and switch between instruments.
+ `,
+        link: 'https://svladiko.com/external/music-chords/index.html',
+        gitLink: 'https://github.com/SVladikO/instrument-chords',
+        src: presentation5
     },
     {
         title: 'Walk and shoot',
@@ -119,7 +168,7 @@ function HomePage() {
                 <Items items={packageList}/>
             </RowWrapper>
 
-            <div style={{width:'100%', margin:'0 0 20px'}}>
+            <div style={{width: '100%', margin: '0 0 20px'}}>
                 <CompaniesLogoTitle2>Worked with</CompaniesLogoTitle2>
                 <CompaniesWrapper id="CompaniesWorkedWith" className='t-WorkedWith'>
                     <Companies>
@@ -133,11 +182,11 @@ function HomePage() {
                 </CompaniesWrapper>
             </div>
 
-            <RowWrapper  id="WorkExperience" className='t-WorkExperience'>
+            <RowWrapper id="WorkExperience" className='t-WorkExperience'>
                 <CompaniesLogoTitle>Experience</CompaniesLogoTitle>
                 <WorkPlaces/>
             </RowWrapper>
-            <ContactMe />
+            <ContactMe/>
 
         </Wrapper>
 

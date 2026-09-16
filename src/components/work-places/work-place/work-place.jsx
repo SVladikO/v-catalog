@@ -6,11 +6,9 @@ import {
     CompanyName,
     TimeInterval,
     Responsibility,
-    Location,
     WorkDuration,
     WorkFromTo,
     Skills,
-    SubTitle,
 } from './work-place.style';
 
 function Company(props) {
@@ -26,7 +24,7 @@ function Company(props) {
                 <div>{company}</div>
                 <div>{position}</div>
                 <div>{skills}</div>
-                <div>{responsibility}</div>
+                <div style={{whiteSpace: 'pre-wrap'}} className='responsibility_desktop'>{responsibility}</div>
             </Wrapper>
             <MainContainer className='mobile'>
                 <Position>{position}</Position>

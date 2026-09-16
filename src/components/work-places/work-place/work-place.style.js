@@ -20,7 +20,7 @@ export const ControlWrapper = styled.div`
 
 export const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
     padding: 20px 0 20px;
     border-bottom: solid 1px #E7E7E7;
     font-size: 19px;
@@ -68,6 +68,7 @@ export const TimeInterval = styled.div`
 export const Responsibility = styled.div`
     font-size: 20px;
     font-weight: 300;
+    white-space: pre-wrap;
 `;
 export const SubTitle = styled.div`
     color: ${THEME.COLOR.INVERT_2};

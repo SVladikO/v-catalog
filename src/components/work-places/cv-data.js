@@ -4,7 +4,16 @@ export default [
     company: "Playtech",
     fromTo: "Sep 2022 - Now",
     duration: new Date().getFullYear() - 2022 + " + years",
-    responsibility: "I've worked on sport betting framework. My main responsibility were feature development, refactoring, bug fix, CR.",
+    responsibility:
+`Contributed to a large, mature product with an 11-year development history. Worked in teams of varying sizes—up to 30–40 developers—and collaborated with different engineering and product managers.
+
+Key contributions:
+* Implemented new product features.
+* Diagnosed and fixed bugs across the existing codebase.
+* Improved automated test coverage and product reliability.
+* Adapted to changing team structures, priorities, and management styles.
+* Collaborated effectively within a large, cross-functional development environment.
+    `,
     skills: "JS, React, Redux, HTML, CSS",
   },
   {
